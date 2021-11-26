@@ -20,7 +20,7 @@ END
 
 
 g.dashboard_disable_statusline = 0
-local nvoid_site = "    爵nvoid.github.io"
+local nvoid_site = "  爵ysfgrgo7.github.io"
 g.dashboard_custom_footer = {
   "NVOID Loaded " .. plugins_count .. " plugins  ",
   "",

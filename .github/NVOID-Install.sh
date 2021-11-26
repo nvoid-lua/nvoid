@@ -7,6 +7,7 @@ elif command -v xbps-install &> /dev/null
 then
 	sudo xbps-install -Syu nodejs ranger python3-pip python-pip fd xclip neovim lazygit base-devel ncdu ripgrep fzf
 fi
+mv ~/.config/nvim ~/.config/NV.bc
 mkdir -p ~/.local/share/nvim/
 sudo npm i -g neovim
 pip install pynvim
