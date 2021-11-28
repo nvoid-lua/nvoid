@@ -3,10 +3,10 @@ M.ui, M.options = {}, {}
 
 -- UI
 M.ui = {
-  theme = 'doom-one',   -- 'onedarker' 'gruvbox' 'dracula' 'doom-one' 'tokyonight' 'nord'
-  transparent_background = 'false',
-  tokyonight_style = 'night',
-  -- statusline_style = 'evil',
+  theme = 'onedarker',                  -- 'onedarker' 'gruvbox' 'dracula' 'doom-one' 'tokyonight' 'nord'
+  transparent_background = 'false',     -- 'false' 'true'
+  tokyonight_style = 'night',           -- 'night' 'storm' 'day'
+  statusline_style = 'nvoid',           -- 'nvoid' 'evil'
 }
 
 -- OPT

@@ -1,19 +1,20 @@
+-- Local
 local lsp = require('feline.providers.lsp')
 local vi_mode_utils = require('feline.providers.vi_mode')
-
+-- Force Inactive
 local force_inactive = {
     filetypes = {},
     buftypes = {},
     bufnames = {}
 }
-
+-- Components
 local components = {
   active = {{}, {}, {}},
   inactive = {{}, {}, {}},
 }
-
+-- Local colors
 local colors = require("colors")
-
+-- vi mode colors
 local vi_mode_colors = {
   NORMAL = 'green',
   OP = 'green',
@@ -30,7 +31,7 @@ local vi_mode_colors = {
   TERM = 'green',
   NONE = 'yellow'
 }
-
+-- vi mode text
 local vi_mode_text = {
   NORMAL = '<|',
   OP = '<|',
@@ -48,8 +49,7 @@ local vi_mode_text = {
   TERM = '<|',
   NONE = '<>'
 }
-
-
+-- Inactive File Types
 force_inactive.filetypes = {
   'NvimTree',
   'dbui',
@@ -60,23 +60,20 @@ force_inactive.filetypes = {
   'fugitiveblame'
 }
 
-
--- LEFT
-
--- vi-mode
+-- Left
+-- vi mode colors
 components.active[1][1] = {
   provider = ' NVOID ',
   hl = function()
     local val = {}
-
     val.bg = vi_mode_utils.get_mode_color()
     val.fg = 'black'
     val.style = 'bold'
-
     return val
   end,
   right_sep = ' '
 }
+-- vi mode text
 components.active[1][2] = {
   provider = function()
     return vi_mode_text[vi_mode_utils.get_vim_mode()]
@@ -90,8 +87,7 @@ components.active[1][2] = {
   end,
   right_sep = ' '
 }
-
--- filename
+-- File info
 components.active[1][3] = {
   provider = 'file_info',
   hl = {
@@ -101,7 +97,7 @@ components.active[1][3] = {
   },
   right_sep = ' '
 }
--- gitBranch
+-- Git Branch
 components.active[1][4] = {
   provider = 'git_branch',
   hl = {
@@ -110,7 +106,7 @@ components.active[1][4] = {
     style = 'bold'
   }
 }
--- diffAdd
+-- Git add
 components.active[1][5] = {
   provider = 'git_diff_added',
   hl = {
@@ -119,7 +115,7 @@ components.active[1][5] = {
     style = 'bold'
   }
 }
--- diffModfified
+-- Git Changes
 components.active[1][6] = {
   provider = 'git_diff_changed',
   hl = {
@@ -128,7 +124,7 @@ components.active[1][6] = {
     style = 'bold'
   }
 }
--- diffRemove
+-- Git Remove
 components.active[1][7] = {
   provider = 'git_diff_removed',
   hl = {
@@ -137,30 +133,20 @@ components.active[1][7] = {
     style = 'bold'
   }
 }
-
--- MID
-
--- LspName
+-- RIGHT
+-- LSP Name
 components.active[3][1] = {
   provider = 'lsp_client_names',
+  icon = ' ',
   hl = {
-    fg = 'white',
+    fg = 'violet',
     bg = 'bg',
     style = 'bold'
   },
   right_sep = ' '
 }
--- diagnosticErrors
+-- LSP Warning
 components.active[3][2] = {
-  provider = 'diagnostic_errors',
-  enabled = function() return lsp.diagnostics_exist('Error') end,
-  hl = {
-    fg = 'red',
-    style = 'bold'
-  }
-}
--- diagnosticWarn
-components.active[3][3] = {
   provider = 'diagnostic_warnings',
   enabled = function() return lsp.diagnostics_exist('Warning') end,
   hl = {
@@ -168,7 +154,16 @@ components.active[3][3] = {
     style = 'bold'
   }
 }
--- diagnosticHint
+-- LSP Error
+components.active[3][3] = {
+  provider = 'diagnostic_errors',
+  enabled = function() return lsp.diagnostics_exist('Error') end,
+  hl = {
+    fg = 'red',
+    style = 'bold'
+  }
+}
+-- LSP Hints
 components.active[3][4] = {
   provider = 'diagnostic_hints',
   enabled = function() return lsp.diagnostics_exist('Hint') end,
@@ -177,20 +172,17 @@ components.active[3][4] = {
     style = 'bold'
   }
 }
--- diagnosticInfo
+-- LSP Info
 components.active[3][5] = {
   provider = 'diagnostic_info',
+  right_sep = ' ',
   enabled = function() return lsp.diagnostics_exist('Information') end,
   hl = {
     fg = 'skyblue',
     style = 'bold'
   }
 }
-
--- RIGHT
-
--- fileIcon
--- lineInfo
+-- File Position
 components.active[3][6] = {
   provider = 'position',
   hl = {
@@ -200,7 +192,7 @@ components.active[3][6] = {
   },
   right_sep = '  '
 }
--- scrollBar
+-- Scroll Bar
 components.active[3][7] = {
   provider = 'scroll_bar',
   hl = {
@@ -209,17 +201,15 @@ components.active[3][7] = {
   },
 }
 -- INACTIVE
-
--- fileType
 components.inactive[1][1] = {
-  provider = '',
+  provider = 'file_type',
   hl = {
     fg = 'black',
-    bg = 'bg',
+    bg = 'blue',
     style = 'bold'
   },
   left_sep = {
-    str = ' ',
+    str = '',
     hl = {
       fg = 'NONE',
       bg = 'bg'
@@ -227,16 +217,16 @@ components.inactive[1][1] = {
   },
   right_sep = {
     {
-      str = ' ',
+      str = '',
       hl = {
         fg = 'NONE',
         bg = 'bg'
       }
     },
-    ' '
+    ''
   }
 }
-
+-- Setup
 require('feline').setup({
   colors = colors,
   vi_mode_colors = vi_mode_colors,
