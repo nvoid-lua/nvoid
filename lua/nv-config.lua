@@ -6,6 +6,7 @@ M.ui = {
   theme = 'doom-one',   -- 'onedarker' 'gruvbox' 'dracula' 'doom-one' 'tokyonight' 'nord'
   transparent_background = 'false',
   tokyonight_style = 'night',
+  -- statusline_style = 'evil',
 }
 
 -- OPT
