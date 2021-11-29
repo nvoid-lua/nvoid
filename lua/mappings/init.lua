@@ -37,7 +37,7 @@ map('n', '<leader>E', ':e ~/.config/nvim/lua/nv-config.lua<CR>', default_opts)
 
 -- { Write
 map('n', '<leader>w', ':w<CR>', default_opts)
-map('n', '<leader>x', ':wq!<CR>', default_opts)
+map('n', '<leader>x', ':wqa!<CR>', default_opts)
 -- }
 
 -- { Dashboard
