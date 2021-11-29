@@ -64,4 +64,3 @@ g.nvim_tree_icons = {
         symlink_open = ""
     }
 }
-
