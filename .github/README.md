@@ -10,7 +10,7 @@
 </div>
 
 # Install In One Command
-```
+```bash
 bash -c "$(curl -s https://raw.githubusercontent.com/ysfgrgO7/nvoid/main/.github/NVOID-Install.sh)"
 ```
 
