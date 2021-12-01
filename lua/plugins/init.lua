@@ -1,4 +1,4 @@
-local present, packer = pcall(require, "plugins.packerInit")
+  local present, packer = pcall(require, "plugins.packerInit")
 local execute = vim.api.nvim_command
 local fn = vim.fn
 local use = packer.use
@@ -14,7 +14,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
                 install_path)
     execute "packadd packer.nvim"
 end
-vim.cmd "autocmd BufWritePost init.lua PackerCompile"
 vim.opt.termguicolors = true
 
 return require("packer").startup(function(use)
