@@ -3,16 +3,22 @@ local colors = {}
 
 if config.ui.theme == 'onedarker' then
   colors = require('colors.onedarker.colors')
+  vim.cmd("colorscheme onedarker")
 elseif config.ui.theme == 'nord' then
   colors = require('colors.nord.colors')
+  vim.cmd("colorscheme nord")
 elseif config.ui.theme == 'tokyonight' then
   colors = require('colors.tokyonight.colors')
+    vim.cmd("colorscheme tokyonight")
 elseif config.ui.theme == 'doom-one' then
     colors = require('colors.doom-one.colors')
+    vim.cmd("colorscheme doom-one")
 elseif config.ui.theme == 'dracula' then
     colors = require('colors.dracula.colors')
+    vim.cmd("colorscheme dracula")
 elseif config.ui.theme == 'gruvbox' then
     colors = require('colors.gruvbox.colors')
+    vim.cmd("colorscheme gruvbox")
 end
 
 if config.ui.transparent_background == 'true' then

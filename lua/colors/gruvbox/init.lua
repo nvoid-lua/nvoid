@@ -4,4 +4,3 @@ if vim.fn.exists "syntax_on" then
 end
 vim.o.background = "dark"
 vim.o.termguicolors = true
-vim.g.colors_name = "gruvbox"
