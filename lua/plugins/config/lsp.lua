@@ -71,7 +71,6 @@ local lsp_installer = require("nvim-lsp-installer")
 local servers = {
     "sumneko_lua",
 	"bashls",
-    "vimls",
 }
 
 for _, name in pairs(servers) do
