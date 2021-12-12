@@ -1,4 +1,4 @@
-  local present, packer = pcall(require, "plugins.packerInit")
+local present, packer = pcall(require, "plugins.packerInit")
 local execute = vim.api.nvim_command
 local fn = vim.fn
 local use = packer.use
