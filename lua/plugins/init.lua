@@ -1,5 +1,4 @@
 local present, packer = pcall(require, "plugins.packerInit")
-require("plugins/plugConfig")
 if not present then
    return false
 end

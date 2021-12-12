@@ -1,4 +1,5 @@
 require("plugins")
+require("plugins/plugConfig")
 require("core.init")
 require("mappings.init")
 require("colors")
