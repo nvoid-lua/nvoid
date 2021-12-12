@@ -41,13 +41,6 @@ return packer.startup(function()
    use { "saadparwaiz1/cmp_luasnip" }
 -- }
 
--- { Whichkey
-   use {
-       "folke/which-key.nvim",
-       config = require("plugins/config/which-key")
-   }
--- }
-
 -- { Tab, Statusline, Indintline
    use {
        "akinsho/bufferline.nvim",
@@ -136,5 +129,11 @@ return packer.startup(function()
    use { "dracula/vim" }
    use { "morhetz/gruvbox" }
 -- }
-end)
 
+-- { Whichkey
+   use {
+       "folke/which-key.nvim",
+       config = require("plugins/config/which-key")
+   }
+-- }
+end)
