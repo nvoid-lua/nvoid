@@ -61,7 +61,7 @@ return packer.startup(function()
    use { "akinsho/toggleterm.nvim" }
 -- Plenary
    use { "nvim-lua/plenary.nvim" }
--- Icons   
+-- Icons
    use { "ryanoasis/vim-devicons" }
 -- Matchup
    use { "andymass/vim-matchup" }
