@@ -23,8 +23,7 @@ return packer.startup(function()
 -- Colorizer
    use { "norcalli/nvim-colorizer.lua" }
 -- Tree Sitter
-   use {
-       "nvim-treesitter/nvim-treesitter" }
+   use { "nvim-treesitter/nvim-treesitter" }
 -- Git Sign
    use { "lewis6991/gitsigns.nvim" }
 -- LSP
@@ -37,13 +36,18 @@ return packer.startup(function()
    use { "folke/trouble.nvim" }
 -- CMP
    use { "hrsh7th/nvim-cmp" }
+-- Lua Snip
    use { "L3MON4D3/LuaSnip" }
+-- CMP luasnip
    use { "saadparwaiz1/cmp_luasnip" }
+-- CMP Lua
    use { "hrsh7th/cmp-nvim-lua" }
+-- CMP LSP
    use { "hrsh7th/cmp-nvim-lsp" }
+-- CMP Biffer
    use { "hrsh7th/cmp-buffer" }
+-- CMP Path
    use { "hrsh7th/cmp-path", commit = commit.cmp_path, }
-
 -- Auto Pairs
    use { "windwp/nvim-autopairs" }
 -- Dashboard
