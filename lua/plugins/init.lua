@@ -1,3 +1,7 @@
+local commit = {
+  nvim_cmp = "47d7cfc06abd8661e28dc919882a2fcf01c99729",
+}
+
 local present, packer = pcall(require, "plugins.packerInit")
 if not present then
    return false
@@ -38,7 +42,8 @@ return packer.startup(function()
    use { "hrsh7th/cmp-nvim-lua" }
    use { "hrsh7th/cmp-nvim-lsp" }
    use { "hrsh7th/cmp-buffer" }
-   use { "hrsh7th/cmp-path" }
+   use { "hrsh7th/cmp-path", commit = commit.cmp_path, }
+
 -- Auto Pairs
    use { "windwp/nvim-autopairs" }
 -- Dashboard

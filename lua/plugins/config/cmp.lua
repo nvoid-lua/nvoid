@@ -1,19 +1,29 @@
 local present, cmp = pcall(require, "cmp")
-
 if not present then
    return
 end
-
 vim.opt.completeopt = "menuone,noselect"
 
-
-
 cmp.setup {
+    confirm_opts = {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = false,
+    },
+    completion = {
+      ---@usage The minimum length of a word to complete on.
+      keyword_length = 1,
+    },
+    experimental = {
+      ghost_text = true,
+      native_menu = false,
+    },
+-- Snippets
    snippet = {
       expand = function(args)
          require("luasnip").lsp_expand(args.body)
       end,
    },
+-- Formatting
    formatting = {
       format = function(entry, vim_item)
          vim_item.kind = string.format(
@@ -21,7 +31,6 @@ cmp.setup {
             require("plugins.config.icons").icons[vim_item.kind],
             vim_item.kind
          )
-
          vim_item.menu = ({
             nvim_lsp = "[LSP]",
             nvim_lua = "[Lua]",
@@ -31,6 +40,26 @@ cmp.setup {
          return vim_item
       end,
    },
+-- Source Names
+   source_names = {
+     nvim_lsp = "(LSP)",
+     emoji = "(Emoji)",
+     path = "(Path)",
+     calc = "(Calc)",
+     cmp_tabnine = "(Tabnine)",
+     vsnip = "(Snippet)",
+     luasnip = "(Snippet)",
+     buffer = "(Buffer)",
+   },
+-- Duplicates
+   duplicates = {
+     buffer = 1,
+     path = 1,
+     nvim_lsp = 0,
+     luasnip = 1,
+   },
+   duplicates_default = 0,
+-- Mappings
    mapping = {
       ["<C-p>"] = cmp.mapping.select_prev_item(),
       ["<C-n>"] = cmp.mapping.select_next_item(),
@@ -45,11 +74,20 @@ cmp.setup {
          select = true,
       },
    },
-   sources = {
-      { name = "nvim_lsp" },
-      { name = "luasnip" },
-      { name = "buffer" },
-      { name = "nvim_lua" },
-      { name = "path" },
+-- Documentation
+   documentation = {
+     border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
    },
+    sources = {
+      { name = "nvim_lsp" },
+      { name = "path" },
+      { name = "luasnip" },
+      { name = "cmp_tabnine" },
+      { name = "nvim_lua" },
+      { name = "buffer" },
+      { name = "calc" },
+      { name = "emoji" },
+      { name = "treesitter" },
+      { name = "crates" },
+    },
 }
