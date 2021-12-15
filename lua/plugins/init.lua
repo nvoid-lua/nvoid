@@ -26,7 +26,7 @@ return packer.startup(function()
 -- LSP
    use { "neovim/nvim-lspconfig", config = require("plugins.config.lsp") }
    use { "glepnir/lspsaga.nvim" }
-   use { "williamboman/nvim-lsp-installer", config = require("plugins.config.lsp.installer") }
+   use { "williamboman/nvim-lsp-installer" }
 -- CMP
    use { "hrsh7th/nvim-cmp" }
    use { "L3MON4D3/LuaSnip" }
