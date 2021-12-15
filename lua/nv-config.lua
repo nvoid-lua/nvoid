@@ -30,7 +30,18 @@ M.options = {
   swap_file = 'false',
   backup = 'false',
   show_mode = 'false',
-  wrap = 'false'
+  wrap = 'false',
+  ts_installed = {
+      "bash",
+      "lua",
+      "c",
+      "cpp",
+      "css",
+      "javascript",
+      "json",
+      "yaml",
+      "python",
+  }
 }
 
 return M
