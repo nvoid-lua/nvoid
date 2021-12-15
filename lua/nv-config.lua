@@ -1,5 +1,4 @@
 local M = {}
--- M.ui, M.options, M.ts_installed = {}, {}, {}
 
 -- UI
 M.ui = {
@@ -33,20 +32,20 @@ M.options = {
   wrap = 'false',
 }
 
-  M.ts_installed = {
-      "bash",
-      "lua",
-      "c",
-      "cpp",
-      "css",
-      "javascript",
-      "json",
-      "yaml",
-      "python",
-  }
+M.ts_installed = {
+  "bash",
+  "lua",
+  "c",
+  "cpp",
+  "css",
+  "javascript",
+  "json",
+  "yaml",
+  "python",
+}
 
 M.lsp = {
-    "sumneko_lua",
-	"bashls",
+  "sumneko_lua",
+  "bashls",
 }
 return M
