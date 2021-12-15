@@ -1,5 +1,5 @@
 local commit = {
-  nvim_cmp = "47d7cfc06abd8661e28dc919882a2fcf01c99729",
+  cmp_path = "d83839ae510d18530c6d36b662a9e806d4dceb73",
 }
 
 local present, packer = pcall(require, "plugins.packerInit")
