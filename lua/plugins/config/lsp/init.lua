@@ -24,3 +24,4 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagn
     virtual_text = false,
     update_in_insert = true
 })
+require("plugins/config/lsp/kind")
