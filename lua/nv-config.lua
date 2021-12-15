@@ -32,6 +32,7 @@ M.options = {
   wrap = 'false',
 }
 
+-- Add Treesitter langs
 M.ts_installed = {
   "bash",
   "lua",
@@ -44,6 +45,7 @@ M.ts_installed = {
   "python",
 }
 
+-- Add lsp servers
 M.lsp = {
   "sumneko_lua",
   "bashls",
