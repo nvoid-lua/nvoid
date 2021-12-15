@@ -17,6 +17,7 @@ return packer.startup(function()
    use { "famiu/feline.nvim" }
 -- Bufferline
    use { "akinsho/bufferline.nvim" }
+-- Buffer Close
    use { "Asheq/close-buffers.vim" }
 -- Indent Line
    use { "lukas-reineke/indent-blankline.nvim" }
