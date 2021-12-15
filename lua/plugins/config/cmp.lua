@@ -5,18 +5,15 @@ end
 vim.opt.completeopt = "menuone,noselect"
 
 cmp.setup {
-    confirm_opts = {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = false,
-    },
-    completion = {
-      ---@usage The minimum length of a word to complete on.
-      keyword_length = 1,
-    },
-    experimental = {
-      ghost_text = true,
-      native_menu = false,
-    },
+-- Config
+   confirm_opts = {
+     behavior = cmp.ConfirmBehavior.Replace,
+     select = false,
+   },
+-- Completion
+   completion = {
+     keyword_length = 1,
+   },
 -- Snippets
    snippet = {
       expand = function(args)
