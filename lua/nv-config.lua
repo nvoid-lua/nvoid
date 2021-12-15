@@ -45,4 +45,8 @@ M.options = {
       "python",
   }
 
+M.lsp = {
+    "sumneko_lua",
+	"bashls",
+}
 return M

@@ -58,20 +58,10 @@ require('lspkind').init({
     },
 })
 
--- Lsp Colors
-require("lsp-colors").setup({
-  Error = "#db4b4b",
-  Warning = "#e0af68",
-  Information = "#0db9d7",
-  Hint = "#10B981"
-})
-
 -- Lsp Installer
 local lsp_installer = require("nvim-lsp-installer")
-local servers = {
-    "sumneko_lua",
-	"bashls",
-}
+local config = require('nv-config')
+local servers = config.lsp
 
 for _, name in pairs(servers) do
 	local ok, server = lsp_installer.get_server(name)
