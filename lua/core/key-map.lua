@@ -45,7 +45,7 @@ map('n', '<leader>d',  ':Dashboard<CR>', default_opts)
 map('n', '<leader>fh', ':Telescope oldfiles<CR>', default_opts)
 map('n', '<leader>ff', ':Telescope find_files<CR>', default_opts)
 map('n', '<leader>fc', ':Telescope colorscheme<CR>', default_opts)
-map('n', '<leader>n', ':DashboardNewFile<CR>', default_opts)
+map('n', '<leader>fn', ':DashboardNewFile<CR>', default_opts)
 -- }
 
 -- { Sessions
@@ -54,14 +54,14 @@ map('n', '<leader>sl', ':SessionLoad<CR>', default_opts)
 -- }
 
 -- { Lsp
-map('n', '<leader>ld', ':Lspsaga show_cursor_diagnostics<CR>', default_opts)
+map('n', '<leader>ld', ':lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', default_opts)
+map('n', '<leader>lt', ':TroubleToggle document_diagnostics<CR>', default_opts)
+map('n', '<leader>lT', ':TroubleToggle<CR>', default_opts)
 map('n', '<leader>lh', ':lua vim.lsp.buf.document_highlight()<CR>', default_opts)
 map('n', '<leader>lr', ':lua vim.lsp.buf.rename()<CR>', default_opts)
 map('n', '<leader>lI', ':LspInstallInfo<CR>', default_opts)
 map('n', '<leader>li', ':LspInfo<CR>', default_opts)
 map('n', '<leader>lD', ':Telescope lsp_document_diagnostics<CR>', default_opts)
-map('n', '<leader>lj', ':Lspsaga diagnostic_jump_next<CR>', default_opts)
-map('n', '<leader>lk', ':Lspsaga diagnostic_jump_prev<CR>', default_opts)
 map('n', '<leader>lc', ':! rm -f config.h && sudo make clean install<CR><CR>', default_opts)
 -- }
 

@@ -11,3 +11,4 @@ vim.opt.completeopt = "menuone,noselect"
 vim.g.loaded_matchit = 1
 vim.g.matchup_delim_stopline = 1500
 vim.g.matchup_matchparen_stopline = 400
+require("core.key-map")
