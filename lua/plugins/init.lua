@@ -24,8 +24,8 @@ return packer.startup(function()
 -- Git Sign
    use { "lewis6991/gitsigns.nvim" }
 -- LSP
-   use { "williamboman/nvim-lsp-installer" }
    use { "neovim/nvim-lspconfig", config = require("plugins.config.lsp") }
+   use { "williamboman/nvim-lsp-installer" }
    use { "glepnir/lspsaga.nvim" }
 -- CMP
    use { "hrsh7th/nvim-cmp" }
