@@ -1,7 +1,7 @@
 local present, packer = pcall(require, "plugins.packerInit")
--- if not present then
-   -- return false
--- end
+if not present then
+   return false
+end
 local use = packer.use
 
 return packer.startup(function()
@@ -27,6 +27,8 @@ return packer.startup(function()
    use { "neovim/nvim-lspconfig" }
 -- LSP Install
    use { "williamboman/nvim-lsp-installer" }
+-- LSP kind
+   use { "onsails/lspkind-nvim" }
 -- Trouble
    use { "folke/trouble.nvim" }
 -- CMP
