@@ -1,5 +1,5 @@
 local M = {}
-M.ui, M.options = {}, {}
+-- M.ui, M.options, M.ts_installed = {}, {}, {}
 
 -- UI
 M.ui = {
@@ -31,7 +31,9 @@ M.options = {
   backup = 'false',
   show_mode = 'false',
   wrap = 'false',
-  ts_installed = {
+}
+
+  M.ts_installed = {
       "bash",
       "lua",
       "c",
@@ -42,6 +44,5 @@ M.options = {
       "yaml",
       "python",
   }
-}
 
 return M

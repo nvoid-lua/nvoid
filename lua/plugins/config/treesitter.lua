@@ -6,7 +6,7 @@ end
 
 ts_config.setup {
   use_languagetree = true,
-  ensure_installed = config.options.ts_installed,
+  ensure_installed = config.ts_installed,
    highlight = {
       enable = true,
    matchup = {
