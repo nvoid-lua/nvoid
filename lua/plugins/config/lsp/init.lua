@@ -1,3 +1,4 @@
+require("plugins.config.lsp.installer")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.documentationFormat = { 'markdown', 'plaintext' }
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -24,4 +25,3 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagn
     virtual_text = false,
     update_in_insert = true
 })
--- require("plugins.config.lsp.installer")
