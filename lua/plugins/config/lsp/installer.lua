@@ -12,13 +12,11 @@ for _, name in pairs(servers) do
 		end
 	end
 end
-
 lsp_installer.on_server_ready(function(server)
 	local default_opts = {
 		on_attach = on_attach,
 		capabilities = capabilities,
 	}
-
 	local server_opts = {
 ["sumneko_lua"] = function()
     default_opts.settings = {

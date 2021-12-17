@@ -28,8 +28,4 @@ require('lspkind').init({
       Operator = "",
       TypeParameter = ""
     },
-
-
 })
-
-

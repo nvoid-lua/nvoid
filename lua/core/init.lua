@@ -121,6 +121,7 @@ elseif config.options.number == 'false' then
          vim.opt.relativenumber = false
 end
 
+opt.numberwidth = config.options.number_width
 opt.cmdheight = config.options.cmdheight
 opt.mouse = config.options.mouse
 opt.clipboard = config.options.clipboard
