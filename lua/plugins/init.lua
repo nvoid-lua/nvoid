@@ -1,5 +1,6 @@
 local commit = {
   cmp_path = "d83839ae510d18530c6d36b662a9e806d4dceb73",
+  nvim_lsp_installer = "d7b10b13d72d4bf8f7b34779ddc3514bcc26b0f2",
 }
 
 local present, packer = pcall(require, "plugins.packerInit")
@@ -30,7 +31,7 @@ return packer.startup(function()
 -- LSP
    use { "neovim/nvim-lspconfig" }
 -- LSP Install
-   use { "williamboman/nvim-lsp-installer" }
+   use { "williamboman/nvim-lsp-installer", commit = commit.nvim_lsp_installer }
 -- LSP kind
    use { "onsails/lspkind-nvim" }
 -- Trouble
