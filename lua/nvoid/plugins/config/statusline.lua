@@ -157,7 +157,6 @@ components.active[1][8] = {
     style = 'bold'
   }
 }
--- RIGHT
 -- LSP Name
 components.active[2][1] = {
   provider = 'lsp_client_names',
@@ -169,6 +168,7 @@ components.active[2][1] = {
     right_sep = ' '
   },
 }
+-- Center
 -- LSP Warning
 components.active[2][2] = {
   provider = 'diagnostic_warnings',
@@ -210,6 +210,7 @@ components.active[2][5] = {
     left_sep = '  '
   }
 }
+-- RIGHT
 -- Folder Name
 components.active[3][1] = {
    provider = function()
@@ -244,10 +245,10 @@ components.active[3][3] = {
 
 -- INACTIVE
 components.inactive[1][1] = {
-  provider = 'file_type',
+  provider = '',
   hl = {
     fg = 'black',
-    bg = 'blue',
+    bg = 'bg',
     style = 'bold'
   },
   left_sep = {
