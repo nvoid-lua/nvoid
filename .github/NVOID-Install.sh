@@ -18,7 +18,8 @@ nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 cd ~/.local/share/nvim/
 mkdir -p ~/.local/share/nvim/lsp_servers/
 mkdir -p ~/.local/share/nvim/lsp_servers/sumneko_lua/
-cd ~/.local/share/nvim/lsp_servers/sumneko_lua/
+cd ~/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/Linux/ 
+chmod +x lua-language-server
 echo "## Lua LSP ##"
 curl -fsSL "https://github.com/sumneko/vscode-lua/releases/download/v2.5.3/lua-2.5.3.vsix" > sumneko_lua.vsix
 unzip sumneko_lua.vsix
