@@ -1,17 +1,26 @@
-require("nvoid.plugins.config.icons-config")
-require("nvoid.plugins.config.statusline")
-require("nvoid.plugins.config.bufferline")
-require("nvoid.plugins.config.indentline")
-require("nvoid.plugins.config.colorizer")
-require("nvoid.plugins.config.git")
-require("nvoid.plugins.config.treesitter")
-require("nvoid.plugins.config.lsp")
-require("nvoid.plugins.config.lsp/installer")
-require("nvoid.plugins.config.cmp")
-require("nvoid.plugins.config.autopairs")
-require("nvoid.plugins.config.dashboard")
-require("nvoid.plugins.config.nvimtree")
-require("nvoid.plugins.config.telescope")
-require("nvoid.plugins.config.term")
-require("nvoid.plugins.config.which-key")
-require("nvoid.plugins.config.trouble")
+local modules = {
+ "nvoid.plugins.config.icons-config",
+ "nvoid.plugins.config.statusline",
+ "nvoid.plugins.config.bufferline",
+ "nvoid.plugins.config.indentline",
+ "nvoid.plugins.config.colorizer",
+ "nvoid.plugins.config.git",
+ "nvoid.plugins.config.treesitter",
+ "nvoid.plugins.config.lsp",
+ "nvoid.plugins.config.lsp/installer",
+ "nvoid.plugins.config.cmp",
+ "nvoid.plugins.config.autopairs",
+ "nvoid.plugins.config.dashboard",
+ "nvoid.plugins.config.nvimtree",
+ "nvoid.plugins.config.telescope",
+ "nvoid.plugins.config.term",
+ "nvoid.plugins.config.which-key",
+ "nvoid.plugins.config.trouble",
+}
+
+for _, module in ipairs(modules) do
+   local ok, err = pcall(require, module)
+   if not ok then
+      error("Error loading " .. module .. "\n\n" .. err)
+   end
+end
