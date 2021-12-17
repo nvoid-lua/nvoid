@@ -159,55 +159,71 @@ components.active[1][8] = {
 }
 -- RIGHT
 -- LSP Name
-components.active[3][1] = {
+components.active[2][1] = {
   provider = 'lsp_client_names',
   icon = ' ',
   hl = {
     fg = 'violet',
     bg = 'bg',
-    style = 'bold'
+    style = 'bold',
+    right_sep = ' '
   },
-  right_sep = ' '
 }
 -- LSP Warning
-components.active[3][2] = {
+components.active[2][2] = {
   provider = 'diagnostic_warnings',
   enabled = function() return lsp.diagnostics_exist('Warning') end,
   hl = {
     fg = 'yellow',
-    style = 'bold'
+    style = 'bold',
+    left_sep = '  '
   }
 }
 -- LSP Error
-components.active[3][3] = {
+components.active[2][3] = {
   provider = 'diagnostic_errors',
   enabled = function() return lsp.diagnostics_exist('Error') end,
   hl = {
     fg = 'red',
-    style = 'bold'
+    style = 'bold',
+    right_sep = '  '
   }
 }
 -- LSP Hints
-components.active[3][4] = {
+components.active[2][4] = {
   provider = 'diagnostic_hints',
   enabled = function() return lsp.diagnostics_exist('Hint') end,
   hl = {
     fg = 'cyan',
-    style = 'bold'
+    style = 'bold',
+    left_sep = '  '
   }
 }
 -- LSP Info
-components.active[3][5] = {
+components.active[2][5] = {
   provider = 'diagnostic_info',
   right_sep = ' ',
   enabled = function() return lsp.diagnostics_exist('Information') end,
   hl = {
     fg = 'skyblue',
-    style = 'bold'
+    style = 'bold',
+    left_sep = '  '
   }
 }
+-- Folder Name
+components.active[3][1] = {
+   provider = function()
+      local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+      return "  " .. dir_name .. " "
+   end,
+   hl = {
+      fg = colors.violet,
+      bg = colors.bg,
+   },
+    right_sep = '  '
+}
 -- File Position
-components.active[3][6] = {
+components.active[3][2] = {
   provider = 'position',
   hl = {
     fg = 'white',
@@ -216,14 +232,16 @@ components.active[3][6] = {
   },
   right_sep = '  '
 }
--- Scroll Bar
-components.active[3][7] = {
+-- scrollBar
+components.active[3][3] = {
   provider = 'scroll_bar',
   hl = {
     fg = 'yellow',
     bg = 'bg',
+    right_sep = '  '
   },
 }
+
 -- INACTIVE
 components.inactive[1][1] = {
   provider = 'file_type',
