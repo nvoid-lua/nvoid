@@ -1,4 +1,4 @@
-local config = require('nv-config')
+local config = require('nvoid.core.def-config')
 local colors = {}
 
 if config.ui.theme == 'onedarker' then

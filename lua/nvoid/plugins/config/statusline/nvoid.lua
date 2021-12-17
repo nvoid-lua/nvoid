@@ -87,18 +87,42 @@ components.active[1][2] = {
   end,
   right_sep = ' '
 }
--- File info
+-- File Icon
 components.active[1][3] = {
-  provider = 'file_info',
-  hl = {
-    fg = 'white',
-    bg = 'bg',
-    style = 'bold'
-  },
-  right_sep = ' '
+  provider = function()
+    local filename = vim.fn.expand('%:t')
+    local extension = vim.fn.expand('%:e')
+    local icon  = require'nvim-web-devicons'.get_icon(filename, extension)
+    if icon == nil then
+      icon = ' '
+    end
+    return icon
+  end,
+  hl = function()
+    local val = {}
+    local filename = vim.fn.expand('%:t')
+    local extension = vim.fn.expand('%:e')
+    local icon, name  = require'nvim-web-devicons'.get_icon(filename, extension)
+    if icon ~= nil then
+      val.fg = vim.fn.synIDattr(vim.fn.hlID(name), 'fg')
+    else
+      val.fg = 'white'
+    end
+    val.bg = 'bg'
+    val.style = 'bold'
+    return val
+  end,
+  right_sep = ''
 }
+-- File Name
+ components.active[1][4] = {
+     provider = function ()
+         local filename = vim.fn.expand "%:t"
+            return "" .. filename .. " "
+     end,
+ }
 -- Git Branch
-components.active[1][4] = {
+components.active[1][5] = {
   provider = 'git_branch',
   hl = {
     fg = 'yellow',
@@ -107,7 +131,7 @@ components.active[1][4] = {
   }
 }
 -- Git add
-components.active[1][5] = {
+components.active[1][6] = {
   provider = 'git_diff_added',
   hl = {
     fg = 'green',
@@ -116,7 +140,7 @@ components.active[1][5] = {
   }
 }
 -- Git Changes
-components.active[1][6] = {
+components.active[1][7] = {
   provider = 'git_diff_changed',
   hl = {
     fg = 'orange',
@@ -125,7 +149,7 @@ components.active[1][6] = {
   }
 }
 -- Git Remove
-components.active[1][7] = {
+components.active[1][8] = {
   provider = 'git_diff_removed',
   hl = {
     fg = 'red',
