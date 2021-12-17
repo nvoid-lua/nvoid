@@ -14,12 +14,11 @@ pip install pynvim
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 git clone https://github.com/ysfgrgO7/nvoid.git ~/.config/nvim
-# cd ~/.local/share/nvim/
 mkdir -p ~/.local/share/nvim/lsp_servers/
 mkdir -p ~/.local/share/nvim/lsp_servers/sumneko_lua/
 cd ~/.local/share/nvim/lsp_servers/sumneko_lua/
 curl -fsSL "https://github.com/sumneko/vscode-lua/releases/download/v2.5.3/lua-2.5.3.vsix" > sumneko_lua.vsix
-unzip sumneko_lua
+unzip sumneko_lua.vsix
 cd ~/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/Linux/ 
 chmod +x lua-language-server
 nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
