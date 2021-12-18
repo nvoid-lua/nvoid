@@ -72,6 +72,8 @@ return packer.startup(function()
    use { "dracula/vim" }
 -- Gruvbox
    use { "morhetz/gruvbox" }
+-- Dark Plus
+   use { "LunarVim/darkplus.nvim" }
 -- Term
    use { "akinsho/toggleterm.nvim" }
 -- Plenary

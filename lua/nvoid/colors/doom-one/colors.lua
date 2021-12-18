@@ -1,4 +1,3 @@
-require("nvoid.colors.doom-one.init")
 local colors = {
    white = "#bbc2cf",
    darker_black = "#22262e",

@@ -1,4 +1,3 @@
-require("nvoid.colors.onedarker.init")
 local colors = {
   white = "#abb2bf",
   black = "#1f2227",

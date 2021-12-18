@@ -1,4 +1,3 @@
-require("nvoid.colors.gruvbox.init")
 local colors = {
    white = "#ebdbb2",
    darker_black = "#232323",

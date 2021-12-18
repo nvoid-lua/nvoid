@@ -1,6 +1,13 @@
 local config = require('nvoid.core.def-config')
 local colors = {}
 
+vim.api.nvim_command "hi clear"
+if vim.fn.exists "syntax_on" then
+  vim.api.nvim_command "syntax reset"
+end
+vim.o.background = "dark"
+vim.o.termguicolors = true
+
 if config.ui.theme == 'onedarker' then
   colors = require('nvoid.colors.onedarker.colors')
   vim.cmd("colorscheme onedarker")
@@ -19,6 +26,9 @@ elseif config.ui.theme == 'dracula' then
 elseif config.ui.theme == 'gruvbox' then
     colors = require('nvoid.colors.gruvbox.colors')
     vim.cmd("colorscheme gruvbox")
+elseif config.ui.theme == 'darkplus' then
+    colors = require('nvoid.colors.darkplus.colors')
+    vim.cmd("colorscheme darkplus")
 end
 
 if config.ui.transparent_background == 'true' then

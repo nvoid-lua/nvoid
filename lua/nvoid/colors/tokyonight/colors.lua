@@ -1,4 +1,3 @@
-require("nvoid.colors.tokyonight.init")
 local colors = {
    white = "#c0caf5",
    darker_black = "#151621",
