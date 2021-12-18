@@ -2,7 +2,7 @@ local M = {}
 
 -- UI
 M.ui = {
-  theme = 'darkplus',                  -- 'onedarker' 'gruvbox' 'dracula' 'doom-one' 'tokyonight' 'nord'
+  theme = 'onedarker',                  -- 'onedarker' 'gruvbox' 'dracula' 'doom-one' 'tokyonight' 'nord'
   transparent_background = 'false',     -- 'false' 'true'
   tokyonight_style = 'night',           -- 'night' 'storm' 'day'
 }
