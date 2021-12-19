@@ -1,51 +1,20 @@
-local fn = vim.fn
-
--- Automatically install packer
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system {
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
-  }
-  print "Installing packer close and reopen Neovim..."
-  vim.cmd [[packadd packer.nvim]]
-end
--- Autocommand that reloads neovim whenever you save the plugins/init.lua file
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost init.lua source <afile> | PackerCompile
-  augroup end
-]]
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-  return
-end
--- Have packer use a popup window
-packer.init {
-  display = {
-    open_fn = function()
-      return require("packer.util").float { border = "rounded" }
-    end,
-  },
-}
--- Commit
 local commit = {
   cmp_path = "d83839ae510d18530c6d36b662a9e806d4dceb73",
 }
 
+local present, packer = pcall(require, "nvoid.plugins.packerInit")
+
+if not present then
+   return false
+end
+
 local use = packer.use
+
 return packer.startup(function()
 -- Plenary
    use { "nvim-lua/plenary.nvim" }
 -- Packer
    use { "wbthomason/packer.nvim", event = "VimEnter" }
-
 -- Onedarker
    use { "Lunarvim/Onedarker" }
 -- Nord
@@ -60,11 +29,10 @@ return packer.startup(function()
    use { "morhetz/gruvbox" }
 -- Dark Plus
    use { "LunarVim/darkplus.nvim" }
-
 -- Icons
    use { "kyazdani42/nvim-web-devicons" }
 -- Feline
-   use { "famiu/feline.nvim" }
+   use { "famiu/feline.nvim", config = require("nvoid.plugins.config.statusline") }
 -- Bufferline
    use { "akinsho/bufferline.nvim" }
 -- Buffer Close
@@ -110,12 +78,12 @@ return packer.startup(function()
 -- Trouble
    use { "folke/trouble.nvim" }
 -- load user defined plugins
-   -- require("nvoid.core.hooks").run("install_plugins", use)
+   require("nvoid.core.hooks").run("install_plugins", use)
 ------------------------------------------------------------------
 -- Add the config
 local config = {
  "nvoid.plugins.config.icons-config",
- "nvoid.plugins.config.statusline",
+ -- "nvoid.plugins.config.statusline",
  "nvoid.plugins.config.bufferline",
  "nvoid.plugins.config.indentline",
  "nvoid.plugins.config.colorizer",
