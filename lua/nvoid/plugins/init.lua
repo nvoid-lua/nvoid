@@ -31,12 +31,6 @@ end
 vim.cmd [[
   augroup packer_user_config
     autocmd!
-    autocmd BufWritePost init.lua source <afile> | PackerClean
-  augroup end
-]]
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
     autocmd BufWritePost init.lua source <afile> | PackerInstall
   augroup end
 ]]
