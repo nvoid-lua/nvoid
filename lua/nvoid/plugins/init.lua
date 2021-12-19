@@ -1,9 +1,18 @@
+-- Commit
 local commit = {
   cmp_path = "d83839ae510d18530c6d36b662a9e806d4dceb73",
 }
 
-local present, packer = pcall(require, "nvoid.plugins.packerInit")
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd [[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]]
 
+-- Use a protected call so we don't error out on first use
+local present, packer = pcall(require, "nvoid.plugins.packerInit")
 if not present then
    return false
 end
@@ -53,6 +62,10 @@ return packer.startup(function()
    use { "williamboman/nvim-lsp-installer" }
 -- CMP
    use { "hrsh7th/nvim-cmp" }
+-- LuaSnip
+   use { "L3MON4D3/LuaSnip" }
+-- CMP LuaSnip
+   use { "saadparwaiz1/cmp_luasnip" }
 -- CMP Lua
    use { "hrsh7th/cmp-nvim-lua" }
 -- CMP LSP
