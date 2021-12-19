@@ -20,6 +20,6 @@ local colors = {
   grey_fg = "#565c64",
   light_grey = "#6f737b",
   nord_blue = "#81A1C1",
+  blue_dark = "#5e81ac",
 }
 return colors
-

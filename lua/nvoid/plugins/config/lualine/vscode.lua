@@ -13,27 +13,13 @@ end
 local lualine = require 'lualine'
 -- Colors
 local colors = require("nvoid.colors")
--- Conditions
-local conditions = {
-  buffer_not_empty = function()
-    return vim.fn.empty(vim.fn.expand '%:t') ~= 1
-  end,
-  hide_in_width = function()
-    return vim.fn.winwidth(0) > 80
-  end,
-  check_git_workspace = function()
-    local filepath = vim.fn.expand '%:p:h'
-    local gitdir = vim.fn.finddir('.git', filepath .. ';')
-    return gitdir and #gitdir > 0 and #gitdir < #filepath
-  end,
-}
 -- Config
 local config = {
   options = {
     component_separators = '',
     section_separators = '',
     theme = {
-      normal = { c = { fg = colors.fg, bg = colors.bg } },
+      normal = { c = { fg = colors.fg, bg = colors.blue_dark } },
       inactive = { c = { fg = colors.fg, bg = colors.bg } },
     },
   },
@@ -83,25 +69,31 @@ ins_left {
 		return "-- " .. str .. " --"
 	end,
 }
-ins_left {
+
+ins_right {
 	"diff",
     source = diff_source,
 	colored = false,
 	symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
 }
-ins_left {
+ins_right {
+	"location",
+	padding = 1,
+}
+ins_right{
+function()
+	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
+end
+}
+ins_right {
   "encoding"
 }
-ins_left {
+ins_right {
   	"filetype",
 	icons_enabled = false,
 	icon = nil,
 }
-ins_left {
-	"location",
-	padding = 0,
-}
-ins_left {
+ins_right {
     function()
       local current_line = vim.fn.line "."
       local total_lines = vim.fn.line "$"
@@ -111,7 +103,7 @@ ins_left {
       return chars[index]
     end,
     padding = { left = 0, right = 0 },
-    color = { fg = colors.white, bg = colors.bg },
+    color = { fg = colors.white, bg = colors.blue_dark },
     cond = nil,
 }
 

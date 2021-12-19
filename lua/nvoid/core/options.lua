@@ -1,6 +1,5 @@
 local opt = vim.opt
--- local config = require('nvoid.core.def-config')
-local config = require("nvoid.core.utils").load_config()
+local config = require('nvoidrc')
 -- Wrap
 if config.options.wrap == 'true' then
     vim.opt.wrap = true
