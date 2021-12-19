@@ -11,8 +11,8 @@ mv ~/.config/nvim ~/.config/NV.bc
 mkdir -p ~/.local/share/nvim/
 sudo npm i -g neovim
 pip install pynvim
-# git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- # ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 git clone https://github.com/ysfgrgO7/nvoid.git ~/.config/nvim
 mkdir -p ~/.local/share/nvim/lsp_servers/
 mkdir -p ~/.local/share/nvim/lsp_servers/sumneko_lua/
