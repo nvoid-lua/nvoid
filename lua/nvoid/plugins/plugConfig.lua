@@ -1,6 +1,6 @@
 local modules = {
  "nvoid.plugins.config.icons-config",
- -- "nvoid.plugins.config.statusline",
+ "nvoid.plugins.config.statusline",
  "nvoid.plugins.config.bufferline",
  "nvoid.plugins.config.indentline",
  "nvoid.plugins.config.colorizer",

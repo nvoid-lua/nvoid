@@ -51,31 +51,31 @@ return packer.startup(function()
 -- Packer
    use { "wbthomason/packer.nvim" }
 -- Icons
-   use { "kyazdani42/nvim-web-devicons" }
+   use { "kyazdani42/nvim-web-devicons", config = require("nvoid.plugins.config.icons-config") }
 -- Feline
    use { "famiu/feline.nvim", config = require("nvoid.plugins.config.statusline") }
 -- Bufferline
-   use { "akinsho/bufferline.nvim" }
+   use { "akinsho/bufferline.nvim", config = require("nvoid.plugins.config.bufferline") }
 -- Buffer Close
    use { "Asheq/close-buffers.vim" }
 -- Indent Line
-   use { "lukas-reineke/indent-blankline.nvim" }
+   use { "lukas-reineke/indent-blankline.nvim", config = require("nvoid.plugins.config.indentline") }
 -- Colorizer
-   use { "norcalli/nvim-colorizer.lua" }
+   use { "norcalli/nvim-colorizer.lua", config = require("nvoid.plugins.config.colorizer") }
 -- Tree Sitter
-   use { "nvim-treesitter/nvim-treesitter" }
+   use { "nvim-treesitter/nvim-treesitter", config = require("nvoid.plugins.config.treesitter") }
 -- Git Sign
-   use { "lewis6991/gitsigns.nvim" }
+   use { "lewis6991/gitsigns.nvim", config = require("nvoid.plugins.config.git") }
 -- LSP
-   use { "neovim/nvim-lspconfig" }
+   use { "neovim/nvim-lspconfig", config = require("nvoid.plugins.config.lsp") }
 -- LSP Install
    use { "williamboman/nvim-lsp-installer", commit = commit.nvim_lsp_installer }
 -- LSP kind
    use { "onsails/lspkind-nvim" }
 -- Trouble
-   use { "folke/trouble.nvim" }
+   use { "folke/trouble.nvim", config = require("nvoid.plugins.config.trouble") }
 -- CMP
-   use { "hrsh7th/nvim-cmp" }
+   use { "hrsh7th/nvim-cmp", config = require("nvoid.plugins.config.cmp") }
 -- Lua Snip
    use { "L3MON4D3/LuaSnip" }
 -- CMP luasnip
@@ -89,15 +89,15 @@ return packer.startup(function()
 -- CMP Path
    use { "hrsh7th/cmp-path", commit = commit.cmp_path, }
 -- Auto Pairs
-   use { "windwp/nvim-autopairs" }
+   use { "windwp/nvim-autopairs", config = require("nvoid.plugins.config.autopairs") }
 -- Dashboard
-   use { "glepnir/dashboard-nvim" }
+   use { "glepnir/dashboard-nvim", config = require("nvoid.plugins.config.dashboard") }
 -- Comment
    use { "winston0410/commented.nvim" }
 -- Nvim Tree
-   use { "kyazdani42/nvim-tree.lua" }
+   use { "kyazdani42/nvim-tree.lua", config = require("nvoid.plugins.config.nvimtree") }
 -- Telescope
-   use { "nvim-telescope/telescope.nvim" }
+   use { "nvim-telescope/telescope.nvim", config = require("nvoid.plugins.config.telescope") }
 -- Onedarker
    use { "Lunarvim/Onedarker" }
 -- Nord
@@ -121,5 +121,5 @@ return packer.startup(function()
 -- Matchup
    use { "andymass/vim-matchup" }
 -- Which Key
-   use { "folke/which-key.nvim" }
+   use { "folke/which-key.nvim", config = require("nvoid.plugins.config.which-key") }
 end)

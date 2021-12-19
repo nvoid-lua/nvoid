@@ -1,6 +1,6 @@
 local modules = {
    "nvoid.plugins",
-   "nvoid.plugins.plugConfig",
+   -- "nvoid.plugins.plugConfig",
    "nvoid.core",
    "nvoid.colors"
 }
