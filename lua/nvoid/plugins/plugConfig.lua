@@ -7,7 +7,6 @@ local modules = {
  "nvoid.plugins.config.git",
  "nvoid.plugins.config.treesitter",
  "nvoid.plugins.config.lsp",
- -- "nvoid.plugins.config.lsp.lsp-installer",
  "nvoid.plugins.config.cmp",
  "nvoid.plugins.config.autopairs",
  "nvoid.plugins.config.dashboard",
