@@ -23,4 +23,9 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagn
     virtual_text = false,
     update_in_insert = true
 })
+local status_ok, _ = pcall(require, "lspconfig")
+if not status_ok then
+  return
+end
 require("nvoid/plugins/config/lsp/kind")
+require("nvoid/plugins/config/lsp/settings").setup()

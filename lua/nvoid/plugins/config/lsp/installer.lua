@@ -14,8 +14,8 @@ for _, name in pairs(servers) do
 end
 lsp_installer.on_server_ready(function(server)
 	local default_opts = {
-		on_attach = on_attach,
-		capabilities = capabilities,
+		on_attach = require("nvoid.plugins.config.lsp.settings").on_attach,
+		capabilities = require("nvoid.plugins.config.lsp.settings").capabilities,
 	}
 	local server_opts = {
 ["sumneko_lua"] = function()

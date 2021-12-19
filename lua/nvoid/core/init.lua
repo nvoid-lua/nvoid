@@ -14,6 +14,7 @@ local options = {
   pumheight = 10,
   timeoutlen = 150,
   completeopt = "menuone,noselect",
+  updatetime = 300,
 }
 
 -- Vim ls
