@@ -13,6 +13,7 @@ ts_config.setup {
      enable = true,              -- mandatory, false will disable the whole extension
      },
    },
+  indent = { enable = true, disable = { "yaml" } },
   context_commentstring = {
     enable = true,
     enable_autocmd = true,

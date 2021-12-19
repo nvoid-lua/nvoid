@@ -10,6 +10,7 @@ M.ui = {
 -- OPT
 M.options = {
   clipboard = 'unnamedplus', -- 'unnamed',
+  wrap = 'false',
   cmdheight = 1,
   mouse = 'a',
   mapleader = ' ',
@@ -29,7 +30,6 @@ M.options = {
   swap_file = 'false',
   backup = 'false',
   show_mode = 'false',
-  wrap = 'false',
 }
 
 -- Add Treesitter langs
