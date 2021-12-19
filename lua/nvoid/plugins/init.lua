@@ -88,6 +88,8 @@ return packer.startup(function()
    use { "windwp/nvim-autopairs" }
 -- Dashboard
    use { "glepnir/dashboard-nvim" }
+-- Null ls
+   use { "jose-elias-alvarez/null-ls.nvim" }
 -- Comment
    use { "winston0410/commented.nvim" }
 -- Nvim Tree
