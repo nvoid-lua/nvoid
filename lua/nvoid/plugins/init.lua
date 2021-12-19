@@ -41,7 +41,8 @@ return packer.startup(function()
 -- Icons
    use { "kyazdani42/nvim-web-devicons" }
 -- Feline
-   use { "famiu/feline.nvim" }
+   use { "nvim-lualine/lualine.nvim" }
+   -- use { "famiu/feline.nvim" }
 -- Bufferline
    use { "akinsho/bufferline.nvim" }
 -- Buffer Close
@@ -96,7 +97,8 @@ return packer.startup(function()
 -- Add the config
 local config = {
  "nvoid.plugins.config.icons-config",
- "nvoid.plugins.config.statusline",
+ -- "nvoid.plugins.config.statusline",
+ "nvoid.plugins.config.lualine",
  "nvoid.plugins.config.bufferline",
  "nvoid.plugins.config.indentline",
  "nvoid.plugins.config.colorizer",
