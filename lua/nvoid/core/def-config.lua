@@ -47,7 +47,7 @@ M.ts_installed = {
 
 -- Add lsp servers
 M.lsp = {
-  -- "sumneko_lua",
+  "sumneko_lua",
   "bashls",
 }
 return M
