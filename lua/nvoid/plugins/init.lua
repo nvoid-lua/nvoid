@@ -26,14 +26,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
   print "Installing packer close and reopen Neovim..."
   vim.cmd [[packadd packer.nvim]]
 end
-
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost init.lua source <afile> | PackerClean
-  augroup end
-]]
+-- Automatically Reload Packer
 vim.cmd [[
   augroup packer_user_config
     autocmd!
@@ -42,40 +35,38 @@ vim.cmd [[
 ]]
 
 -- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-  return
-end
+-- local status_ok, packerls = pcall(require, "packer")
+-- if not status_ok then
+  -- return
+-- end
 
 return packer.startup(function()
 -- Packer
    use { "wbthomason/packer.nvim" }
 -- Icons
-   use { "kyazdani42/nvim-web-devicons" }
+   use { "kyazdani42/nvim-web-devicons", config = require("nvoid.plugins.config.icons-config")  }
 -- Feline
-   use { "famiu/feline.nvim" }
+   use { "famiu/feline.nvim", config = require("nvoid.plugins.config.statusline") }
 -- Bufferline
-   use { "akinsho/bufferline.nvim" }
+   use { "akinsho/bufferline.nvim", config = require("nvoid.plugins.config.bufferline") }
 -- Buffer Close
    use { "Asheq/close-buffers.vim" }
 -- Indent Line
-   use { "lukas-reineke/indent-blankline.nvim" }
+   use { "lukas-reineke/indent-blankline.nvim", config = require("nvoid.plugins.config.indentline") }
 -- Colorizer
-   use { "norcalli/nvim-colorizer.lua" }
--- Tree Sitter
-   use { "nvim-treesitter/nvim-treesitter" }
+   use { "norcalli/nvim-colorizer.lua", config = require("nvoid.plugins.config.colorizer") }
 -- Git Sign
-   use { "lewis6991/gitsigns.nvim" }
+   use { "lewis6991/gitsigns.nvim", config = require("nvoid.plugins.config.git") }
+-- Tree Sitter
+   use { "nvim-treesitter/nvim-treesitter", config = require("nvoid.plugins.config.treesitter") }
 -- LSP
-   use { "neovim/nvim-lspconfig" }
+   use { "neovim/nvim-lspconfig", config = require("nvoid.plugins.config.lsp") }
 -- LSP Install
    use { "williamboman/nvim-lsp-installer", commit = commit.nvim_lsp_installer }
 -- LSP kind
    use { "onsails/lspkind-nvim" }
--- Trouble
-   use { "folke/trouble.nvim" }
 -- CMP
-   use { "hrsh7th/nvim-cmp" }
+   use { "hrsh7th/nvim-cmp", config = require("nvoid.plugins.config.cmp") }
 -- Lua Snip
    use { "L3MON4D3/LuaSnip" }
 -- CMP luasnip
@@ -89,15 +80,25 @@ return packer.startup(function()
 -- CMP Path
    use { "hrsh7th/cmp-path", commit = commit.cmp_path, }
 -- Auto Pairs
-   use { "windwp/nvim-autopairs" }
+   use { "windwp/nvim-autopairs", config = require("nvoid.plugins.config.autopairs") }
 -- Dashboard
-   use { "glepnir/dashboard-nvim" }
--- Comment
-   use { "winston0410/commented.nvim" }
+   use { "glepnir/dashboard-nvim", config = require("nvoid.plugins.config.dashboard") }
 -- Nvim Tree
-   use { "kyazdani42/nvim-tree.lua" }
+   use { "kyazdani42/nvim-tree.lua", config = require("nvoid.plugins.config.nvimtree") }
 -- Telescope
-   use { "nvim-telescope/telescope.nvim" }
+   use { "nvim-telescope/telescope.nvim", config = require("nvoid.plugins.config.telescope") }
+-- Term
+   use { "akinsho/toggleterm.nvim", config = require("nvoid.plugins.config.term") }
+-- Which Key
+   use { "folke/which-key.nvim", config = require("nvoid.plugins.config.which-key") }
+-- Trouble
+   use { "folke/trouble.nvim", config = require("nvoid.plugins.config.trouble") }
+-- Comment
+   use { "winston0410/commented.nvim", config = require("nvoid.plugins.config.comment") }
+-- Matchup
+   use { "andymass/vim-matchup" }
+-- Plenary
+   use { "nvim-lua/plenary.nvim" }
 -- Onedarker
    use { "Lunarvim/Onedarker" }
 -- Nord
@@ -112,14 +113,4 @@ return packer.startup(function()
    use { "morhetz/gruvbox" }
 -- Dark Plus
    use { "LunarVim/darkplus.nvim" }
--- Term
-   use { "akinsho/toggleterm.nvim" }
--- Plenary
-   use { "nvim-lua/plenary.nvim" }
--- Icons
-   use { "ryanoasis/vim-devicons" }
--- Matchup
-   use { "andymass/vim-matchup" }
--- Which Key
-   use { "folke/which-key.nvim" }
 end)

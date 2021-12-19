@@ -1,4 +1,11 @@
-require("which-key").setup {
+local present, whichkey = pcall(require, "which-key")
+
+if not present then
+   return
+end
+
+
+whichkey.setup {
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode

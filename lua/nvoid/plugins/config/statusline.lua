@@ -270,9 +270,9 @@ components.inactive[1][1] = {
   }
 }
 -- Setup
-require('feline').setup({
+require('feline').setup {
   colors = colors,
   vi_mode_colors = vi_mode_colors,
   components = components,
   force_inactive = force_inactive,
-})
+}

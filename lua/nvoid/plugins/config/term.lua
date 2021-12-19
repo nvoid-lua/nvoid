@@ -1,6 +1,12 @@
+local present, toggleterm = pcall(require, "toggleterm")
+
+if not present then
+   return
+end
+
 local Terminal  = require('toggleterm.terminal').Terminal
 vim.g.mapleader = ' '
-require("toggleterm").setup({
+toggleterm.setup({
     on_config_done = nil,
     size = 20,
     open_mapping = [[<c-t>]],
