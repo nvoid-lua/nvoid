@@ -1,134 +1,112 @@
-local present, bufferline = pcall(require, "bufferline")
-if not present then
-   return
+local status_ok, bufferline = pcall(require, "bufferline")
+if not status_ok then
+  return
 end
 
-local colors = require("nvoid.colors")
-
 bufferline.setup {
-   options = {
-      offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
-      buffer_close_icon = "",
-      modified_icon = "",
-      close_icon = "",
-      show_close_icon = true,
-      left_trunc_marker = "",
-      right_trunc_marker = "",
-      max_name_length = 14,
-      max_prefix_length = 13,
-      tab_size = 20,
-      show_tab_indicators = true,
-      enforce_regular_tabs = true,
-      view = "multiwindow",
-      show_buffer_close_icons = true,
-      separator_style = "thin",
-      always_show_bufferline = true,
-      diagnostics = true, -- "or nvim_lsp"
-      custom_filter = function(buf_number)
-         local present_type, type = pcall(function()
-            return vim.api.nvim_buf_get_var(buf_number, "term_type")
-         end)
+  options = {
+    numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
+    close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
+    right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
+    left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
+    middle_mouse_command = nil, -- can be a string | function, see "Mouse actions"
+    indicator_icon = "▎",
+    buffer_close_icon = "",
+    modified_icon = "●",
+    close_icon = "",
+    left_trunc_marker = "",
+    right_trunc_marker = "",
+    max_name_length = 30,
+    max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
+    tab_size = 21,
+    diagnostics = false, -- | "nvim_lsp" | "coc",
+    diagnostics_update_in_insert = false,
+    offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
+    show_buffer_icons = true,
+    show_buffer_close_icons = true,
+    show_close_icon = true,
+    show_tab_indicators = true,
+    persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
+    separator_style = "thin", -- | "thick" | "thin" | { 'any', 'any' },
+    enforce_regular_tabs = true,
+    always_show_bufferline = true,
+  },
+  highlights = {
+    fill = {
+      guifg = { attribute = "fg", highlight = "#ff0000" },
+      guibg = { attribute = "bg", highlight = "TabLine" },
+    },
+    background = {
+      guifg = { attribute = "fg", highlight = "TabLine" },
+      guibg = { attribute = "bg", highlight = "TabLine" },
+    },
+    buffer_visible = {
+      guifg = { attribute = "fg", highlight = "TabLine" },
+      guibg = { attribute = "bg", highlight = "TabLine" },
+    },
 
-         if present_type then
-            if type == "vert" then
-               return false
-            elseif type == "hori" then
-               return false
-            else
-               return true
-            end
-         else
-            return true
-         end
-      end,
-   },
-   highlights = {
-      background = {
-         guifg = colors.white,
-         guibg = colors.black2,
-      },
+    close_button = {
+      guifg = { attribute = "fg", highlight = "TabLine" },
+      guibg = { attribute = "bg", highlight = "TabLine" },
+    },
+    close_button_visible = {
+      guifg = { attribute = "fg", highlight = "TabLine" },
+      guibg = { attribute = "bg", highlight = "TabLine" },
+    },
 
-      -- buffers
-      buffer_selected = {
-         guifg = colors.white,
-         guibg = colors.black,
-         gui = "bold",
-      },
-      buffer_visible = {
-         guifg = colors.white,
-         guibg = colors.black2,
-      },
+    tab_selected = {
+      guifg = { attribute = "fg", highlight = "Normal" },
+      guibg = { attribute = "bg", highlight = "Normal" },
+    },
+    tab = {
+      guifg = { attribute = "fg", highlight = "TabLine" },
+      guibg = { attribute = "bg", highlight = "TabLine" },
+    },
+    tab_close = {
+      guifg = { attribute = "fg", highlight = "TabLineSel" },
+      guibg = { attribute = "bg", highlight = "Normal" },
+    },
 
-      -- for diagnostics = "nvim_lsp"
-      error = {
-         guifg = colors.white,
-         guibg = colors.black2,
-      },
-      error_diagnostic = {
-         guifg = colors.white,
-         guibg = colors.black2,
-      },
+    duplicate_selected = {
+      guifg = { attribute = "fg", highlight = "TabLineSel" },
+      guibg = { attribute = "bg", highlight = "TabLineSel" },
+      gui = "italic",
+    },
+    duplicate_visible = {
+      guifg = { attribute = "fg", highlight = "TabLine" },
+      guibg = { attribute = "bg", highlight = "TabLine" },
+      gui = "italic",
+    },
+    duplicate = {
+      guifg = { attribute = "fg", highlight = "TabLine" },
+      guibg = { attribute = "bg", highlight = "TabLine" },
+      gui = "italic",
+    },
 
-      -- close buttons
-      close_button = {
-         guifg = colors.white,
-         guibg = colors.black2,
-      },
-      close_button_visible = {
-         guifg = colors.white,
-         guibg = colors.black2,
-      },
-      close_button_selected = {
-         guifg = colors.red,
-         guibg = colors.black,
-      },
-      fill = {
-         guifg = colors.white,
-         guibg = colors.black2,
-      },
-      indicator_selected = {
-         guifg = colors.black,
-         guibg = colors.black,
-      },
+    modified = {
+      guifg = { attribute = "fg", highlight = "TabLine" },
+      guibg = { attribute = "bg", highlight = "TabLine" },
+    },
+    modified_selected = {
+      guifg = { attribute = "fg", highlight = "Normal" },
+      guibg = { attribute = "bg", highlight = "Normal" },
+    },
+    modified_visible = {
+      guifg = { attribute = "fg", highlight = "TabLine" },
+      guibg = { attribute = "bg", highlight = "TabLine" },
+    },
 
-      -- modified
-      modified = {
-         guifg = colors.red,
-         guibg = colors.black2,
-      },
-      modified_visible = {
-         guifg = colors.red,
-         guibg = colors.black2,
-      },
-      modified_selected = {
-         guifg = colors.green,
-         guibg = colors.black,
-      },
-
-      -- separators
-      separator = {
-         guifg = colors.black2,
-         guibg = colors.black2,
-      },
-      separator_visible = {
-         guifg = colors.black2,
-         guibg = colors.black2,
-      },
-      separator_selected = {
-         guifg = colors.black2,
-         guibg = colors.black2,
-      },
-      -- tabs
-      tab = {
-         guifg = colors.white,
-      },
-      tab_selected = {
-         guifg = colors.black2,
-         guibg = colors.green,
-      },
-      tab_close = {
-         guifg = colors.red,
-         guibg = colors.black,
-      },
-   },
+    separator = {
+      guifg = { attribute = "bg", highlight = "TabLine" },
+      guibg = { attribute = "bg", highlight = "TabLine" },
+    },
+    separator_selected = {
+      guifg = { attribute = "bg", highlight = "Normal" },
+      guibg = { attribute = "bg", highlight = "Normal" },
+    },
+    indicator_selected = {
+      guifg = { attribute = "fg", highlight = "LspDiagnosticsDefaultHint" },
+      guibg = { attribute = "bg", highlight = "Normal" },
+    },
+  },
 }

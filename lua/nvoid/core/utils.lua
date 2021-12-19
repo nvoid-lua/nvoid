@@ -12,3 +12,4 @@ vim.g.loaded_matchit = 1
 vim.g.matchup_delim_stopline = 1500
 vim.g.matchup_matchparen_stopline = 400
 require("nvoid.core.key-map")
+require("nvoid.core.autocmd")
