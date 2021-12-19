@@ -21,5 +21,8 @@ curl -fsSL "https://github.com/sumneko/vscode-lua/releases/download/v2.5.3/lua-2
 unzip sumneko_lua.vsix
 cd ~/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/Linux/ 
 chmod +x lua-language-server
+cd
+cd ~/.config/nvim/lua/
+cp nvoid/core/def-config.lua nvoidrc.lua
 nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 nvim
