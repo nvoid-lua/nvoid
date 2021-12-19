@@ -15,6 +15,7 @@ local modules = {
  "nvoid.plugins.config.term",
  "nvoid.plugins.config.which-key",
  "nvoid.plugins.config.trouble",
+ "nvoid.plugins.config.comment"
 }
 
 for _, module in ipairs(modules) do

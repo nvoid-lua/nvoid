@@ -92,8 +92,4 @@ map('n', '<leader>ps', ":PackerSync<CR>", default_opts)
 -- }
 
 -- { Comment
-require("commented").setup({
-	keybindings = { n = "<leader>/", v = "<leader>/", nl = "<leader>/" },
-	comment_padding = " ",
-})
 -- }
