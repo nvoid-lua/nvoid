@@ -51,6 +51,7 @@ end
 return packer.startup(function()
 -- Packer
     use { "wbthomason/packer.nvim" }
+    -- use "Nvchad/extensions"
 -- Icons
    use { "kyazdani42/nvim-web-devicons" }
 -- Feline
