@@ -1,2 +1,2 @@
--- require("nvoid.plugins.config.lualine.nvoid")
-require("nvoid.plugins.config.lualine.vscode")
+require("nvoid.plugins.config.lualine.nvoid")
+-- require("nvoid.plugins.config.lualine.vscode")

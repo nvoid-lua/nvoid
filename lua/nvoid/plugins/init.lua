@@ -2,7 +2,6 @@
 local commit = {
   cmp_path = "d83839ae510d18530c6d36b662a9e806d4dceb73",
 }
-
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
 vim.cmd [[
   augroup packer_user_config
@@ -10,15 +9,14 @@ vim.cmd [[
     autocmd BufWritePost init.lua source <afile> | PackerCompile
   augroup end
 ]]
-
 -- Use a protected call so we don't error out on first use
 local present, packer = pcall(require, "nvoid.plugins.packerInit")
 if not present then
    return false
 end
-
+-- Use
 local use = packer.use
-
+-- Plugin List
 return packer.startup(function()
 -- Plenary
    use { "nvim-lua/plenary.nvim" }

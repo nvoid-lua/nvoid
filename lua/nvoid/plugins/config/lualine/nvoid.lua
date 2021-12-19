@@ -32,6 +32,7 @@ local config = {
   options = {
     component_separators = '',
     section_separators = '',
+	disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
     theme = {
       normal = { c = { fg = colors.fg, bg = colors.bg } },
       inactive = { c = { fg = colors.fg, bg = colors.bg } },
@@ -67,12 +68,12 @@ end
 ins_left {
   function()
     local mode_color = {
-      n = colors.red,
+      n = colors.blue,
       i = colors.green,
-      v = colors.blue,
-      [''] = colors.blue,
-      V = colors.blue,
-      c = colors.magenta,
+      v = colors.purple,
+      [''] = colors.purple,
+      V = colors.purple,
+      c = colors.yellow,
       no = colors.red,
       s = colors.orange,
       S = colors.orange,
