@@ -1,10 +1,11 @@
 local modules = {
    "nvoid.plugins",
-   -- "nvoid.plugins.plugConfig",
    "nvoid.core",
+   -- "nvoid.plugins.plugConfig",
    "nvoid.colors"
 }
 
+require("nvoid.core.key-map")
 for _, module in ipairs(modules) do
    local ok, err = pcall(require, module)
    if not ok then
