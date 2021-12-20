@@ -1,7 +1,8 @@
 local modules = {
    "nvoid.plugins",
    "nvoid.core",
-   "nvoid.colors"
+   "nvoid.colors",
+   "nvoid.core.map"
 }
 
 for _, module in ipairs(modules) do

@@ -1,6 +1,5 @@
 -- Core Modules
 local core_modules = {
-  "nvoid.core.mapping",
   "nvoid.core.autocmd",
   "nvoid.core.options"
 }
