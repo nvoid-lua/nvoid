@@ -19,6 +19,7 @@ local colors = {
    vibrant_green = "#a9b665",
    nord_blue = "#83a598",
    blue = "#458588",
+   blue_dark = "#458588",
    yellow = "#d79921",
    sun = "#fabd2f",
    purple = "#b4bbc8",
