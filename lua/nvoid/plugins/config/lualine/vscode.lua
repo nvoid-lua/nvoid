@@ -18,6 +18,7 @@ local config = {
   options = {
     component_separators = '',
     section_separators = '',
+	disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
     theme = {
       normal = { c = { fg = colors.fg, bg = colors.blue_dark } },
       inactive = { c = { fg = colors.fg, bg = colors.bg } },
