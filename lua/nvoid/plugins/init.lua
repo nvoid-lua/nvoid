@@ -24,7 +24,10 @@ local use = packer.use
 return packer.startup(function()
 ---------------------------------------------------------------------------------------------- {
 -- Packer
-   use { "wbthomason/packer.nvim" }
+   use {
+    "wbthomason/packer.nvim",
+    event = "VimEnter",
+  }
 
 -- Plenary
    use { "nvim-lua/plenary.nvim" }
@@ -214,4 +217,6 @@ use {
     end
   }
 ---------------------------------------------------------------------------------------------- }
+ -- load user defined plugins
+   require("nvoid.core.hooks").run("install_plugins", use)
 end)
