@@ -46,19 +46,31 @@ M.colorizer = function ()
   local present, colorizer = pcall(require, "colorizer")
   if present then
     colorizer.setup({ "*" }, {
-        RGB = true, -- #RGB hex codes
-        RRGGBB = true, -- #RRGGBB hex codes
-        names = false, -- "Name" codes like Blue
-        RRGGBBAA = false, -- #RRGGBBAA hex codes
-        rgb_fn = false, -- CSS rgb() and rgba() functions
-        hsl_fn = false, -- CSS hsl() and hsla() functions
-        css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-        css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-        mode = "background", -- Set the display mode.
+        RGB = true,
+        RRGGBB = true,
+        names = false,
+        RRGGBBAA = false,
+        rgb_fn = false,
+        hsl_fn = false,
+        css = false,
+        css_fn = false,
+        mode = "background",
      })
   end
 end
 
---
+-- Better Escape
+M.better = function ()
+  local present, better_escape = pcall(require, "better_escape")
+  if not present then
+     return
+  end
+  better_escape.setup {
+      mapping = {"jk", "jj"},
+      timeout = vim.o.timeoutlen,
+      clear_empty_lines = false,
+      keys = "<Esc>",
+  }
+end
 
 return M

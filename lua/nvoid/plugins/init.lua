@@ -123,6 +123,14 @@ return packer.startup(function()
 -- Matchup
    use { "andymass/vim-matchup" }
 
+-- Better Escape
+   use {
+      "max397574/better-escape.nvim",
+      config = function ()
+        require('nvoid.plugins.config.other').better()
+      end
+   }
+
 -- LSP Install
    use { "williamboman/nvim-lsp-installer" }
 
