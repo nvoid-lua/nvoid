@@ -109,7 +109,6 @@ use {
 ------------------------------------------------------------------
 -- Add the config
 local config = {
- -- "nvoid.plugins.config.icons-config",
  "nvoid.plugins.config.bufferline",
  "nvoid.plugins.config.indentline",
  "nvoid.plugins.config.colorizer",
