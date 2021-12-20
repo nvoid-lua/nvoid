@@ -28,14 +28,14 @@ map('n', '<leader>bc', ':Bdelete this<CR>', { noremap = true, silent = true })
 
 -- { FileManagers
 map('n', '<leader>e', ':NvimTreeToggle<CR>', default_opts)
-map('n', '<leader>r', ':RnvimrToggle<CR>', default_opts)
 -- }
 
 -- { Edit config
-map('n', '<leader>E', ':e ~/.config/nvim/lua/nv-config.lua<CR>', default_opts)
+map('n', '<leader>E', ':e ~/.config/nvim/lua/nvoidrc.lua<CR>', default_opts)
 -- }
 
 -- { Write
+map('n', '<leader>m', ':messages<CR>', default_opts)
 map('n', '<leader>w', ':w<CR>', default_opts)
 map('n', '<leader>x', ':wqa!<CR>', default_opts)
 -- }
@@ -45,7 +45,7 @@ map('n', '<leader>d',  ':Dashboard<CR>', default_opts)
 map('n', '<leader>fh', ':Telescope oldfiles<CR>', default_opts)
 map('n', '<leader>ff', ':Telescope find_files<CR>', default_opts)
 map('n', '<leader>fc', ':Telescope colorscheme<CR>', default_opts)
-map('n', '<leader>fn', ':DashboardNewFile<CR>', default_opts)
+map('n', '<leader>fn', ':enew<CR>', default_opts)
 -- }
 
 -- { Sessions
@@ -89,6 +89,8 @@ map('n', '<leader>gc', ":Telescope git_commits<CR>", default_opts)
 map('n', '<leader>pi', ":PackerInstall<CR>", default_opts)
 map('n', '<leader>pc', ":PackerClean<CR>", default_opts)
 map('n', '<leader>ps', ":PackerSync<CR>", default_opts)
+map('n', '<leader>pS', ":PackerStatus<CR>", default_opts)
+map('n', '<leader>pC', ":PackerCompile<CR>", default_opts)
 -- }
 
 -- { Comment
