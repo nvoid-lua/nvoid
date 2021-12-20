@@ -37,7 +37,12 @@ return packer.startup(function()
 -- Dark Plus
    use { "LunarVim/darkplus.nvim" }
 -- Icons
-   use { "kyazdani42/nvim-web-devicons" }
+   use {
+    "kyazdani42/nvim-web-devicons",
+    config = function ()
+      require("nvoid.plugins.config.icons-config")
+    end
+  }
 -- Feline
    use {
     "nvim-lualine/lualine.nvim",
@@ -104,8 +109,7 @@ use {
 ------------------------------------------------------------------
 -- Add the config
 local config = {
- "nvoid.plugins.config.icons-config",
- -- "nvoid.plugins.config.lualine",
+ -- "nvoid.plugins.config.icons-config",
  "nvoid.plugins.config.bufferline",
  "nvoid.plugins.config.indentline",
  "nvoid.plugins.config.colorizer",
