@@ -92,6 +92,3 @@ map('n', '<leader>ps', ":PackerSync<CR>", default_opts)
 map('n', '<leader>pS', ":PackerStatus<CR>", default_opts)
 map('n', '<leader>pC', ":PackerCompile<CR>", default_opts)
 -- }
-
--- { Comment
--- }

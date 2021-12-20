@@ -217,6 +217,4 @@ use {
     end
   }
 ---------------------------------------------------------------------------------------------- }
- -- load user defined plugins
-   require("nvoid.core.hooks").run("install_plugins", use)
 end)
