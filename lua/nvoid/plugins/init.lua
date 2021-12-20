@@ -75,8 +75,14 @@ return packer.startup(function()
    use { "hrsh7th/cmp-path", commit = commit.cmp_path, }
 -- Auto Pairs
    use { "windwp/nvim-autopairs" }
--- Dashboard
-   use { "glepnir/dashboard-nvim" }
+-- Alpha
+use {
+    'goolord/alpha-nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    config = function ()
+        require'nvoid.plugins.config.alpha'
+    end
+}
 -- Comment
    use { "winston0410/commented.nvim" }
 -- Nvim Tree
@@ -95,7 +101,6 @@ return packer.startup(function()
 -- Add the config
 local config = {
  "nvoid.plugins.config.icons-config",
- -- "nvoid.plugins.config.statusline",
  "nvoid.plugins.config.lualine",
  "nvoid.plugins.config.bufferline",
  "nvoid.plugins.config.indentline",
@@ -105,7 +110,6 @@ local config = {
  "nvoid.plugins.config.lsp",
  "nvoid.plugins.config.cmp",
  "nvoid.plugins.config.autopairs",
- "nvoid.plugins.config.dashboard",
  "nvoid.plugins.config.nvimtree",
  "nvoid.plugins.config.telescope",
  "nvoid.plugins.config.term",
