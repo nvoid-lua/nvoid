@@ -169,13 +169,13 @@ return packer.startup(function()
   }
 
 -- Alpha
-use {
-    'goolord/alpha-nvim',
-    requires = { 'kyazdani42/nvim-web-devicons' },
-    config = function ()
-        require('nvoid.plugins.config.alpha')
-    end
-}
+   use {
+     'goolord/alpha-nvim',
+      requires = { 'kyazdani42/nvim-web-devicons' },
+      config = function ()
+          require('nvoid.plugins.config.alpha')
+      end
+   }
 
 -- Comment
    use {
