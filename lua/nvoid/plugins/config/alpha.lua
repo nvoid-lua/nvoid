@@ -30,7 +30,7 @@ local function button(shortcut, text, cmd)
     }
 end
 local plugins_count = vim.fn.len(vim.fn.globpath("~/.local/share/nvim/site/pack/packer/start", "*", 0, 1))
-local nvoid_site = "  爵ysfgrgo7.github.io"
+local nvoid_site = "  爵 nvoid.netlify.app"
 
 -- Set header
 dashboard.section.header.val = {

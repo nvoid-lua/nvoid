@@ -57,7 +57,7 @@ return packer.startup(function()
    use {
     "kyazdani42/nvim-web-devicons",
     config = function ()
-      require'nvoid.plugins.config.icons-config'
+      require('nvoid.plugins.config.icons-config')
     end
   }
 
@@ -65,7 +65,7 @@ return packer.startup(function()
    use {
     "nvim-lualine/lualine.nvim",
     config = function ()
-        require'nvoid.plugins.config.lualine'
+        require('nvoid.plugins.config.lualine')
     end
   }
 
@@ -73,7 +73,7 @@ return packer.startup(function()
    use {
     "akinsho/bufferline.nvim",
     config = function ()
-      require'nvoid.plugins.config.bufferline'
+      require('nvoid.plugins.config.bufferline')
     end
   }
 
@@ -84,7 +84,7 @@ return packer.startup(function()
    use {
     "lukas-reineke/indent-blankline.nvim",
     config = function ()
-      require'nvoid.plugins.config.indentline'
+      require('nvoid.plugins.config.indentline')
     end
   }
 
@@ -92,7 +92,7 @@ return packer.startup(function()
    use {
     "norcalli/nvim-colorizer.lua",
     config = function ()
-      require'nvoid.plugins.config.colorizer'
+      require('nvoid.plugins.config.other').colorizer()
     end
   }
 
@@ -100,7 +100,7 @@ return packer.startup(function()
    use {
     "lewis6991/gitsigns.nvim",
     config = function ()
-      require'nvoid.plugins.config.git'
+      require('nvoid.plugins.config.other').git()
     end
   }
 
@@ -108,7 +108,7 @@ return packer.startup(function()
    use {
     "nvim-treesitter/nvim-treesitter",
     config = function ()
-      require'nvoid.plugins.config.treesitter'
+      require('nvoid.plugins.config.treesitter')
     end
   }
 
@@ -116,7 +116,7 @@ return packer.startup(function()
    use {
     "neovim/nvim-lspconfig",
     config = function ()
-      require'nvoid.plugins.config.lsp'
+      require('nvoid.plugins.config.lsp')
     end
   }
 
@@ -130,7 +130,7 @@ return packer.startup(function()
    use {
     "hrsh7th/nvim-cmp",
     config = function ()
-      require'nvoid.plugins.config.cmp'
+      require('nvoid.plugins.config.cmp')
     end
   }
 
@@ -156,7 +156,7 @@ return packer.startup(function()
    use {
     "windwp/nvim-autopairs",
     config = function ()
-      require'nvoid.plugins.config.autopairs'
+      require('nvoid.plugins.config.other').autopairs()
     end
   }
 
@@ -165,7 +165,7 @@ use {
     'goolord/alpha-nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },
     config = function ()
-        require'nvoid.plugins.config.alpha'
+        require('nvoid.plugins.config.alpha')
     end
 }
 
@@ -173,7 +173,7 @@ use {
    use {
     "winston0410/commented.nvim",
     config = function ()
-      require'nvoid.plugins.config.comment'
+      require('nvoid.plugins.config.other').commented()
     end
   }
 
@@ -181,7 +181,7 @@ use {
    use {
     "kyazdani42/nvim-tree.lua",
     config = function ()
-      require'nvoid.plugins.config.nvimtree'
+      require('nvoid.plugins.config.nvimtree')
     end
   }
 
@@ -189,7 +189,7 @@ use {
    use {
     "nvim-telescope/telescope.nvim",
     config = function ()
-      require'nvoid.plugins.config.telescope'
+      require('nvoid.plugins.config.telescope')
     end
   }
 
@@ -197,7 +197,7 @@ use {
    use {
     "akinsho/toggleterm.nvim",
     config = function ()
-      require'nvoid.plugins.config.term'
+      require('nvoid.plugins.config.term')
     end
   }
 
@@ -205,7 +205,7 @@ use {
    use {
     "folke/which-key.nvim",
     config = function ()
-      require'nvoid.plugins.config.which-key'
+      require('nvoid.plugins.config.which-key')
     end
   }
 
@@ -213,7 +213,7 @@ use {
    use {
     "folke/trouble.nvim",
     config = function ()
-      require'nvoid.plugins.config.trouble'
+      require('nvoid.plugins.config.trouble')
     end
   }
 ---------------------------------------------------------------------------------------------- }

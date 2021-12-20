@@ -10,7 +10,7 @@ ts_config.setup {
    highlight = {
       enable = true,
    matchup = {
-     enable = true,              -- mandatory, false will disable the whole extension
+     enable = true,
      },
    },
   indent = { enable = true, disable = { "yaml" } },

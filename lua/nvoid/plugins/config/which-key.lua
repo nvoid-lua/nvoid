@@ -1,9 +1,7 @@
 local present, whichkey = pcall(require, "which-key")
-
 if not present then
    return
 end
-
 
 whichkey.setup {
   plugins = {
@@ -27,26 +25,26 @@ whichkey.setup {
   key_labels = {
   },
   icons = {
-    breadcrumb = "» ", -- symbol used in the command line area that shows your active key combo
-    separator = "➜ ", -- symbol used between a key and it's label
-    group = "+ ", -- symbol prepended to a group
+    breadcrumb = "» ",
+    separator = "➜ ",
+    group = "+ ",
   },
   window = {
-    border = "single", -- none, single, double, shadow
-    position = "bottom", -- bottom, top
-    margin = { 2, 2, 2, 2 }, -- extra window margin [top, right, bottom, left]
-    padding = { 1, 1, 1, 1 }, -- extra window padding [top, right, bottom, left]
+    border = "single",
+    position = "bottom",
+    margin = { 2, 2, 2, 2 },
+    padding = { 1, 1, 1, 1 },
   },
   layout = {
-    height = { min = 4, max = 25 }, -- min and max height of the columns
-    width = { min = 20, max = 50 }, -- min and max width of the columns
-    spacing = 3, -- spacing between columns
-    align = "center", -- align columns left, center or right
+    height = { min = 4, max = 25 },
+    width = { min = 20, max = 50 },
+    spacing = 3,
+    align = "center",
   },
-  ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
-  hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
-  show_help = true, -- show help message on the command line when the popup is visible
-  triggers = "auto", -- automatically setup triggers
+  ignore_missing = false,
+  hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ "},
+  show_help = true,
+  triggers = "auto",
   triggers_blacklist = {
     i = { "j", "k" },
     v = { "j", "k" },
@@ -54,13 +52,14 @@ whichkey.setup {
 }
 
 require("which-key").register({
+  ["d"] = "Start Screen",
   ["/"] = "Comment",
   ["e"] = "NvimTree",
   ["E"] = "Edit Config",
   ["m"] = "Messages",
   ["w"] = "Write",
   ["x"] = "Write and Quit",
-  ["n"] = "New File",
+  ["q"] = "Quit",
   b = {
     name = "Buffers",
     j = "Next",
@@ -71,10 +70,13 @@ require("which-key").register({
   },
   f = {
     name = "+Find",
-    c = "Colorschemes",
+    h = "History",
     f = "Find File",
-    h = "Old Files",
-    n = "New File",
+    c = "Change ColorScheme",
+    t = "Treesitter Symbols",
+    o = "Options",
+    H = "CMD Help",
+    w = "Find Word In Document",
   },
   g = {
     name = "Git",
