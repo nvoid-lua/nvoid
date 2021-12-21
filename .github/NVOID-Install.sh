@@ -8,7 +8,7 @@ then
 	sudo xbps-install -Syu nodejs ranger python3-pip python-pip fd xclip neovim lazygit base-devel ncdu ripgrep fzf
 fi
 git clone https://github.com/ysfgrgO7/nvoid.git ~/.config/nvim
-cp -r ~/.config/nvim/.github/nvoidrc.lua.example ~/.config/nvim/lua/nvoidrc.lua
+# cp -r ~/.config/nvim/.github/nvoidrc.lua.example ~/.config/nvim/lua/nvoidrc.lua
 mv ~/.config/nvim ~/.config/NV.bc
 mkdir -p ~/.local/share/nvim/
 sudo npm i -g neovim

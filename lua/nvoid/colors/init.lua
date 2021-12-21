@@ -1,4 +1,4 @@
-local config = require('nvoidrc')
+local config = require("nvoid.core.utils").load_config()
 local colors = {}
 
 vim.api.nvim_command "hi clear"

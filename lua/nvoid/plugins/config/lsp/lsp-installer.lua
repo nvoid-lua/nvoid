@@ -1,6 +1,7 @@
 -- Lsp Installer
 local lsp_installer = require("nvim-lsp-installer")
-local config = require("nvoidrc")
+-- local config = require("nvoidrc")
+local config = require("nvoid.core.utils").load_config()
 local servers = config.lsp
 
 for _, name in pairs(servers) do
