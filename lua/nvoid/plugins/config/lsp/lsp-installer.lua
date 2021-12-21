@@ -7,7 +7,8 @@ for _, name in pairs(servers) do
 	local ok, server = lsp_installer.get_server(name)
 	if ok then
 		if not server:is_installed() then
-			vim.notify("Installing " .. name)
+			-- vim.notify("Installing " .. name)
+            return
 			server:install()
 		end
 	end
