@@ -10,9 +10,15 @@ local function diff_source()
   end
 end
 -- LuaLine
-local lualine = require 'lualine'
+local present1, lualine = require 'lualine'
+if not present1 then
+   return false
+end
 -- Colors
-local colors = require("nvoid.colors")
+local present2,colors = pcall(require, "nvoid.colors")
+if not present2 then
+   return false
+end
 -- Config
 local config = {
   options = {

@@ -1,9 +1,12 @@
-local present, icons = pcall(require, "nvim-web-devicons")
-if not present then
+local present1, icons = pcall(require, "nvim-web-devicons")
+if not present1 then
    return
 end
 
-local colors = require("nvoid.colors")
+local present2,colors = pcall(require, "nvoid.colors")
+if not present2 then
+   return false
+end
 
 icons.setup {
    override = {

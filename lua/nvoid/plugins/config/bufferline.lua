@@ -1,7 +1,11 @@
-local colors = require("nvoid.colors")
+-- local colors = require("nvoid.colors")
+local present2,colors = pcall(require, "nvoid.colors")
+if not present2 then
+   return false
+end
 
-local present, bufferline = pcall(require, "bufferline")
-if not present then
+local present1, bufferline = pcall(require, "bufferline")
+if not present1 then
    return
 end
 
