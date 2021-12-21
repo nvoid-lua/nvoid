@@ -1,5 +1,4 @@
 local present, ts_config = pcall(require, "nvim-treesitter.configs")
--- local config = require('nvoidrc')
 local config = require("nvoid.core.utils").load_config()
 
 if not present then
