@@ -55,7 +55,7 @@ function install_nodejs_deps() {
       return
     fi
   done
-  print_missing_dep_msg "${pkg_managers[@]}"
+ -- print_missing_dep_msg "${pkg_managers[@]}"
   exit 1
 }
 
