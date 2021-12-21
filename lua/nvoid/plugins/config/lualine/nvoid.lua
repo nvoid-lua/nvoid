@@ -12,7 +12,7 @@ end
 -- LuaLine
 local lualine = require 'lualine'
 -- Colors
-local colors = require("nvoid.colors")
+local colors = pcall(require, "nvoid.colors")
 -- Conditions
 local conditions = {
   buffer_not_empty = function()
