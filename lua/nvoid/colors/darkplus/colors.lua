@@ -1,3 +1,10 @@
+local colorscheme = "darkplus"
+
+local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+if not status_ok then
+  vim.notify("colorscheme " .. colorscheme .. " not found!")
+  return
+end
 local colors = {
   white = "#D8DEE9",
   black = "#1E1E1E",

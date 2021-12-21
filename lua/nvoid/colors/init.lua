@@ -10,25 +10,18 @@ vim.o.termguicolors = true
 
 if config.ui.theme == 'onedarker' then
   colors = require('nvoid.colors.onedarker.colors')
-  vim.cmd("colorscheme onedarker")
 elseif config.ui.theme == 'nord' then
   colors = require('nvoid.colors.nord.colors')
-  vim.cmd("colorscheme nord")
 elseif config.ui.theme == 'tokyonight' then
   colors = require('nvoid.colors.tokyonight.colors')
-    vim.cmd("colorscheme tokyonight")
 elseif config.ui.theme == 'doom-one' then
     colors = require('nvoid.colors.doom-one.colors')
-    vim.cmd("colorscheme doom-one")
 elseif config.ui.theme == 'dracula' then
     colors = require('nvoid.colors.dracula.colors')
-    vim.cmd("colorscheme dracula")
 elseif config.ui.theme == 'gruvbox' then
     colors = require('nvoid.colors.gruvbox.colors')
-    vim.cmd("colorscheme gruvbox")
 elseif config.ui.theme == 'darkplus' then
     colors = require('nvoid.colors.darkplus.colors')
-    vim.cmd("colorscheme darkplus")
 end
 
 if config.ui.transparent_background == 'true' then
