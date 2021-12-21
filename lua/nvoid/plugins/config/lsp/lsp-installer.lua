@@ -1,6 +1,5 @@
 -- Lsp Installer
 local lsp_installer = require("nvim-lsp-installer")
--- local config = require("nvoidrc")
 local config = require("nvoid.core.utils").load_config()
 local servers = config.lsp
 
@@ -8,7 +7,7 @@ for _, name in pairs(servers) do
 	local ok, server = lsp_installer.get_server(name)
 	if ok then
 		if not server:is_installed() then
-			print("Installing " .. name)
+			vim.notify("Installing " .. name)
 			server:install()
 		end
 	end
