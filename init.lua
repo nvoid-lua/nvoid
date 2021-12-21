@@ -6,6 +6,6 @@ local ok, err = pcall(require, 'nvoid')
 pcall(require, "nvoidrc")
 
 if not ok then
-  -- error(('Error loading core...\n\n%s'):format(err))
-    vim.notify("colorscheme not found!")
+  -- vim.notify("Error loading core")
+  return
 end
