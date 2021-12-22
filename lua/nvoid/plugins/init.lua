@@ -1,22 +1,25 @@
--- Local Variable
-local fn = vim.fn
-local execute = vim.api.nvim_command
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-local present, packer = pcall(require, "nvoid.plugins.packerInit")
-local use = packer.use
-
--- Automatically install packer
-if fn.empty(fn.glob(install_path)) > 0 then
-    execute("!git clone https://github.com/wbthomason/packer.nvim " ..
-                install_path)
-    execute "packadd packer.nvim"
-end
-
 -- Use a protected call so we don't error out on first use
+local present, packer = pcall(require, "packer")
 if not present then
    return false
 end
 
+-- Packer Config
+packer.init {
+   display = {
+      open_fn = function()
+         return require("packer.util").float { border = "rounded" }
+      end,
+      prompt_border = "single",
+   },
+   git = {
+      clone_timeout = 6000,
+   },
+   auto_clean = true,
+   compile_on_sync = true,
+}
+
+local use = packer.use
 return packer.startup(function()
 -- Packer
    use {
