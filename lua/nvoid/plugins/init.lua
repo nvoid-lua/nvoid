@@ -1,4 +1,17 @@
+-- Local Variable
+local fn = vim.fn
+local execute = vim.api.nvim_command
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 local present, packer = pcall(require, "nvoid.plugins.packerInit")
+
+-- Automatically install packer
+if fn.empty(fn.glob(install_path)) > 0 then
+    execute("!git clone https://github.com/wbthomason/packer.nvim " ..
+                install_path)
+    execute "packadd packer.nvim"
+end
+
+-- Use a protected call so we don't error out on first use
 if not present then
    return false
 end
