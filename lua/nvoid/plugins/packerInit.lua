@@ -29,12 +29,12 @@ end
 packer.init {
    display = {
       open_fn = function()
-         return require("packer.util").float { border = "single" }
+         return require("packer.util").float { border = "rounded" }
       end,
       prompt_border = "single",
    },
    git = {
-      clone_timeout = 6000, -- seconds
+      clone_timeout = 6000,
    },
    auto_clean = true,
    compile_on_sync = true,
