@@ -6,6 +6,5 @@ local ok, err = pcall(require, 'nvoid')
 pcall(require, "nvoidrc")
 
 if not ok then
-  -- vim.notify("Error loading core")
   return
 end

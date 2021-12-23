@@ -16,13 +16,6 @@ function install_deps() {
   	  sudo xbps-install -Syu nodejs fd xclip ripgrep
   fi
 }
- function install_lua_lsp() {
-   nvim -c 'LspInstall sumneko_lua'
- }
-
-function install_bash_lsp() {
-  nvim -c 'LspInstall bashls'
-}
 
 msg "Would you like to install some dependencies?"
 read -p "[y]es or [n]o (default: no) : " -r answer
@@ -43,7 +36,3 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 
 git clone https://github.com/ysfgrgO7/nvoid.git ~/.config/nvim
 nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-
-msg "Would you like to install luals?"
-read -p "[y]es or [n]o (default: no) : " -r answer
-[ "$answer" != "${answer#[Yy]}" ] && install_lua_lsp 
