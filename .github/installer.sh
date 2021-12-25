@@ -36,3 +36,4 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 
 git clone https://github.com/ysfgrgO7/nvoid.git ~/.config/nvim
 nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+nvim
