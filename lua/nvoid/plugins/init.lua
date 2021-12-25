@@ -1,10 +1,11 @@
--- Use a protected call so we don't error out on first use
-local present, packer = pcall(require, "packer")
+local present, packer = pcall(require, "nvoid.plugins.packerInit")
+
 if not present then
    return false
 end
 
 local use = packer.use
+
 return packer.startup(function()
 -- Packer
    use {
