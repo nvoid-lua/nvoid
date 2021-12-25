@@ -70,6 +70,7 @@ require("which-key").register({
   },
   f = {
     name = "+Find",
+    b = "File Browser",
     h = "History",
     f = "Find File",
     c = "Change ColorScheme",

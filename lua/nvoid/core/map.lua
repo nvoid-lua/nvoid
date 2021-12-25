@@ -49,10 +49,11 @@ map('n', '<leader>fn', ':enew<CR>', opts)
 map('n', '<leader>fh', ':Telescope oldfiles<CR>', opts)
 map('n', '<leader>ff', ':Telescope find_files<CR>', opts)
 map('n', '<leader>fc', ':Telescope colorscheme<CR>', opts)
-map('n', '<leader>ft', ':Telescope treesitter<CR>', opts)
+map('n', '<leader>ft', 'Telescope treesitter<CR>', opts)
 map('n', '<leader>fo', ":Telescope vim_options<CR>", opts)
 map('n', '<leader>fH', ":Telescope help_tags<CR>", opts)
 map('n', '<leader>fw', ":Telescope current_buffer_fuzzy_find<CR>", opts)
+map('n', '<leader>fb', "<cmd>lua require 'telescope'.extensions.file_browser.file_browser()<CR>", opts)
 -- }
 
 -- { Sessions

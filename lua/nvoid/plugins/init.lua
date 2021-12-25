@@ -185,6 +185,9 @@ return packer.startup(function()
     end
   }
 
+-- Telescope File browser
+   use { "nvim-telescope/telescope-file-browser.nvim" }
+
 -- Term
    use {
     "akinsho/toggleterm.nvim",

@@ -51,6 +51,17 @@ telescope.setup {
       buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
    },
    extensions = {
+    file_browser = {
+      theme = "ivy",
+      mappings = {
+        ["i"] = {
+          -- your custom insert mode mappings
+        },
+        ["n"] = {
+          -- your custom normal mode mappings
+        },
+      },
+    },
       fzf = {
          fuzzy = true, -- false will only do exact matching
          override_generic_sorter = false, -- override the generic sorter
@@ -65,7 +76,7 @@ telescope.setup {
    },
 }
 
-local extensions = { "themes", "terms", "fzf" }
+local extensions = { "themes", "terms", "fzf", "file_browser" }
 local packer_repos = [["extensions", "telescope-fzf-native.nvim"]]
 
 if vim.fn.executable "ueberzug" == 1 then
