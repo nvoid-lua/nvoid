@@ -129,19 +129,11 @@ return packer.startup(function()
 -- LuaSnip
    use { "L3MON4D3/LuaSnip" }
 
--- CMP LuaSnip
+-- CMP Extensions
    use { "saadparwaiz1/cmp_luasnip" }
-
--- CMP Lua
    use { "hrsh7th/cmp-nvim-lua" }
-
--- CMP LSP
    use { "hrsh7th/cmp-nvim-lsp" }
-
--- CMP Biffer
    use { "hrsh7th/cmp-buffer" }
-
--- CMP Path
    use { "hrsh7th/cmp-path" }
 
 -- Auto Pairs
