@@ -76,38 +76,31 @@ local function ins_right(component)
   table.insert(config.sections.lualine_x, component)
 end
 
--- LEFT
-
 -- vi Color mode
 ins_left {
   function()
-    local mode_color = {
-      n = colors.blue,
-      i = colors.green,
-      v = colors.purple,
-      [''] = colors.purple,
-      V = colors.purple,
-      c = colors.yellow,
-      no = colors.red,
-      s = colors.orange,
-      S = colors.orange,
-      [''] = colors.orange,
-      ic = colors.yellow,
-      R = colors.violet,
-      Rv = colors.violet,
-      cv = colors.red,
-      ce = colors.red,
-      r = colors.cyan,
-      rm = colors.cyan,
-      ['r?'] = colors.cyan,
-      ['!'] = colors.red,
-      t = colors.red,
-    }
-    vim.api.nvim_command('hi! LualineMode guibg=' .. mode_color[vim.fn.mode()] .. ' guifg=' .. colors.bg)
-    return ' NVOID'
+    return ' '
   end,
-  color = 'LualineMode',
-  padding = { right = 1 },
+  color = {
+    bg = colors.blue,
+    fg = colors.black
+  },
+  padding = { left = 0, right = 1 },
+}
+ins_left {
+  function()
+    return ' '
+  end,
+  color = { fg = colors.blue, bg = colors.bg },
+  padding = { left = 0, right = 1 },
+}
+
+ins_left {
+  function()
+    return ' '
+  end,
+  color = { fg = colors.blue, bg = colors.bg },
+  padding = { left = 0, right = 1 },
 }
 
 -- File Name

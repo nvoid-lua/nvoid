@@ -14,6 +14,9 @@ local options = {
   timeoutlen = 150,
   completeopt = "menuone,noselect",
   updatetime = 300,
+  termguicolors = true,
+  splitbelow = true,
+  splitright = true
 }
 
 -- Vim ls

@@ -15,27 +15,24 @@ elseif config.ui.theme == 'nord' then
 elseif config.ui.theme == 'tokyonight' then
   colors = require('nvoid.colors.tokyonight.colors')
 elseif config.ui.theme == 'doom-one' then
-    colors = require('nvoid.colors.doom-one.colors')
+  colors = require('nvoid.colors.doom-one.colors')
 elseif config.ui.theme == 'dracula' then
-    colors = require('nvoid.colors.dracula.colors')
+  colors = require('nvoid.colors.dracula.colors')
 elseif config.ui.theme == 'gruvbox' then
-    colors = require('nvoid.colors.gruvbox.colors')
+  colors = require('nvoid.colors.gruvbox.colors')
 elseif config.ui.theme == 'darkplus' then
-    colors = require('nvoid.colors.darkplus.colors')
+  colors = require('nvoid.colors.darkplus.colors')
 end
 
-if config.ui.transparent_background == 'true' then
-    vim.g.transparent_background = true
-elseif config.ui.transparent_background == 'false' then
-    vim.g.transparent_background = false
-end
+local fg = require("nvoid.core.utils").fg
+local bg = require("nvoid.core.utils").bg
+local grey = colors.grey
 
-if config.ui.tokyonight_style == 'day' then
-    vim.g.tokyonight_style = 'day'
-elseif config.ui.tokyonight_style == 'night' then
-    vim.g.tokyonight_style = 'night'
-elseif config.ui.tokyonight_style == 'storm' then
-    vim.g.tokyonight_style = 'storm'
+if config.ui.transparency then
+   bg("Normal", "NONE")
+   bg("Folded", "NONE")
+   fg("Folded", "NONE")
+   fg("Comment", grey)
 end
 
 if vim.tbl_isempty(colors) then
