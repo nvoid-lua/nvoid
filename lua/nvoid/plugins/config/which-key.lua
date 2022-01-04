@@ -32,7 +32,7 @@ whichkey.setup {
   window = {
     border = "single",
     position = "bottom",
-    margin = { 2, 2, 2, 2 },
+    margin = { 1, 0, 1, 0 },
     padding = { 1, 1, 1, 1 },
   },
   layout = {
@@ -69,11 +69,11 @@ require("which-key").register({
     c = "close"
   },
   f = {
-    name = "+Find",
+    name = "Find",
     b = "File Browser",
     h = "History",
     f = "Find File",
-    c = "Change ColorScheme",
+    c = "ColorScheme With Preview",
     t = "Treesitter Symbols",
     o = "Options",
     H = "CMD Help",
@@ -123,6 +123,7 @@ require("which-key").register({
     s = "Sync",
     C = "Compile",
     S = "Status",
+    u = "Update",
   },
 
 }, {

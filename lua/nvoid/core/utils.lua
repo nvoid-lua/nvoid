@@ -15,7 +15,7 @@ end
 
 M.load_config = function()
    local conf = require "nvoid.core.def-config"
-   local nvoidrcExists, change = pcall(require, "nvoidrc")
+   local nvoidrcExists, change = pcall(require, "custom.nvoidrc")
    if nvoidrcExists then
       conf = vim.tbl_deep_extend("force", conf, change)
    end
