@@ -203,6 +203,7 @@ return packer.startup(function()
       require('nvoid.plugins.config.trouble')
     end
   }
+
 -- Notify
 use {
     "rcarriga/nvim-notify",
