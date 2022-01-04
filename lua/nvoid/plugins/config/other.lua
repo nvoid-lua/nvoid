@@ -103,4 +103,8 @@ M.icons = {
         Variable = " ",
 }
 
+M.notify = function ()
+  vim.notify = require("notify")
+end
+
 return M
