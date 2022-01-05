@@ -1,4 +1,5 @@
 vim.cmd "packadd packer.nvim"
+vim.cmd "autocmd BufWritePost init.lua PackerCompile"
 
 local present, packer = pcall(require, "packer")
 

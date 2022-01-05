@@ -104,7 +104,27 @@ M.icons = {
 }
 
 M.notify = function ()
-  vim.notify = require("notify")
+  local present, notify = pcall(require, "notify")
+  if not present then
+     return
+  end
+  vim.notify = notify
+  notify.setup({
+    stages = "slide",
+    on_open = nil,
+    on_close = nil,
+    render = "default",
+    timeout = 5000,
+    background_colour = "Normal",
+    minimum_width = 50,
+    icons = {
+      ERROR = "",
+      WARN = "",
+      INFO = "",
+      DEBUG = "",
+      TRACE = "✎",
+    },
+})
 end
 
 return M
