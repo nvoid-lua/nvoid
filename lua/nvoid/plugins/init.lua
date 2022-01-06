@@ -224,7 +224,7 @@ use {
 ----------------
   if user_plugins.plugins_add and not vim.tbl_isempty(user_plugins.plugins_add) then
     for _, plugin in pairs(user_plugins.plugins_add) do
-      use(plugin)
+      use{plugin}
     end
   end
 end)
