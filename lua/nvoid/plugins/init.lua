@@ -6,15 +6,6 @@ end
 
 local use = packer.use
 
--- local plugins = require("custom.nvoidrc")
-
-local plugins, plug = pcall(require, "custom.nvoidrc")
-
-if not plugins then
-   return false
-end
-
-
 return packer.startup(function()
 -- Packer
    use {
@@ -220,8 +211,4 @@ use {
       require('nvoid.plugins.config.other').notify()
     end
   }
-
-  for _, x in pairs(plug.plugins) do
-    use(x)
-  end
 end)
