@@ -6,8 +6,8 @@ local modules = {
 }
 
 for _, module in ipairs(modules) do
-   local ok = pcall(require, module)
+   local ok, err = pcall(require, module)
    if not ok then
-     return
+      error("Error loading " .. module .. "\n\n" .. err)
    end
 end

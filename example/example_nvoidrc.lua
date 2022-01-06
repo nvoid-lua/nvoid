@@ -37,6 +37,6 @@ M.lsp_add = {
 M.ts_add = {}
 
 -- Add Plugins
-M.plugins_add = {}
+M.plugins = {}
 
 return M
