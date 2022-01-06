@@ -1,13 +1,32 @@
--- Lsp Installer
 local lsp_installer = require("nvim-lsp-installer")
-local config = require("nvoid.core.utils").load_config()
-local servers = config.lsp
+local servers = {
+  "sumneko_lua",
+}
 
 for _, name in pairs(servers) do
 	local ok, server = lsp_installer.get_server(name)
 	if ok then
 		if not server:is_installed() then
-            return
+            require("notify")("Installing " .. name)
+			server:install()
+		end
+	end
+end
+
+local ok, user_plugins = pcall(require, 'custom.nvoidrc')
+if not ok then
+  user_plugins = {}
+end
+
+if not vim.tbl_islist(user_plugins.add_plugins) then
+  user_plugins.add_plugins = {}
+end
+
+for _, name in pairs(user_plugins.lsp_add) do
+	local ok, server = lsp_installer.get_server(name)
+	if ok then
+		if not server:is_installed() then
+            require("notify")("Installing " .. name)
 			server:install()
 		end
 	end

@@ -1,5 +1,14 @@
 local present, packer = pcall(require, "nvoid.plugins.packerInit")
 
+local ok, user_plugins = pcall(require, 'custom.nvoidrc')
+if not ok then
+  user_plugins = {}
+end
+
+if not vim.tbl_islist(user_plugins.add_plugins) then
+  user_plugins.add_plugins = {}
+end
+
 if not present then
    return false
 end
@@ -211,4 +220,11 @@ use {
       require('nvoid.plugins.config.other').notify()
     end
   }
+
+----------------
+  if user_plugins.add_plugins and not vim.tbl_isempty(user_plugins.add_plugins) then
+    for _, plugin in pairs(user_plugins.add_plugins) do
+      use(plugin)
+    end
+  end
 end)
