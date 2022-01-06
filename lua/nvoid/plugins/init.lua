@@ -222,7 +222,6 @@ use {
       require('nvoid.plugins.config.other').notify()
     end
   }
-
 ----------------
   if user_plugins.plugins.add and not vim.tbl_isempty(user_plugins.plugins.add) then
     for _, plugin in pairs(user_plugins.plugins.add) do
