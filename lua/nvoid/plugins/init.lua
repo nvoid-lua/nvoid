@@ -5,8 +5,8 @@ if not ok then
   user_plugins = {}
 end
 
-if not vim.tbl_islist(user_plugins.add_plugins) then
-  user_plugins.add_plugins = {}
+if not vim.tbl_islist(user_plugins.plugins_add) then
+  user_plugins.plugins_add = {}
 end
 
 if not present then
@@ -222,8 +222,8 @@ use {
   }
 
 ----------------
-  if user_plugins.add_plugins and not vim.tbl_isempty(user_plugins.add_plugins) then
-    for _, plugin in pairs(user_plugins.add_plugins) do
+  if user_plugins.plugins_add and not vim.tbl_isempty(user_plugins.plugins_add) then
+    for _, plugin in pairs(user_plugins.plugins_add) do
       use(plugin)
     end
   end

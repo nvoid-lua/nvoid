@@ -13,16 +13,16 @@ for _, name in pairs(servers) do
 	end
 end
 
-local ok, user_plugins = pcall(require, 'custom.nvoidrc')
+local ok, user_lsp = pcall(require, 'custom.nvoidrc')
 if not ok then
-  user_plugins = {}
+  user_lsp = {}
 end
 
-if not vim.tbl_islist(user_plugins.add_plugins) then
-  user_plugins.add_plugins = {}
+if not vim.tbl_islist(user_lsp.lsp_add) then
+  user_lsp.lsp_add = {}
 end
 
-for _, name in pairs(user_plugins.lsp_add) do
+for _, name in pairs(user_lsp.lsp_add) do
 	local ok, server = lsp_installer.get_server(name)
 	if ok then
 		if not server:is_installed() then

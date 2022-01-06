@@ -2,12 +2,12 @@ local M = {}
 
 -- UI
 M.ui = {
-  theme = 'onedarker',
+  theme = 'onedarker',      -- 'onedarker' 'gruvbox' 'dracula' 'doom-one' 'tokyonight' 'nord' 'darkplus'
   transparency = false,
-  statusline = 'nvoid',
+  statusline = 'nvoid',     -- 'nvoid' 'lunarvim' 'vscode'
 }
 
--- OPT
+-- Options
 M.options = {
   clipboard = 'unnamedplus',
   cmdheight = 1,
@@ -28,17 +28,15 @@ M.options = {
   show_mode = false,
 }
 
--- Add Treesitter langs
-M.ts_add = {
-  "bash",
-  "lua",
-  "c",
-  "cpp",
-  "css",
-  "javascript",
-  "json",
-  "yaml",
-  "python",
+-- Add lsp
+M.lsp_add = {
+  "bashls"
 }
+
+-- Add treesitter language
+M.ts_add = {}
+
+-- Add Plugins
+M.plugins_add = {}
 
 return M
