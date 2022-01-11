@@ -52,10 +52,6 @@ map('n', '<leader>fw', ':Telescope current_buffer_fuzzy_find<CR>', opts)
 map('n', '<leader>fb', '<cmd>lua require "telescope".extensions.file_browser.file_browser()<CR>', opts)
 map('n', '<leader>fc', '<cmd>lua require("telescope.builtin.internal").colorscheme({enable_preview = true})<CR>', opts)
 
--- Sessions
-map('n', '<leader>ss', ':SessionSave<CR>', opts)
-map('n', '<leader>sl', ':SessionLoad<CR>', opts)
-
 -- Lsp
 map('n', '<leader>ld', ':lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
 map('n', '<leader>lt', ':TroubleToggle document_diagnostics<CR>', opts)

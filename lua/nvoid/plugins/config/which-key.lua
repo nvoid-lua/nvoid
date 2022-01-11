@@ -99,11 +99,6 @@ require("which-key").register({
     p = "Python",
     n = "Ncdu",
   },
-  s = {
-    name = "Session",
-    s = "Save",
-    l = "Load"
-  },
   l = {
     name = "lsp",
     D = "Document Diagnostic",
