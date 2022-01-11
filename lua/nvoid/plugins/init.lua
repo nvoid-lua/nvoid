@@ -119,6 +119,7 @@ return packer.startup(function()
       require('nvoid.plugins.config.lsp')
     end
   }
+  use "jose-elias-alvarez/null-ls.nvim"
 
 -- Matchup
    use { "andymass/vim-matchup" }
