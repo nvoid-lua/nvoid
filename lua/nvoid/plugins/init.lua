@@ -7,7 +7,7 @@ end
 local packer = nvoid_packer.packer
 local use = packer.use
 
-local ok, user_plugins = pcall(require, 'config.plugins')
+local ok, user_plugins = pcall(require, 'custom.nvoidrc')
 if not ok then
   user_plugins = {
     add = {},
@@ -15,8 +15,8 @@ if not ok then
   }
 end
 
-if not vim.tbl_islist(user_plugins.add) then
-  user_plugins.add = {}
+if not vim.tbl_islist(user_plugins.plugins_add) then
+  user_plugins.plugins_add = {}
 end
 if not vim.tbl_islist(user_plugins.disable) then
   user_plugins.disable = {}
@@ -228,9 +228,8 @@ use {
     end
   }
 
-
-  if user_plugins.add and not vim.tbl_isempty(user_plugins.add) then
-    for _, plugin in pairs(user_plugins.add) do
+  if user_plugins.plugins_add and not vim.tbl_isempty(user_plugins.plugins_add) then
+    for _, plugin in pairs(user_plugins.plugins_add) do
       use(plugin)
     end
   end

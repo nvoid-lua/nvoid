@@ -29,14 +29,12 @@ M.options = {
 }
 
 -- Add lsp
-M.lsp_add = {
-  "bashls"
-}
+M.lsp_add = {}
 
 -- Add treesitter language
 M.ts_add = {}
 
 -- Add Plugins
-M.plugins = {}
+M.plugins_add = {}
 
 return M
