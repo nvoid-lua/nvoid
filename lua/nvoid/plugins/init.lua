@@ -1,10 +1,26 @@
-local present, packer = pcall(require, "nvoid.plugins.packerInit")
+local present, nvoid_packer = pcall(require, 'nvoid.plugins.packerInit')
 
 if not present then
-   return false
+  return false
 end
 
+local packer = nvoid_packer.packer
 local use = packer.use
+
+local ok, user_plugins = pcall(require, 'config.plugins')
+if not ok then
+  user_plugins = {
+    add = {},
+    disable = {},
+  }
+end
+
+if not vim.tbl_islist(user_plugins.add) then
+  user_plugins.add = {}
+end
+if not vim.tbl_islist(user_plugins.disable) then
+  user_plugins.disable = {}
+end
 
 return packer.startup(function()
 -- Packer
@@ -211,4 +227,15 @@ use {
       require('nvoid.plugins.config.other').notify()
     end
   }
+
+
+  if user_plugins.add and not vim.tbl_isempty(user_plugins.add) then
+    for _, plugin in pairs(user_plugins.add) do
+      use(plugin)
+    end
+  end
+
+  if nvoid_packer.first_install then
+    packer.sync()
+  end
 end)

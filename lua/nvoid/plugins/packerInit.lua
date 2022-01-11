@@ -1,6 +1,9 @@
 vim.cmd "packadd packer.nvim"
 vim.cmd "autocmd BufWritePost init.lua PackerCompile"
 
+
+local first_install = false
+
 local present, packer = pcall(require, "packer")
 
 if not present then
@@ -21,4 +24,9 @@ packer.init {
    compile_on_sync = true,
 }
 
-return packer
+-- return packer
+
+return {
+  packer = packer,
+  first_install = first_install,
+}
