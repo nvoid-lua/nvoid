@@ -39,5 +39,6 @@ git clone https://github.com/ysfgrgO7/nvoid.git ~/.config/nvim
 # mkdir ~/.config/nvim/lua/custom/
 # cd ~/.config/nvim/lua/custom
 # cp -r ~/.config/nvim/example/example_nvoidrc.lua ~/.config/nvim/lua/custom/nvoidrc.lua
-nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+nvim -c 'PackerSync'
+# nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 # nvim
