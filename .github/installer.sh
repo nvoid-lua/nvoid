@@ -35,10 +35,4 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 git clone https://github.com/ysfgrgO7/nvoid.git ~/.config/nvim
-# cd ~/.config/nvim/lua/
-# mkdir ~/.config/nvim/lua/custom/
-# cd ~/.config/nvim/lua/custom
-# cp -r ~/.config/nvim/example/example_nvoidrc.lua ~/.config/nvim/lua/custom/nvoidrc.lua
 nvim -c 'PackerSync'
-# nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-# nvim
