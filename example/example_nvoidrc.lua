@@ -4,7 +4,7 @@ local M = {}
 M.ui = {
 	theme = "onedarker", -- 'onedarker' 'gruvbox' 'dracula' 'doom-one' 'tokyonight' 'nord' 'darkplus'
 	transparency = false,
-	statusline = "nvoid", -- 'nvoid' 'lunarvim' 'vscode'
+	statusline = "nvoid", -- 'nvoid' 'lunarvim' 'vscode' 'bubbles'
 }
 
 -- Options
