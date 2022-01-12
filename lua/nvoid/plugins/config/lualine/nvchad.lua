@@ -81,50 +81,34 @@ end
 -- vi Color mode
 ins_left({
 	function()
-		local mode_color = {
-			n = colors.red,
-			i = colors.green,
-			v = colors.blue,
-			[""] = colors.blue,
-			V = colors.blue,
-			c = colors.magenta,
-			no = colors.red,
-			s = colors.orange,
-			S = colors.orange,
-			[""] = colors.orange,
-			ic = colors.yellow,
-			R = colors.violet,
-			Rv = colors.violet,
-			cv = colors.red,
-			ce = colors.red,
-			r = colors.cyan,
-			rm = colors.cyan,
-			["r?"] = colors.cyan,
-			["!"] = colors.red,
-			t = colors.red,
-		}
-		vim.api.nvim_command("hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.bg)
-		return "▊"
+		return " "
 	end,
-	color = "LualineMode",
-	padding = { right = 1 },
+	color = { fg = colors.bg, bg = colors.blue }, -- Sets highlighting of component
+	padding = { left = 0, right = 1 }, -- We don't need space before this
 })
 
--- Git Branch
 ins_left({
-	"b:gitsigns_head",
-	icon = "",
-	color = { fg = colors.white, gui = "bold" },
+	function()
+		return ""
+	end,
+	color = { fg = colors.blue, bg = colors.grey }, -- Sets highlighting of component
+	padding = { left = 0, right = 1 }, -- We don't need space before this
 })
 
--- File Name
 ins_left({
 	"filename",
-	cond = conditions.buffer_not_empty,
-	color = { fg = colors.white },
+	-- cond = conditions.buffer_not_empty,
+	color = { fg = colors.white, bg = colors.grey },
 })
 
--- Git diff
+ins_left({
+	function()
+		return ""
+	end,
+	color = { fg = colors.grey, bg = colors.bg }, -- Sets highlighting of component
+	padding = { left = 0, right = 1 }, -- We don't need space before this
+})
+
 ins_left({
 	"diff",
 	source = diff_source,
@@ -138,22 +122,7 @@ ins_left({
 	cond = nil,
 })
 
--- RIGHT
-
--- Treesitter
-ins_right({
-	function()
-		local b = vim.api.nvim_get_current_buf()
-		if next(vim.treesitter.highlighter.active[b]) then
-			return ""
-		end
-		return ""
-	end,
-	color = { fg = colors.green },
-})
-
--- LSP Diagnostic
-ins_right({
+ins_left({
 	"diagnostics",
 	sources = { "nvim_diagnostic" },
 	symbols = { error = " ", warn = " ", info = " " },
@@ -165,7 +134,7 @@ ins_right({
 	colored = true,
 	update_in_insert = false,
 })
--- LSP Name
+
 ins_right({
 	function()
 		local msg = ""
@@ -177,31 +146,58 @@ ins_right({
 		for _, client in ipairs(clients) do
 			local filetypes = client.config.filetypes
 			if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-				return "[" .. client.name .. "]"
+				return client.name
 			end
 		end
 		return msg
 	end,
-	icon = "",
-	color = { fg = colors.white, gui = "bold" },
+	icon = " ",
+	color = { fg = colors.violet, gui = "bold" },
 })
 
--- File Type
-ins_right({ "filetype", color = {} })
-
--- Scroll Bar
 ins_right({
 	function()
-		local current_line = vim.fn.line(".")
-		local total_lines = vim.fn.line("$")
-		local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
-		local line_ratio = current_line / total_lines
-		local index = math.ceil(line_ratio * #chars)
-		return chars[index]
+		return ""
 	end,
-	padding = { left = 0, right = 0 },
-	color = { fg = colors.yellow, bg = colors.bg },
-	cond = nil,
+	color = { fg = colors.blue, bg = colors.bg }, -- Sets highlighting of component
+	padding = { left = 0, right = 0 }, -- We don't need space before this
+})
+
+ins_right({
+	function()
+		return " "
+	end,
+	color = { fg = colors.bg, bg = colors.blue }, -- Sets highlighting of component
+	padding = { left = 0, right = 0 }, -- We don't need space before this
+})
+
+ins_right({
+	"b:gitsigns_head",
+	color = { fg = colors.blue, bg = colors.grey },
+})
+
+ins_right({
+	function()
+		return ""
+	end,
+	color = { fg = colors.red, bg = colors.grey }, -- Sets highlighting of component
+	padding = { left = 0, right = 0 }, -- We don't need space before this
+})
+
+ins_right({
+	function()
+		return " "
+	end,
+	color = { fg = colors.bg, bg = colors.red }, -- Sets highlighting of component
+	padding = { left = 0, right = 0 }, -- We don't need space before this
+})
+
+ins_right({
+	"mode",
+	fmt = function(str)
+		return str
+	end,
+	color = { fg = colors.red, bg = colors.grey }, -- Sets highlighting of component
 })
 
 lualine.setup(config)
