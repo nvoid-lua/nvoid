@@ -29,7 +29,6 @@ local function button(shortcut, text, cmd)
 		opts = button_opts,
 	}
 end
--- local plugins_count = vim.fn.len(vim.fn.globpath("~/.local/share/nvim/site/pack/packer/start", "*", 0, 1))
 local nvoid_site = "爵nvoid.org"
 
 -- Set header
