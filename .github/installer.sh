@@ -1,25 +1,39 @@
 #!/bin/env bash
 
-function msg() {
-  local text="$1"
-  local div_width="80"
-  printf "%${div_width}s\n" ' ' | tr ' ' -
-  printf "%s\n" "$text"
+warnnvim() {
+  echo "Please install neovim"
+  exit
 }
 
-function install_deps() {
-  if command -v pacman &> /dev/null
-  then
-	  sudo pacman -S --noconfirm --needed nodejs xclip fd ripgrep
-  elif command -v xbps-install &> /dev/null
-  then
-  	  sudo xbps-install -Syu nodejs fd xclip ripgrep
-  fi
+warnnode() {
+  echo "Please install node"
+  exit
 }
 
-msg "Would you like to install some dependencies?"
-read -p "[y]es or [n]o (default: no) : " -r answer
-[ "$answer" != "${answer#[Yy]}" ] && install_deps
+warnpip() {
+  echo "Please install pip"
+  exit
+}
+
+warngit() {
+  echo "Please install git"
+  exit
+}
+
+which nvim >/dev/null && echo "Neovim is installed" || warnnvim
+which git >/dev/null && echo "Git is installed" || warngit
+which node >/dev/null && echo "Node is installed" || warnnode
+which pip >/dev/null && echo "Node is installed" || warnpip
+
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+git clone https://github.com/ysfgrgO7/nvoid.git ~/.config/nvim
+
+npm install -g -f fd-find
+npm install -g -f neovim
+npm install -g -h tree-sitter-cli
+python3 -m pip install --user pynvim
 
 if [ -d "$HOME/.config/nvim/" ]; 
 then 
@@ -31,8 +45,4 @@ then
   mv ~/.local/share/nvim/ ~/.local/share/NV_BC
 fi
 
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
-git clone https://github.com/ysfgrgO7/nvoid.git ~/.config/nvim
 nvim -c 'PackerSync'
