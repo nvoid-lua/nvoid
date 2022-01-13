@@ -1,5 +1,15 @@
 #!/bin/env bash
 
+if [ -d "$HOME/.config/nvim/" ]; 
+then 
+  mv ~/.config/nvim/ ~/.config/NV_BC
+fi
+
+if [ -d "$HOME/.local/share/nvim/" ]; 
+then 
+  mv ~/.local/share/nvim/ ~/.local/share/NV_BC
+fi
+
 warnnvim() {
   echo "Please install neovim"
   exit
@@ -34,15 +44,5 @@ npm install -g -f fd-find
 npm install -g -f neovim
 npm install -g -h tree-sitter-cli
 python3 -m pip install --user pynvim
-
-if [ -d "$HOME/.config/nvim/" ]; 
-then 
-  mv ~/.config/nvim/ ~/.config/NV_BC
-fi
-
-if [ -d "$HOME/.local/share/nvim/" ]; 
-then 
-  mv ~/.local/share/nvim/ ~/.local/share/NV_BC
-fi
 
 nvim -c 'PackerSync'
