@@ -31,9 +31,9 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 
-npm install -g -f fd-find
-npm install -g -f neovim
-npm install -g -f tree-sitter-cli
-python3 -m pip install --user pynvim
+sudo npm install -g -f fd-find
+sudo npm install -g -f neovim
+sudo npm install -g -f tree-sitter-cli
+sudo python3 -m pip install --user pynvim
 
 nvim -c 'PackerSync'
