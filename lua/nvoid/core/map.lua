@@ -16,10 +16,6 @@ map("n", "<C-Right>", ":vertical resize +2<CR>", { silent = true })
 -- Write
 map("n", "<C-q>", ":q<CR>", opts)
 map("n", "<C-s>", ":w<CR>", opts)
-map("n", "<leader>m", ":messages<CR>", opts)
-map("n", "<leader>w", ":w<CR>", opts)
-map("n", "<leader>x", ":wqa!<CR>", opts)
-map("n", "<leader>q", ":q!<CR>", opts)
 
 -- Buffers
 map("n", "<TAB>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
@@ -30,16 +26,6 @@ map("n", "<leader>bk", ":BufferLineCyclePrev<CR>", { noremap = true, silent = tr
 map("n", "<leader>bn", ":BufferLineMoveNext<CR>", { noremap = true, silent = true })
 map("n", "<leader>bn", ":BufferLineMovePrev<CR>", { noremap = true, silent = true })
 map("n", "<leader>bc", ":Bdelete this<CR>", { noremap = true, silent = true })
-
--- FileManagers
-map("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
-
--- Edit config
-map("n", "<leader>E", ":e ~/.config/nvim/lua/custom/nvoidrc.lua<CR>", opts)
-
--- Alpha
-map("n", "<leader>d", ":Alpha<CR>", opts)
-map("n", "<leader>fn", ":enew<CR>", opts)
 
 -- Telescope
 map("n", "<leader>fh", ":Telescope oldfiles<CR>", opts)

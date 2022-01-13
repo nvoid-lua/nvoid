@@ -51,14 +51,13 @@ whichkey.setup({
 })
 
 require("which-key").register({
-	["d"] = "Start Screen",
+	[";"] = { "<cmd>Alpha<cr>", "Alpha" },
+	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+	["E"] = { "<cmd>e ~/.config/nvim/lua/custom/nvoidrc.lua<cr>", "Edit Config" },
+	["n"] = { "<cmd>enew<cr>", "New File" },
+	["w"] = { "<cmd>write<cr>", "Write" },
+	["x"] = { "<cmd>wqa!<cr>", "Write and Quit" },
 	["/"] = "Comment",
-	["e"] = "NvimTree",
-	["E"] = "Edit Config",
-	["m"] = "Messages",
-	["w"] = "Write",
-	["x"] = "Write and Quit",
-	["q"] = "Quit",
 	b = {
 		name = "Buffers",
 		j = "Next",

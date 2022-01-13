@@ -48,7 +48,7 @@ dashboard.section.buttons.val = {
 	button("n", "  > New file", ":enew<CR>"),
 	button("f", "  > Find file", ":Telescope find_files<CR>"),
 	button("o", "  > Recent", ":Telescope oldfiles<CR>"),
-	button("e", "  > Edit Confg", ":e ~/.config/nvim/lua/nvoidrc.lua<CR>"),
+	button("e", "  > Edit Confg", ":e ~/.config/nvim/lua/custom/nvoidrc.lua<CR>"),
 	button("c", "  > ColorScheme", ":Telescope colorscheme<CR>"),
 	button("q", "  > Quit NVIM", ":qa<CR>"),
 }

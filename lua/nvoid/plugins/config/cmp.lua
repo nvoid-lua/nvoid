@@ -43,17 +43,6 @@ cmp.setup({
 			return vim_item
 		end,
 	},
-	-- Source Names
-	source_names = {
-		-- nvim_lsp = "(LSP)",
-		-- emoji = "(Emoji)",
-		-- path = "(Path)",
-		-- calc = "(Calc)",
-		-- cmp_tabnine = "(Tabnine)",
-		-- vsnip = "(Snippet)",
-		-- luasnip = "(Snippet)",
-		-- buffer = "(Buffer)",
-	},
 	-- Duplicates
 	duplicates = {
 		buffer = 1,
@@ -77,7 +66,6 @@ cmp.setup({
 			select = true,
 		}),
 	},
-	-- Documentation
 	documentation = {
 		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
 	},
