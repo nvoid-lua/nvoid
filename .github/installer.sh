@@ -154,13 +154,8 @@ packer() {
   echo "Packer setup complete"
 }
 
-open_nvim() {
-  nvim
-}
-
 install_deps
 copy_old_config
 clone_repo
 clone_packer
 packer
-open_nvim
