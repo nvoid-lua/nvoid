@@ -152,7 +152,6 @@ packer() {
     -c 'autocmd User PackerComplete quitall' \
     -c 'PackerSync'
   echo "Packer setup complete"
-  # nvim
 }
 
 install_deps
