@@ -18,7 +18,7 @@
             src="https://img.shields.io/github/license/ysfgrgO7/nvoid?style=flat-square&logo=GNU&label=License"
             alt="License"
     />
-[![Neovim Minimum Version](https://img.shields.io/badge/Neovim-0.5+-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=white)](https://github.com/neovim/neovim)
+[![Neovim Minimum Version](https://img.shields.io/badge/Neovim-0.6+-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=white)](https://github.com/neovim/neovim)
  [![Last Commit](https://img.shields.io/github/last-commit/ysfgrgO7/nvoid.svg?style=flat-square&label=Last%20Commit&color=58eb34)](https://github.com/ysfgrgO7/nvoid/pulse)
 
 
@@ -27,7 +27,7 @@
 
 # Install In One Command
 ```bash
-bash -c "$(curl -s https://raw.githubusercontent.com/ysfgrgO7/nvoid/main/.github/NVOID-Install.sh)"
+bash -c "$(curl -s https://raw.githubusercontent.com/ysfgrgO7/nvoid/main/.github/installer.sh)"
 ```
 
 
