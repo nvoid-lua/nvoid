@@ -30,6 +30,8 @@
 bash -c "$(curl -s https://raw.githubusercontent.com/ysfgrgO7/nvoid/main/.github/installer.sh)"
 ```
 
+for more info go to https://nvoid.org
+
 
 # Install LSP
 + it comes by default with Lua languages
