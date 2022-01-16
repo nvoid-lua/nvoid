@@ -1,4 +1,3 @@
--- local colors = require("nvoid.colors")
 local present2, colors = pcall(require, "nvoid.colors")
 if not present2 then
 	return false
