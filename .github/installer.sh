@@ -137,11 +137,6 @@ clone_packer() {
    ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 }
 
-open_nvim() {
-  nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-  nvim
-}
-
 copy_old_config() {
   if [ -d "$HOME/.local/share/nvim" ]; then 
     mv ~/.local/share/nvim ~/.local/share/NV.old
@@ -151,8 +146,17 @@ copy_old_config() {
   fi
 }
 
+packer() {
+  echo "Preparing Packer setup"
+  "/bin/nvim" --headless \
+    -c 'autocmd User PackerComplete quitall' \
+    -c 'PackerSync'
+  echo "Packer setup complete"
+  nvim
+}
+
 install_deps
 copy_old_config
 clone_repo
 clone_packer
-open_nvim
+packer
