@@ -47,7 +47,7 @@ whichkey.setup({
 	},
 })
 
-require("which-key").register({
+whichkey.register({
 	[";"] = { "<cmd>Alpha<cr>", "Alpha" },
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	["E"] = { "<cmd>e ~/.config/nvim/lua/custom/nvoidrc.lua<cr>", "Edit Config" },
