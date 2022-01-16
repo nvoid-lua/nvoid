@@ -143,7 +143,8 @@ return packer.startup(function()
 		end,
 	})
 
-	-- LuaSnip
+	-- Snippets
+	use({ "rafamadriz/friendly-snippets" })
 	use({ "L3MON4D3/LuaSnip" })
 
 	-- CMP Extensions
