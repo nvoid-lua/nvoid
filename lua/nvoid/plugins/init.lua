@@ -36,7 +36,7 @@ return packer.startup(function()
 	use({ "Lunarvim/Onedarker" })
 
 	-- Nord
-	use({ "arcticicestudio/nord-vim" })
+	use({ "shaunsingh/nord.nvim" })
 
 	-- Tokyonight
 	use({ "folke/tokyonight.nvim" })
