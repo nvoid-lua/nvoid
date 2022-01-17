@@ -1,9 +1,9 @@
 #!/bin/env bash
 
-if command -v dpkg &> /dev/null then
-  echo Debian is not supported for now
-  exit 1
-fi
+# if command -v dpkg &> /dev/null then
+#   echo Debian is not supported for now
+#   exit 1
+# fi
 
 ## Checking neovim
 pkg_nvim_installed() {
