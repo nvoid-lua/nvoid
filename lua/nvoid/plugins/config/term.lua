@@ -4,8 +4,6 @@ if not present then
 	return
 end
 
-local Terminal = require("toggleterm.terminal").Terminal
-vim.g.mapleader = " "
 toggleterm.setup({
 	on_config_done = nil,
 	size = 20,
@@ -29,27 +27,3 @@ toggleterm.setup({
 		},
 	},
 })
-
--- lazygit
-local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
-function _lazygit_toggle()
-	lazygit:toggle()
-end
-
--- htop
-local htop = Terminal:new({ cmd = "htop", hidden = true })
-function _htop_toggle()
-	htop:toggle()
-end
-
--- Python
-local python = Terminal:new({ cmd = "python", hidden = true })
-function _python_toggle()
-	python:toggle()
-end
-
--- ncdu
-local ncdu = Terminal:new({ cmd = "ncdu", hidden = true })
-function _ncdu_toggle()
-	ncdu:toggle()
-end

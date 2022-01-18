@@ -37,4 +37,7 @@ M.ts_add = {}
 -- Add Plugins
 M.plugins_add = {}
 
+-- Add new whichkey bind
+M.whichkey_add = {}
+
 return M

@@ -41,4 +41,7 @@ M.ts_add = {
 	"python",
 }
 
+-- Add new whichkey bind
+M.whichkey_add = {}
+
 return M

@@ -90,7 +90,6 @@ whichkey.register({
 		name = "Packer",
 		c = { "<cmd>PackerCompile<cr>", "Compile" },
 		i = { "<cmd>PackerInstall<cr>", "Install" },
-		r = { "<cmd>lua require('lvim.plugin-loader').recompile()<cr>", "Re-compile" },
 		s = { "<cmd>PackerSync<cr>", "Sync" },
 		S = { "<cmd>PackerStatus<cr>", "Status" },
 		u = { "<cmd>PackerUpdate<cr>", "Update" },
@@ -98,3 +97,7 @@ whichkey.register({
 }, {
 	prefix = "<leader>",
 })
+
+local opts = { prefix = "<leader>" }
+local mappings = require("nvoid.core.utils").load_config().whichkey_add
+whichkey.register(mappings, opts)
