@@ -10,9 +10,6 @@ ts_config.setup({
 	ensure_installed = config.ts_add,
 	highlight = {
 		enable = true,
-		matchup = {
-			enable = true,
-		},
 	},
 	indent = { enable = true, disable = { "yaml" } },
 	context_commentstring = {

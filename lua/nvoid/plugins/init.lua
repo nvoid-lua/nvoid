@@ -121,9 +121,6 @@ return packer.startup(function()
 	})
 	use("jose-elias-alvarez/null-ls.nvim")
 
-	-- Matchup
-	use({ "andymass/vim-matchup" })
-
 	-- Better Escape
 	use({
 		"max397574/better-escape.nvim",
