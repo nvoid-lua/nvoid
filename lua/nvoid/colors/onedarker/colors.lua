@@ -29,3 +29,20 @@ local colors = {
 	blue_dark = "#5e81ac",
 }
 return colors
+
+
+
+-- darker_black
+-- one_bg
+-- one_bg2
+-- grey_fg2
+-- baby_pink
+-- line
+-- vibrant_green
+-- sun
+-- dark_purple
+-- statusline_bg
+-- lightbg
+-- lightbg2
+-- pmenu_bg
+-- folder_bg
