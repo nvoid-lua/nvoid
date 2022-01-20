@@ -35,12 +35,6 @@ return packer.startup(function()
 	-- Onedarker and darkplus
 	use({ "ysfgrgO7/nvoid-colorschemes" })
 
-	-- Nord
-	use({ "shaunsingh/nord.nvim" })
-
-	-- Tokyonight
-	use({ "folke/tokyonight.nvim" })
-
 	-- Icons
 	use({
 		"kyazdani42/nvim-web-devicons",
