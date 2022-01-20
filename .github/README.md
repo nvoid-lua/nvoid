@@ -1,6 +1,4 @@
 <div align="center">
-
-![NVOID_small](https://user-images.githubusercontent.com/94284073/147417808-ef7986da-16bb-484d-af54-1fdd740ba69a.png)
         
 [![Lua](https://img.shields.io/badge/Made%20with%20Lua-blue.svg?style=for-the-badge&logo=lua)](https://lua.org)
 
@@ -45,5 +43,3 @@ for more info go to https://nvoid.org
 + [CosmicNvim](https://github.com/mattleong/CosmicNvim)
 + [Nv-ide](https://github.com/crivotz/nv-ide)
 + [Kyoto.nvim](https://github.com/samrath2007/kyoto.nvim) 
-# Scrots
-![scrot1](https://user-images.githubusercontent.com/94284073/141673833-8e206c8f-7449-41ee-90dd-9f56b2aac54f.png)
