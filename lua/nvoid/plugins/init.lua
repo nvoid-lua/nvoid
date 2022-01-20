@@ -32,26 +32,14 @@ return packer.startup(function()
 	-- Plenary
 	use({ "nvim-lua/plenary.nvim" })
 
-	-- Onedarker
-	use({ "ysfgrgO7/onevoid" })
+	-- Onedarker and darkplus
+	use({ "ysfgrgO7/nvoid-colorschemes" })
 
 	-- Nord
 	use({ "shaunsingh/nord.nvim" })
 
 	-- Tokyonight
 	use({ "folke/tokyonight.nvim" })
-
-	-- Doom One
-	use({ "NTBBloodbath/doom-one.nvim" })
-
-	-- Dracual
-	use({ "dracula/vim" })
-
-	-- Gruvbox
-	use({ "morhetz/gruvbox" })
-
-	-- Dark Plus
-	use({ "LunarVim/darkplus.nvim" })
 
 	-- Icons
 	use({
