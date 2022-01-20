@@ -33,7 +33,7 @@ return packer.startup(function()
 	use({ "nvim-lua/plenary.nvim" })
 
 	-- Onedarker
-	use({ "Lunarvim/Onedarker" })
+	use({ "ysfgrgO7/onevoid" })
 
 	-- Nord
 	use({ "shaunsingh/nord.nvim" })
