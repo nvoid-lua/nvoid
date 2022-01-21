@@ -9,13 +9,11 @@ vim.o.background = "dark"
 vim.o.termguicolors = true
 
 if config.ui.theme == "onedark" then
-	colors = require("nvoid.colors.onedark.colors")
-elseif config.ui.theme == "nord" then
-	colors = require("nvoid.colors.nord.colors")
+	colors = require("nvoid.colors.themes.onedark.colors")
 elseif config.ui.theme == "tokyonight" then
-	colors = require("nvoid.colors.tokyonight.colors")
+	colors = require("nvoid.colors.themes.tokyonight.colors")
 elseif config.ui.theme == "darkplus" then
-	colors = require("nvoid.colors.darkplus.colors")
+	colors = require("nvoid.colors.themes.darkplus.colors")
 end
 
 local fg = require("nvoid.core.utils").fg
@@ -29,13 +27,36 @@ if config.ui.transparency then
 	fg("Comment", grey)
 end
 
+bg("TelescopeBorder", colors.bg)
+fg("TelescopeBorder", colors.bg)
+
+bg("TelescopePromptBorder", colors.grey)
+fg("TelescopePromptBorder", colors.grey)
+
+bg("TelescopePromptNormal", colors.grey)
+fg("TelescopePromptNormal", colors.fg)
+
+bg("TelescopePromptPrefix", colors.grey)
+fg("TelescopePromptPrefix", colors.red)
+
+bg("TelescopeNormal", colors.bg)
+
+bg("TelescopePreviewTitle", colors.green)
+fg("TelescopePreviewTitle", colors.bg)
+
+bg("TelescopePromptTitle", colors.red)
+fg("TelescopePromptTitle", colors.bg)
+
+bg("TelescopeResultsTitle", colors.bg)
+fg("TelescopeResultsTitle", colors.bg)
+
+bg("TelescopeSelection", colors.grey)
+fg("TelescopeSelection", colors.blue)
+
+fg("TelescopeMatching", colors.yellow)
+
 if vim.tbl_isempty(colors) then
 	return false
-end
-
-colors.notify_bg = "Normal"
-if config.theme == "gruvbox.nvim" then
-	colors.notify_bg = colors.bg
 end
 
 return colors

@@ -29,13 +29,6 @@ vim.cmd([[
   let g:loaded_matchit = 1"
 ]])
 
--- G
--- local g = {
--- 	loaded_matchit = 1,
--- 	matchup_delim_stopline = 1500,
--- 	matchup_matchparen_stopline = 400,
--- }
-
 -- Requiring Core Modules
 for _, module in ipairs(core_modules) do
 	local ok, err = pcall(require, module)
@@ -47,7 +40,3 @@ end
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
--- Requiring G
--- for k, v in pairs(g) do
--- 	vim.g[k] = v
--- end

@@ -9,17 +9,11 @@ local use = packer.use
 
 local ok, user_plugins = pcall(require, "custom.nvoidrc")
 if not ok then
-	user_plugins = {
-		add = {},
-		disable = {},
-	}
+	user_plugins = { add = {} }
 end
 
 if not vim.tbl_islist(user_plugins.plugins_add) then
 	user_plugins.plugins_add = {}
-end
-if not vim.tbl_islist(user_plugins.disable) then
-	user_plugins.disable = {}
 end
 
 return packer.startup(function()
@@ -32,8 +26,10 @@ return packer.startup(function()
 	-- Plenary
 	use({ "nvim-lua/plenary.nvim" })
 
-	-- Onedarker and darkplus
-	use({ "ysfgrgO7/nvoid-colorschemes" })
+	-- colorschemes
+	use({ "folke/tokyonight.nvim" })
+	use({ "Lunarvim/Onedarker" })
+	use({ "Lunarvim/darkplus.nvim" })
 
 	-- Icons
 	use({
@@ -200,6 +196,8 @@ return packer.startup(function()
 			require("nvoid.plugins.config.trouble")
 		end,
 	})
+
+	use({ "andymass/vim-matchup" })
 
 	-- Notify
 	use({

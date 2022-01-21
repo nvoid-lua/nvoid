@@ -10,14 +10,14 @@ vim.g.tokyonight_style = "night"
 vim.g.tokyonight_italic_functions = true
 
 -- Load the colorscheme
-vim.cmd[[colorscheme tokyonight]]
+vim.cmd([[colorscheme tokyonight]])
 
 local colors = {
 	white = "#c0caf5",
 	black = "#1A1B26", --  nvim bg
-	black2 = "#1f2335",
+	black2 = "#292E42",
 	bg = "#1f2335",
-    fg = "#c0caf5",
+	fg = "#c0caf5",
 	one_bg3 = "#353b45",
 	grey = "#40486a",
 	grey_fg = "#4a5274",
