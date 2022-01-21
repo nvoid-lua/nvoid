@@ -28,7 +28,6 @@ return packer.startup(function()
 
 	-- colorschemes
 	use({ "folke/tokyonight.nvim" })
-	use({ "Lunarvim/Onedarker" })
 	use({ "Lunarvim/darkplus.nvim" })
 
 	-- Icons

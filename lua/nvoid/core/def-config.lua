@@ -2,7 +2,7 @@ local M = {}
 
 -- UI
 M.ui = {
-	theme = "onedark",
+	theme = "tokyonight",
 	transparency = false,
 	statusline = "nvoid",
 }
