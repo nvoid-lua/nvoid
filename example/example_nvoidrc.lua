@@ -2,9 +2,9 @@ local M = {}
 
 -- UI
 M.ui = {
-	theme = "onedarker", -- 'onedarker' 'gruvbox' 'dracula' 'doom-one' 'tokyonight' 'nord' 'darkplus'
+	theme = "onedark", -- 'onedark' 'tokyonight' 'nord' 'darkplus'
 	transparency = false,
-	statusline = "nvoid", -- 'nvoid' 'lunarvim' 'vscode' 'bubbles' 'nvchad'
+	statusline = "vscode", -- 'nvoid' 'lunarvim' 'vscode' 'bubbles' 'nvchad'
 }
 
 -- Options
@@ -29,15 +29,23 @@ M.options = {
 }
 
 -- Add lsp
-M.lsp_add = {}
+M.lsp_add = {
+	-- "pyright",
+}
 
 -- Add treesitter language
-M.ts_add = {}
+M.ts_add = {
+	-- "fish",
+}
 
 -- Add Plugins
-M.plugins_add = {}
+M.plugins_add = {
+	-- { "folke/zen-mode.nvim" },
+}
 
 -- Add new whichkey bind
-M.whichkey_add = {}
+M.whichkey_add = {
+	-- ["z"] = { "<cmd>ZenMode<cr>", "Zen Mode" },
+}
 
 return M

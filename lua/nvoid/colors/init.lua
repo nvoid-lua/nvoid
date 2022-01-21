@@ -8,7 +8,7 @@ end
 vim.o.background = "dark"
 vim.o.termguicolors = true
 
-if config.ui.theme == "onedarker" then
+if config.ui.theme == "onedark" then
 	colors = require("nvoid.colors.onedark.colors")
 elseif config.ui.theme == "nord" then
 	colors = require("nvoid.colors.nord.colors")
