@@ -1,7 +1,6 @@
 local modules = {
 	"nvoid.plugins",
 	"nvoid.core",
-	"nvoid.colors",
 	"nvoid.core.map",
 }
 

@@ -17,10 +17,7 @@ if not present1 then
 end
 
 -- Colors
-local present2, colors = pcall(require, "nvoid.colors")
-if not present2 then
-	return false
-end
+local colors = require("nvoid.colors").get()
 
 -- Conditions
 local conditions = {
@@ -44,8 +41,8 @@ local config = {
 		section_separators = "",
 		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
 		theme = {
-			normal = { c = { fg = colors.fg, bg = colors.bg } },
-			inactive = { c = { fg = colors.fg, bg = colors.bg } },
+			normal = { c = { fg = colors.white, bg = colors.statusline_bg } },
+			inactive = { c = { fg = colors.white, bg = colors.black } },
 		},
 	},
 	sections = {
@@ -82,19 +79,19 @@ end
 ins_left({
 	function()
 		local mode_color = {
-			n = colors.red,
+			n = colors.nord_blue,
 			i = colors.green,
-			v = colors.blue,
-			[""] = colors.blue,
-			V = colors.blue,
-			c = colors.magenta,
+			v = colors.purple,
+			[""] = colors.purple,
+			V = colors.purple,
+			c = colors.yellow,
 			no = colors.red,
 			s = colors.orange,
 			S = colors.orange,
 			[""] = colors.orange,
 			ic = colors.yellow,
-			R = colors.violet,
-			Rv = colors.violet,
+			R = colors.pink,
+			Rv = colors.pink,
 			cv = colors.red,
 			ce = colors.red,
 			r = colors.cyan,
@@ -103,7 +100,7 @@ ins_left({
 			["!"] = colors.red,
 			t = colors.red,
 		}
-		vim.api.nvim_command("hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.bg)
+		vim.api.nvim_command("hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.statusline_bg)
 		return "▊"
 	end,
 	color = "LualineMode",
@@ -200,7 +197,7 @@ ins_right({
 		return chars[index]
 	end,
 	padding = { left = 0, right = 0 },
-	color = { fg = colors.yellow, bg = colors.bg },
+	color = { fg = colors.yellow, bg = colors.statusline_bg },
 	cond = nil,
 })
 

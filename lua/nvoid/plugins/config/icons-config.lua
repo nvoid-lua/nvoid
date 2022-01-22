@@ -1,48 +1,15 @@
-local present1, icons = pcall(require, "nvim-web-devicons")
-if not present1 then
+local present, icons = pcall(require, "nvim-web-devicons")
+if not present then
 	return
 end
 
-local present2, colors = pcall(require, "nvoid.colors")
-if not present2 then
-	return false
-end
+local colors = require("nvoid.colors").get()
 
 icons.setup({
 	override = {
-		html = {
-			icon = " ",
-			color = colors.pink,
-			name = "html",
-		},
-		sh = {
-			icon = " ",
-			color = colors.grey,
-			name = "sh",
-		},
-		md = {
-			icon = " ",
-			color = colors.blue,
-			name = "md",
-		},
-		zsh = {
-			icon = " ",
-			color = colors.grey,
-			name = "zsh",
-		},
-		fish = {
-			icon = " ",
-			color = colors.grey,
-			name = "fish",
-		},
 		c = {
 			icon = " ",
 			color = colors.blue,
-			name = "c",
-		},
-		h = {
-			icon = " ",
-			color = colors.purple,
 			name = "c",
 		},
 		css = {
@@ -50,105 +17,130 @@ icons.setup({
 			color = colors.blue,
 			name = "css",
 		},
-		js = {
-			icon = " ",
-			color = colors.yellow,
-			name = "js",
-		},
-		ts = {
-			icon = "ﯤ ",
-			color = colors.teal,
-			name = "ts",
-		},
-		kt = {
-			icon = "󱈙 ",
-			color = colors.orange,
-			name = "kt",
-		},
-		png = {
-			icon = " ",
-			color = colors.purple,
-			name = "png",
-		},
-		jpg = {
-			icon = " ",
-			color = colors.purple,
-			name = "jpg",
-		},
-		jpeg = {
-			icon = " ",
-			color = colors.purple,
-			name = "jpeg",
-		},
-		mp3 = {
-			icon = " ",
-			color = colors.fg,
-			name = "mp3",
-		},
-		mp4 = {
-			icon = " ",
-			color = colors.fg,
-			name = "mp4",
-		},
-		out = {
-			icon = " ",
-			color = colors.fg,
-			name = "out",
+		deb = {
+			icon = " ",
+			color = colors.cyan,
+			name = "deb",
 		},
 		Dockerfile = {
 			icon = " ",
 			color = colors.cyan,
 			name = "Dockerfile",
 		},
-		rb = {
-			icon = " ",
-			color = colors.pink,
-			name = "rb",
+		html = {
+			icon = " ",
+			color = colors.baby_pink,
+			name = "html",
 		},
-		vue = {
-			icon = "﵂ ",
-			color = colors.green,
-			name = "vue",
+		jpeg = {
+			icon = " ",
+			color = colors.dark_purple,
+			name = "jpeg",
 		},
-		py = {
-			icon = " ",
-			color = colors.cyan,
-			name = "py",
+		jpg = {
+			icon = " ",
+			color = colors.dark_purple,
+			name = "jpg",
 		},
-		toml = {
-			icon = " ",
-			color = colors.blue,
-			name = "toml",
+		js = {
+			icon = " ",
+			color = colors.sun,
+			name = "js",
+		},
+		kt = {
+			icon = "󱈙 ",
+			color = colors.orange,
+			name = "kt",
 		},
 		lock = {
 			icon = " ",
 			color = colors.red,
 			name = "lock",
 		},
-		zip = {
-			icon = " ",
-			color = colors.yellow,
-			name = "zip",
+		lua = {
+			icon = " ",
+			color = colors.blue,
+			name = "lua",
 		},
-		xz = {
-			icon = " ",
-			color = colors.yellow,
-			name = "xz",
+		mp3 = {
+			icon = " ",
+			color = colors.white,
+			name = "mp3",
 		},
-		deb = {
-			icon = " ",
+		mp4 = {
+			icon = " ",
+			color = colors.white,
+			name = "mp4",
+		},
+		out = {
+			icon = " ",
+			color = colors.white,
+			name = "out",
+		},
+		png = {
+			icon = " ",
+			color = colors.dark_purple,
+			name = "png",
+		},
+		py = {
+			icon = " ",
+			color = colors.cyan,
+			name = "py",
+		},
+		["robots.txt"] = {
+			icon = "ﮧ ",
 			color = colors.red,
-			name = "deb",
+			name = "robots",
+		},
+		toml = {
+			icon = " ",
+			color = colors.blue,
+			name = "toml",
+		},
+		ts = {
+			icon = "ﯤ ",
+			color = colors.teal,
+			name = "ts",
+		},
+		ttf = {
+			icon = " ",
+			color = colors.white,
+			name = "TrueTypeFont",
+		},
+		rb = {
+			icon = " ",
+			color = colors.pink,
+			name = "rb",
 		},
 		rpm = {
 			icon = " ",
 			color = colors.orange,
 			name = "rpm",
 		},
-		lua = {
-			icon = " ",
-			color = colors.blue,
-			name = "lua",
+		vue = {
+			icon = "﵂ ",
+			color = colors.vibrant_green,
+			name = "vue",
+		},
+		woff = {
+			icon = " ",
+			color = colors.white,
+			name = "WebOpenFontFormat",
+		},
+		woff2 = {
+			icon = " ",
+			color = colors.white,
+			name = "WebOpenFontFormat2",
+		},
+		xz = {
+			icon = " ",
+			color = colors.sun,
+			name = "xz",
+		},
+		zip = {
+			icon = " ",
+			color = colors.sun,
+			name = "zip",
 		},
 	},
 })

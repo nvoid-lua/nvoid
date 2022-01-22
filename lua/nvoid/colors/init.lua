@@ -1,60 +1,19 @@
-local config = require("nvoid.core.utils").load_config()
-local colors = {}
+local M = {}
 
-vim.api.nvim_command("hi clear")
-if vim.fn.exists("syntax_on") then
-	vim.api.nvim_command("syntax reset")
-end
-vim.o.background = "dark"
-vim.o.termguicolors = true
-
-if config.ui.theme == "tokyonight" then
-	colors = require("nvoid.colors.themes.tokyonight.colors")
-elseif config.ui.theme == "darkplus" then
-	colors = require("nvoid.colors.themes.darkplus.colors")
+M.init = function()
+	local theme = require("nvoid.core.utils").load_config().ui.theme
+	vim.g.theme = require("nvoid.core.utils").load_config().ui.theme
+	local present, base16 = pcall(require, "base16")
+	if present then
+		base16(base16.themes(theme), true)
+		package.loaded["nvoid.colors.highlights" or false] = nil
+		require("nvoid.colors.highlights")
+	end
 end
 
-local fg = require("nvoid.core.utils").fg
-local bg = require("nvoid.core.utils").bg
-local grey = colors.grey
-
-if config.ui.transparency then
-	bg("Normal", "NONE")
-	bg("Folded", "NONE")
-	fg("Folded", "NONE")
-	fg("Comment", grey)
+M.get = function()
+	local theme = require("nvoid.core.utils").load_config().ui.theme
+	return require("nvoid.colors.hl_themes." .. theme)
 end
 
-bg("TelescopeBorder", colors.bg)
-fg("TelescopeBorder", colors.bg)
-
-bg("TelescopePromptBorder", colors.grey)
-fg("TelescopePromptBorder", colors.grey)
-
-bg("TelescopePromptNormal", colors.grey)
-fg("TelescopePromptNormal", colors.fg)
-
-bg("TelescopePromptPrefix", colors.grey)
-fg("TelescopePromptPrefix", colors.red)
-
-bg("TelescopeNormal", colors.bg)
-
-bg("TelescopePreviewTitle", colors.green)
-fg("TelescopePreviewTitle", colors.bg)
-
-bg("TelescopePromptTitle", colors.red)
-fg("TelescopePromptTitle", colors.bg)
-
-bg("TelescopeResultsTitle", colors.bg)
-fg("TelescopeResultsTitle", colors.bg)
-
-bg("TelescopeSelection", colors.grey)
-fg("TelescopeSelection", colors.blue)
-
-fg("TelescopeMatching", colors.yellow)
-
-if vim.tbl_isempty(colors) then
-	return false
-end
-
-return colors
+return M

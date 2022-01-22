@@ -1,12 +1,9 @@
-local present2, colors = pcall(require, "nvoid.colors")
-if not present2 then
-	return false
-end
-
 local present1, bufferline = pcall(require, "bufferline")
 if not present1 then
 	return
 end
+
+local colors = require("nvoid.colors").get()
 
 bufferline.setup({
 	options = {
@@ -46,7 +43,6 @@ bufferline.setup({
 			return true
 		end,
 	},
-
 	highlights = {
 		background = {
 			guifg = colors.grey_fg,
@@ -95,6 +91,8 @@ bufferline.setup({
 			guifg = colors.blue,
 			guibg = colors.black,
 		},
+
+		-- modified
 		modified = {
 			guifg = colors.red,
 			guibg = colors.black2,
@@ -107,6 +105,8 @@ bufferline.setup({
 			guifg = colors.green,
 			guibg = colors.black,
 		},
+
+		-- separators
 		separator = {
 			guifg = colors.black2,
 			guibg = colors.black2,
@@ -119,6 +119,8 @@ bufferline.setup({
 			guifg = colors.black2,
 			guibg = colors.black2,
 		},
+
+		-- tabs
 		tab = {
 			guifg = colors.light_grey,
 			guibg = colors.one_bg3,

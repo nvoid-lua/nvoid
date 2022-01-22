@@ -17,25 +17,7 @@ if not present1 then
 end
 
 -- Colors
-local present2, colors = pcall(require, "nvoid.colors")
-if not present2 then
-	return false
-end
-
--- Conditions
-local conditions = {
-	buffer_not_empty = function()
-		return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
-	end,
-	hide_in_width = function()
-		return vim.fn.winwidth(0) > 80
-	end,
-	check_git_workspace = function()
-		local filepath = vim.fn.expand("%:p:h")
-		local gitdir = vim.fn.finddir(".git", filepath .. ";")
-		return gitdir and #gitdir > 0 and #gitdir < #filepath
-	end,
-}
+local colors = require("nvoid.colors").get()
 
 -- Config
 local config = {
@@ -44,8 +26,8 @@ local config = {
 		section_separators = "",
 		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
 		theme = {
-			normal = { c = { fg = colors.fg, bg = colors.bg } },
-			inactive = { c = { fg = colors.fg, bg = colors.bg } },
+			normal = { c = { fg = colors.fg, bg = colors.statusline_bg } },
+			inactive = { c = { fg = colors.fg, bg = colors.statusline_bg } },
 		},
 	},
 	sections = {
@@ -83,7 +65,7 @@ ins_left({
 	function()
 		return " "
 	end,
-	color = { fg = colors.bg, bg = colors.blue }, -- Sets highlighting of component
+	color = { fg = colors.statusline_bg, bg = colors.blue }, -- Sets highlighting of component
 	padding = { left = 0, right = 1 }, -- We don't need space before this
 })
 
@@ -105,7 +87,7 @@ ins_left({
 	function()
 		return ""
 	end,
-	color = { fg = colors.grey, bg = colors.bg }, -- Sets highlighting of component
+	color = { fg = colors.grey, bg = colors.statusline_bg }, -- Sets highlighting of component
 	padding = { left = 0, right = 1 }, -- We don't need space before this
 })
 
@@ -159,7 +141,7 @@ ins_right({
 	function()
 		return ""
 	end,
-	color = { fg = colors.blue, bg = colors.bg }, -- Sets highlighting of component
+	color = { fg = colors.blue, bg = colors.statusline_bg }, -- Sets highlighting of component
 	padding = { left = 0, right = 0 }, -- We don't need space before this
 })
 
@@ -167,7 +149,7 @@ ins_right({
 	function()
 		return " "
 	end,
-	color = { fg = colors.bg, bg = colors.blue }, -- Sets highlighting of component
+	color = { fg = colors.statusline_bg, bg = colors.blue }, -- Sets highlighting of component
 	padding = { left = 0, right = 0 }, -- We don't need space before this
 })
 
@@ -188,7 +170,7 @@ ins_right({
 	function()
 		return " "
 	end,
-	color = { fg = colors.bg, bg = colors.red }, -- Sets highlighting of component
+	color = { fg = colors.statusline_bg, bg = colors.red }, -- Sets highlighting of component
 	padding = { left = 0, right = 0 }, -- We don't need space before this
 })
 

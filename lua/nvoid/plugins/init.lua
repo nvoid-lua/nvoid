@@ -27,8 +27,13 @@ return packer.startup(function()
 	use({ "nvim-lua/plenary.nvim" })
 
 	-- colorschemes
-	use({ "folke/tokyonight.nvim" })
-	use({ "Lunarvim/darkplus.nvim" })
+	use({
+		"ysfgrgO7/nvim-base16.lua",
+		after = "packer.nvim",
+		config = function()
+			require("nvoid.colors").init()
+		end,
+	})
 
 	-- Icons
 	use({
@@ -45,7 +50,6 @@ return packer.startup(function()
 			require("nvoid.plugins.config.lualine")
 		end,
 	})
-
 	-- Bufferline
 	use({
 		"akinsho/bufferline.nvim",
