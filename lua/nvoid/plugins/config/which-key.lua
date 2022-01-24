@@ -66,6 +66,7 @@ whichkey.register({
 	},
 	f = {
 		name = "Find",
+		t = { "<cmd>Telescope filetypes<cr>", "File Types" },
 		b = { "<cmd>lua require 'telescope'.extensions.file_browser.file_browser()<cr>", "File Browser" },
 		h = { "<cmd>Telescope oldfiles<cr>", "Old Files" },
 		f = { "<cmd>Telescope find_files<cr>", "Find files" },
