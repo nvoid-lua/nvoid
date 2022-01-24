@@ -1,0 +1,8 @@
+require("nvoid.colors.highlights.telescope")
+require("nvoid.colors.highlights.pmenu")
+require("nvoid.colors.highlights.nvimtree")
+require("nvoid.colors.highlights.builtins")
+require("nvoid.colors.highlights.dashboard")
+require("nvoid.colors.highlights.gitsigns")
+require("nvoid.colors.highlights.indentblankline")
+require("nvoid.colors.highlights.lsp")
