@@ -7,9 +7,39 @@ local colors = require("nvoid.colors").get()
 
 icons.setup({
 	override = {
+		html = {
+			icon = " ",
+			color = colors.pink,
+			name = "html",
+		},
+		sh = {
+			icon = " ",
+			color = colors.grey,
+			name = "sh",
+		},
+		md = {
+			icon = " ",
+			color = colors.blue,
+			name = "md",
+		},
+		zsh = {
+			icon = " ",
+			color = colors.grey,
+			name = "zsh",
+		},
+		fish = {
+			icon = " ",
+			color = colors.grey,
+			name = "fish",
+		},
 		c = {
 			icon = " ",
 			color = colors.blue,
+			name = "c",
+		},
+		h = {
+			icon = " ",
+			color = colors.purple,
 			name = "c",
 		},
 		css = {
@@ -17,130 +47,105 @@ icons.setup({
 			color = colors.blue,
 			name = "css",
 		},
-		deb = {
-			icon = " ",
-			color = colors.cyan,
-			name = "deb",
-		},
-		Dockerfile = {
-			icon = " ",
-			color = colors.cyan,
-			name = "Dockerfile",
-		},
-		html = {
-			icon = " ",
-			color = colors.baby_pink,
-			name = "html",
-		},
-		jpeg = {
-			icon = " ",
-			color = colors.dark_purple,
-			name = "jpeg",
-		},
-		jpg = {
-			icon = " ",
-			color = colors.dark_purple,
-			name = "jpg",
-		},
 		js = {
 			icon = " ",
-			color = colors.sun,
+			color = colors.yellow,
 			name = "js",
-		},
-		kt = {
-			icon = "󱈙 ",
-			color = colors.orange,
-			name = "kt",
-		},
-		lock = {
-			icon = " ",
-			color = colors.red,
-			name = "lock",
-		},
-		lua = {
-			icon = " ",
-			color = colors.blue,
-			name = "lua",
-		},
-		mp3 = {
-			icon = " ",
-			color = colors.white,
-			name = "mp3",
-		},
-		mp4 = {
-			icon = " ",
-			color = colors.white,
-			name = "mp4",
-		},
-		out = {
-			icon = " ",
-			color = colors.white,
-			name = "out",
-		},
-		png = {
-			icon = " ",
-			color = colors.dark_purple,
-			name = "png",
-		},
-		py = {
-			icon = " ",
-			color = colors.cyan,
-			name = "py",
-		},
-		["robots.txt"] = {
-			icon = "ﮧ ",
-			color = colors.red,
-			name = "robots",
-		},
-		toml = {
-			icon = " ",
-			color = colors.blue,
-			name = "toml",
 		},
 		ts = {
 			icon = "ﯤ ",
 			color = colors.teal,
 			name = "ts",
 		},
-		ttf = {
-			icon = " ",
-			color = colors.white,
-			name = "TrueTypeFont",
+		kt = {
+			icon = "󱈙 ",
+			color = colors.orange,
+			name = "kt",
+		},
+		png = {
+			icon = " ",
+			color = colors.purple,
+			name = "png",
+		},
+		jpg = {
+			icon = " ",
+			color = colors.purple,
+			name = "jpg",
+		},
+		jpeg = {
+			icon = " ",
+			color = colors.purple,
+			name = "jpeg",
+		},
+		mp3 = {
+			icon = " ",
+			color = colors.fg,
+			name = "mp3",
+		},
+		mp4 = {
+			icon = " ",
+			color = colors.fg,
+			name = "mp4",
+		},
+		out = {
+			icon = " ",
+			color = colors.fg,
+			name = "out",
+		},
+		Dockerfile = {
+			icon = " ",
+			color = colors.cyan,
+			name = "Dockerfile",
 		},
 		rb = {
 			icon = " ",
 			color = colors.pink,
 			name = "rb",
 		},
+		vue = {
+			icon = "﵂ ",
+			color = colors.green,
+			name = "vue",
+		},
+		py = {
+			icon = " ",
+			color = colors.cyan,
+			name = "py",
+		},
+		toml = {
+			icon = " ",
+			color = colors.blue,
+			name = "toml",
+		},
+		lock = {
+			icon = " ",
+			color = colors.red,
+			name = "lock",
+		},
+		zip = {
+			icon = " ",
+			color = colors.yellow,
+			name = "zip",
+		},
+		xz = {
+			icon = " ",
+			color = colors.yellow,
+			name = "xz",
+		},
+		deb = {
+			icon = " ",
+			color = colors.red,
+			name = "deb",
+		},
 		rpm = {
 			icon = " ",
 			color = colors.orange,
 			name = "rpm",
 		},
-		vue = {
-			icon = "﵂ ",
-			color = colors.vibrant_green,
-			name = "vue",
-		},
-		woff = {
-			icon = " ",
-			color = colors.white,
-			name = "WebOpenFontFormat",
-		},
-		woff2 = {
-			icon = " ",
-			color = colors.white,
-			name = "WebOpenFontFormat2",
-		},
-		xz = {
-			icon = " ",
-			color = colors.sun,
-			name = "xz",
-		},
-		zip = {
-			icon = " ",
-			color = colors.sun,
-			name = "zip",
+		lua = {
+			icon = " ",
+			color = colors.blue,
+			name = "lua",
 		},
 	},
 })
