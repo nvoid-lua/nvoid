@@ -68,10 +68,7 @@ whichkey.register({
 		name = "Find",
 		b = { "<cmd>lua require 'telescope'.extensions.file_browser.file_browser()<cr>", "File Browser" },
 		h = { "<cmd>Telescope oldfiles<cr>", "Old Files" },
-		c = {
-			"<cmd>lua require('telescope.builtin.internal').colorscheme({enable_preview = true})<cr>",
-			"ColorScheme With Preview",
-		},
+		f = { "<cmd>Telescope find_files<cr>", "Find files" },
 		t = { "<cmd>Telescope treesitter<cr>", "Treesitter Symbols" },
 		o = { "<cmd>Telescope vim_options<cr>", "Options" },
 		H = { "<cmd>Telescope help_tags<cr>", "CMD Help" },
