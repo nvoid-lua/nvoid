@@ -13,16 +13,12 @@ if ui.transparency then
 	bg("Folded", "NONE")
 	fg("Folded", "NONE")
 	fg("Comment", grey)
-end
-
-if ui.transparency then
 	bg("NormalFloat", "NONE")
 	bg("NvimTreeNormal", "NONE")
 	bg("NvimTreeNormalNC", "NONE")
 	bg("NvimTreeStatusLineNC", "NONE")
 	bg("NvimTreeVertSplit", "NONE")
 	fg("NvimTreeVertSplit", grey)
-
 	bg("TelescopeBorder", "NONE")
 	bg("TelescopePrompt", "NONE")
 	bg("TelescopeResults", "NONE")
