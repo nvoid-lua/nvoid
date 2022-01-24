@@ -23,8 +23,9 @@ return packer.startup(function()
 		event = "VimEnter",
 	})
 
-	-- Plenary
+	-- Plenary And Popup
 	use({ "nvim-lua/plenary.nvim" })
+	use({ "nvim-lua/popup.nvim" })
 
 	-- colorschemes
 	use({
