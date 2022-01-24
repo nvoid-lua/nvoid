@@ -90,6 +90,9 @@ fg("IndentBlanklineContextChar", blue)
 
 -- Lsp diagnostics
 
+bg("LspReferenceRead", grey)
+bg("LspReferenceText", grey)
+bg("LspReferenceWrite", grey)
 fg("DiagnosticHint", purple)
 fg("DiagnosticError", red)
 fg("DiagnosticWarn", yellow)
