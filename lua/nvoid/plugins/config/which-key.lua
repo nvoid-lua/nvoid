@@ -69,7 +69,7 @@ whichkey.register({
 		b = { "<cmd>lua require 'telescope'.extensions.file_browser.file_browser()<cr>", "File Browser" },
 		h = { "<cmd>Telescope oldfiles<cr>", "Old Files" },
 		f = { "<cmd>Telescope find_files<cr>", "Find files" },
-		t = { "<cmd>Telescope treesitter<cr>", "Treesitter Symbols" },
+		c = { "<cmd>Telescope themes<cr>", "Key maps" },
 		o = { "<cmd>Telescope vim_options<cr>", "Options" },
 		H = { "<cmd>Telescope help_tags<cr>", "CMD Help" },
 		w = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Find Word In Document" },
