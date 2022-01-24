@@ -49,7 +49,7 @@ bg("PmenuSbar", one_bg2)
 bg("PmenuSel", pmenu_bg)
 bg("PmenuThumb", nord_blue)
 fg("CmpItemAbbr", white)
-fg("CmpItemAbbrMatch", white)
+fg("CmpItemAbbrMatch", blue)
 fg("CmpItemKind", white)
 fg("CmpItemMenu", white)
 
