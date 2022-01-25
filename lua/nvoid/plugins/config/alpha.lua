@@ -45,8 +45,8 @@ dashboard.section.header.val = {
 
 -- Set menu
 dashboard.section.buttons.val = {
-	button("n", "  > New file", ":enew<CR>"),
 	button("f", "  > Find file", ":Telescope find_files<CR>"),
+	button("n", "  > New file", ":enew<CR>"),
 	button("o", "  > Recent", ":Telescope oldfiles<CR>"),
 	button("e", "  > Edit Confg", ":e ~/.config/nvim/lua/custom/nvoidrc.lua<CR>"),
 	button("q", "  > Quit NVIM", ":qa<CR>"),
