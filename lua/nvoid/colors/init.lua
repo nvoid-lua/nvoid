@@ -1,7 +1,9 @@
 local M = {}
 
-M.init = function()
-	local theme = require("nvoid.core.utils").load_config().ui.theme
+M.init = function(theme)
+	if not theme then
+		theme = require("nvoid.core.utils").load_config().ui.theme
+	end
 	vim.g.theme = require("nvoid.core.utils").load_config().ui.theme
 	local present, base16 = pcall(require, "base16")
 	if present then
