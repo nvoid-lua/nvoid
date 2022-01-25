@@ -18,14 +18,9 @@ local function theme_switcher(opts)
 		local current_theme = vim.g.theme
 		local new_theme = ""
 		local change = false
-
-		-- buffer number and name
 		local bufnr = vim.api.nvim_get_current_buf()
 		local bufname = vim.api.nvim_buf_get_name(bufnr)
-
 		local previewer
-
-		-- in case its not a normal buffer
 		if vim.fn.buflisted(bufnr) ~= 1 then
 			local deleted = false
 			local function del_win(win_id)
@@ -34,7 +29,6 @@ local function theme_switcher(opts)
 					pcall(vim.api.nvim_win_close, win_id, true)
 				end
 			end
-
 			previewer = previewers.new({
 				preview_fn = function(_, entry, status)
 					if not deleted then
@@ -46,7 +40,6 @@ local function theme_switcher(opts)
 				end,
 			})
 		else
-			-- show current buffer content in previewer
 			previewer = previewers.new_buffer_previewer({
 				define_preview = function(self, entry)
 					local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
@@ -58,26 +51,21 @@ local function theme_switcher(opts)
 				end,
 			})
 		end
-
 		local picker = pickers.new({
 			prompt_title = "Set color",
 			finder = finders.new_table(themes),
 			previewer = previewer,
 			sorter = conf.generic_sorter(opts),
 			attach_mappings = function()
-				actions.select_default:replace(
-					-- if a entry is selected, change current_theme to that
-					function(prompt_bufnr)
-						local selection = action_state.get_selected_entry()
-						new_theme = selection.value
-						change = true
-						actions.close(prompt_bufnr)
-					end
-				)
+				actions.select_default:replace(function(prompt_bufnr)
+					local selection = action_state.get_selected_entry()
+					new_theme = selection.value
+					change = true
+					actions.close(prompt_bufnr)
+				end)
 				return true
 			end,
 		})
-
 		local close_windows = picker.close_windows
 		picker.close_windows = function(status)
 			close_windows(status)
@@ -87,7 +75,6 @@ local function theme_switcher(opts)
 			else
 				final_theme = current_theme
 			end
-
 			if reload_theme(final_theme) then
 				if change then
 					local ans = string.lower(vim.fn.input("Set " .. new_theme .. " as default theme ? [y/N] ")) == "y"
@@ -105,7 +92,7 @@ local function theme_switcher(opts)
 		end
 		picker:find()
 	else
-		print("No themes found in " .. vim.fn.stdpath("config") .. "/lua/themes")
+		print("No themes found in " .. vim.fn.stdpath("config") .. "/lua/nvoid/colors/hl_themes")
 	end
 end
 local present, telescope = pcall(require, "telescope")
