@@ -44,13 +44,14 @@ return packer.startup(function()
 		end,
 	})
 
-	-- Feline
+	-- LuaLine
 	use({
 		"nvim-lualine/lualine.nvim",
 		config = function()
 			require("nvoid.plugins.config.lualine")
 		end,
 	})
+
 	-- Bufferline
 	use({
 		"akinsho/bufferline.nvim",
