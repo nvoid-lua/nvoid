@@ -75,6 +75,7 @@ whichkey.register({
 		H = { "<cmd>Telescope help_tags<cr>", "CMD Help" },
 		w = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Find Word In Document" },
 		k = { "<cmd>Telescope keymaps<cr>", "Key maps" },
+		m = { "<cmd>Telescope media_files<cr>", "Media Files" },
 	},
 	l = {
 		name = "lsp",
