@@ -1,5 +1,4 @@
 vim.cmd("packadd packer.nvim")
-vim.cmd("autocmd BufWritePost init.lua PackerCompile")
 
 local first_install = false
 

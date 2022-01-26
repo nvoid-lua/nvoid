@@ -1,5 +1,12 @@
 local present, nvoid_packer = pcall(require, "nvoid.plugins.packerInit")
 
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost init.lua source <afile> | PackerSync
+  augroup end
+]])
+
 if not present then
 	return false
 end
@@ -177,6 +184,7 @@ return packer.startup(function()
 
 	-- Telescope File browser
 	use({ "nvim-telescope/telescope-file-browser.nvim" })
+	use({ "nvim-telescope/telescope-media-files.nvim" })
 
 	-- Term
 	use({
