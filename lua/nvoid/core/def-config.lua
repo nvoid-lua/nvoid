@@ -26,6 +26,7 @@ M.options = {
 	swap_file = false,
 	backup = false,
 	show_mode = false,
+	nvimtree_indent_markers = true,
 }
 
 -- Add Treesitter langs
