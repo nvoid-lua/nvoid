@@ -43,12 +43,12 @@ M.min = function()
 		z = { bg = colors.statusline_bg, fg = colors.white },
 	}
 	theme.inactive = {
-		a = { bg = colors.statusline_bg, fg = colors.white, gui = "italic" },
-		b = { bg = colors.statusline_bg, fg = colors.white },
-		c = { bg = colors.statusline_bg, fg = colors.white },
-		x = { bg = colors.statusline_bg, fg = colors.white },
-		y = { bg = colors.statusline_bg, fg = colors.white },
-		z = { bg = colors.statusline_bg, fg = colors.white },
+		a = { bg = colors.black, fg = colors.white, gui = "italic" },
+		b = { bg = colors.black, fg = colors.white },
+		c = { bg = colors.black, fg = colors.white },
+		x = { bg = colors.black, fg = colors.white },
+		y = { bg = colors.black, fg = colors.white },
+		z = { bg = colors.black, fg = colors.white },
 	}
 	return theme
 end
