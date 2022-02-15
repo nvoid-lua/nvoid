@@ -34,7 +34,7 @@ local mode = {
 lualine.setup({
 	options = {
 		icons_enabled = true,
-		theme = require("nvoid.plugins.config.lualine.theme"),
+		theme = require("nvoid.plugins.config.lualine.theme").min(),
 		component_separators = { left = "|", right = "|" },
 		section_separators = { left = "", right = "" },
 		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
@@ -42,7 +42,7 @@ lualine.setup({
 	},
 	sections = {
 		lualine_a = { mode },
-		lualine_b = {},
+		lualine_b = { "diff", "diagnostics" },
 		lualine_c = {},
 		lualine_x = {},
 		lualine_y = {},

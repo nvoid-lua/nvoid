@@ -8,7 +8,6 @@ local grey_fg = colors.grey_fg
 local one_bg2 = colors.one_bg2
 local red = colors.red
 local white = colors.white
-local one_bg3 = colors.one_bg3
 local green = colors.green
 local yellow = colors.yellow
 local purple = colors.purple

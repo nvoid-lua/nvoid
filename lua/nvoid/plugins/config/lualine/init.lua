@@ -8,4 +8,6 @@ elseif config.ui.statusline == "nvchad" then
 	require("nvoid.plugins.config.lualine.styles.nvchad")
 elseif config.ui.statusline == "minimal" then
 	require("nvoid.plugins.config.lualine.styles.minimal")
+elseif config.ui.statusline == "default" then
+	require("nvoid.plugins.config.lualine.styles.default")
 end
