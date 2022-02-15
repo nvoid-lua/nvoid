@@ -6,4 +6,6 @@ elseif config.ui.statusline == "lunarvim" then
 	require("nvoid.plugins.config.lualine.styles.lunarvim")
 elseif config.ui.statusline == "nvchad" then
 	require("nvoid.plugins.config.lualine.styles.nvchad")
+elseif config.ui.statusline == "minimal" then
+	require("nvoid.plugins.config.lualine.styles.minimal")
 end
