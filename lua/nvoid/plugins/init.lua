@@ -48,6 +48,9 @@ return packer.startup(function()
 		end,
 	})
 
+	-- Extensions
+	use({ "ysfgrgO7/nvoid-extensions" })
+
 	-- Icons
 	use({
 		"kyazdani42/nvim-web-devicons",
@@ -167,6 +170,7 @@ return packer.startup(function()
 	-- Comment
 	use({
 		"winston0410/commented.nvim",
+		event = "BufWinEnter",
 		config = function()
 			require("nvoid.plugins.config.other").commented()
 		end,
@@ -190,12 +194,16 @@ return packer.startup(function()
 	})
 
 	-- Telescope File browser
-	use({ "nvim-telescope/telescope-file-browser.nvim" })
+	use({
+		"nvim-telescope/telescope-file-browser.nvim",
+		event = "BufWinEnter",
+	})
 	use({ "nvim-telescope/telescope-media-files.nvim" })
 
 	-- Term
 	use({
 		"akinsho/toggleterm.nvim",
+		event = "BufWinEnter",
 		config = function()
 			require("nvoid.plugins.config.term")
 		end,
@@ -212,16 +220,21 @@ return packer.startup(function()
 	-- Trouble
 	use({
 		"folke/trouble.nvim",
+		event = "BufWinEnter",
 		config = function()
 			require("nvoid.plugins.config.trouble")
 		end,
 	})
 
-	use({ "andymass/vim-matchup" })
+	use({
+		"andymass/vim-matchup",
+		event = "BufWinEnter",
+	})
 
 	-- Notify
 	use({
 		"rcarriga/nvim-notify",
+		event = "BufWinEnter",
 		config = function()
 			require("nvoid.plugins.config.other").notify()
 		end,
