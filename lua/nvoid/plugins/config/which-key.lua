@@ -93,6 +93,11 @@ whichkey.register({
 		S = { "<cmd>PackerStatus<cr>", "Status" },
 		u = { "<cmd>PackerUpdate<cr>", "Update" },
 	},
+	s = {
+		name = "Session",
+		s = { "<cmd>SessionSave<cr>", "Save" },
+		l = { "<cmd>SessionLoad<cr>", "Load" },
+	},
 }, {
 	prefix = "<leader>",
 })
