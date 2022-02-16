@@ -1,5 +1,9 @@
 local present, nvoid_packer = pcall(require, "nvoid.plugins.packerInit")
 
+local commit = {
+	dashboard_nvim = "d82ddae95fd4dc4c3b7bbe87f09b1840fbf20ecb",
+}
+
 vim.cmd([[
   augroup packer_user_config
     autocmd!
@@ -149,12 +153,13 @@ return packer.startup(function()
 		end,
 	})
 
-	-- Alpha
+	-- dashboard
 	use({
-		"goolord/alpha-nvim",
-		requires = { "kyazdani42/nvim-web-devicons" },
+		"ChristianChiarulli/dashboard-nvim",
+		commit = commit.dashboard_nvim,
+		event = "BufWinEnter",
 		config = function()
-			require("nvoid.plugins.config.alpha")
+			require("nvoid.plugins.config.dashboard")
 		end,
 	})
 

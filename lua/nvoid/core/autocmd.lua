@@ -1,7 +1,7 @@
+vim.opt.termguicolors = true
 vim.cmd([[
   augroup _general_settings
     autocmd!
-    autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR> 
     autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200}) 
     autocmd BufWinEnter * :set formatoptions-=cro
     autocmd FileType qf set nobuflisted
@@ -20,8 +20,10 @@ vim.cmd([[
     autocmd!
     autocmd VimResized * tabdo wincmd = 
   augroup end
-  augroup _alpha
+  augroup _dashboard
     autocmd!
-    autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
+    autocmd FileType dashboard nnoremap <silent> <buffer> q :q<CR>
+    autocmd FileType dashboard setlocal nocursorline noswapfile synmaxcol& signcolumn=no norelativenumber nocursorcolumn nospell  nolist  nonumber bufhidden=wipe colorcolumn= foldcolumn=0 matchpairs= 
+    autocmd FileType dashboard set showtabline=0 | autocmd BufLeave <buffer> set showtabline=2
   augroup end
 ]])
