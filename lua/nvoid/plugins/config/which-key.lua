@@ -48,7 +48,7 @@ whichkey.setup({
 })
 
 whichkey.register({
-	[";"] = { "<cmd>Alpha<cr>", "Alpha" },
+	[";"] = { "<cmd>Dashboard<cr>", "Dashboard" },
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	["E"] = { "<cmd>e ~/.config/nvim/lua/custom/nvoidrc.lua<cr>", "Edit Config" },
 	["n"] = { "<cmd>enew<cr>", "New File" },
