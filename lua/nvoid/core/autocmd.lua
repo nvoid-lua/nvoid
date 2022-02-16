@@ -22,8 +22,10 @@ vim.cmd([[
   augroup end
   augroup _dashboard
     autocmd!
-    autocmd FileType dashboard nnoremap <silent> <buffer> q :q<CR>
     autocmd FileType dashboard setlocal nocursorline noswapfile synmaxcol& signcolumn=no norelativenumber nocursorcolumn nospell  nolist  nonumber bufhidden=wipe colorcolumn= foldcolumn=0 matchpairs= 
     autocmd FileType dashboard set showtabline=0 | autocmd BufLeave <buffer> set showtabline=2
+    autocmd FileType dashboard nnoremap <silent> <buffer> q :q<CR>
+    autocmd FileType dashboard nnoremap <silent> <buffer> e :e ~/.config/nvim/lua/custom/nvoidrc.lua<CR>
+    autocmd FileType dashboard nnoremap <silent> <buffer> f :Telescope find_files<CR>
   augroup end
 ]])
