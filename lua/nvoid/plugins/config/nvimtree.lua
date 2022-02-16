@@ -1,34 +1,28 @@
 local present, nvimtree = pcall(require, "nvim-tree")
 local config = require("nvoid.core.utils").load_config()
-
+local g = vim.g
 if not present then
 	return
 end
-
-local g = vim.g
-
-g.nvim_tree_add_trailing = 0
-g.nvim_tree_highlight_opened_files = 0
 if config.options.nvimtree_indent_markers == true then
 	g.nvim_tree_indent_markers = 1
 elseif config.options.nvimtree_indent_markers == false then
 	g.nvim_tree_indent_markers = 0
 end
+g.nvim_tree_add_trailing = 0
+g.nvim_tree_highlight_opened_files = 0
 g.nvim_tree_quit_on_open = 0
-g.nvim_tree_root_folder_modifier = table.concat({ ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" })
-
+g.nvim_tree_root_folder_modifier = table.concat({ ":t" })
 g.nvim_tree_window_picker_exclude = {
 	filetype = { "notify", "packer", "qf" },
 	buftype = { "terminal" },
 }
-
 g.nvim_tree_show_icons = {
 	git = 1,
 	folder_arrows = 1,
 	folders = 1,
 	files = 1,
 }
-
 g.nvim_tree_icons = {
 	default = "",
 	symlink = "",
@@ -52,7 +46,6 @@ g.nvim_tree_icons = {
 		symlink_open = "",
 	},
 }
-
 nvimtree.setup({
 	disable_netrw = true,
 	hijack_netrw = true,
@@ -65,6 +58,10 @@ nvimtree.setup({
 		enable = true,
 		update_cwd = true,
 		ignore_list = {},
+	},
+	filters = {
+		dotfiles = false,
+		custom = { "node_modules", ".cache", ".git" },
 	},
 	diagnostics = {
 		enable = true,

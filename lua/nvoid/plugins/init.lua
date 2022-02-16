@@ -2,6 +2,7 @@ local present, nvoid_packer = pcall(require, "nvoid.plugins.packerInit")
 
 local commit = {
 	dashboard_nvim = "d82ddae95fd4dc4c3b7bbe87f09b1840fbf20ecb",
+	nvim_tree = "0f7da146bff79032df44b423e52ea17b05d35026",
 }
 
 vim.cmd([[
@@ -174,6 +175,7 @@ return packer.startup(function()
 	-- Nvim Tree
 	use({
 		"kyazdani42/nvim-tree.lua",
+		commit = commit.nvim_tree,
 		config = function()
 			require("nvoid.plugins.config.nvimtree")
 		end,
