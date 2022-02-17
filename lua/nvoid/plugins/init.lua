@@ -1,8 +1,12 @@
 local present, nvoid_packer = pcall(require, "nvoid.plugins.packerInit")
 
 local commit = {
+	null_ls = "6859f58fba281d30750dfad681369a932d231c30",
 	dashboard_nvim = "d82ddae95fd4dc4c3b7bbe87f09b1840fbf20ecb",
 	nvim_tree = "0f7da146bff79032df44b423e52ea17b05d35026",
+	nvim_notify = "27f3176b950dc803b61c29bd007e140c232544e5",
+	nvim_lsp_installer = "cd9a9b0e4df6e011045c8470eebea0994173578b",
+	nvim_lspconfig = "dca9cfcda9c95a3820b6443084a203bba260197a",
 }
 
 vim.cmd([[
@@ -113,11 +117,15 @@ return packer.startup(function()
 	-- LSP
 	use({
 		"neovim/nvim-lspconfig",
+		commit = commit.nvim_lspconfig,
 		config = function()
 			require("nvoid.plugins.config.lsp")
 		end,
 	})
-	use("jose-elias-alvarez/null-ls.nvim")
+	use({
+		"jose-elias-alvarez/null-ls.nvim",
+		commit = commit.null_ls,
+	})
 
 	-- Better Escape
 	use({
@@ -128,7 +136,10 @@ return packer.startup(function()
 	})
 
 	-- LSP Install
-	use({ "williamboman/nvim-lsp-installer" })
+	use({
+		"williamboman/nvim-lsp-installer",
+		commit = commit.nvim_lsp_installer,
+	})
 
 	-- CMP
 	use({
@@ -234,10 +245,11 @@ return packer.startup(function()
 	-- Notify
 	use({
 		"rcarriga/nvim-notify",
-		event = "BufWinEnter",
+		commit = commit.nvim_notify,
 		config = function()
 			require("nvoid.plugins.config.other").notify()
 		end,
+		event = "BufRead",
 	})
 
 	if user_plugins.plugins_add and not vim.tbl_isempty(user_plugins.plugins_add) then
