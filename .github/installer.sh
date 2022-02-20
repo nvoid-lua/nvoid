@@ -129,7 +129,7 @@ which git >/dev/null && echo "Git is installed" || warngit
 }
 
 clone_repo() {
-  git clone https://github.com/ysfgrgO7/nvoid.git ~/.config/nvim
+  git clone https://github.com/nvoid-lua/nvoid.git ~/.config/nvim
 }
 
 clone_packer() {
