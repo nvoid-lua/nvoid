@@ -28,4 +28,5 @@ vim.cmd([[
     autocmd FileType dashboard nnoremap <silent> <buffer> e :e ~/.config/nvim/lua/custom/nvoidrc.lua<CR>
     autocmd FileType dashboard nnoremap <silent> <buffer> f :Telescope find_files<CR>
   augroup end
+  autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
 ]])
