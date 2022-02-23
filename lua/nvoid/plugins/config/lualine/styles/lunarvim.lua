@@ -42,7 +42,14 @@ local config = {
 		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
 		theme = {
 			normal = { c = { fg = colors.white, bg = colors.statusline_bg } },
-			inactive = { c = { fg = colors.white, bg = colors.black } },
+            inactive = {
+               a = { bg = colors.black, fg = colors.white, gui = "italic" },
+               b = { bg = colors.black, fg = colors.white },
+               c = { bg = colors.black, fg = colors.white },
+               x = { bg = colors.black, fg = colors.white },
+               y = { bg = colors.black, fg = colors.white },
+               z = { bg = colors.black, fg = colors.white },
+    	    }
 		},
 	},
 	sections = {
