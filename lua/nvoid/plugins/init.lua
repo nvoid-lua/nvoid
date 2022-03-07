@@ -44,7 +44,7 @@ return packer.startup(function()
 
 	-- colorschemes
 	use({
-		"ysfgrgO7/nvim-base16.lua",
+		"nvoid-lua/nvim-base16.lua",
 		after = "packer.nvim",
 		config = function()
 			require("nvoid.colors").init()
@@ -52,7 +52,7 @@ return packer.startup(function()
 	})
 
 	-- Extensions
-	use({ "ysfgrgO7/nvoid-extensions" })
+	use({ "nvoid-lua/nvoid-extensions" })
 
 	-- Icons
 	use({
