@@ -133,9 +133,9 @@ ins_left({
 	source = diff_source,
 	symbols = { added = "  ", modified = "柳", removed = " " },
 	diff_color = {
-		added = { fg = colors.green },
-		modified = { fg = colors.yellow },
-		removed = { fg = colors.red },
+		added = { bg = colors.statusline_bg, fg = colors.green },
+		modified = { bg = colors.statusline_bg, fg = colors.yellow },
+		removed = { bg = colors.statusline_bg, fg = colors.red },
 	},
 	color = {},
 	cond = nil,
