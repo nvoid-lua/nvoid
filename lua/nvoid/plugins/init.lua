@@ -186,7 +186,7 @@ return packer.startup(function()
 	-- Nvim Tree
 	use({
 		"kyazdani42/nvim-tree.lua",
-		commit = commit.nvim_tree,
+		-- commit = commit.nvim_tree,
 		config = function()
 			require("nvoid.plugins.config.nvimtree")
 		end,
