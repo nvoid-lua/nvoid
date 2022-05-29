@@ -131,7 +131,12 @@ return packer.startup(function()
 	})
 
 	-- LSP Install
-	use({ "williamboman/nvim-lsp-installer" })
+	use({
+		"williamboman/nvim-lsp-installer",
+		config = function()
+			require("nvoid.plugins.config.lsp-installer")
+		end,
+	})
 
 	-- CMP
 	use({

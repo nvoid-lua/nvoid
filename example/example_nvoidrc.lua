@@ -41,4 +41,7 @@ M.whichkey_add = {
 	-- ["z"] = { "<cmd>ZenMode<cr>", "ZenMode" },
 }
 
+-- Add new LSP server
+M.lsp_add = {} --"bashls"
+
 return M
