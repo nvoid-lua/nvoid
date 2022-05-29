@@ -28,9 +28,6 @@ M.options = {
 	show_mode = false,
 }
 
--- Add lsp
-M.lsp_add = {} -- "bashls",
-
 -- Add treesitter language
 M.ts_add = {} -- "all", "fish"
 

@@ -4,7 +4,6 @@ local commit = {
 	dashboard_nvim = "d82ddae95fd4dc4c3b7bbe87f09b1840fbf20ecb",
 	nvim_tree = "0f7da146bff79032df44b423e52ea17b05d35026",
 	nvim_notify = "27f3176b950dc803b61c29bd007e140c232544e5",
-	nvim_lsp_installer = "cd9a9b0e4df6e011045c8470eebea0994173578b",
 	nvim_lspconfig = "dca9cfcda9c95a3820b6443084a203bba260197a",
 }
 
@@ -132,10 +131,7 @@ return packer.startup(function()
 	})
 
 	-- LSP Install
-	use({
-		"williamboman/nvim-lsp-installer",
-		commit = commit.nvim_lsp_installer,
-	})
+	use({ "williamboman/nvim-lsp-installer" })
 
 	-- CMP
 	use({
