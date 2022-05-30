@@ -6,8 +6,8 @@ if not present then
 end
 
 local options = {
-	automatic_installation = true,
 	ensure_installed = config.lsp_add,
+	automatic_installation = true,
 	ui = {
 		icons = {
 			server_installed = " ",
