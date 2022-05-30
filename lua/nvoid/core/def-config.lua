@@ -43,7 +43,7 @@ M.ts_add = {
 }
 
 -- Add Lsp servers
-M.lsp_add = {}
+M.lsp_add = { "sumneko_lua" }
 
 -- Add new whichkey bind
 M.whichkey_add = {}
