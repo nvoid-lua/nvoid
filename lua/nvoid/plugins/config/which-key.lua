@@ -83,7 +83,7 @@ whichkey.register({
     i = { "<cmd>LspInfo<cr>", "Info" },
     I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-    f = { "<cmd>lua vim.lsp.buf.formatting_seq_sync()<cr>", "Format" },
+    f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
     t = { "<cmd>TroubleToggle<cr>", "Trouble Toggle" },
   },
   p = {
