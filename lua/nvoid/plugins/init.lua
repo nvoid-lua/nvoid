@@ -110,6 +110,14 @@ return packer.startup(function()
     end,
   }
 
+  -- Nvim GPS
+  use {
+    "SmiteshP/nvim-gps",
+    config = function()
+      require "nvoid.plugins.config.nvim_gps"
+    end,
+  }
+
   -- LSP Install
   use { "williamboman/nvim-lsp-installer" }
 
