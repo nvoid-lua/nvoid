@@ -7,6 +7,9 @@ end
 -- Colors
 local colors = require("nvoid.colors").get()
 
+-- Gps
+local gps = require "nvim-gps"
+
 -- Diff Source
 local function diff_source()
   local gitsigns = vim.b.gitsigns_status_dict
@@ -118,6 +121,11 @@ ins_left {
   "filename",
   cond = conditions.buffer_not_empty,
   color = { fg = colors.white, gui = "bold" },
+}
+
+ins_left {
+  gps.get_location,
+  cond = gps.is_available,
 }
 
 -- Git Branch
