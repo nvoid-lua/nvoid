@@ -5,12 +5,12 @@ local commit = {
   nvim_notify = "27f3176b950dc803b61c29bd007e140c232544e5",
 }
 
-vim.cmd([[
+vim.cmd [[
   augroup packer_user_config
     autocmd!
     autocmd BufWritePost init.lua source <afile> | PackerSync
   augroup end
-]])
+]]
 
 if not present then
   return false
@@ -30,219 +30,219 @@ end
 
 return packer.startup(function()
   -- Packer
-  use({
+  use {
     "wbthomason/packer.nvim",
     event = "VimEnter",
-  })
+  }
 
   -- Plenary And Popup
-  use({ "nvim-lua/plenary.nvim" })
-  use({ "nvim-lua/popup.nvim" })
+  use { "nvim-lua/plenary.nvim" }
+  use { "nvim-lua/popup.nvim" }
 
   -- colorschemes
-  use({
+  use {
     "nvoid-lua/nvim-base16.lua",
     after = "packer.nvim",
     config = function()
       require("nvoid.colors").init()
     end,
-  })
+  }
 
   -- Extensions
-  use({ "nvoid-lua/nvoid-extensions" })
+  use { "nvoid-lua/nvoid-extensions" }
 
   -- Icons
-  use({
+  use {
     "kyazdani42/nvim-web-devicons",
     config = function()
-      require("nvoid.plugins.config.icons-config")
+      require "nvoid.plugins.config.icons-config"
     end,
-  })
+  }
 
   -- LuaLine
-  use({
+  use {
     "nvim-lualine/lualine.nvim",
     config = function()
-      require("nvoid.plugins.config.lualine")
+      require "nvoid.plugins.config.lualine"
     end,
-  })
+  }
 
   -- Bufferline
-  use({
+  use {
     "akinsho/bufferline.nvim",
     config = function()
-      require("nvoid.plugins.config.bufferline")
+      require "nvoid.plugins.config.bufferline"
     end,
-  })
+  }
 
   -- Buffer Close
-  use({ "Asheq/close-buffers.vim" })
+  use { "Asheq/close-buffers.vim" }
 
   -- Indent Line
-  use({
+  use {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
-      require("nvoid.plugins.config.indentline")
+      require "nvoid.plugins.config.indentline"
     end,
-  })
+  }
 
   -- Colorizer
-  use({
+  use {
     "norcalli/nvim-colorizer.lua",
     config = function()
       require("nvoid.plugins.config.other").colorizer()
     end,
-  })
+  }
 
   -- Git Sign
-  use({
+  use {
     "lewis6991/gitsigns.nvim",
     config = function()
       require("nvoid.plugins.config.other").git()
     end,
-  })
+  }
 
   -- Tree Sitter
-  use({
+  use {
     "nvim-treesitter/nvim-treesitter",
     config = function()
-      require("nvoid.plugins.config.treesitter")
+      require "nvoid.plugins.config.treesitter"
     end,
-  })
+  }
+
+  -- LSP Install
+  use {
+    "williamboman/nvim-lsp-installer",
+    config = function()
+      require "nvoid.plugins.config.lsp.lsp-installer"
+    end,
+  }
 
   -- LSP
-  use({
+  use {
     "neovim/nvim-lspconfig",
     config = function()
-      require("nvoid.plugins.config.lsp")
+      require "nvoid.plugins.config.lsp"
     end,
-  })
-  use({ "jose-elias-alvarez/null-ls.nvim" })
+  }
+  use { "jose-elias-alvarez/null-ls.nvim" }
 
   -- Better Escape
-  use({
+  use {
     "max397574/better-escape.nvim",
     config = function()
       require("nvoid.plugins.config.other").better()
     end,
-  })
-
-  -- LSP Install
-  use({
-    "williamboman/nvim-lsp-installer",
-    config = function()
-      require("nvoid.plugins.config.lsp.lsp-installer")
-    end,
-  })
+  }
 
   -- CMP
-  use({
+  use {
     "hrsh7th/nvim-cmp",
     config = function()
-      require("nvoid.plugins.config.cmp")
+      require "nvoid.plugins.config.cmp"
     end,
-  })
+  }
 
   -- Snippets
-  use({ "rafamadriz/friendly-snippets" })
-  use({ "L3MON4D3/LuaSnip" })
+  use { "rafamadriz/friendly-snippets" }
+  use { "L3MON4D3/LuaSnip" }
 
   -- CMP Extensions
-  use({ "saadparwaiz1/cmp_luasnip" })
-  use({ "hrsh7th/cmp-nvim-lua" })
-  use({ "hrsh7th/cmp-nvim-lsp" })
-  use({ "hrsh7th/cmp-buffer" })
-  use({ "hrsh7th/cmp-path" })
+  use { "saadparwaiz1/cmp_luasnip" }
+  use { "hrsh7th/cmp-nvim-lua" }
+  use { "hrsh7th/cmp-nvim-lsp" }
+  use { "hrsh7th/cmp-buffer" }
+  use { "hrsh7th/cmp-path" }
 
   -- Auto Pairs
-  use({
+  use {
     "windwp/nvim-autopairs",
     config = function()
       require("nvoid.plugins.config.other").autopairs()
     end,
-  })
+  }
 
   -- dashboard
-  use({
+  use {
     "ChristianChiarulli/dashboard-nvim",
     commit = commit.dashboard_nvim,
     event = "BufWinEnter",
     config = function()
-      require("nvoid.plugins.config.dashboard")
+      require "nvoid.plugins.config.dashboard"
     end,
-  })
+  }
 
   -- Comment
-  use({
+  use {
     "winston0410/commented.nvim",
     event = "BufWinEnter",
     config = function()
       require("nvoid.plugins.config.other").commented()
     end,
-  })
+  }
 
   -- Nvim Tree
-  use({
+  use {
     "kyazdani42/nvim-tree.lua",
     config = function()
-      require("nvoid.plugins.config.nvimtree")
+      require "nvoid.plugins.config.nvimtree"
     end,
-  })
+  }
 
   -- Telescope
-  use({
+  use {
     "nvim-telescope/telescope.nvim",
     config = function()
-      require("nvoid.plugins.config.telescope")
+      require "nvoid.plugins.config.telescope"
     end,
-  })
+  }
 
   -- Telescope File browser
-  use({
+  use {
     "nvim-telescope/telescope-file-browser.nvim",
     event = "BufWinEnter",
-  })
-  use({ "nvim-telescope/telescope-media-files.nvim" })
+  }
+  use { "nvim-telescope/telescope-media-files.nvim" }
 
   -- Term
-  use({
+  use {
     "akinsho/toggleterm.nvim",
     event = "BufWinEnter",
     config = function()
-      require("nvoid.plugins.config.term")
+      require "nvoid.plugins.config.term"
     end,
-  })
+  }
 
   -- Which Key
-  use({
+  use {
     "folke/which-key.nvim",
     config = function()
-      require("nvoid.plugins.config.which-key")
+      require "nvoid.plugins.config.which-key"
     end,
-  })
+  }
 
   -- Trouble
-  use({
+  use {
     "folke/trouble.nvim",
     event = "BufWinEnter",
     config = function()
-      require("nvoid.plugins.config.trouble")
+      require "nvoid.plugins.config.trouble"
     end,
-  })
+  }
 
-  use({
+  use {
     "andymass/vim-matchup",
     event = "BufWinEnter",
-  })
+  }
 
   -- Notify
-  use({
+  use {
     "rcarriga/nvim-notify",
     commit = commit.nvim_notify,
     config = function()
       require("nvoid.plugins.config.other").notify()
     end,
-  })
+  }
 
   if user_plugins.plugins_add and not vim.tbl_isempty(user_plugins.plugins_add) then
     for _, plugin in pairs(user_plugins.plugins_add) do
