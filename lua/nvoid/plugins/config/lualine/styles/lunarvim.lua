@@ -15,6 +15,8 @@ local present1, lualine = pcall(require, "lualine")
 if not present1 then
   return false
 end
+
+-- Gps
 local gps = require "nvim-gps"
 
 -- Colors

@@ -22,6 +22,7 @@ local function diff_source()
   end
 end
 
+-- Config
 local diff = {
   "diff",
   source = diff_source,

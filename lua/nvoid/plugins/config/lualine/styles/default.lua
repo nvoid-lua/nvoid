@@ -1,4 +1,13 @@
+-- Lualine
+local present1, lualine = pcall(require, "lualine")
+if not present1 then
+  return false
+end
+
+-- Color
 local colors = require("nvoid.colors").get()
+
+-- diff_source
 local function diff_source()
   local gitsigns = vim.b.gitsigns_status_dict
   if gitsigns then
@@ -10,6 +19,7 @@ local function diff_source()
   end
 end
 
+--dif
 local diff = {
   "diff",
   source = diff_source(),
@@ -23,9 +33,11 @@ local diff = {
   cond = nil,
 }
 
+-- Gps
 local gps = require "nvim-gps"
 
-require("lualine").setup {
+-- Config
+lualine.setup {
   options = {
     icons_enabled = true,
     theme = require("nvoid.plugins.config.lualine.theme").def(),

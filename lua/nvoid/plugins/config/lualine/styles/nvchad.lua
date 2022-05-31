@@ -79,6 +79,7 @@ ins_left {
   padding = { left = 0, right = 1 }, -- We don't need space before this
 }
 
+-- Sep
 ins_left {
   function()
     return ""
@@ -93,6 +94,7 @@ ins_left {
   color = { fg = colors.white, bg = colors.grey },
 }
 
+-- Sep
 ins_left {
   function()
     return ""
@@ -100,11 +102,14 @@ ins_left {
   color = { fg = colors.grey, bg = colors.statusline_bg }, -- Sets highlighting of component
   padding = { left = 0, right = 1 }, -- We don't need space before this
 }
+
+-- Nvim Gps
 ins_left {
   gps.get_location,
   cond = gps.is_available,
 }
 
+-- diff
 ins_left {
   "diff",
   source = diff_source,
@@ -118,6 +123,7 @@ ins_left {
   cond = nil,
 }
 
+-- diagnostics
 ins_left {
   "diagnostics",
   sources = { "nvim_diagnostic" },
@@ -131,6 +137,9 @@ ins_left {
   update_in_insert = false,
 }
 
+-- Right
+
+-- lsp name
 ins_right {
   function()
     local msg = ""
@@ -151,6 +160,7 @@ ins_right {
   color = { fg = colors.violet, gui = "bold" },
 }
 
+-- Sep
 ins_right {
   function()
     return ""
@@ -159,6 +169,7 @@ ins_right {
   padding = { left = 0, right = 0 }, -- We don't need space before this
 }
 
+-- git icon
 ins_right {
   function()
     return " "
@@ -167,11 +178,13 @@ ins_right {
   padding = { left = 0, right = 0 }, -- We don't need space before this
 }
 
+-- git branch
 ins_right {
   "b:gitsigns_head",
   color = { fg = colors.blue, bg = colors.grey },
 }
 
+-- Sep
 ins_right {
   function()
     return ""
@@ -180,6 +193,7 @@ ins_right {
   padding = { left = 0, right = 0 }, -- We don't need space before this
 }
 
+-- Icon
 ins_right {
   function()
     return " "
@@ -188,6 +202,7 @@ ins_right {
   padding = { left = 0, right = 0 }, -- We don't need space before this
 }
 
+-- Mode
 ins_right {
   "mode",
   fmt = function(str)

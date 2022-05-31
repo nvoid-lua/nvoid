@@ -123,6 +123,7 @@ ins_left {
   color = { fg = colors.white, gui = "bold" },
 }
 
+-- Nvim Gps
 ins_left {
   gps.get_location,
   cond = gps.is_available,
