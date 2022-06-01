@@ -64,6 +64,7 @@ local mode = {
   end,
 }
 
+-- Config
 lualine.setup {
   options = {
     icons_enabled = true,
@@ -76,12 +77,11 @@ lualine.setup {
   sections = {
     lualine_a = { mode },
     lualine_b = {
+      { gps.get_location, cond = gps.is_available },
       diff,
       "diagnostics",
     },
-    lualine_c = {
-      { gps.get_location, cond = gps.is_available },
-    },
+    lualine_c = {},
     lualine_x = {},
     lualine_y = {},
     lualine_z = { "filename", "branch" },
