@@ -8,6 +8,9 @@ pkg_nvim_installed() {
   elif command -v xbps-install &> /dev/null
   then
     echo "sudo xbps-install -Syu neovim"
+  elif command -v apt-get &> /dev/null
+  then
+    echo "Visit: https://github.com/neovim/neovim/wiki/Installing-Neovim#appimage-universal-linux-package" 
   elif command -v dnf &> /dev/null
   then
    echo "sudo dnf install neovim"
@@ -22,6 +25,7 @@ function check_neovim_min_version() {
   local verify_version_cmd='if !has("nvim-0.6.0") | cquit | else | quit | endif'
   if ! nvim --headless -u NONE -c "$verify_version_cmd"; then
     echo "[ERROR]: Nvoid requires at least Neovim v0.6.0 or higher"
+    warnnvim
     exit 1
   fi
 }
@@ -37,6 +41,9 @@ pkg_git_installed() {
   elif command -v xbps-install &> /dev/null
   then
     echo "sudo xbps-install -Syu git"
+  elif command -v apt-get &> /dev/null
+  then
+    echo "sudo apt install git" 
   elif command -v dnf &> /dev/null
   then
    echo "sudo dnf install git"
@@ -68,6 +75,9 @@ which git >/dev/null && echo "Git is installed" || warngit
       elif command -v xbps-install &> /dev/null
       then
         echo "sudo xbps-install -Syu nodejs"
+      elif command -v apt-get &> /dev/null
+      then
+        echo "sudo apt install -y nodejs npm" 
       elif command -v dnf &> /dev/null
       then
        echo "sudo dnf install nodejs npm"
@@ -103,6 +113,9 @@ which git >/dev/null && echo "Git is installed" || warngit
       elif command -v xbps-install &> /dev/null
       then
         echo "sudo xbps-install -Syu python3-pip"
+      elif command -v apt-get &> /dev/null
+      then
+        echo "sudo apt install -y python3 python3-pip" 
       elif command -v dnf &> /dev/null
       then
        echo "sudo dnf install python-pip"
