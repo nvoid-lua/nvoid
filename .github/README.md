@@ -16,7 +16,7 @@
             src="https://img.shields.io/github/license/nvoid-lua/nvoid?style=flat-square&logo=GNU&label=License"
             alt="License"
     />
-[![Neovim Minimum Version](https://img.shields.io/badge/Neovim-0.6+-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=white)](https://github.com/neovim/neovim)
+[![Neovim Minimum Version](https://img.shields.io/badge/Neovim-0.7+-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=white)](https://github.com/neovim/neovim)
  [![Last Commit](https://img.shields.io/github/last-commit/nvoid-lua/nvoid.svg?style=flat-square&label=Last%20Commit&color=58eb34)](https://github.com/nvoid-lua/nvoid/pulse)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/215cd34c-a660-4a6d-b85d-0af87869dc7c/deploy-status)](https://app.netlify.com/sites/nvoid/deploys)
 
