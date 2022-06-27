@@ -22,16 +22,16 @@ warnnvim() {
   exit
 }
 function check_neovim_min_version() {
-  local verify_version_cmd='if !has("nvim-0.6.0") | cquit | else | quit | endif'
+  local verify_version_cmd='if !has("nvim-0.7.0") | cquit | else | quit | endif'
   if ! nvim --headless -u NONE -c "$verify_version_cmd"; then
-    echo "[ERROR]: Nvoid requires at least Neovim v0.6.0 or higher"
+    echo "[ERROR]: Nvoid requires at least Neovim v0.7.0 or higher"
     warnnvim
     exit 1
   fi
 }
 check_neovim_min_version
 
-which nvim >/dev/null && echo "Neovim 0.6.0 is installed" || warnnvim
+which nvim >/dev/null && echo "Neovim 0.7.0 is installed" || warnnvim
 
 ## Checking git
 pkg_git_installed() {
