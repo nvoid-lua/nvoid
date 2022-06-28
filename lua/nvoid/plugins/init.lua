@@ -73,6 +73,8 @@ return packer.startup(function()
     config = function()
       require "nvoid.plugins.config.bufferline"
     end,
+    branch = "main",
+    event = "BufWinEnter",
   }
 
   -- Buffer Close
@@ -100,6 +102,7 @@ return packer.startup(function()
     config = function()
       require("nvoid.plugins.config.other").git()
     end,
+    event = "BufRead",
   }
 
   -- Tree Sitter
@@ -170,19 +173,19 @@ return packer.startup(function()
   use {
     "ChristianChiarulli/dashboard-nvim",
     commit = commit.dashboard_nvim,
-    event = "BufWinEnter",
     config = function()
       require "nvoid.plugins.config.dashboard"
     end,
+    event = "BufWinEnter",
   }
 
   -- Comment
   use {
     "winston0410/commented.nvim",
-    event = "BufWinEnter",
     config = function()
       require("nvoid.plugins.config.other").commented()
     end,
+    event = "BufWinEnter",
   }
 
   -- Nvim Tree
@@ -211,10 +214,10 @@ return packer.startup(function()
   -- Term
   use {
     "akinsho/toggleterm.nvim",
-    event = "BufWinEnter",
     config = function()
       require "nvoid.plugins.config.term"
     end,
+    event = "BufWinEnter",
   }
 
   -- Which Key
@@ -223,15 +226,16 @@ return packer.startup(function()
     config = function()
       require "nvoid.plugins.config.which-key"
     end,
+    event = "BufWinEnter",
   }
 
   -- Trouble
   use {
     "folke/trouble.nvim",
-    event = "BufWinEnter",
     config = function()
       require "nvoid.plugins.config.trouble"
     end,
+    event = "BufWinEnter",
   }
 
   use {
