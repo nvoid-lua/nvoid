@@ -4,34 +4,8 @@ if not _lualine then
   return
 end
 
--- Colors
-local colors = require("nvoid.colors").get()
-
--- Diff Source
-local function diff_source()
-  local gitsigns = vim.b.gitsigns_status_dict
-  if gitsigns then
-    return {
-      added = gitsigns.added,
-      modified = gitsigns.changed,
-      removed = gitsigns.removed,
-    }
-  end
-end
-
--- Config
-local diff = {
-  "diff",
-  source = diff_source,
-  symbols = { added = "  ", modified = "柳", removed = " " },
-  diff_color = {
-    added = { bg = colors.statusline_bg, fg = colors.green },
-    modified = { bg = colors.statusline_bg, fg = colors.yellow },
-    removed = { bg = colors.statusline_bg, fg = colors.red },
-  },
-  color = {},
-  cond = nil,
-}
+-- components
+local component = require "nvoid.plugins.config.lualine.components"
 
 local mode = {
   "mode",
@@ -67,7 +41,7 @@ lualine.setup {
     globalstatus = true,
     icons_enabled = true,
     theme = require("nvoid.plugins.config.lualine.theme").min(),
-    component_separators = { left = "|", right = "|" },
+    component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
     disabled_filetypes = { "alpha", "dashboard", "Outline" },
     always_divide_middle = true,
@@ -75,13 +49,13 @@ lualine.setup {
   sections = {
     lualine_a = { mode },
     lualine_b = {
-      diff,
-      "diagnostics",
+      component.diff,
+      component.diagnostics,
     },
     lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = { "filename", "branch" },
+    lualine_x = { component.treesitter },
+    lualine_y = { component.filename, component.branch },
+    lualine_z = { component.scrollbar },
   },
   inactive_sections = {
     lualine_a = {},

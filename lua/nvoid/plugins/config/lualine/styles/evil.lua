@@ -4,7 +4,7 @@ if not _lualine then
   return
 end
 
--- Colors 
+-- Colors
 local colors = require("nvoid.colors").get()
 
 -- components
@@ -36,10 +36,10 @@ local mode = {
       t = colors.red,
     }
     vim.api.nvim_command("hi! LualineMode guibg=" .. mode_color[vim.fn.mode()] .. " guifg=" .. colors.statusline_bg)
-    return " NVOID"
+    return " "
   end,
   color = "LualineMode",
-  padding = { right = 1 },
+  padding = { right = 0 },
 }
 
 -- Config
@@ -55,13 +55,15 @@ lualine.setup {
   },
   sections = {
     lualine_a = { mode },
-    lualine_b = { component.filename },
-    lualine_c = {
-      { "branch", color = { fg = colors.yellow } },
-      component.diff,
+    lualine_b = { component.branch, component.filename },
+    lualine_c = { component.diff },
+    lualine_x = {
+      component.treesitter,
+      component.diagnostics,
+      component.lsp,
+      component.filetype,
     },
-    lualine_x = { component.lsp, component.diagnostics },
-    lualine_y = { component.filetype },
+    lualine_y = {},
     lualine_z = { component.scrollbar },
   },
   inactive_sections = {
