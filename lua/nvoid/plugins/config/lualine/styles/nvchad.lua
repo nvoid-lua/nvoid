@@ -10,9 +10,6 @@ local function diff_source()
   end
 end
 
--- Gps
-local gps = require "nvim-gps"
-
 -- LuaLine
 local present1, lualine = pcall(require, "lualine")
 if not present1 then
@@ -102,12 +99,6 @@ ins_left {
   end,
   color = { fg = colors.grey, bg = colors.statusline_bg }, -- Sets highlighting of component
   padding = { left = 0, right = 1 }, -- We don't need space before this
-}
-
--- Nvim Gps
-ins_left {
-  gps.get_location,
-  cond = gps.is_available,
 }
 
 -- diff

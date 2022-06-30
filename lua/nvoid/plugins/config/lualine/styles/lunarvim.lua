@@ -16,9 +16,6 @@ if not present1 then
   return false
 end
 
--- Gps
-local gps = require "nvim-gps"
-
 -- Colors
 local colors = require("nvoid.colors").get()
 
@@ -130,12 +127,6 @@ ins_left {
   "filename",
   cond = conditions.buffer_not_empty,
   color = { fg = colors.white },
-}
-
--- Nvim gps
-ins_left {
-  gps.get_location,
-  cond = gps.is_available,
 }
 
 -- Git diff

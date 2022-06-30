@@ -7,9 +7,6 @@ end
 -- Colors
 local colors = require("nvoid.colors").get()
 
--- Gps
-local gps = require "nvim-gps"
-
 -- Diff Source
 local function diff_source()
   local gitsigns = vim.b.gitsigns_status_dict
@@ -78,7 +75,6 @@ lualine.setup {
   sections = {
     lualine_a = { mode },
     lualine_b = {
-      { gps.get_location, cond = gps.is_available },
       diff,
       "diagnostics",
     },

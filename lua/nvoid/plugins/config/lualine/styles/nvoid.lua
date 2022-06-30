@@ -1,14 +1,11 @@
 -- LuaLine
 local _lualine, lualine = pcall(require, "lualine")
 if not _lualine then
-  return false
+  return
 end
 
 -- Colors
 local colors = require("nvoid.colors").get()
-
--- Gps
-local gps = require "nvim-gps"
 
 -- Diff Source
 local function diff_source()
@@ -22,71 +19,21 @@ local function diff_source()
   end
 end
 
--- Conditions
-local conditions = {
-  buffer_not_empty = function()
-    return vim.fn.empty(vim.fn.expand "%:t") ~= 1
-  end,
-  hide_in_width = function()
-    return vim.fn.winwidth(0) > 80
-  end,
-  check_git_workspace = function()
-    local filepath = vim.fn.expand "%:p:h"
-    local gitdir = vim.fn.finddir(".git", filepath .. ";")
-    return gitdir and #gitdir > 0 and #gitdir < #filepath
-  end,
-}
 -- Config
-local config = {
-  options = {
-    globalstatus = true,
-    component_separators = "",
-    section_separators = "",
-    disabled_filetypes = { "alpha", "dashboard", "Outline" },
-    theme = {
-      normal = { c = { fg = colors.fg, bg = colors.statusline_bg } },
-      inactive = {
-        a = { bg = colors.black, fg = colors.white, gui = "italic" },
-        b = { bg = colors.black, fg = colors.white },
-        c = { bg = colors.black, fg = colors.white },
-        x = { bg = colors.black, fg = colors.white },
-        y = { bg = colors.black, fg = colors.white },
-        z = { bg = colors.black, fg = colors.white },
-      },
-    },
+local diff = {
+  "diff",
+  source = diff_source,
+  symbols = { added = "  ", modified = "柳", removed = " " },
+  diff_color = {
+    added = { bg = colors.statusline_bg, fg = colors.green },
+    modified = { bg = colors.statusline_bg, fg = colors.yellow },
+    removed = { bg = colors.statusline_bg, fg = colors.red },
   },
-  sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_y = {},
-    lualine_z = {},
-    lualine_c = {},
-    lualine_x = {},
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_v = {},
-    lualine_y = {},
-    lualine_z = {},
-    lualine_c = {},
-    lualine_x = {},
-  },
+  color = {},
+  cond = nil,
 }
 
--- Inserts a component in lualine_c at left section
-local function ins_left(component)
-  table.insert(config.sections.lualine_c, component)
-end
-
--- Inserts a component in lualine_x ot right section
-local function ins_right(component)
-  table.insert(config.sections.lualine_x, component)
-end
-
--- LEFT
-
--- vi Color mode
-ins_left {
+local mode = {
   function()
     local mode_color = {
       n = colors.nord_blue,
@@ -117,44 +64,7 @@ ins_left {
   padding = { right = 1 },
 }
 
--- File Name
-ins_left {
-  "filename",
-  cond = conditions.buffer_not_empty,
-  color = { fg = colors.white, gui = "bold" },
-}
-
--- Nvim Gps
-ins_left {
-  gps.get_location,
-  cond = gps.is_available,
-}
-
--- Git Branch
-ins_left {
-  "b:gitsigns_head",
-  icon = " ",
-  color = { fg = colors.yellow, gui = "bold" },
-}
-
--- Git diff
-ins_left {
-  "diff",
-  source = diff_source,
-  symbols = { added = "  ", modified = "柳", removed = " " },
-  diff_color = {
-    added = { bg = colors.statusline_bg, fg = colors.green },
-    modified = { bg = colors.statusline_bg, fg = colors.yellow },
-    removed = { bg = colors.statusline_bg, fg = colors.red },
-  },
-  color = {},
-  cond = nil,
-}
-
--- RIGHT
-
--- LSP Name
-ins_right {
+local lsp_name = {
   function()
     local msg = ""
     local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
@@ -171,11 +81,10 @@ ins_right {
     return msg
   end,
   icon = " ",
-  color = { fg = colors.pink, gui = "bold" },
+  color = { fg = colors.red, gui = "bold" },
 }
 
--- LSP Diagnostic
-ins_right {
+local diagnostics = {
   "diagnostics",
   sources = { "nvim_diagnostic" },
   symbols = { error = " ", warn = " ", info = " " },
@@ -188,11 +97,12 @@ ins_right {
   update_in_insert = false,
 }
 
--- File Type
-ins_right { "filetype", color = {} }
+local filetype = {
+  "filetype",
+  color = { fg = colors.white },
+}
 
--- Scroll Bar
-ins_right {
+local scrollbar = {
   function()
     local current_line = vim.fn.line "."
     local total_lines = vim.fn.line "$"
@@ -206,4 +116,36 @@ ins_right {
   cond = nil,
 }
 
-lualine.setup(config)
+-- Config
+lualine.setup {
+  options = {
+    globalstatus = true,
+    icons_enabled = true,
+    theme = require("nvoid.plugins.config.lualine.theme").min(),
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
+    disabled_filetypes = { "alpha", "dashboard", "Outline" },
+    always_divide_middle = true,
+  },
+  sections = {
+    lualine_a = { mode },
+    lualine_b = { "filename" },
+    lualine_c = {
+      { "branch", color = { fg = colors.yellow } },
+      diff,
+    },
+    lualine_x = { lsp_name, diagnostics },
+    lualine_y = { filetype },
+    lualine_z = { scrollbar },
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {},
+  },
+  tabline = {},
+  extensions = {},
+}
