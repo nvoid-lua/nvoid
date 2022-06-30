@@ -67,11 +67,12 @@ local mode = {
 -- Config
 lualine.setup {
   options = {
+    globalstatus = true,
     icons_enabled = true,
     theme = require("nvoid.plugins.config.lualine.theme").min(),
     component_separators = { left = "|", right = "|" },
     section_separators = { left = "", right = "" },
-    disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
+    disabled_filetypes = { "alpha", "dashboard", "Outline" },
     always_divide_middle = true,
   },
   sections = {

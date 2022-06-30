@@ -39,9 +39,10 @@ local conditions = {
 -- Config
 local config = {
   options = {
+    globalstatus = true,
     component_separators = "",
     section_separators = "",
-    disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
+    disabled_filetypes = { "alpha", "dashboard", "Outline" },
     theme = {
       normal = { c = { fg = colors.fg, bg = colors.statusline_bg } },
       inactive = {
