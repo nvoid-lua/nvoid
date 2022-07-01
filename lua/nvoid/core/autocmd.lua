@@ -1,5 +1,5 @@
 vim.opt.termguicolors = true
-vim.cmd([[
+vim.cmd [[
   augroup _general_settings
     autocmd!
     autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200}) 
@@ -28,4 +28,4 @@ vim.cmd([[
     autocmd FileType dashboard nnoremap <silent> <buffer> e :e ~/.config/nvim/lua/custom/nvoidrc.lua<CR>
     autocmd FileType dashboard nnoremap <silent> <buffer> f :Telescope find_files<CR>
   augroup end
-]])
+]]

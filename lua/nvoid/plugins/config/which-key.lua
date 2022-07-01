@@ -3,7 +3,7 @@ if not present then
   return
 end
 
-whichkey.setup({
+whichkey.setup {
   plugins = {
     marks = true,
     registers = true,
@@ -45,7 +45,7 @@ whichkey.setup({
     i = { "j", "k" },
     v = { "j", "k" },
   },
-})
+}
 
 whichkey.register({
   [";"] = { "<cmd>Dashboard<cr>", "Dashboard" },
@@ -55,6 +55,7 @@ whichkey.register({
   ["w"] = { "<cmd>write<cr>", "Write" },
   ["x"] = { "<cmd>wqa!<cr>", "Write and Quit" },
   ["g"] = { "<cmd>Gitsigns toggle_signs<cr>", "Toggle GitSigns" },
+  ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
   ["/"] = "Comment",
   b = {
     name = "Buffers",
