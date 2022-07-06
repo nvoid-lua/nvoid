@@ -57,10 +57,11 @@ for more info go to https://nvoid.org
 
 <details><summary> <b>Status Line (Click to expand!)</b></summary>
   
-![Lunarvim](https://user-images.githubusercontent.com/94284073/174413614-fed64601-c8e8-45a5-9254-326f981aa84f.png)
-![Minimal](https://user-images.githubusercontent.com/94284073/174413615-8d015e91-d6b8-45d4-be4a-95712e8c9ee4.png)
-![Nvchad](https://user-images.githubusercontent.com/94284073/174413617-05e2e3d0-b786-44be-90be-a42665ae6e1c.png)
-![Nvoid](https://user-images.githubusercontent.com/94284073/174413619-d75e0d64-6e04-4a23-a131-073742e38f73.png)
+![default](https://user-images.githubusercontent.com/94284073/177632869-7dea4a85-310a-4200-890d-6a55aea23e48.png)
+![evil](https://user-images.githubusercontent.com/94284073/177632879-32c8b97e-f5c4-40e7-9f85-63ee91c9b0f2.png)
+![minimal](https://user-images.githubusercontent.com/94284073/177632880-f8e4e97c-ddef-4003-82c8-506dd4ef27a2.png)
+![nvoid](https://user-images.githubusercontent.com/94284073/177632884-afe78c6c-97c1-4d2f-985b-7b287d285a85.png)
+
  
 </details>
         
