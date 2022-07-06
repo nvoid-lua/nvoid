@@ -186,13 +186,20 @@ return packer.startup(function()
     end,
   }
 
-  -- Telescope File browser
+  -- Telescope Extensions
   use {
     "nvim-telescope/telescope-file-browser.nvim",
     event = "BufWinEnter",
   }
   use { "nvim-telescope/telescope-media-files.nvim" }
 
+-- Alpha
+  use {
+    "goolord/alpha-nvim",
+    config = function()
+      require("nvoid.plugins.config.alpha")
+    end,
+  }
   -- Term
   use {
     "akinsho/toggleterm.nvim",
