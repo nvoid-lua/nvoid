@@ -40,7 +40,8 @@ for more info go to https://nvoid.org
 ```
         
 # Gallery
-![Dashoard](https://user-images.githubusercontent.com/94284073/174412850-161245ef-d58d-420a-bf9e-a8f6860c7693.png)
+![dashboard](https://user-images.githubusercontent.com/94284073/176967715-026afc51-d292-434c-b145-2d33c91cb0bb.png)
+
 
 <details><summary> <b>Themes (Click to expand!)</b></summary>
  
