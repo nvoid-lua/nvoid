@@ -1,6 +1,7 @@
 local present, nvoid_packer = pcall(require, "nvoid.plugins.packerInit")
 
 local commit = {
+  dashboard_nvim = "d82ddae95fd4dc4c3b7bbe87f09b1840fbf20ecb",
   nvim_notify = "27f3176b950dc803b61c29bd007e140c232544e5",
 }
 
@@ -142,11 +143,8 @@ return packer.startup(function()
   }
 
   -- Snippets
-  use {
-    "L3MON4D3/LuaSnip",
-    require("luasnip.loaders.from_vscode").lazy_load(),
-  }
   use { "rafamadriz/friendly-snippets" }
+  use { "L3MON4D3/LuaSnip" }
 
   -- CMP Extensions
   use { "saadparwaiz1/cmp_luasnip" }
@@ -160,15 +158,6 @@ return packer.startup(function()
     "windwp/nvim-autopairs",
     config = function()
       require("nvoid.plugins.config.other").autopairs()
-    end,
-  }
-
-  -- dashboard
-  use {
-    "goolord/alpha-nvim",
-    requires = { "kyazdani42/nvim-web-devicons" },
-    config = function()
-      require "nvoid.plugins.config.alpha"
     end,
   }
 
