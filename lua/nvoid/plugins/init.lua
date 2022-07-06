@@ -2,7 +2,7 @@ local present, nvoid_packer = pcall(require, "nvoid.plugins.packerInit")
 
 local commit = {
   dashboard_nvim = "d82ddae95fd4dc4c3b7bbe87f09b1840fbf20ecb",
-  nvim_notify = "27f3176b950dc803b61c29bd007e140c232544e5",
+  -- nvim_notify = "27f3176b950dc803b61c29bd007e140c232544e5",
 }
 
 vim.cmd [[
@@ -234,7 +234,6 @@ return packer.startup(function()
   -- Notify
   use {
     "rcarriga/nvim-notify",
-    commit = commit.nvim_notify,
     config = function()
       require("nvoid.plugins.config.other").notify()
     end,

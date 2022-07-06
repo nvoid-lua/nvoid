@@ -1,30 +1,54 @@
-local present, lsp_installer = pcall(require, "nvim-lsp-installer")
-local servers = require("nvoid.core.utils").load_config().lsp_add
+local lsp_installer = require "nvim-lsp-installer"
+-- local async = require("plenary.async")
+local notify = require "notify"
 
-if not present then
-  return
-end
-
-local options = {
-  ensure_installed = servers,
-  automatic_installation = true,
-  ui = {
-    icons = {
-      server_installed = " ",
-      server_pending = " ",
-      server_uninstalled = " ﮊ",
-    },
-    keymaps = {
-      toggle_server_expand = "<CR>",
-      install_server = "i",
-      update_server = "u",
-      check_server_version = "c",
-      update_all_servers = "U",
-      check_outdated_servers = "C",
-      uninstall_server = "X",
-    },
-  },
-  max_concurrent_installers = 20,
+local servers = {
+  "sumneko_lua",
 }
 
-lsp_installer.setup(options)
+for _, name in pairs(servers) do
+  local ok, server = lsp_installer.get_server(name)
+  if ok then
+    if not server:is_installed() then
+      notify("Installing " .. name)
+      server:install()
+    end
+  end
+end
+
+local ok, user_lsp = pcall(require, "custom.nvoidrc")
+if not ok then
+  user_lsp = {}
+end
+
+if not vim.tbl_islist(user_lsp.lsp_add) then
+  user_lsp.lsp_add = {}
+end
+
+for _, name in pairs(user_lsp.lsp_add) do
+  local ok, server = lsp_installer.get_server(name)
+  if ok then
+    if not server:is_installed() then
+      notify("Installing " .. name)
+      server:install()
+    end
+  end
+end
+
+lsp_installer.on_server_ready(function(server)
+  local opts = {
+    on_attach = require("nvoid.plugins.config.lsp.handlers").on_attach,
+    capabilities = require("nvoid.plugins.config.lsp.handlers").capabilities,
+  }
+  if server.name == "jsonls" then
+    local jsonls_opts = require "nvoid.plugins.config.lsp.settings.jsonls"
+    opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
+  end
+
+  if server.name == "sumneko_lua" then
+    local sumneko_opts = require "nvoid.plugins.config.lsp.settings.sumneko_lua"
+    opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
+  end
+
+  server:setup(opts)
+end)
