@@ -130,24 +130,24 @@ M.icons = {
 }
 
 M.notify = function()
-  -- local colors = require("nvoid.colors").get()
-  -- require("notify").setup {
-  --   stages = "slide",
-  --   on_open = nil,
-  --   on_close = nil,
-  --   render = "minimal",
-  --   timeout = 5000,
-  --   background_colour = colors.black,
-  --   minimum_width = 50,
-  --   icons = {
-  --     ERROR = "",
-  --     WARN = "",
-  --     INFO = "",
-  --     DEBUG = "",
-  --     TRACE = "✎",
-  --   },
-  -- }
-  local notify = require("notify")
+  local colors = require("nvoid.colors").get()
+  require("notify").setup {
+    stages = "slide",
+    on_open = nil,
+    on_close = nil,
+    render = "minimal",
+    timeout = 5000,
+    background_colour = colors.black,
+    minimum_width = 50,
+    icons = {
+      ERROR = "",
+      WARN = "",
+      INFO = "",
+      DEBUG = "",
+      TRACE = "✎",
+    },
+  }
+  local notify = require "notify"
   vim.notify = notify
 end
 
