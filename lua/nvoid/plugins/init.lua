@@ -1,10 +1,5 @@
 local present, nvoid_packer = pcall(require, "nvoid.plugins.packerInit")
 
-local commit = {
-  dashboard_nvim = "d82ddae95fd4dc4c3b7bbe87f09b1840fbf20ecb",
-  -- nvim_notify = "27f3176b950dc803b61c29bd007e140c232544e5",
-}
-
 vim.cmd [[
   augroup packer_user_config
     autocmd!
@@ -120,7 +115,6 @@ return packer.startup(function()
   use {
     "neovim/nvim-lspconfig",
     config = function()
-      require "nvoid.plugins.config.lsp.lsp-installer"
       require "nvoid.plugins.config.lsp"
     end,
   }
@@ -193,11 +187,11 @@ return packer.startup(function()
   }
   use { "nvim-telescope/telescope-media-files.nvim" }
 
--- Alpha
+  -- Alpha
   use {
     "goolord/alpha-nvim",
     config = function()
-      require("nvoid.plugins.config.alpha")
+      require "nvoid.plugins.config.alpha"
     end,
   }
   -- Term
