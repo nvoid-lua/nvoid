@@ -233,15 +233,6 @@ return packer.startup(function()
     end,
   }
 
-  use {
-    "kosayoda/nvim-lightbulb",
-    requires = "antoinemadec/FixCursorHold.nvim",
-    event = "BufWinEnter",
-    config = function()
-      require("nvim-lightbulb").setup { autocmd = { enabled = true } }
-    end,
-  }
-
   if user_plugins.plugins_add and not vim.tbl_isempty(user_plugins.plugins_add) then
     for _, plugin in pairs(user_plugins.plugins_add) do
       use(plugin)
