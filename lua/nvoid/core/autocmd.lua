@@ -21,6 +21,7 @@ vim.api.nvim_create_autocmd({ "User" }, {
 })
 
 vim.cmd [[autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]]
+vim.cmd [[autocmd CursorHold   * lua vim.lsp.buf.document_highlight()]]
 
 -- Fixes Autocomment
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
