@@ -88,7 +88,7 @@ which git >/dev/null && echo "Git is installed" || warngit
       echo $(pkg_nodejs_install)
       exit
     }
-    which node npm && echo "Node and npm are installed" || warnnode
+    which node npm >/dev/null && echo "Node and npm are installed" || warnnode
     declare -a __npm_deps=(
       "fd-find"
       "neovim"
@@ -126,7 +126,7 @@ which git >/dev/null && echo "Git is installed" || warngit
       echo $(pkg_pip_install)
       exit
     }
-    which pip && echo "pip is installed" || warnpip
+    which pip >/dev/null && echo "pip is installed" || warnpip
     declare -a __pip_deps=(
       "pynvim"
     )
