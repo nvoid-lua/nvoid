@@ -3,7 +3,7 @@ if not present then
   return
 end
 
-whichkey.setup({
+whichkey.setup {
   plugins = {
     marks = true,
     registers = true,
@@ -45,10 +45,10 @@ whichkey.setup({
     i = { "j", "k" },
     v = { "j", "k" },
   },
-})
+}
 
 whichkey.register({
-  [";"] = { "<cmd>Dashboard<cr>", "Dashboard" },
+  [";"] = { "<cmd>Alpha<cr>", "Alpha" },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["E"] = { "<cmd>e ~/.config/nvim/lua/custom/nvoidrc.lua<cr>", "Edit Config" },
   ["n"] = { "<cmd>enew<cr>", "New File" },
