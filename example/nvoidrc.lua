@@ -2,46 +2,46 @@ local M = {}
 
 -- UI
 M.ui = {
-	theme = "onedark", -- "catppuccin" "classic-dark" "nord" "onedark" "solarized" "tokyodark" "uwu"
-	transparency = false,
-	statusline = "nvoid", -- "default" "evil" "minimal" "nvoid"
+  theme = "onedark", -- "catppuccin" "classic-dark" "nord" "onedark" "solarized" "tokyodark" "uwu"
+  transparency = false,
+  statusline = "nvoid", -- "default" "evil" "minimal" "nvoid"
 }
 
 -- Options
 M.options = {
-	clipboard = "unnamedplus",
-	cmdheight = 1,
-	mouse = "a",
-	mapleader = " ",
-	wrap = false,
-	number = true,
-	relative_number = false,
-	number_width = 6,
-	cursor_line = true,
-	hidden = true,
-	expand_tab = true,
-	ignore_case = true,
-	smart_case = true,
-	smart_indent = true,
-	swap_file = false,
-	backup = false,
-	show_mode = false,
+  clipboard = "unnamedplus",
+  cmdheight = 1,
+  mouse = "a",
+  mapleader = " ",
+  wrap = false,
+  number = true,
+  relative_number = false,
+  number_width = 6,
+  cursor_line = true,
+  hidden = true,
+  expand_tab = true,
+  ignore_case = true,
+  smart_case = true,
+  smart_indent = true,
+  swap_file = false,
+  backup = false,
+  show_mode = false,
 }
 
 -- Add treesitter language
-M.ts_add = {} -- "all", "fish"
+M.ts_add = {} -- "all"
 
 -- Add Plugins
 M.plugins_add = {
-	-- { "folke/zen-mode.nvim" },
+  -- { "folke/zen-mode.nvim" }
 }
 
 -- Add new whichkey bind
 M.whichkey_add = {
-	-- ["z"] = { "<cmd>ZenMode<cr>", "ZenMode" },
+  -- ["z"] = { "<cmd>ZenMode<cr>", "ZenMode" }
 }
 
 -- Add new LSP server
-M.lsp_add = {} --"bashls"
+M.lsp_add = {} -- "bashls"
 
 return M
