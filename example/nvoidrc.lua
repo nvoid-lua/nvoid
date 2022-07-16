@@ -2,9 +2,9 @@ local M = {}
 
 -- UI
 M.ui = {
-	theme = "catppuccin", -- "catppuccin" "classic-dark" "nord" "onedark" "solarized" "tokyodark" "uwu"
+	theme = "onedark", -- "catppuccin" "classic-dark" "nord" "onedark" "solarized" "tokyodark" "uwu"
 	transparency = false,
-	statusline = "nvoid", -- "lunarvim" "nvchad" "nvoid" "minimal"
+	statusline = "nvoid", -- "default" "evil" "minimal" "nvoid"
 }
 
 -- Options
