@@ -28,8 +28,11 @@ M.options = {
   show_mode = false,
 }
 
--- Add treesitter language
+-- Add treesitter highliter
 M.ts_add = {} -- "all"
+
+-- Add new LSP server
+M.lsp_add = {} -- "bashls"
 
 -- Add Plugins
 M.plugins_add = {
@@ -38,10 +41,7 @@ M.plugins_add = {
 
 -- Add new whichkey bind
 M.whichkey_add = {
-  -- ["z"] = { "<cmd>ZenMode<cr>", "ZenMode" }
+  -- ["z"] = { "<cmd>ZenMode<cr>", "Zen Mode" }
 }
-
--- Add new LSP server
-M.lsp_add = {} -- "bashls"
 
 return M
