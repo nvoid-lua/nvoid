@@ -41,6 +41,7 @@ local buttons = {
     button("o", "  Recent Files", ":Telescope oldfiles <CR>"),
     button("e", "  Configuration", ":e ~/.config/nvim/lua/custom/nvoidrc.lua <CR>"),
     button("u", "  Update plugins", ":PackerSync<CR>"),
+    button("U", "ﮮ  Update Nvoid", ":NvoidUpdater<CR>"),
     button("q", "  Quit", ":qa<CR>"),
   },
   opts = {
