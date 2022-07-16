@@ -71,7 +71,7 @@ whichkey.register({
     b = { "<cmd>lua require 'telescope'.extensions.file_browser.file_browser()<cr>", "File Browser" },
     h = { "<cmd>Telescope oldfiles<cr>", "Old Files" },
     f = { "<cmd>Telescope find_files<cr>", "Find files" },
-    c = { "<cmd>Telescope themes<cr>", "Key maps" },
+    c = { "<cmd>Telescope themes<cr>", "Colorschemes" },
     o = { "<cmd>Telescope vim_options<cr>", "Options" },
     H = { "<cmd>Telescope help_tags<cr>", "CMD Help" },
     w = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Find Word In Document" },
@@ -94,11 +94,6 @@ whichkey.register({
     s = { "<cmd>PackerSync<cr>", "Sync" },
     S = { "<cmd>PackerStatus<cr>", "Status" },
     u = { "<cmd>PackerUpdate<cr>", "Update" },
-  },
-  s = {
-    name = "Session",
-    s = { "<cmd>SessionSave<cr>", "Save" },
-    l = { "<cmd>SessionLoad<cr>", "Load" },
   },
 }, {
   prefix = "<leader>",
