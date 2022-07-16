@@ -27,7 +27,7 @@
 
 # Install In One Command
 ```bash
-bash -c "$(curl -s https://raw.githubusercontent.com/nvoid-lua/nvoid/main/.github/installer.sh)"
+bash -c "$(curl -s https://raw.githubusercontent.com/nvoid-lua/nvoid/main/scripts/installer.sh)"
 ```
 
 for more info go to https://nvoid.org
