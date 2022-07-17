@@ -4,7 +4,7 @@ if not _lualine then
   return
 end
 
--- Colors 
+-- Colors
 local colors = require("nvoid.colors").get()
 
 -- components

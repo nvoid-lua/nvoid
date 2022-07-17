@@ -9,7 +9,7 @@ M.init = function(theme)
   if present then
     base16(base16.themes(theme), true)
     package.loaded["nvoid.colors.highlights" or false] = nil
-    require("nvoid.colors.highlights")
+    require "nvoid.colors.highlights"
   end
 end
 
