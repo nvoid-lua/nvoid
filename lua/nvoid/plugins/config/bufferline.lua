@@ -7,6 +7,7 @@ local colors = require("nvoid.colors").get()
 
 bufferline.setup {
   options = {
+    offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
     numbers = "none",
     close_command = "bdelete! %d",
     right_mouse_command = "vert sbuffer %d",
@@ -28,37 +29,6 @@ bufferline.setup {
     tab_size = 18,
     diagnostics = "nvim_lsp",
     diagnostics_update_in_insert = false,
-    offsets = {
-      {
-        filetype = "undotree",
-        text = "Undotree",
-        highlight = "PanelHeading",
-        padding = 1,
-      },
-      {
-        filetype = "NvimTree",
-        text = "Explorer",
-        highlight = "PanelHeading",
-        padding = 1,
-      },
-      {
-        filetype = "DiffviewFiles",
-        text = "Diff View",
-        highlight = "PanelHeading",
-        padding = 1,
-      },
-      {
-        filetype = "flutterToolsOutline",
-        text = "Flutter Outline",
-        highlight = "PanelHeading",
-      },
-      {
-        filetype = "packer",
-        text = "Packer",
-        highlight = "PanelHeading",
-        padding = 1,
-      },
-    },
     show_close_icon = false,
     show_tab_indicators = true,
     persist_buffer_sort = true,
