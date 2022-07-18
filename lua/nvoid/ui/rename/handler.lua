@@ -1,7 +1,7 @@
 local logger = require("nvoid.ui.utils").Logger
 
 return function(...)
-  local utils = require "nvoid-ui.utils"
+  local utils = require "nvoid.ui.utils"
   local result
   local method
   local err = select(1, ...)

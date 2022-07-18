@@ -44,5 +44,3 @@ local updater = Terminal:new {
 function _UPDATER()
   updater:toggle()
 end
-
-vim.cmd [[ command! NvoidUpdater lua _UPDATER() ]]

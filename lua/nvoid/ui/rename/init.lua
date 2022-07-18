@@ -1,6 +1,6 @@
 local lsp = vim.lsp
 local utils = require "nvoid.ui.utils"
-local rename_handler = require "nvoid.uirename.handler"
+local rename_handler = require "nvoid.ui.rename.handler"
 local Text = require "nui.text"
 
 local function rename(popup_opts, opts)

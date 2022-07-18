@@ -80,11 +80,13 @@ whichkey.register({
   },
   l = {
     name = "lsp",
-    d = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>", "Diagnostics" },
+    a = { "<cmd>NvoidCodeActions<cr>", "Code Actions" },
+    A = { "<cmd>NvoidRangeCodeActions<cr>", "Range Code Actions" },
+    d = { "<cmd>NvoidDiagnostics<cr>", "Diagnostics" },
     i = { "<cmd>LspInfo<cr>", "Info" },
     I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-    r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-    f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+    r = { "<cmd>NvoidRename<cr>", "Rename" },
+    f = { "<cmd>NvoidFormat<cr>", "Format" },
     t = { "<cmd>TroubleToggle<cr>", "Trouble Toggle" },
   },
   p = {
