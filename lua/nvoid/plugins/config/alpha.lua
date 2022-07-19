@@ -70,7 +70,7 @@ local footer = {
 
 local opts = {
   layout = {
-    { type = "padding", val = 9 },
+    { type = "padding", val = 5 },
     header,
     { type = "padding", val = 1 },
     heading,
