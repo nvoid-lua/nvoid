@@ -16,11 +16,12 @@ return {
   diagnostics = {
     "diagnostics",
     sources = { "nvim_diagnostic" },
-    symbols = { error = " ", warn = " ", info = " " },
+    symbols = { error = " ", warn = " ", hint = " ", info = "" },
     diagnostics_color = {
       error = { fg = colors.red },
       warn = { fg = colors.yellow },
       info = { fg = colors.cyan },
+      hint = { fg = colors.cyan },
     },
     colored = true,
     update_in_insert = false,
