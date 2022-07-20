@@ -4,12 +4,37 @@ if not status_ok then
 end
 
 nvim_tree.setup {
+  auto_reload_on_write = true,
+  disable_netrw = true,
+  hijack_netrw = true,
+  hijack_unnamed_buffer_when_opening = false,
+  diagnostics = {
+    show_on_dirs = false,
+    icons = {
+      hint = "",
+      info = "",
+      warning = "",
+      error = "",
+    },
+  },
   update_focused_file = {
     enable = true,
     update_cwd = true,
+    ignore_list = {},
+  },
+  git = {
+    enable = true,
+    ignore = false,
+    timeout = 200,
+  },
+  view = {
+    width = 30,
+    height = 30,
+    side = "left",
   },
   renderer = {
     root_folder_modifier = ":t",
+    highlight_git = true,
     icons = {
       glyphs = {
         default = "",
@@ -35,21 +60,6 @@ nvim_tree.setup {
         },
       },
     },
-  },
-  diagnostics = {
-    enable = true,
-    show_on_dirs = true,
-    icons = {
-      info = "",
-      hint = "",
-      warning = "",
-      error = "",
-    },
-  },
-  view = {
-    width = 30,
-    height = 30,
-    side = "left",
   },
   filters = { custom = { "^.git$" } },
 }
