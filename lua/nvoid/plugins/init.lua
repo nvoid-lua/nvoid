@@ -38,7 +38,6 @@ return packer.startup(function()
   -- colorschemes
   use {
     "nvoid-lua/base16",
-    after = "packer.nvim",
     config = function()
       require("nvoid.colors").init()
     end,
