@@ -4,7 +4,7 @@ if not status_ok then
 end
 
 local dashboard = require "alpha.themes.dashboard"
-local text = require "nvoid.core.text"
+local text = require "nvoid.ui.text"
 local fn = vim.fn
 local plugins_count = fn.len(fn.globpath("~/.local/share/nvim/site/pack/packer/start", "*", 0, 1))
 
