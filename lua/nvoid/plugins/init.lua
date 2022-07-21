@@ -43,9 +43,6 @@ return packer.startup(function()
     end,
   }
 
-  -- Extensions
-  use { "nvoid-lua/nvoid-extensions" }
-
   -- Icons
   use {
     "kyazdani42/nvim-web-devicons",
