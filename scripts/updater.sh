@@ -14,5 +14,3 @@ update_plugins() {
 ### Running
 update_repo
 update_plugins
-echo "#### Please close the terminal and restart nvoid ####"
-$SHELL
