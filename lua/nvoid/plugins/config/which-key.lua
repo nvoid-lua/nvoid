@@ -51,7 +51,7 @@ whichkey.register({
   ["/"] = "Comment",
   [";"] = { "<cmd>Alpha<cr>", "Alpha" },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-  ["E"] = { "<cmd>e ~/.config/nvim/lua/custom/nvoidrc.lua<cr>", "Edit Config" },
+  ["E"] = { "<cmd>NvoidEditConfig<cr>", "Edit Config" },
   ["g"] = { "<cmd>Gitsigns toggle_signs<cr>", "Toggle GitSigns" },
   ["n"] = { "<cmd>enew<cr>", "New File" },
   ["u"] = { "<cmd>NvoidUpdater<cr>", "Update Nvoid" },
