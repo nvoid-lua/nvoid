@@ -40,7 +40,7 @@ local updater = Terminal:new {
   cmd = "bash ./updater.sh",
   hidden = true,
   on_close = function()
-    vim.notify "Please Restart Neovim"
+    vim.notify "Please Restart Nvoid"
   end, -- function to run when the terminal closes
 }
 
