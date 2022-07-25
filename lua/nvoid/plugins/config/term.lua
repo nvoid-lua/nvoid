@@ -39,6 +39,9 @@ local updater = Terminal:new {
   dir = "~/.config/nvim/scripts",
   cmd = "bash ./updater.sh",
   hidden = true,
+  on_close = function()
+    vim.notify "Please Restart Neovim"
+  end, -- function to run when the terminal closes
 }
 
 function _UPDATER()
