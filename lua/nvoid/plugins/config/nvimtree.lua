@@ -2,6 +2,7 @@ local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
   return
 end
+local icons = require "nvoid.ui.icons"
 
 nvim_tree.setup {
   auto_reload_on_write = true,
@@ -11,10 +12,10 @@ nvim_tree.setup {
   diagnostics = {
     show_on_dirs = false,
     icons = {
-      hint = "",
-      info = "",
-      warning = "",
-      error = "",
+      hint = icons.lsp.hint,
+      info = icons.lsp.info,
+      warning = icons.lsp.warn,
+      error = icons.lsp.error,
     },
   },
   update_focused_file = {
@@ -36,29 +37,7 @@ nvim_tree.setup {
     root_folder_modifier = ":t",
     highlight_git = true,
     icons = {
-      glyphs = {
-        default = "",
-        symlink = "",
-        folder = {
-          arrow_open = "",
-          arrow_closed = "",
-          default = "",
-          open = "",
-          empty = "",
-          empty_open = "",
-          symlink = "",
-          symlink_open = "",
-        },
-        git = {
-          unstaged = "",
-          staged = "S",
-          unmerged = "",
-          renamed = "➜",
-          untracked = "U",
-          deleted = "",
-          ignored = "◌",
-        },
-      },
+      glyphs = icons.nvimtree,
     },
   },
   filters = { custom = { "^.git$" } },

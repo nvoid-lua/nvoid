@@ -24,7 +24,7 @@ cmp.setup {
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
-      vim_item.kind = string.format("%s", require("nvoid.plugins.config.other").icons[vim_item.kind], vim_item.kind)
+      vim_item.kind = string.format("%s", require("nvoid.ui.icons").cmp[vim_item.kind], vim_item.kind)
       vim_item.menu = ({
         nvim_lsp = "(LSP)",
         emoji = "(Emoji)",

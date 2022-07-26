@@ -1,11 +1,12 @@
 local M = {}
+local icons = require("nvoid.ui.icons").lsp
 
 M.setup = function()
   local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
+    { name = "DiagnosticSignError", text = icons.error },
+    { name = "DiagnosticSignWarn", text = icons.warn },
+    { name = "DiagnosticSignHint", text = icons.hint },
+    { name = "DiagnosticSignInfo", text = icons.info },
   }
 
   for _, sign in ipairs(signs) do
@@ -42,22 +43,22 @@ M.setup = function()
 
   vim.fn.sign_define(
     "LspDiagnosticsSignError",
-    { texthl = "LspDiagnosticsSignError", text = "", numhl = "LspDiagnosticsSignError" }
+    { texthl = "LspDiagnosticsSignError", text = icons.error, numhl = "LspDiagnosticsSignError" }
   )
 
   vim.fn.sign_define(
     "LspDiagnosticsSignWarning",
-    { texthl = "LspDiagnosticsSignWarning", text = "", numhl = "LspDiagnosticsSignWarning" }
+    { texthl = "LspDiagnosticsSignWarning", text = icons.warn, numhl = "LspDiagnosticsSignWarning" }
   )
 
   vim.fn.sign_define(
     "LspDiagnosticsSignInformation",
-    { texthl = "LspDiagnosticsSignInformation", text = "", numhl = "LspDiagnosticsSignInformation" }
+    { texthl = "LspDiagnosticsSignInformation", text = icons.info, numhl = "LspDiagnosticsSignInformation" }
   )
 
   vim.fn.sign_define(
     "LspDiagnosticsSignHint",
-    { texthl = "LspDiagnosticsSignHint", text = "", numhl = "LspDiagnosticsSignHint" }
+    { texthl = "LspDiagnosticsSignHint", text = icons.hint, numhl = "LspDiagnosticsSignHint" }
   )
 end
 

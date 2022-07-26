@@ -2,6 +2,7 @@ local present, whichkey = pcall(require, "which-key")
 if not present then
   return
 end
+local icons = require("nvoid.ui.icons").whick_key
 
 whichkey.setup {
   plugins = {
@@ -20,11 +21,7 @@ whichkey.setup {
   },
   operators = { gc = "Comments" },
   key_labels = {},
-  icons = {
-    breadcrumb = "» ",
-    separator = "➜ ",
-    group = "+ ",
-  },
+  icons = icons,
   window = {
     border = "single",
     position = "bottom",

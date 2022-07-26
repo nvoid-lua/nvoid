@@ -4,6 +4,7 @@ if not present1 then
 end
 
 local colors = require("nvoid.colors").get()
+local icons = require("nvoid.ui.icons").bufferline
 
 bufferline.setup {
   options = {
@@ -13,12 +14,12 @@ bufferline.setup {
     right_mouse_command = "vert sbuffer %d",
     left_mouse_command = "buffer %d",
     middle_mouse_command = nil,
-    indicator_icon = "▎",
-    buffer_close_icon = "",
-    modified_icon = "●",
-    close_icon = "",
-    left_trunc_marker = "",
-    right_trunc_marker = "",
+    indicator_icon = icons.indicator,
+    buffer_close_icon = icons.buffer_close,
+    modified_icon = icons.modified,
+    close_icon = icons.close,
+    left_trunc_marker = icons.left_marker,
+    right_trunc_marker = icons.right_marker,
     name_formatter = function(buf)
       if buf.name:match "%.md" then
         return vim.fn.fnamemodify(buf.name, ":t:r")

@@ -1,9 +1,11 @@
 local M = {}
+local colors = require("nvoid.colors").get()
+local icons = require "nvoid.ui.icons"
 
 -- Auto Pairs
 M.autopairs = function()
   local present1, autopairs = pcall(require, "nvim-autopairs")
-  local present2, cmp = pcall(require, "cmp")
+  local present2 = pcall(require, "cmp")
   if not (present1 and present2) then
     return
   end
@@ -100,37 +102,7 @@ M.better = function()
   }
 end
 
--- CMP Icons
-M.icons = {
-  Class = " ",
-  Color = " ",
-  Constant = "ﲀ ",
-  Constructor = " ",
-  Enum = "練",
-  EnumMember = " ",
-  Event = " ",
-  Field = " ",
-  File = "",
-  Folder = " ",
-  Function = " ",
-  Interface = "ﰮ ",
-  Keyword = " ",
-  Method = " ",
-  Module = " ",
-  Operator = "",
-  Property = " ",
-  Reference = " ",
-  Snippet = " ",
-  Struct = " ",
-  Text = " ",
-  TypeParameter = " ",
-  Unit = "塞",
-  Value = " ",
-  Variable = " ",
-}
-
 M.notify = function()
-  local colors = require("nvoid.colors").get()
   require("notify").setup {
     stages = "slide",
     on_open = nil,
@@ -140,10 +112,10 @@ M.notify = function()
     background_colour = colors.black,
     minimum_width = 50,
     icons = {
-      ERROR = "",
-      WARN = "",
-      INFO = "",
-      DEBUG = "",
+      ERROR = icons.lsp.error,
+      WARN = icons.lsp.warn,
+      INFO = icons.lsp.info,
+      DEBUG = icons.lsp.debug,
       TRACE = "✎",
     },
   }

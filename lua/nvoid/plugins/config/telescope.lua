@@ -2,6 +2,7 @@ local present, telescope = pcall(require, "telescope")
 if not present then
   return
 end
+local icons = require "nvoid.ui.icons"
 
 telescope.setup {
   defaults = {
@@ -14,7 +15,7 @@ telescope.setup {
       "--column",
       "--smart-case",
     },
-    prompt_prefix = "   ",
+    prompt_prefix = icons.telescope.prompt_prefix,
     selection_caret = "  ",
     entry_prefix = "  ",
     initial_mode = "insert",
@@ -40,7 +41,7 @@ telescope.setup {
     path_display = { "absolute" },
     winblend = 0,
     border = {},
-    borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    borderchars = icons.telescope.borderchars,
     color_devicons = true,
     use_less = true,
     set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,

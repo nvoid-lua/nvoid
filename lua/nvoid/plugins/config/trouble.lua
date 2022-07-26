@@ -2,6 +2,7 @@ local present, trouble = pcall(require, "trouble")
 if not present then
   return
 end
+local icons = require("nvoid.ui.icons").lsp
 
 trouble.setup {
   position = "bottom",
@@ -39,10 +40,10 @@ trouble.setup {
   auto_fold = false,
   auto_jump = { "lsp_definitions" },
   signs = {
-    error = "",
-    warning = "",
-    hint = "",
-    information = "",
+    error = icons.error,
+    warning = icons.warn,
+    hint = icons.hint,
+    information = icons.info,
     other = "﫠",
   },
   use_diagnostic_signs = false,

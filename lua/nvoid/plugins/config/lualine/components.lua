@@ -1,4 +1,5 @@
 local colors = require("nvoid.colors").get()
+local icons = require "nvoid.ui.icons"
 -- Diff Source
 local function diff_source()
   local gitsigns = vim.b.gitsigns_status_dict
@@ -16,7 +17,7 @@ return {
   diagnostics = {
     "diagnostics",
     sources = { "nvim_diagnostic" },
-    symbols = { error = " ", warn = " ", hint = " ", info = "" },
+    symbols = { error = icons.lsp.error, warn = icons.lsp.warn, hint = icons.lsp.hint, info = icons.lsp.info },
     diagnostics_color = {
       error = { fg = colors.red },
       warn = { fg = colors.yellow },
@@ -48,7 +49,7 @@ return {
       end
 
       local unique_client_names = vim.fn.uniq(buf_client_names)
-      return "  " .. table.concat(unique_client_names, ", ")
+      return icons.statusline.lsp .. table.concat(unique_client_names, ", ")
     end,
     color = { gui = "bold" },
   },
@@ -57,7 +58,7 @@ return {
   diff = {
     "diff",
     source = diff_source,
-    symbols = { added = "  ", modified = "柳", removed = " " },
+    symbols = { added = icons.git.added, modified = icons.git.modified, removed = icons.git.removed },
     diff_color = {
       added = { bg = colors.statusline_bg, fg = colors.green },
       modified = { bg = colors.statusline_bg, fg = colors.yellow },
@@ -98,7 +99,7 @@ return {
     function()
       local b = vim.api.nvim_get_current_buf()
       if next(vim.treesitter.highlighter.active[b]) then
-        return ""
+        return icons.statusline.treesitter
       end
       return ""
     end,
