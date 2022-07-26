@@ -115,6 +115,8 @@ return packer.startup(function()
       require "nvoid.plugins.config.lsp"
     end,
   }
+
+  -- Null-ls
   use { "jose-elias-alvarez/null-ls.nvim" }
 
   -- Better Escape
@@ -159,13 +161,6 @@ return packer.startup(function()
       require("nvoid.plugins.config.other").commented()
     end,
   }
-  use {
-    "winston0410/commented.nvim",
-    config = function()
-      require("nvoid.plugins.config.other").commented()
-    end,
-    event = "BufWinEnter",
-  }
 
   -- Nvim Tree
   use {
@@ -197,6 +192,7 @@ return packer.startup(function()
       require "nvoid.plugins.config.alpha"
     end,
   }
+
   -- Term
   use {
     "akinsho/toggleterm.nvim",
@@ -223,6 +219,7 @@ return packer.startup(function()
     end,
   }
 
+  -- Vim Matchup
   use {
     "andymass/vim-matchup",
     event = "BufWinEnter",
