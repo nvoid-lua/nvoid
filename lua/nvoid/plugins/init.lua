@@ -154,6 +154,12 @@ return packer.startup(function()
 
   -- Comment
   use {
+    "numToStr/Comment.nvim",
+    config = function()
+      require("nvoid.plugins.config.other").commented()
+    end,
+  }
+  use {
     "winston0410/commented.nvim",
     config = function()
       require("nvoid.plugins.config.other").commented()

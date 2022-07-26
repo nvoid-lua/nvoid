@@ -1,10 +1,10 @@
-local present, whichkey = pcall(require, "which-key")
+local present, wk = pcall(require, "which-key")
 if not present then
   return
 end
 local icons = require("nvoid.ui.icons").whick_key
 
-whichkey.setup {
+wk.setup {
   plugins = {
     marks = true,
     registers = true,
@@ -19,7 +19,6 @@ whichkey.setup {
       g = true,
     },
   },
-  operators = { gc = "Comments" },
   key_labels = {},
   icons = icons,
   window = {
@@ -44,8 +43,14 @@ whichkey.setup {
   },
 }
 
-whichkey.register({
-  ["/"] = "Comment",
+wk.register({
+  ["<leader>"] = {
+    ["/"] = { "<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", "Comment" },
+  },
+}, { mode = "v" })
+
+wk.register({
+  ["/"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<cr>", "Comment" },
   [";"] = { "<cmd>Alpha<cr>", "Alpha" },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["E"] = { "<cmd>NvoidEditConfig<cr>", "Edit Config" },
@@ -100,4 +105,4 @@ whichkey.register({
 
 local opts = { prefix = "<leader>" }
 local mappings = require("nvoid.core.utils").load_config().whichkey_add
-whichkey.register(mappings, opts)
+wk.register(mappings, opts)

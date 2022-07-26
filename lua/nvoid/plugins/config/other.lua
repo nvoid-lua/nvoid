@@ -18,13 +18,17 @@ end
 
 -- Commented
 M.commented = function()
-  local present, commented = pcall(require, "commented")
-  if not present then
-    return
-  end
-  commented.setup {
-    keybindings = { n = "<leader>/", v = "<leader>/", nl = "<leader>/" },
-    comment_padding = " ",
+  require("Comment").setup {
+    padding = true,
+    sticky = true,
+    ignore = nil,
+    mappings = {
+      basic = true,
+      extra = true,
+      extended = false,
+    },
+    pre_hook = nil,
+    post_hook = nil,
   }
 end
 
@@ -34,37 +38,13 @@ M.git = function()
   if present then
     gitsigns.setup {
       keymaps = { noremap = true, buffer = true },
+
       signs = {
-        add = {
-          hl = "GitSignsAdd",
-          text = "▎",
-          numhl = "GitSignsAddNr",
-          linehl = "GitSignsAddLn",
-        },
-        change = {
-          hl = "GitSignsChange",
-          text = "▎",
-          numhl = "GitSignsChangeNr",
-          linehl = "GitSignsChangeLn",
-        },
-        delete = {
-          hl = "GitSignsDelete",
-          text = "契",
-          numhl = "GitSignsDeleteNr",
-          linehl = "GitSignsDeleteLn",
-        },
-        topdelete = {
-          hl = "GitSignsDelete",
-          text = "契",
-          numhl = "GitSignsDeleteNr",
-          linehl = "GitSignsDeleteLn",
-        },
-        changedelete = {
-          hl = "GitSignsChange",
-          text = "▎",
-          numhl = "GitSignsChangeNr",
-          linehl = "GitSignsChangeLn",
-        },
+        add = { hl = "DiffAdd", text = "│", numhl = "GitSignsAddNr" },
+        change = { hl = "DiffChange", text = "│", numhl = "GitSignsChangeNr" },
+        delete = { hl = "DiffDelete", text = "", numhl = "GitSignsDeleteNr" },
+        topdelete = { hl = "DiffDelete", text = "‾", numhl = "GitSignsDeleteNr" },
+        changedelete = { hl = "DiffChangeDelete", text = "~", numhl = "GitSignsChangeNr" },
       },
     }
   end
