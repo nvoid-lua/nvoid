@@ -1,7 +1,5 @@
 vim.cmd "packadd packer.nvim"
 
-vim.cmd "packadd packer.nvim"
-
 local first_install = false
 
 local present, packer = pcall(require, "packer")
