@@ -1,4 +1,4 @@
-local present, nvoid_packer = pcall(require, "nvoid.plugins.packerInit")
+local present, nvoid_packer = pcall(require, "nvoid.core.packerInit")
 
 vim.cmd [[
   augroup packer_user_config
