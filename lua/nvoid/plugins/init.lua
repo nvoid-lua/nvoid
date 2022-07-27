@@ -1,12 +1,5 @@
 local present, nvoid_packer = pcall(require, "nvoid.core.packerInit")
 
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost init.lua source <afile> | PackerSync
-  augroup end
-]]
-
 if not present then
   return false
 end
@@ -77,14 +70,6 @@ return packer.startup(function()
     "lukas-reineke/indent-blankline.nvim",
     config = function()
       require "nvoid.plugins.config.indentline"
-    end,
-  }
-
-  -- Colorizer
-  use {
-    "norcalli/nvim-colorizer.lua",
-    config = function()
-      require("nvoid.plugins.config.other").colorizer()
     end,
   }
 
