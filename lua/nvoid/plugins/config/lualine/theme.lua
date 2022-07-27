@@ -1,5 +1,5 @@
 local M = {}
-local colors = require("nvoid.colors").get()
+local colors = require("base16").get()
 M.min = function()
   local theme = {}
   theme.normal = {

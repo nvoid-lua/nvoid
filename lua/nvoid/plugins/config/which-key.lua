@@ -70,7 +70,6 @@ wk.register({
   f = {
     name = "Find",
     b = { "<cmd>lua require 'telescope'.extensions.file_browser.file_browser()<cr>", "File Browser" },
-    c = { "<cmd>Telescope themes<cr>", "Colorschemes" },
     f = { "<cmd>Telescope find_files<cr>", "Find files" },
     h = { "<cmd>Telescope oldfiles<cr>", "Old Files" },
     H = { "<cmd>Telescope help_tags<cr>", "CMD Help" },

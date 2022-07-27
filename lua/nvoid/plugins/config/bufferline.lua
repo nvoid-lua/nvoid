@@ -3,7 +3,7 @@ if not present1 then
   return
 end
 
-local colors = require("nvoid.colors").get()
+local colors = require("base16").get()
 local icons = require("nvoid.ui.icons").bufferline
 
 bufferline.setup {

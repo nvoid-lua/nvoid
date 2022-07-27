@@ -32,7 +32,7 @@ return packer.startup(function()
   use {
     "nvoid-lua/base16",
     config = function()
-      require("nvoid.colors").init()
+      require("base16").init()
     end,
   }
 

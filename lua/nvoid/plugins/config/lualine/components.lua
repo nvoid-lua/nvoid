@@ -1,4 +1,4 @@
-local colors = require("nvoid.colors").get()
+local colors = require("base16").get()
 local icons = require "nvoid.ui.icons"
 -- Diff Source
 local function diff_source()
