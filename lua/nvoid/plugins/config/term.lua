@@ -41,7 +41,7 @@ local updater = Terminal:new {
   hidden = true,
   on_close = function()
     vim.notify "Restart Nvoid"
-  end, -- function to run when the terminal closes
+  end,
 }
 
 function _UPDATER()
