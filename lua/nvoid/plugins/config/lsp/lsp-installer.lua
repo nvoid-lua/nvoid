@@ -1,5 +1,4 @@
 local lsp_installer = require "nvim-lsp-installer"
--- local async = require("plenary.async")
 local notify = require "notify"
 
 local servers = {
@@ -26,8 +25,8 @@ if not vim.tbl_islist(user_lsp.lsp_add) then
 end
 
 for _, name in pairs(user_lsp.lsp_add) do
-  local ok, server = lsp_installer.get_server(name)
-  if ok then
+  local ok2, server = lsp_installer.get_server(name)
+  if ok2 then
     if not server:is_installed() then
       notify("Installing " .. name)
       server:install()
