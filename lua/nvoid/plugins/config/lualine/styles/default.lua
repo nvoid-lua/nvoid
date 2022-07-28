@@ -6,13 +6,14 @@ end
 
 -- components
 local component = require "nvoid.plugins.config.lualine.components"
+local theme = require("base16.highlights.lualine").def()
 
 -- Config
 lualine.setup {
   options = {
     globalstatus = true,
     icons_enabled = true,
-    theme = require("nvoid.plugins.config.lualine.theme").def(),
+    theme = theme,
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
     disabled_filetypes = { "alpha", "dashboard", "Outline" },

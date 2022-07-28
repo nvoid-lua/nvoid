@@ -5,6 +5,7 @@ if not _lualine then
 end
 
 -- components
+local theme = require("base16.highlights.lualine").other()
 local colors = require("base16").get()
 local yellow = colors.yellow
 local component = require "nvoid.plugins.config.lualine.components"
@@ -14,7 +15,7 @@ lualine.setup {
   options = {
     globalstatus = true,
     icons_enabled = true,
-    theme = require("nvoid.plugins.config.lualine.theme").other(),
+    theme = theme,
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
     disabled_filetypes = { "alpha", "dashboard", "Outline" },
