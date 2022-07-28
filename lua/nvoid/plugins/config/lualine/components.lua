@@ -1,5 +1,6 @@
 local colors = require("base16").get()
 local icons = require "nvoid.ui.icons"
+
 -- Diff Source
 local function diff_source()
   local gitsigns = vim.b.gitsigns_status_dict
@@ -11,6 +12,99 @@ local function diff_source()
     }
   end
 end
+
+-- Mode Evil
+local mode_evil = {
+  function()
+    local mode_color = {
+      n = colors.nord_blue,
+      i = colors.green,
+      v = colors.purple,
+      [""] = colors.purple,
+      V = colors.purple,
+      c = colors.yellow,
+      no = colors.red,
+      s = colors.orange,
+      S = colors.orange,
+      [""] = colors.orange,
+      ic = colors.yellow,
+      R = colors.pink,
+      Rv = colors.pink,
+      cv = colors.red,
+      ce = colors.red,
+      r = colors.cyan,
+      rm = colors.cyan,
+      ["r?"] = colors.cyan,
+      ["!"] = colors.red,
+      t = colors.red,
+    }
+    vim.api.nvim_command("hi! LualineMode guibg=" .. mode_color[vim.fn.mode()] .. " guifg=" .. colors.statusline_bg)
+    return " "
+  end,
+  color = "LualineMode",
+  padding = { right = 0 },
+}
+
+-- Mode Minimal
+local mode_minimal = {
+  "mode",
+  fmt = function(str)
+    if str == "NORMAL" then
+      return " normal"
+    end
+    if str == "INSERT" then
+      return "פֿ insert"
+    end
+    if str == "COMMAND" then
+      return " command"
+    end
+    if str == "VISUAL" then
+      return "濾visual"
+    end
+    if str == "V-LINE" then
+      return "濾v-line"
+    end
+    if str == "V-BLOCK" then
+      return "濾v-block"
+    end
+    if str == "REPLACE" then
+      return "李replace"
+    end
+    return str
+  end,
+}
+
+-- Mode Nvoid
+local mode_nvoid = {
+  function()
+    local mode_color = {
+      n = colors.nord_blue,
+      i = colors.green,
+      v = colors.purple,
+      [""] = colors.purple,
+      V = colors.purple,
+      c = colors.yellow,
+      no = colors.red,
+      s = colors.orange,
+      S = colors.orange,
+      [""] = colors.orange,
+      ic = colors.yellow,
+      R = colors.pink,
+      Rv = colors.pink,
+      cv = colors.red,
+      ce = colors.red,
+      r = colors.cyan,
+      rm = colors.cyan,
+      ["r?"] = colors.cyan,
+      ["!"] = colors.red,
+      t = colors.red,
+    }
+    vim.api.nvim_command("hi! LualineMode guibg=" .. mode_color[vim.fn.mode()] .. " guifg=" .. colors.statusline_bg)
+    return " NVOID"
+  end,
+  color = "LualineMode",
+  padding = { right = 1 },
+}
 
 return {
   -- Diagnostics
@@ -110,5 +204,20 @@ return {
   branch = {
     "branch",
     color = { fg = colors.white },
+  },
+
+  -- Mode Evil
+  mode_evil = {
+    mode_evil,
+  },
+
+  -- Mode Minimal
+  mode_minimal = {
+    mode_minimal,
+  },
+
+  -- Mode Nvoid
+  mode_nvoid = {
+    mode_nvoid,
   },
 }

@@ -4,43 +4,8 @@ if not _lualine then
   return
 end
 
--- Colors
-local colors = require("base16").get()
-
 -- components
 local component = require "nvoid.plugins.config.lualine.components"
-
--- Mode
-local mode = {
-  function()
-    local mode_color = {
-      n = colors.nord_blue,
-      i = colors.green,
-      v = colors.purple,
-      [""] = colors.purple,
-      V = colors.purple,
-      c = colors.yellow,
-      no = colors.red,
-      s = colors.orange,
-      S = colors.orange,
-      [""] = colors.orange,
-      ic = colors.yellow,
-      R = colors.pink,
-      Rv = colors.pink,
-      cv = colors.red,
-      ce = colors.red,
-      r = colors.cyan,
-      rm = colors.cyan,
-      ["r?"] = colors.cyan,
-      ["!"] = colors.red,
-      t = colors.red,
-    }
-    vim.api.nvim_command("hi! LualineMode guibg=" .. mode_color[vim.fn.mode()] .. " guifg=" .. colors.statusline_bg)
-    return " "
-  end,
-  color = "LualineMode",
-  padding = { right = 0 },
-}
 
 -- Config
 lualine.setup {
@@ -54,7 +19,7 @@ lualine.setup {
     always_divide_middle = true,
   },
   sections = {
-    lualine_a = { mode },
+    lualine_a = { component.mode_evil },
     lualine_b = { component.branch, component.filename },
     lualine_c = { component.diff },
     lualine_x = {

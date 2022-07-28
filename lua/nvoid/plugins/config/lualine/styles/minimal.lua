@@ -7,34 +7,6 @@ end
 -- components
 local component = require "nvoid.plugins.config.lualine.components"
 
-local mode = {
-  "mode",
-  fmt = function(str)
-    if str == "NORMAL" then
-      return " normal"
-    end
-    if str == "INSERT" then
-      return "פֿ insert"
-    end
-    if str == "COMMAND" then
-      return " command"
-    end
-    if str == "VISUAL" then
-      return "濾visual"
-    end
-    if str == "V-LINE" then
-      return "濾v-line"
-    end
-    if str == "V-BLOCK" then
-      return "濾v-block"
-    end
-    if str == "REPLACE" then
-      return "李replace"
-    end
-    return str
-  end,
-}
-
 -- Config
 lualine.setup {
   options = {
@@ -47,7 +19,7 @@ lualine.setup {
     always_divide_middle = true,
   },
   sections = {
-    lualine_a = { mode },
+    lualine_a = { component.mode_minimal },
     lualine_b = {
       component.diff,
       component.diagnostics,
