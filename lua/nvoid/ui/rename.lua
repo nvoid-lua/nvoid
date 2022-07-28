@@ -4,12 +4,12 @@ M.open = function()
   local currName = vim.fn.expand "<cword>" .. " "
 
   local win = require("plenary.popup").create(currName, {
-    title = "Renamer",
+    title = "Rename",
     style = "minimal",
     borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
     relative = "cursor",
-    borderhighlight = "RenamerBorder",
-    titlehighlight = "RenamerTitle",
+    borderhighlight = "RenameBorder",
+    titlehighlight = "RenameTitle",
     focusable = true,
     width = 25,
     height = 1,
