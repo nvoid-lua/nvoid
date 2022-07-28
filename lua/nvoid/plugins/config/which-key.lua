@@ -91,8 +91,6 @@ wk.register({
   },
   l = {
     name = "力lsp",
-    a = { "<cmd>NvoidCodeActions<cr>", "Code Actions" },
-    A = { "<cmd>NvoidRangeCodeActions<cr>", "Range Code Actions" },
     d = { "<cmd>NvoidDiagnostics<cr>", "Diagnostics" },
     i = { "<cmd>LspInfo<cr>", "Info" },
     I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
