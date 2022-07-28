@@ -5,7 +5,8 @@ if not _lualine then
 end
 
 -- components
-local yellow = require("base16").get.yellow
+local colors = require("base16").get()
+local yellow = colors.yellow
 local component = require "nvoid.plugins.config.lualine.components"
 
 -- Config
