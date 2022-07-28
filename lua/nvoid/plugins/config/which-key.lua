@@ -8,7 +8,6 @@ wk.setup {
   plugins = {
     marks = true,
     registers = true,
-    spelling = { enabled = false, suggestions = 20 },
     presets = {
       operators = true,
       motions = true,
@@ -18,14 +17,15 @@ wk.setup {
       z = true,
       g = true,
     },
+    spelling = { enabled = false, suggestions = 20 },
   },
-  key_labels = {},
   icons = icons,
   window = {
     border = "single",
     position = "bottom",
     margin = { 1, 0, 1, 0 },
     padding = { 1, 1, 1, 1 },
+    winblend = 0,
   },
   layout = {
     height = { min = 4, max = 25 },
@@ -45,22 +45,21 @@ wk.setup {
 
 wk.register({
   ["<leader>"] = {
-    ["/"] = { "<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", "Comment" },
+    ["/"] = { "<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", "蘒Comment" },
   },
 }, { mode = "v" })
 
 wk.register({
-  ["/"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<cr>", "Comment" },
-  [";"] = { "<cmd>Alpha<cr>", "Alpha" },
-  ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-  ["E"] = { "<cmd>NvoidEditConfig<cr>", "Edit Config" },
-  ["g"] = { "<cmd>Gitsigns toggle_signs<cr>", "Toggle GitSigns" },
-  ["n"] = { "<cmd>enew<cr>", "New File" },
-  ["u"] = { "<cmd>NvoidUpdater<cr>", "Update Nvoid" },
-  ["w"] = { "<cmd>write<cr>", "Write" },
-  ["x"] = { "<cmd>wqa!<cr>", "Write and Quit" },
+  ["/"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<cr>", "蘒Comment" },
+  [";"] = { "<cmd>Alpha<cr>", " Alpha" },
+  ["e"] = { "<cmd>NvimTreeToggle<cr>", " Explorer" },
+  ["E"] = { "<cmd>NvoidEditConfig<cr>", " Edit Config" },
+  ["n"] = { "<cmd>enew<cr>", " New File" },
+  ["u"] = { "<cmd>NvoidUpdater<cr>", "ﮮ Update Nvoid" },
+  ["w"] = { "<cmd>write<cr>", " Write" },
+  ["x"] = { "<cmd>wqa!<cr>", " Write and Quit" },
   b = {
-    name = "Buffers",
+    name = "﬘ Buffers",
     c = { "<cmd>Bdelete this<cr>", "close" },
     j = { "<cmd>BufferLineCycleNext<cr>", "Next" },
     k = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
@@ -68,7 +67,7 @@ wk.register({
     p = { "<cmd>BufferLineMovePrev<cr>", "Move Previous" },
   },
   f = {
-    name = "Find",
+    name = " Find",
     b = { "<cmd>lua require 'telescope'.extensions.file_browser.file_browser()<cr>", "File Browser" },
     f = { "<cmd>Telescope find_files<cr>", "Find files" },
     h = { "<cmd>Telescope oldfiles<cr>", "Old Files" },
@@ -79,8 +78,19 @@ wk.register({
     t = { "<cmd>Telescope filetypes<cr>", "File Types" },
     w = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Find Word In Document" },
   },
+  g = {
+    name = " Git",
+    g = { "<cmd>Gitsigns toggle_signs<cr>", "Toggle GitSigns" },
+    j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
+    k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
+    l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
+    p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
+    r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
+    R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
+    s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+  },
   l = {
-    name = "lsp",
+    name = "力lsp",
     a = { "<cmd>NvoidCodeActions<cr>", "Code Actions" },
     A = { "<cmd>NvoidRangeCodeActions<cr>", "Range Code Actions" },
     d = { "<cmd>NvoidDiagnostics<cr>", "Diagnostics" },
@@ -91,7 +101,7 @@ wk.register({
     t = { "<cmd>TroubleToggle<cr>", "Trouble Toggle" },
   },
   p = {
-    name = "Packer",
+    name = " Packer",
     c = { "<cmd>PackerCompile<cr>", "Compile" },
     i = { "<cmd>PackerInstall<cr>", "Install" },
     s = { "<cmd>PackerSync<cr>", "Sync" },
