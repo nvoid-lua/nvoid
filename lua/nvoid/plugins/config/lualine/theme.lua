@@ -1,6 +1,6 @@
 local M = {}
 local colors = require("base16").get()
-M.min = function()
+M.other = function()
   local theme = {}
   theme.normal = {
     a = { bg = colors.statusline_bg, fg = colors.blue, gui = "italic" },

@@ -14,7 +14,7 @@ lualine.setup {
   options = {
     globalstatus = true,
     icons_enabled = true,
-    theme = require("nvoid.plugins.config.lualine.theme").min(),
+    theme = require("nvoid.plugins.config.lualine.theme").other(),
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
     disabled_filetypes = { "alpha", "dashboard", "Outline" },
