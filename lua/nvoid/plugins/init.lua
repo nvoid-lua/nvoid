@@ -36,12 +36,7 @@ return packer.startup(function()
   }
 
   -- Icons
-  use {
-    "kyazdani42/nvim-web-devicons",
-    config = function()
-      require "nvoid.plugins.config.icons-config"
-    end,
-  }
+  use { "kyazdani42/nvim-web-devicons" }
 
   -- LuaLine
   use {
