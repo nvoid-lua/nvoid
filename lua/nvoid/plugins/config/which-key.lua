@@ -45,12 +45,12 @@ wk.setup {
 
 wk.register({
   ["<leader>"] = {
-    ["/"] = { "<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", "蘒Comment" },
+    ["/"] = { "<ESC><CMD>NvoidCommentV<CR>", "蘒Comment" },
   },
 }, { mode = "v" })
 
 wk.register({
-  ["/"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<cr>", "蘒Comment" },
+  ["/"] = { "<cmd>NvoidComment<cr>", "蘒Comment" },
   [";"] = { "<cmd>Alpha<cr>", " Alpha" },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", " Explorer" },
   ["E"] = { "<cmd>NvoidEditConfig<cr>", " Edit Config" },
