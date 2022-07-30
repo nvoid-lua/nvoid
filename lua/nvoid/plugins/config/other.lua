@@ -38,24 +38,6 @@ M.commented = function()
   }
 end
 
--- Git Signs
-M.git = function()
-  local present, gitsigns = pcall(require, "gitsigns")
-  if present then
-    gitsigns.setup {
-      keymaps = { noremap = true, buffer = true },
-
-      signs = {
-        add = { hl = "DiffAdd", text = "│", numhl = "GitSignsAddNr" },
-        change = { hl = "DiffChange", text = "│", numhl = "GitSignsChangeNr" },
-        delete = { hl = "DiffDelete", text = "", numhl = "GitSignsDeleteNr" },
-        topdelete = { hl = "DiffDelete", text = "‾", numhl = "GitSignsDeleteNr" },
-        changedelete = { hl = "DiffChangeDelete", text = "~", numhl = "GitSignsChangeNr" },
-      },
-    }
-  end
-end
-
 -- Better Escape
 M.better = function()
   local present, better_escape = pcall(require, "better_escape")

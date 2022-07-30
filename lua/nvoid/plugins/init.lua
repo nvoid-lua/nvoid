@@ -71,7 +71,7 @@ return packer.startup(function()
   use {
     "lewis6991/gitsigns.nvim",
     config = function()
-      require("nvoid.plugins.config.other").git()
+      require("nvoid.plugins.config.gitsigns")
     end,
     event = "BufRead",
   }
