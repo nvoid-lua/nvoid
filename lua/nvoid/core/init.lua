@@ -3,6 +3,7 @@ local core_modules = {
   "nvoid.core.autocmd",
   "nvoid.core.options",
   "nvoid.core.cmd",
+  "nvoid.ui.transparency"
 }
 
 -- Options
