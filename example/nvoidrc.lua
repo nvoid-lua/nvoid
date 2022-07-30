@@ -2,7 +2,7 @@ local M = {}
 
 -- UI
 M.ui = {
-  theme = "onedark", -- "catppuccin" "classic-dark" "nord" "onedark" "solarized" "tokyodark" "uwu"
+  theme = "onedark", -- "catppuccin" "classic-dark" "gruvbox" "nord" "onedark" "solarized" "tokyodark" "uwu"
   transparency = false,
   statusline = "nvoid", -- "default" "evil" "minimal" "nvoid"
 }
