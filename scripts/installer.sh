@@ -161,8 +161,12 @@ copy_old_config() {
 
 packer() {
   echo "Preparing Packer setup"
-  "nvim" --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' -c 'TSUpdate' >/dev/null
+  "nvim" --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' -c 'TSUpdate'
   echo "Packer setup complete"
+}
+
+treesitter() {
+  "nvim" --headless -c 'TSUpdate'
 }
 
 install_deps
@@ -170,3 +174,4 @@ copy_old_config
 clone_repo
 clone_packer
 packer
+treesitter
