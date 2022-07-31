@@ -1,6 +1,32 @@
 local M = {}
 local icons = require("nvoid.ui.icons").lsp
 
+M.setup_document_highlight = function(client, bufnr)
+  local status_ok, highlight_supported = pcall(function()
+    return client.supports_method "textDocument/documentHighlight"
+  end)
+  if not status_ok or not highlight_supported then
+    return
+  end
+  local augroup_exist, _ = pcall(vim.api.nvim_get_autocmds, {
+    group = "lsp_document_highlight",
+  })
+  if not augroup_exist then
+    vim.api.nvim_create_augroup("lsp_document_highlight", {})
+  end
+  vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    group = "lsp_document_highlight",
+    buffer = bufnr,
+    callback = vim.lsp.buf.document_highlight,
+  })
+  vim.api.nvim_create_autocmd("CursorMoved", {
+    group = "lsp_document_highlight",
+    buffer = bufnr,
+    callback = vim.lsp.buf.clear_references,
+  })
+end
+
+
 M.setup = function()
   local signs = {
     { name = "DiagnosticSignError", text = icons.error },
@@ -79,7 +105,7 @@ local function lsp_keymaps(bufnr)
     opts
   )
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  -- vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
 M.on_attach = function(client, bufnr)
@@ -87,6 +113,19 @@ M.on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = false
   end
   lsp_keymaps(bufnr)
+if client.resolved_capabilities.document_highlight then
+  vim.api.nvim_create_augroup("lsp_document_highlight", {})
+  vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    group = "lsp_document_highlight",
+    buffer = 0,
+    callback = vim.lsp.buf.document_highlight,
+  })
+  vim.api.nvim_create_autocmd("CursorMoved", {
+    group = "lsp_document_highlight",
+    buffer = 0,
+    callback = vim.lsp.buf.clear_references,
+  })
+end
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
