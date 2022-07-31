@@ -169,7 +169,7 @@ packer() {
 
 treesitter() {
   "nvim" --headless \
-    -c 'TSUpdateSync' \
+    -c 'TSUpdate' \
     nvim
 }
 
