@@ -160,9 +160,9 @@ copy_old_config() {
 }
 
 packer() {
-  echo "Preparing Packer setup" >/dev/null
-  "nvim" --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' >/dev/null
-  echo "Packer setup complete" >/dev/null
+  echo "Preparing Packer setup"
+  "nvim" --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' -c 'TSUpdate' >/dev/null
+  echo "Packer setup complete"
 }
 
 install_deps
