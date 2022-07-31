@@ -160,7 +160,6 @@ copy_old_config() {
 }
 
 packer() {
-  clear
   echo "Preparing Packer setup" >/dev/null
   "/bin/nvim" --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' >/dev/null
   echo "Packer setup complete" >/dev/null
