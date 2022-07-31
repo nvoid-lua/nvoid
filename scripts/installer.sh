@@ -163,7 +163,7 @@ packer() {
   echo "Preparing Packer setup"
   "nvim" --headless \
     -c 'autocmd User PackerComplete quitall' \
-    -c 'PackerSync' > ~/.local/share/nvim/tmp
+    -c 'PackerSync'
   echo "Packer setup complete"
 }
 
