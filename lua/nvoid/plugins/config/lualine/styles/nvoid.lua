@@ -28,7 +28,7 @@ lualine.setup {
       { "branch", color = { fg = yellow } },
       component.diff,
     },
-    lualine_x = { component.lsp, component.diagnostics },
+    lualine_x = { component.treesitter, component.lsp, component.diagnostics },
     lualine_y = { component.filetype },
     lualine_z = { component.scrollbar },
   },
