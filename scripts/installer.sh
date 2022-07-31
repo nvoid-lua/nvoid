@@ -167,15 +167,9 @@ packer() {
   echo "Packer setup complete"
 }
 
-treesitter() {
-  "nvim" --headless \
-    -c 'TSUpdate' \
-    nvim
-}
-
 install_deps
 copy_old_config
 clone_repo
 clone_packer
 packer
-treesitter
+nvim
