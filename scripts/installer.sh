@@ -169,7 +169,8 @@ packer() {
 
 treesitter() {
   "nvim" --headless \
-    -c 'TSUpdateSync' > ~/.local/share/nvim/tmp
+    -c 'TSUpdateSync' \
+    ^c ^c ^c
 }
 
 install_deps
