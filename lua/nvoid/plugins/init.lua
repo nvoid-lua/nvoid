@@ -98,14 +98,6 @@ return packer.startup(function()
   -- Null-ls
   use { "jose-elias-alvarez/null-ls.nvim" }
 
-  -- Better Escape
-  use {
-    "max397574/better-escape.nvim",
-    config = function()
-      require("nvoid.plugins.config.other").better()
-    end,
-  }
-
   -- CMP
   use {
     "hrsh7th/nvim-cmp",
@@ -129,7 +121,7 @@ return packer.startup(function()
   use {
     "windwp/nvim-autopairs",
     config = function()
-      require("nvoid.plugins.config.other").autopairs()
+      require "nvoid.plugins.config.autopairs"
     end,
   }
 
@@ -137,7 +129,7 @@ return packer.startup(function()
   use {
     "numToStr/Comment.nvim",
     config = function()
-      require("nvoid.plugins.config.other").commented()
+      require "nvoid.plugins.config.commented"
     end,
   }
 
@@ -208,7 +200,7 @@ return packer.startup(function()
   use {
     "rcarriga/nvim-notify",
     config = function()
-      require("nvoid.plugins.config.other").notify()
+      require("nvoid.plugins.config.notify").notify()
     end,
   }
 
