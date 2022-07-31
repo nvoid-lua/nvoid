@@ -163,13 +163,13 @@ packer() {
   echo "Preparing Packer setup"
   "nvim" --headless \
     -c 'autocmd User PackerComplete quitall' \
-    -c 'PackerSync' >> ~/.local/share/nvim/tmp
+    -c 'PackerSync' > ~/.local/share/nvim/tmp
   echo "Packer setup complete"
 }
 
 treesitter() {
   "nvim" --headless \
-    -c 'TSUpdateSync' >> ~/.local/share/nvim/tmp
+    -c 'TSUpdateSync' > ~/.local/share/nvim/tmp
 }
 
 install_deps
