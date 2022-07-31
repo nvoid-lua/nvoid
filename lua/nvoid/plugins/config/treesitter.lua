@@ -26,7 +26,7 @@ ts_config.setup {
       html = "<!-- %s -->",
       svelte = "<!-- %s -->",
       vue = "<!-- %s -->",
-      json = "",
+      c = "// %s",
     },
   },
   matchup = {
