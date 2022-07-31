@@ -169,4 +169,4 @@ install_deps
 copy_old_config
 clone_repo
 clone_packer
-packer
+packer >/dev/null
