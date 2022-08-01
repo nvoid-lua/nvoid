@@ -161,10 +161,11 @@ copy_old_config() {
 
 packer() {
   echo "Preparing Packer setup"
+
     nvim --headless \
         +'autocmd User PackerComplete sleep 100m | qall' \
-        +PackerInstall \
         +PackerSync
+
     echo -e "\nCompile Complete"
 }
 
