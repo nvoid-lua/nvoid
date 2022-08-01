@@ -82,7 +82,6 @@ return packer.startup(function()
     config = function()
       require "nvoid.plugins.config.treesitter"
     end,
-    run = ":silent TSUpdate",
   }
 
   -- LSP Install
