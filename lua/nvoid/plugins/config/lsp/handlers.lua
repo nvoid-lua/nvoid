@@ -26,7 +26,6 @@ M.setup_document_highlight = function(client, bufnr)
   })
 end
 
-
 M.setup = function()
   local signs = {
     { name = "DiagnosticSignError", text = icons.error },
@@ -113,19 +112,19 @@ M.on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = false
   end
   lsp_keymaps(bufnr)
-if client.resolved_capabilities.document_highlight then
-  vim.api.nvim_create_augroup("lsp_document_highlight", {})
-  vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-    group = "lsp_document_highlight",
-    buffer = 0,
-    callback = vim.lsp.buf.document_highlight,
-  })
-  vim.api.nvim_create_autocmd("CursorMoved", {
-    group = "lsp_document_highlight",
-    buffer = 0,
-    callback = vim.lsp.buf.clear_references,
-  })
-end
+  if client.resolved_capabilities.document_highlight then
+    vim.api.nvim_create_augroup("lsp_document_highlight", {})
+    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+      group = "lsp_document_highlight",
+      buffer = 0,
+      callback = vim.lsp.buf.document_highlight,
+    })
+    vim.api.nvim_create_autocmd("CursorMoved", {
+      group = "lsp_document_highlight",
+      buffer = 0,
+      callback = vim.lsp.buf.clear_references,
+    })
+  end
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
