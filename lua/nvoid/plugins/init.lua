@@ -79,6 +79,7 @@ return packer.startup(function()
   -- Tree Sitter
   use {
     "nvim-treesitter/nvim-treesitter",
+    run = ":silent TSUpdate",
     config = function()
       require "nvoid.plugins.config.treesitter"
     end,

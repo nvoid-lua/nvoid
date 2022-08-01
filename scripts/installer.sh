@@ -160,20 +160,23 @@ copy_old_config() {
 }
 
 packer() {
-  nvim -u "$HOME/.config/nvim/init.lua" --headless \
-    +'autocmd User PackerComplete sleep 100m | qall' \
-    +PackerInstall >$HOME/.local/share/nvim/tmp
+  echo "Preparing Packer setup"
 
   nvim -u "$HOME/.config/nvim/init.lua" --headless \
     +'autocmd User PackerComplete sleep 100m | qall' \
-    +PackerSync >$HOME/.local/share/nvim/tmp
-  nvim --headless -cq ':silent TSUpdate' -cq ':qall' >/dev/null 2>&1
+    +PackerInstall >/dev/null
+
+  nvim -u "$HOME/.config/nvim/init.lua" --headless \
+    +'autocmd User PackerComplete sleep 100m | qall' \
+    +PackerSync >/dev/null
+
+  echo -e "\nCompile Complete"
+
+  nvim --headless -c ':silent TSUpdate' -c ':qall'
 }
 
 install_deps
 copy_old_config
 clone_repo
 clone_packer
-echo "Preparing Packer setup"
 packer >$HOME/.local/share/nvim/tmp
-echo "Packer setup complete"
