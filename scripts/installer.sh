@@ -161,23 +161,12 @@ copy_old_config() {
 
 packer() {
   echo "Preparing Packer setup"
-
-  # nvim -u "$HOME/.config/nvim/init.lua" --headless \
-  #   +'autocmd User PackerComplete sleep 100m | qall' \
-  #   +PackerInstall >/dev/null
-
-  # nvim -u "$HOME/.config/nvim/init.lua" --headless \
-  #   +'autocmd User PackerComplete sleep 100m | qall' \
-  #   +PackerSync >/dev/null
-
-  # echo -e "\nCompile Complete"
     nvim --headless \
         +'autocmd User PackerComplete sleep 100m | qall' \
         +PackerInstall \
         +PackerSync
 
     echo -e "\nCompile Complete"
-
 }
 
 install_deps
