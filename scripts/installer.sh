@@ -172,7 +172,7 @@ packer() {
 
   echo -e "\nCompile Complete"
 
-  nvim --headless -c ':silent TSUpdate' -c ':qall'
+  nvim --headless -cq ':silent TSUpdate' -cq ':qall'
 }
 
 install_deps
