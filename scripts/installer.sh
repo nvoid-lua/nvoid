@@ -170,9 +170,10 @@ packer() {
     +'autocmd User PackerComplete sleep 100m | qall' \
     +PackerSync >/dev/null
 
+  nvim --headless -c ':silent TSUpdate' -c ':qall' >/dev/null 2>&1
+
   echo -e "\nCompile Complete"
 
-  nvim --headless +silent TSUpdateSync | qall
 }
 
 install_deps
