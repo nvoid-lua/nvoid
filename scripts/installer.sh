@@ -172,11 +172,11 @@ packer() {
 
   echo -e "\nCompile Complete"
 
-  nvim --headless -cq ':silent TSUpdate' -cq ':qall'
+  nvim --headless -cq ':silent TSUpdateSync' -cq ':qall'
 }
 
 install_deps
 copy_old_config
 clone_repo
 clone_packer
-packer >$HOME/.local/share/nvim/tmp
+packer
