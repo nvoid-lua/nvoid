@@ -171,12 +171,10 @@ packer() {
   #   +PackerSync >/dev/null
 
   # echo -e "\nCompile Complete"
-    cp $HOME/.config/nvim/utils/installer/lv-config.example.lua $HOME/.config/nvim/lv-config.lua
     nvim --headless \
         +'autocmd User PackerComplete sleep 100m | qall' \
-        +PackerInstall
-
-    nvim +PackerSync
+        +PackerInstall \
+        +PackerSync
 
     echo -e "\nCompile Complete"
 
