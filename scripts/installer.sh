@@ -58,13 +58,6 @@ which git >/dev/null && echo "Git is installed" || warngit
 
 ## Deps
   function install_deps () {
-### MSG Function 
-  function msg() {
-    local text="$1"
-    local div_width="80"
-    printf "%${div_width}s\n" ' ' | tr ' ' -
-    printf "%s\n" "$text"
-  }
 
 ### npm deps START
   function install_nodejs_deps() {
@@ -138,9 +131,12 @@ which git >/dev/null && echo "Git is installed" || warngit
     done
   }
 
-  msg "Would you like to install Python dependencies?"
-  read -p "[y]es or [n]o (default: no) : " -r answer
-  [ "$answer" != "${answer#[Yy]}" ] && install_pip_deps
+  read -p "Do you want to install Python dependencies for Nvoid? (default no)" -n 1 -r
+  echo
+  if [[ $REPLY =~ ^[Yy]$ ]]
+  then
+    install_pip_deps
+  fi
 
 ### pip deps END
 }
