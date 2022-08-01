@@ -99,9 +99,12 @@ which git >/dev/null && echo "Git is installed" || warngit
     done
   }
 
-  msg "Would you like to install nodejs dependencies?"
-  read -p "[y]es or [n]o (default: no) : " -r answer
-  [ "$answer" != "${answer#[Yy]}" ] && install_nodejs_deps
+  read -p "Do you want to install node dependencies for Nvoid? (default no)" -n 1 -r
+  echo
+  if [[ $REPLY =~ ^[Yy]$ ]]
+  then
+    install_nodejs_deps
+  fi
 ### npm deps END
 
 ### pip deps START
@@ -138,6 +141,7 @@ which git >/dev/null && echo "Git is installed" || warngit
   msg "Would you like to install Python dependencies?"
   read -p "[y]es or [n]o (default: no) : " -r answer
   [ "$answer" != "${answer#[Yy]}" ] && install_pip_deps
+
 ### pip deps END
 }
 
@@ -160,17 +164,16 @@ copy_old_config() {
 }
 
 packer() {
-  echo "Preparing Packer setup"
-
     nvim --headless \
         +'autocmd User PackerComplete sleep 100m | qall' \
         +PackerSync
-
-    echo -e "\nCompile Complete"
 }
 
 install_deps
 copy_old_config
 clone_repo
 clone_packer
+echo "Preparing Packer setup"
 packer
+echo -e "\nCompile Complete"
+nvim
