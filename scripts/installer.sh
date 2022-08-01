@@ -172,9 +172,7 @@ packer() {
 
   nvim -u "$HOME/.config/nvim/init.lua" --headless \
     +'autocmd User PackerComplete | qall' \
-    +TSUpdateSync >/dev/null
-
-  nvim --headless -c ':silent TSUpdateSync' -c ':qall' >/dev/null 2>&1
+    +'TSUpdateSync | qall' >/dev/null
 
   echo -e "\nCompile Complete"
 
