@@ -29,11 +29,6 @@ M.options = {
   nvimtree_indent_markers = true,
 }
 
--- Lsp
-M.lsp = {
-  document_highlight = true,
-  autoforamt = true,
-}
 
 -- Add Treesitter langs
 M.ts_add = {
@@ -46,6 +41,13 @@ M.ts_add = {
   "json",
   "yaml",
   "python",
+}
+
+
+-- Lsp Settings
+M.lsp = {
+  document_highlight = true,
+  autoforamt = true,
 }
 
 -- Add Lsp servers

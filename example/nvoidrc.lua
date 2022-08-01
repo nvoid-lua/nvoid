@@ -31,6 +31,12 @@ M.options = {
 -- Add treesitter highliter
 M.ts_add = {} -- "all"
 
+-- Lsp Settings
+M.lsp = {
+  document_highlight = true,
+  autoforamt = true,
+}
+
 -- Add new LSP server
 M.lsp_add = {} -- "bashls"
 
