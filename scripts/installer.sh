@@ -162,18 +162,23 @@ copy_old_config() {
 packer() {
   echo "Preparing Packer setup"
 
-  nvim -u "$HOME/.config/nvim/init.lua" --headless \
-    +'autocmd User PackerComplete sleep 100m | qall' \
-    +PackerInstall >/dev/null
+  # nvim -u "$HOME/.config/nvim/init.lua" --headless \
+  #   +'autocmd User PackerComplete sleep 100m | qall' \
+  #   +PackerInstall >/dev/null
 
-  nvim -u "$HOME/.config/nvim/init.lua" --headless \
-    +'autocmd User PackerComplete sleep 100m | qall' \
-    +PackerSync >/dev/null
+  # nvim -u "$HOME/.config/nvim/init.lua" --headless \
+  #   +'autocmd User PackerComplete sleep 100m | qall' \
+  #   +PackerSync >/dev/null
 
-  nvim -u "$HOME/.config/nvim/init.lua" --headless \
-    +'TSUpdateSync | qall' >/dev/null
+  # echo -e "\nCompile Complete"
+    cp $HOME/.config/nvim/utils/installer/lv-config.example.lua $HOME/.config/nvim/lv-config.lua
+    nvim --headless \
+        +'autocmd User PackerComplete sleep 100m | qall' \
+        +PackerInstall
 
-  echo -e "\nCompile Complete"
+    nvim +PackerSync
+
+    echo -e "\nCompile Complete"
 
 }
 
