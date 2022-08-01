@@ -47,7 +47,7 @@ M.ts_add = {
 -- Lsp Settings
 M.lsp = {
   document_highlight = true,
-  autoforamt = true,
+  autoforamt = false,
 }
 
 -- Add Lsp servers
