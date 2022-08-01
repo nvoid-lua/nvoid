@@ -165,7 +165,6 @@ packer() {
         +'autocmd User PackerComplete sleep 100m | qall' \
         +PackerInstall \
         +PackerSync
-
     echo -e "\nCompile Complete"
 }
 
