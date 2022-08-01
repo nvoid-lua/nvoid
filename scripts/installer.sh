@@ -91,7 +91,7 @@ function install_deps () {
     done
   }
 
-  read -p "Do you want to install node dependencies for Nvoid? (default no)" -n 1 -r
+  read -p "Do you want to install node dependencies for Nvoid? (default no)  " -n 1 -r
   echo
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
@@ -130,7 +130,7 @@ function install_deps () {
     done
   }
 
-  read -p "Do you want to install Python dependencies for Nvoid? (default no)" -n 1 -r
+  read -p "Do you want to install Python dependencies for Nvoid? (default no)  " -n 1 -r
   echo
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
@@ -168,7 +168,7 @@ function install_deps () {
       cargo install "$deps"
     done
   }
-  read -p "Do you want to install rust dependencies for Nvoid? (default no)" -n 1 -r
+  read -p "Do you want to install rust dependencies for Nvoid? (default no)  " -n 1 -r
   echo
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
