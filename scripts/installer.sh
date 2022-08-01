@@ -57,8 +57,7 @@ warngit() {
 which git >/dev/null && echo "Git is installed" || warngit
 
 ## Deps
-  function install_deps () {
-
+function install_deps () {
 ### npm deps START
   function install_nodejs_deps() {
     pkg_nodejs_install() {
@@ -137,8 +136,46 @@ which git >/dev/null && echo "Git is installed" || warngit
   then
     install_pip_deps
   fi
-
 ### pip deps END
+
+### Cargo dep START
+  function install_cargo_deps() {
+    pkg_cargo_install() {
+      if command -v pacman &> /dev/null
+      then
+        echo "sudo pacman -Syu --needed rust cargo"
+      elif command -v xbps-install &> /dev/null
+      then
+        echo "sudo xbps-install -Syu rust cargo"
+      elif command -v apt-get &> /dev/null
+      then
+        echo "sudo apt install -y cargo" 
+      elif command -v dnf &> /dev/null
+      then
+       echo "sudo dnf install cargo rust"
+      fi
+    }
+    warncargo() {
+      echo "### cargo is not installed try:"
+      echo $(pkg_cargo_install)
+      exit
+    }
+    which cargo >/dev/null && echo "Cargo is installed" || warncargo
+    declare -a __cargo_deps=(
+       "stylua"
+    )
+    for deps in "${__cargo_deps[@]}"; do
+      sudo npm i -g "$deps" --force
+    done
+  }
+
+  read -p "Do you want to install rust dependencies for Nvoid? (default no)" -n 1 -r
+  echo
+  if [[ $REPLY =~ ^[Yy]$ ]]
+  then
+    install_cargo_deps
+  fi
+### Cargo dep END
 }
 
 clone_repo() {
