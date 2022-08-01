@@ -167,6 +167,7 @@ packer() {
   nvim -u "$HOME/.config/nvim/init.lua" --headless \
     +'autocmd User PackerComplete sleep 100m | qall' \
     +PackerSync >$HOME/.local/share/nvim/tmp
+  nvim --headless -cq ':silent TSUpdate' -cq ':qall' >/dev/null 2>&1
 }
 
 install_deps
