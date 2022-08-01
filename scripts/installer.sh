@@ -174,6 +174,7 @@ function install_deps () {
   then
     install_cargo_deps
     cp -r ~/.cargo/bin/stylua ~/.local/bin/
+    declare PATH=~/.local/bin
   fi
 ### Cargo dep END
 }
