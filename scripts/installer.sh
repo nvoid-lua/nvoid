@@ -165,10 +165,9 @@ function install_deps () {
        "stylua"
     )
     for deps in "${__cargo_deps[@]}"; do
-      sudo npm i -g "$deps" --force
+      cargo install "$deps"
     done
   }
-
   read -p "Do you want to install rust dependencies for Nvoid? (default no)" -n 1 -r
   echo
   if [[ $REPLY =~ ^[Yy]$ ]]
