@@ -35,6 +35,15 @@ return packer.startup(function()
     end,
   }
 
+  -- Colorizer
+  use {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("nvoid.plugins.config.colorizer").colorizer()
+    end,
+    event = "BufWinEnter",
+  }
+
   -- Icons
   use { "kyazdani42/nvim-web-devicons" }
 
