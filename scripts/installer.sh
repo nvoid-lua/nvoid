@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/bin/bash
 
 ## Checking neovim
 pkg_nvim_installed() {

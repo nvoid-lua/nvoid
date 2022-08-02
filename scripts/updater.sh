@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/bin/bash
 
 ### Update Repo
 update_repo() {
