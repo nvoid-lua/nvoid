@@ -56,9 +56,6 @@ return packer.startup(function()
     event = "BufWinEnter",
   }
 
-  -- Buffer Close
-  use { "Asheq/close-buffers.vim" }
-
   -- Indent Line
   use {
     "lukas-reineke/indent-blankline.nvim",

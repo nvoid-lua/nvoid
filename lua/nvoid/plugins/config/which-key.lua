@@ -60,7 +60,7 @@ wk.register({
   ["x"] = { "<cmd>wqa!<cr>", " Write and Quit" },
   b = {
     name = "﬘ Buffers",
-    c = { "<cmd>Bdelete this<cr>", "close" },
+    c = { "<cmd>bdelete %<cr>", "close" },
     j = { "<cmd>BufferLineCycleNext<cr>", "Next" },
     k = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
     n = { "<cmd>BufferLineMoveNext<cr>", "Move Next" },
