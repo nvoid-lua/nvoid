@@ -43,12 +43,14 @@ wk.setup {
   },
 }
 
+-- Visual Mode
 wk.register({
   ["<leader>"] = {
     ["/"] = { "<ESC><CMD>NvoidCommentV<CR>", "蘒Comment" },
   },
 }, { mode = "v" })
 
+-- Normal Mode
 wk.register({
   ["/"] = { "<cmd>NvoidComment<cr>", "蘒Comment" },
   [";"] = { "<cmd>Alpha<cr>", " Alpha" },
@@ -111,6 +113,7 @@ wk.register({
   prefix = "<leader>",
 })
 
+-- Load Mappings
 local opts = { prefix = "<leader>" }
 local mappings = require("nvoid.core.utils").load_config().whichkey_add
 wk.register(mappings, opts)
