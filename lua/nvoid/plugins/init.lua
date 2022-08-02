@@ -53,6 +53,7 @@ return packer.startup(function()
     config = function()
       require "nvoid.plugins.config.lualine"
     end,
+    event = "BufWinEnter",
   }
 
   -- Bufferline
@@ -71,6 +72,7 @@ return packer.startup(function()
     config = function()
       require "nvoid.plugins.config.indentline"
     end,
+    event = "BufWinEnter",
   }
 
   -- Git Sign
