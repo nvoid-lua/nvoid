@@ -82,7 +82,6 @@ function install_deps () {
     }
     which node npm >/dev/null && echo "Node and npm are installed" || warnnode
     declare -a __npm_deps=(
-      "fd-find"
       "neovim"
       "tree-sitter-cli"
     )
