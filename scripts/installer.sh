@@ -162,7 +162,7 @@ function install_deps () {
     which cargo >/dev/null && echo "Cargo is installed" || warncargo
     declare -a __cargo_deps=(
        "stylua"
-       "fd::fd-find"
+       "fd-find"
     )
     for deps in "${__cargo_deps[@]}"; do
       cargo install "$deps"
