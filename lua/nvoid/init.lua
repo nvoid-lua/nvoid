@@ -1,5 +1,5 @@
 local modules = {
-  "nvoid.plugins.packerLoad",
+  -- "nvoid.plugins.packerLoad",
   "nvoid.core",
   "nvoid.core.map",
 }
@@ -10,3 +10,5 @@ for _, module in ipairs(modules) do
     return
   end
 end
+
+require("nvoid.packer").load()
