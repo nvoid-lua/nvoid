@@ -25,7 +25,6 @@ vim.cmd [[
 
 -- Requiring Core Modules
 require("nvoid.core.command").autocmd()
-require("nvoid.core.options")
 require("nvoid.core.command").cmd()
 
 -- Requiring Options

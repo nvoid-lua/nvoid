@@ -2,7 +2,8 @@ pcall(require, "custom.nvoidrc")
 require("nvoid.core.packer").load()
 local modules = {
   "nvoid.core",
-  "nvoid.core.map"
+  "nvoid.core.options",
+  "nvoid.core.map",
 }
 
 for _, module in ipairs(modules) do
