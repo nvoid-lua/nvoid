@@ -1,10 +1,3 @@
--- Core Modules
-local core_modules = {
-  "nvoid.core.autocmd",
-  "nvoid.core.options",
-  "nvoid.core.cmd",
-}
-
 -- Options
 local options = {
   history = 100,
@@ -31,12 +24,10 @@ vim.cmd [[
 ]]
 
 -- Requiring Core Modules
-for _, module in ipairs(core_modules) do
-  local ok, err = pcall(require, module)
-  if not ok then
-    error("Error loading " .. module .. "\n\n" .. err)
-  end
-end
+require("nvoid.core.command").autocmd()
+require("nvoid.core.options")
+require("nvoid.core.command").cmd()
+
 -- Requiring Options
 for k, v in pairs(options) do
   vim.opt[k] = v
