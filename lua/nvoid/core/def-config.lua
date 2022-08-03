@@ -37,7 +37,6 @@ M.ts_add = {
   "c",
   "cpp",
   "css",
-  "javascript",
   "json",
   "yaml",
   "python",
