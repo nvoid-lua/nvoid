@@ -1,5 +1,6 @@
-vim.cmd "packadd packer.nvim"
 local M = {}
+
+-- Opts
 M.opt = {
   display = {
     open_fn = function()
@@ -14,7 +15,9 @@ M.opt = {
   compile_on_sync = true,
 }
 
+-- Load
 M.load = function()
+  vim.cmd "packadd packer.nvim"
   local present, packer = pcall(require, "packer")
   if not present then
     return false
@@ -44,21 +47,20 @@ M.load = function()
   end
 
   return packer.startup(function()
+    -- Core Plugins
     if core_plugins.def_plugins and not vim.tbl_isempty(core_plugins.def_plugins) then
       for _, plugin in pairs(core_plugins.def_plugins) do
         use(plugin)
       end
     end
 
+    -- User Plugins
     if user_plugins.plugins_add and not vim.tbl_isempty(user_plugins.plugins_add) then
       for _, plugin in pairs(user_plugins.plugins_add) do
         use(plugin)
       end
     end
-
-    -- if nvoid_packer.first_install then
-    --   packer.sync()
-    -- end
   end)
 end
+
 return M
