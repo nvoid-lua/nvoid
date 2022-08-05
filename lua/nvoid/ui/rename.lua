@@ -2,7 +2,7 @@ local M = {}
 M.open = function()
   local currName = vim.fn.expand "<cword>" .. " "
   local win = require("plenary.popup").create(currName, {
-    title = "Rename",
+    title = "| Rename |",
     style = "minimal",
     borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
     relative = "cursor",
@@ -14,35 +14,37 @@ M.open = function()
     line = "cursor+2",
     col = "cursor-1",
   })
-  local map_opts = { noremap = true, silent = true }
-  vim.cmd "normal w"
-  vim.cmd "startinsert"
-  vim.api.nvim_buf_set_keymap(0, "i", "<Esc>", "<cmd>stopinsert | q!<CR>", map_opts)
-  vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", "<cmd>stopinsert | q!<CR>", map_opts)
-  vim.api.nvim_buf_set_keymap(
+  local cmd = vim.cmd
+  local map = vim.api.nvim_buf_set_keymap
+  local opts = { noremap = true, silent = true }
+  cmd "normal w"
+  cmd "startinsert"
+  map(0, "i", "<Esc>", "<cmd>stopinsert | q!<CR>", opts)
+  map(0, "n", "<Esc>", "<cmd>stopinsert | q!<CR>", opts)
+  map(
     0,
     "i",
     "<CR>",
     "<cmd>stopinsert | lua require'nvoid.ui.rename'.apply(" .. currName .. "," .. win .. ")<CR>",
-    map_opts
+    opts
   )
-  vim.api.nvim_buf_set_keymap(
+  map(
     0,
     "n",
     "<CR>",
     "<cmd>stopinsert | lua require'nvoid.ui.rename'.apply(" .. currName .. "," .. win .. ")<CR>",
-    map_opts
+    opts
   )
 end
 M.apply = function(curr, win)
-  local newName = vim.trim(vim.fn.getline ".")
+  local new = vim.trim(vim.fn.getline ".")
   vim.api.nvim_win_close(win, true)
 
-  if #newName > 0 and newName ~= curr then
-    local params = vim.lsp.util.make_position_params()
-    params.newName = newName
+  if #new > 0 and new ~= curr then
+    local params_pos = vim.lsp.util.make_position_params()
+    params_pos.new = new
 
-    vim.lsp.buf_request(0, "textDocument/rename", params)
+    vim.lsp.buf_request(0, "textDocument/rename", params_pos)
   end
 end
 return M

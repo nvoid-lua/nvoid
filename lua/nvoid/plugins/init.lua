@@ -153,6 +153,7 @@ M.def_plugins = {
     config = function()
       require "nvoid.plugins.config.alpha"
     end,
+    event = "BufWinEnter",
   },
 
   -- Term
