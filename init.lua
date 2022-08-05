@@ -1,14 +1,5 @@
-pcall(require, "custom.nvoidrc")
+require "nvoid.core"
+require "nvoid.core.options"
+require "nvoid.core.map"
 require("nvoid.core.packer").load()
-local modules = {
-  "nvoid.core",
-  "nvoid.core.options",
-  "nvoid.core.map",
-}
-
-for _, module in ipairs(modules) do
-  local ok = pcall(require, module)
-  if not ok then
-    return
-  end
-end
+pcall(require, "custom.nvoidrc")
