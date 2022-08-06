@@ -173,8 +173,8 @@ function install_deps () {
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
     install_cargo_deps
-    cp -r ~/.cargo/bin/stylua ~/.local/bin/
-    cp -r ~/.cargo/bin/fd ~/.local/bin/
+    sudo cp -r ~/.cargo/bin/fd /bin/
+    sudo cp -r ~/.cargo/bin/stylua /bin/
   fi
 ### Cargo dep END
 }
