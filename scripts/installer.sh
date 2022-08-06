@@ -200,6 +200,10 @@ copy_old_config() {
 packer() {
     nvim --headless \
         +'autocmd User PackerComplete sleep 100m | qall' \
+        +PackerInstall
+
+    nvim --headless \
+        +'autocmd User PackerComplete sleep 10m | qall' \
         +PackerSync
 }
 
