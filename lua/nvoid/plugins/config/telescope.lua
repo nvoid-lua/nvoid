@@ -64,13 +64,8 @@ telescope.setup {
       override_file_sorter = true, -- override the file sorter
       case_mode = "smart_case", -- or "ignore_case" or "respect_case"
     },
-    media_files = {
-      filetypes = { "png", "webp", "jpg", "jpeg" },
-      find_cmd = "rg", -- find command (defaults to `fd`)
-    },
   },
 }
-telescope.load_extension "media_files"
 
 local extensions = { "themes", "terms", "fzf", "file_browser" }
 

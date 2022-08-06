@@ -1,10 +1,7 @@
 local M = {}
 M.def_plugins = {
   -- Packer
-  {
-    "wbthomason/packer.nvim",
-    event = "VimEnter",
-  },
+  { "wbthomason/packer.nvim", event = "VimEnter" },
 
   -- Plenary, Popup
   { "nvim-lua/plenary.nvim" },
@@ -114,6 +111,7 @@ M.def_plugins = {
     config = function()
       require "nvoid.plugins.config.autopairs"
     end,
+    event = "BufWinEnter",
   },
 
   -- Comment
@@ -122,6 +120,7 @@ M.def_plugins = {
     config = function()
       require "nvoid.plugins.config.commented"
     end,
+    event = "BufWinEnter",
   },
 
   -- Nvim Tree
@@ -141,11 +140,7 @@ M.def_plugins = {
   },
 
   -- Telescope Extensions
-  {
-    "nvim-telescope/telescope-file-browser.nvim",
-    event = "BufWinEnter",
-  },
-  { "nvim-telescope/telescope-media-files.nvim" },
+  { "nvim-telescope/telescope-file-browser.nvim", event = "BufWinEnter" },
 
   -- Alpha
   {
@@ -183,10 +178,7 @@ M.def_plugins = {
   },
 
   -- Vim Matchup
-  {
-    "andymass/vim-matchup",
-    event = "BufWinEnter",
-  },
+  { "andymass/vim-matchup", event = "BufWinEnter" },
 
   -- Notify
   {
