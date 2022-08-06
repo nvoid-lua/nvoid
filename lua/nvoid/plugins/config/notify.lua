@@ -1,17 +1,15 @@
 local M = {}
-local colors = require("base16").get()
-local black = colors.black
 local icons = require "nvoid.ui.icons"
 
 M.notify = function()
   require("notify").setup {
     stages = "slide",
-    on_open = nil,
-    on_close = nil,
+    on_open = function(win)
+      vim.api.nvim_win_set_config(win, { focusable = false })
+    end,
+    timeout = 2500,
     render = "minimal",
-    timeout = 5000,
-    background_colour = black,
-    minimum_width = 50,
+    level = 'DEBUG',
     icons = {
       ERROR = icons.lsp.error,
       WARN = icons.lsp.warn,
