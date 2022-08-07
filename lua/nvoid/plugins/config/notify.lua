@@ -8,7 +8,7 @@ M.notify = function()
       vim.api.nvim_win_set_config(win, { focusable = false })
     end,
     timeout = 2500,
-    level = 'DEBUG',
+    level = "DEBUG",
     icons = {
       ERROR = icons.lsp.error,
       WARN = icons.lsp.warn,

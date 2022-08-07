@@ -1,5 +1,7 @@
 local lsp_installer = require "nvim-lsp-installer"
-local notify = require "notify"
+
+local async = require "plenary.async"
+local notify = require("notify").async
 
 local servers = {
   "sumneko_lua",
@@ -9,7 +11,9 @@ for _, name in pairs(servers) do
   local ok, server = lsp_installer.get_server(name)
   if ok then
     if not server:is_installed() then
-      notify("Installing " .. name)
+      async.run(function()
+        notify("Installing " .. name).events.close()
+      end)
       server:install()
     end
   end
@@ -28,7 +32,9 @@ for _, name in pairs(user_lsp.lsp_add) do
   local ok2, server = lsp_installer.get_server(name)
   if ok2 then
     if not server:is_installed() then
-      notify("Installing " .. name)
+      async.run(function()
+        notify("Installing " .. name).events.close()
+      end)
       server:install()
     end
   end
