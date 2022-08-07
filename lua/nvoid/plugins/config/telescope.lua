@@ -51,13 +51,6 @@ telescope.setup {
     buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
   },
   extensions = {
-    file_browser = {
-      theme = "ivy",
-      mappings = {
-        ["i"] = {},
-        ["n"] = {},
-      },
-    },
     fzf = {
       fuzzy = true, -- false will only do exact matching
       override_generic_sorter = false, -- override the generic sorter
@@ -67,7 +60,7 @@ telescope.setup {
   },
 }
 
-local extensions = { "themes", "terms", "fzf", "file_browser" }
+local extensions = { "themes", "terms", "fzf", }
 
 pcall(function()
   for _, ext in ipairs(extensions) do

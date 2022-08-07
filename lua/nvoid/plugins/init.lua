@@ -139,9 +139,6 @@ M.def_plugins = {
     end,
   },
 
-  -- Telescope Extensions
-  { "nvim-telescope/telescope-file-browser.nvim", event = "BufWinEnter" },
-
   -- Alpha
   {
     "goolord/alpha-nvim",
