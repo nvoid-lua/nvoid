@@ -51,13 +51,13 @@ M.def_plugins = {
   { "hrsh7th/cmp-path" },
 
   -- LuaLine
-  {
-    "nvim-lualine/lualine.nvim",
-    config = function()
-      require "nvoid.plugins.config.lualine"
-    end,
-    event = "BufWinEnter",
-  },
+  -- {
+  --   "nvim-lualine/lualine.nvim",
+  --   config = function()
+  --     require "nvoid.plugins.config.lualine"
+  --   end,
+  --   event = "BufWinEnter",
+  -- },
 
   -- Bufferline
   {

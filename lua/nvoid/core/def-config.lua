@@ -4,7 +4,10 @@ local M = {}
 M.ui = {
   theme = "onedark",
   transparency = false,
-  statusline = "nvoid",
+  -- statusline = "nvoid",
+  statusline = {
+    separator_style = "block", -- default/round/block
+  },
 }
 
 -- OPT
@@ -29,7 +32,6 @@ M.options = {
   nvimtree_indent_markers = true,
 }
 
-
 -- Add Treesitter langs
 M.ts_add = {
   "bash",
@@ -41,7 +43,6 @@ M.ts_add = {
   "yaml",
   "python",
 }
-
 
 -- Lsp Settings
 M.lsp = {
