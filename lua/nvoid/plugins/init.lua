@@ -3,9 +3,8 @@ M.def_plugins = {
   -- Packer
   { "wbthomason/packer.nvim", event = "VimEnter" },
 
-  -- Plenary, Popup
+  -- Plenary
   { "nvim-lua/plenary.nvim" },
-  { "nvim-lua/popup.nvim" },
 
   -- colorschemes
   {
@@ -15,17 +14,41 @@ M.def_plugins = {
     end,
   },
 
-  -- Colorizer
-  {
-    "norcalli/nvim-colorizer.lua",
-    config = function()
-      require("nvoid.plugins.config.colorizer").colorizer()
-    end,
-    event = "BufWinEnter",
-  },
-
   -- Icons
   { "kyazdani42/nvim-web-devicons" },
+
+  -- LSP Install
+  { "williamboman/nvim-lsp-installer" },
+
+  -- LSP
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      require "nvoid.plugins.config.lsp"
+    end,
+  },
+
+  -- Null-ls
+  { "jose-elias-alvarez/null-ls.nvim" },
+
+  -- CMP
+  {
+    "hrsh7th/nvim-cmp",
+    config = function()
+      require "nvoid.plugins.config.cmp"
+    end,
+  },
+
+  -- Snippets
+  { "rafamadriz/friendly-snippets" },
+  { "L3MON4D3/LuaSnip" },
+
+  -- CMP Extensions
+  { "saadparwaiz1/cmp_luasnip" },
+  { "hrsh7th/cmp-nvim-lua" },
+  { "hrsh7th/cmp-nvim-lsp" },
+  { "hrsh7th/cmp-buffer" },
+  { "hrsh7th/cmp-path" },
 
   -- LuaLine
   {
@@ -71,39 +94,6 @@ M.def_plugins = {
       require "nvoid.plugins.config.treesitter"
     end,
   },
-
-  -- LSP Install
-  { "williamboman/nvim-lsp-installer" },
-
-  -- LSP
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      require "nvoid.plugins.config.lsp"
-    end,
-  },
-
-  -- Null-ls
-  { "jose-elias-alvarez/null-ls.nvim" },
-
-  -- CMP
-  {
-    "hrsh7th/nvim-cmp",
-    config = function()
-      require "nvoid.plugins.config.cmp"
-    end,
-  },
-
-  -- Snippets
-  { "rafamadriz/friendly-snippets" },
-  { "L3MON4D3/LuaSnip" },
-
-  -- CMP Extensions
-  { "saadparwaiz1/cmp_luasnip" },
-  { "hrsh7th/cmp-nvim-lua" },
-  { "hrsh7th/cmp-nvim-lsp" },
-  { "hrsh7th/cmp-buffer" },
-  { "hrsh7th/cmp-path" },
 
   -- Auto Pairs
   {
@@ -153,6 +143,15 @@ M.def_plugins = {
     "akinsho/toggleterm.nvim",
     config = function()
       require "nvoid.plugins.config.term"
+    end,
+    event = "BufWinEnter",
+  },
+
+  -- Colorizer
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("nvoid.plugins.config.colorizer").colorizer()
     end,
     event = "BufWinEnter",
   },
