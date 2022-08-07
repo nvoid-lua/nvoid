@@ -9,7 +9,8 @@ for _, name in pairs(servers) do
   local ok, server = lsp_installer.get_server(name)
   if ok then
     if not server:is_installed() then
-      return server:install()
+      notify("Installing " .. name)
+      server:install()
     end
   end
 end
