@@ -21,11 +21,8 @@ lualine.setup {
   },
   sections = {
     lualine_a = { component.mode_minimal },
-    lualine_b = {
-      component.diff,
-      component.diagnostics,
-    },
-    lualine_c = {},
+    lualine_b = { component.diff, component.diagnostics },
+    lualine_c = { component.lsp_status },
     lualine_x = { component.treesitter },
     lualine_y = { component.filename, component.branch },
     lualine_z = { component.scrollbar },

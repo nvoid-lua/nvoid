@@ -27,6 +27,7 @@ lualine.setup {
       component.treesitter,
       component.diagnostics,
       component.lsp,
+      component.lsp_status,
       component.filetype,
     },
     lualine_y = {},
