@@ -41,7 +41,7 @@ telescope.setup {
     path_display = { "absolute" },
     winblend = 0,
     border = {},
-    borderchars = icons.telescope.borderchars,
+    borderchars = icons.borders,
     color_devicons = true,
     use_less = true,
     set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,

@@ -75,11 +75,11 @@ return {
   },
   telescope = {
     prompt_prefix = "   ",
-    borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
   },
   whick_key = {
     breadcrumb = "» ",
     separator = "➜ ",
     group = "+ ",
   },
+  borders = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 }
