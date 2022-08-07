@@ -1,12 +1,6 @@
 local fn = vim.fn
 local icons = require "nvoid.ui.icons"
 
-local sep_style = {
-  right = "█",
-}
-
-local sep_r = sep_style["right"]
-
 local modes = {
   ["n"] = { "Nvoid", "St_NormalMode" },
   ["no"] = { "Nvoid", "St_NormalMode" },
@@ -59,7 +53,7 @@ M.fileInfo = function()
   local ft_icon = devicons.get_icon(filename, extension)
   icon = (ft_icon ~= nil and " " .. ft_icon) or icon
 
-  return "%#St_file_info#" .. icon .. filename .. "%#St_file_sep#" .. sep_r
+  return "%#St_file_info#" .. icon .. filename .. " " .. "%#St_file_sep#"
 end
 
 M.git = function()
