@@ -119,7 +119,8 @@ M.def_plugins = {
     config = function()
       require "nvoid.plugins.config.telescope"
     end,
-    event = "BufWinEnter",
+    event = "CursorHold",
+    run = ":TSUpdate",
   },
 
   -- Alpha
