@@ -209,4 +209,3 @@ clone_packer
 echo "Preparing Packer setup"
 packer
 echo -e "\nCompile Complete"
-nvim
