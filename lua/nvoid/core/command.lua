@@ -1,35 +1,20 @@
 local M = {}
 M.autocmd = function()
-  vim.cmd [[autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]]
   local autocmd = vim.api.nvim_create_autocmd
-
-  -- Use 'q' to quit from common plugins
-  autocmd({ "FileType" }, {
-    pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "lir" },
-    callback = function()
-      vim.cmd [[
-      nnoremap <silent> <buffer> q :close<CR> 
-      set nobuflisted 
-    ]]
-    end,
-  })
 
   -- Remove statusline and tabline when in Alpha
   autocmd({ "User" }, {
     pattern = { "AlphaReady" },
     callback = function()
-      vim.cmd [[
-      set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
-      set laststatus=0 | autocmd BufUnload <buffer> set laststatus=3
-    ]]
+      vim.opt.showtabline = 0
+      vim.opt.laststatus = 0
     end,
   })
 
-  -- Fixes Autocomment
-  autocmd({ "BufWinEnter" }, {
-    callback = function()
-      vim.cmd "set formatoptions-=cro"
-    end,
+  -- Disable Auto Commenting on new line
+  autocmd("BufEnter", {
+    pattern = "*",
+    command = "set fo-=c fo-=r fo-=o",
   })
 
   -- Highlight Yanked Text
@@ -38,6 +23,7 @@ M.autocmd = function()
       vim.highlight.on_yank { higroup = "Visual", timeout = 200 }
     end,
   })
+  vim.opt.statusline = "%!v:lua.require'nvoid.ui.statusline'.run()"
 end
 
 M.cmd = function()
