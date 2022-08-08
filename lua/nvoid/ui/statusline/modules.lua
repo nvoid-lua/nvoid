@@ -39,7 +39,7 @@ M.fileInfo = function()
   local extension = fn.expand "%:e"
 
   if filename == "" then
-    icon = icon .. "  Empty "
+    icon = icon .. "  Empty"
   else
     filename = " " .. filename
   end
@@ -67,7 +67,7 @@ M.git = function()
   local changed = (git_status.changed and git_status.changed ~= 0) and ("  " .. git_status.changed) or ""
   local removed = (git_status.removed and git_status.removed ~= 0) and ("  " .. git_status.removed) or ""
   local branch_name = "   " .. git_status.head .. " "
-  local git_info = branch_name .. added .. changed .. removed
+  local git_info = "%#St_gitIcons#" .. branch_name .. added .. changed .. removed
 
   return "%#St_gitIcons#" .. git_info
 end

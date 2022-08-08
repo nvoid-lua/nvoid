@@ -1,20 +1,20 @@
-local module = require "nvoid.ui.statusline.modules"
-local M = {}
+local S = {}
+local M = require "nvoid.ui.statusline.modules"
 
-M.run = function()
+S.run = function()
   return table.concat {
-    module.mode(),
-    module.fileInfo(),
-    module.git(),
+    M.mode(),
+    M.fileInfo(),
+    M.git(),
 
     "%=",
-    module.lsp_progress(),
+    M.lsp_progress(),
     "%=",
 
-    module.diagnostics(),
-    module.lsp(),
-    module.scrollbar(),
+    M.diagnostics(),
+    M.lsp(),
+    M.scrollbar(),
   }
 end
 
-return M
+return S
