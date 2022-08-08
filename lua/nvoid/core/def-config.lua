@@ -4,10 +4,6 @@ local M = {}
 M.ui = {
   theme = "onedark",
   transparency = false,
-  -- statusline = "nvoid",
-  statusline = {
-    separator_style = "block", -- default/round/block
-  },
 }
 
 -- OPT

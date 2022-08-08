@@ -1,4 +1,5 @@
 local S = {}
+
 local M = require "nvoid.ui.statusline.modules"
 
 S.run = function()
