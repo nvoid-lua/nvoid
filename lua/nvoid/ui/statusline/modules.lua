@@ -1,7 +1,55 @@
 local fn = vim.fn
 local icons = require "nvoid.ui.icons"
 
-local modes = {
+local modesM = {
+  ["n"] = { " normal", "St_ModeM" },
+  ["no"] = { " normal", "St_ModeM" },
+  ["i"] = { "פֿ insert", "St_ModeM" },
+  ["ic"] = { "פֿ insert", "St_ModeM" },
+  ["t"] = { " terminal", "St_ModeM" },
+  ["nt"] = { " terminal", "St_ModeM" },
+  ["v"] = { "濾visual", "St_ModeM" },
+  ["V"] = { "濾v-line", "St_ModeM" },
+  [""] = { "濾v-block", "St_ModeM" },
+  ["R"] = { "李replace", "St_ModeM" },
+  ["Rv"] = { "李replace", "St_ModeM" },
+  ["s"] = { "Nvoid", "St_ModeM" },
+  ["S"] = { "Nvoid", "St_ModeM" },
+  [""] = { "Nvoid", "St_ModeM" },
+  ["c"] = { " command", "St_ModeM" },
+  ["cv"] = { " command", "St_ModeM" },
+  ["ce"] = { " command", "St_ModeM" },
+  ["r"] = { "", "St_ModeM" },
+  ["rm"] = { "", "St_ModeM" },
+  ["r?"] = { "", "St_ModeM" },
+  ["!"] = { "", "St_ModeM" },
+}
+
+local modesE = {
+  ["n"] = { "█", "St_NormalModeE" },
+  ["no"] = { "█", "St_NormalModeE" },
+  ["i"] = { "█", "St_InsertModeE" },
+  ["ic"] = { "█", "St_InsertModeE" },
+  ["t"] = { "█", "St_TerminalModeE" },
+  ["nt"] = { "█", "St_NTerminalModeE" },
+  ["v"] = { "█", "St_VisualModeE" },
+  ["V"] = { "█", "St_VisualModeE" },
+  [""] = { "█", "St_VisualModeE" },
+  ["R"] = { "█", "St_ReplaceModeE" },
+  ["Rv"] = { "█", "St_ReplaceModeE" },
+  ["s"] = { "█", "St_SelectModeE" },
+  ["S"] = { "█", "St_SelectModeE" },
+  [""] = { "█", "St_SelectModeE" },
+  ["c"] = { "█", "St_CommandModeE" },
+  ["cv"] = { "█", "St_CommandModeE" },
+  ["ce"] = { "█", "St_CommandModeE" },
+  ["r"] = { "█", "St_ConfirmModeE" },
+  ["rm"] = { "█", "St_ConfirmModeE" },
+  ["r?"] = { "█", "St_ConfirmModeE" },
+  ["!"] = { "█", "St_TerminalModeE" },
+}
+
+local modesN = {
   ["n"] = { "Nvoid", "St_NormalMode" },
   ["no"] = { "Nvoid", "St_NormalMode" },
   ["i"] = { "Nvoid", "St_InsertMode" },
@@ -27,9 +75,21 @@ local modes = {
 
 local M = {}
 
-M.mode = function()
+M.modeM = function()
   local m = vim.api.nvim_get_mode().mode
-  local current_mode = "%#" .. modes[m][2] .. "#" .. " " .. modes[m][1] .. " "
+  local current_mode = "%#" .. modesM[m][2] .. "#" .. " " .. modesM[m][1] .. " "
+  return current_mode
+end
+
+M.modeE = function()
+  local m = vim.api.nvim_get_mode().mode
+  local current_mode = "%#" .. modesE[m][2] .. "#" .. "" .. modesE[m][1] .. ""
+  return current_mode
+end
+
+M.modeN = function()
+  local m = vim.api.nvim_get_mode().mode
+  local current_mode = "%#" .. modesN[m][2] .. "#" .. " " .. modesN[m][1] .. " "
   return current_mode
 end
 
@@ -63,11 +123,16 @@ M.git = function()
 
   local git_status = vim.b.gitsigns_status_dict
 
-  local added = (git_status.added and git_status.added ~= 0) and ("  " .. git_status.added) or ""
-  local changed = (git_status.changed and git_status.changed ~= 0) and ("  " .. git_status.changed) or ""
-  local removed = (git_status.removed and git_status.removed ~= 0) and ("  " .. git_status.removed) or ""
+  local added = (git_status.added and git_status.added ~= 0) and ("%#St_gitAdd#" .. icons.git.added .. git_status.added)
+    or ""
+  local changed = (git_status.changed and git_status.changed ~= 0)
+      and ("%#St_gitMod#" .. icons.git.modified .. git_status.changed)
+    or ""
+  local removed = (git_status.removed and git_status.removed ~= 0)
+      and ("%#St_gitRem#" .. icons.git.removed .. git_status.removed)
+    or ""
   local branch_name = "   " .. git_status.head .. " "
-  local git_info = "%#St_gitIcons#" .. branch_name .. added .. changed .. removed
+  local git_info = "%#St_gitIcons#" .. branch_name .. added .. " " .. changed .. " " .. removed
 
   return "%#St_gitIcons#" .. git_info
 end
@@ -96,15 +161,15 @@ M.diagnostics = function()
     return ""
   end
 
-  local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
-  local warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
-  local hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
-  local info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
+  local Errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+  local Warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+  local Hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
+  local Info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
 
-  errors = (errors and errors > 0) and ("%#St_LspError#" .. " " .. errors .. " ") or ""
-  warnings = (warnings and warnings > 0) and ("%#St_LspWarning#" .. "  " .. warnings .. " ") or ""
-  hints = (hints and hints > 0) and ("%#St_LspHints#" .. "ﯧ " .. hints .. " ") or ""
-  info = (info and info > 0) and ("%#St_LspInfo#" .. " " .. info .. " ") or ""
+  local errors = (Errors and Errors > 0) and ("%#St_LspError#" .. icons.lsp.error .. Errors .. " ") or ""
+  local warnings = (Warnings and Warnings > 0) and ("%#St_LspWarning#" .. icons.lsp.warn .. Warnings .. " ") or ""
+  local hints = (Hints and Hints > 0) and ("%#St_LspHints#" .. icons.lsp.hint .. Hints .. " ") or ""
+  local info = (Info and Info > 0) and ("%#St_LspInfo#" .. icons.lsp.info .. Info .. " ") or ""
 
   return errors .. warnings .. hints .. info
 end

@@ -4,6 +4,7 @@ local M = {}
 M.ui = {
   theme = "onedark",
   transparency = false,
+  statusline = "nvoid"
 }
 
 -- OPT

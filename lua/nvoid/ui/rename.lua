@@ -1,10 +1,11 @@
 local M = {}
 M.open = function()
+  local icons = require "nvoid.ui.icons"
   local currName = vim.fn.expand "<cword>" .. " "
   local win = require("plenary.popup").create(currName, {
     title = "Rename",
     style = "minimal",
-    borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    borderchars = icons.borders,
     relative = "cursor",
     borderhighlight = "RenameBorder",
     titlehighlight = "RenameTitle",

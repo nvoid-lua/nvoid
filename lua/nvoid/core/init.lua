@@ -12,7 +12,6 @@ local options = {
   splitbelow = true,
   splitright = true,
   laststatus = 3,
-  statusline = "%!v:lua.require'nvoid.ui.statusline'.run()"
 }
 
 -- Vim ls
