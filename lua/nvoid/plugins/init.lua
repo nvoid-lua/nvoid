@@ -60,15 +60,6 @@ M.def_plugins = {
     event = "BufWinEnter",
   },
 
-  -- Indent Line
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    config = function()
-      require "nvoid.plugins.config.indentline"
-    end,
-    event = "BufWinEnter",
-  },
-
   -- Git Sign
   {
     "lewis6991/gitsigns.nvim",
