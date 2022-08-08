@@ -159,17 +159,6 @@ M.def_plugins = {
     event = "BufWinEnter",
   },
 
-  -- Trouble
-  {
-    "folke/trouble.nvim",
-    config = function()
-      require "nvoid.plugins.config.trouble"
-    end,
-  },
-
-  -- Vim Matchup
-  { "andymass/vim-matchup", event = "BufWinEnter" },
-
   -- Notify
   {
     "rcarriga/nvim-notify",

@@ -15,14 +15,12 @@ local options = {
 }
 
 -- Vim ls
-vim.cmd [[
-  set whichwrap+=<,>,[,],h,l
-  set iskeyword+=-
-  set formatoptions-=cro
-  let g:matchup_matchparen_offscreen = {'method': 'popup'}"
-  set shortmess+=c"
-  let g:loaded_matchit = 1"
-]]
+-- vim.cmd [[
+--   set whichwrap+=<,>,[,],h,l
+--   set iskeyword+=-
+--   set formatoptions-=cro
+--   set shortmess=I"
+-- ]]
 
 -- Requiring Core Modules
 require("nvoid.core.command").autocmd()
