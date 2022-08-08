@@ -84,6 +84,8 @@ M.def_plugins = {
     config = function()
       require "nvoid.plugins.config.treesitter"
     end,
+    event = "CursorHold",
+    run = ":TSUpdate",
   },
 
   -- Auto Pairs
@@ -119,8 +121,6 @@ M.def_plugins = {
     config = function()
       require "nvoid.plugins.config.telescope"
     end,
-    event = "CursorHold",
-    run = ":TSUpdate",
   },
 
   -- Alpha
