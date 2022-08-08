@@ -110,6 +110,7 @@ M.def_plugins = {
     config = function()
       require "nvoid.plugins.config.nvimtree"
     end,
+    event = "BufWinEnter",
   },
 
   -- Telescope
@@ -118,6 +119,7 @@ M.def_plugins = {
     config = function()
       require "nvoid.plugins.config.telescope"
     end,
+    event = "BufWinEnter",
   },
 
   -- Alpha
