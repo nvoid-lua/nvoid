@@ -84,7 +84,7 @@ M.def_plugins = {
     config = function()
       require "nvoid.plugins.config.treesitter"
     end,
-    event = "CursorHold",
+    event = "BufRead",
     run = ":TSUpdate",
   },
 
