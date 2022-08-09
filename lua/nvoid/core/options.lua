@@ -1,6 +1,19 @@
 local opt = vim.opt
 local g = vim.g
 local options = require("nvoid.core.utils").load_config().options
+opt.history = 100
+opt.shiftwidth = 2
+opt.synmaxcol = 240
+opt.tabstop = 4
+opt.pumheight = 10
+opt.timeoutlen = 150
+opt.completeopt = "menuone,noselect"
+opt.updatetime = 300
+opt.termguicolors = true
+opt.splitbelow = true
+opt.splitright = true
+opt.laststatus = 3
+opt.statusline = "%!v:lua.require'nvoid.ui.statusline'.run()"
 
 opt.clipboard = options.clipboard
 opt.cmdheight = options.cmdheight
@@ -31,7 +44,7 @@ local disabled_built_ins = {
   "netrwPlugin",
   "netrwSettings",
   "netrwFileHandlers",
-  "matchit",
+  -- "matchit",
   "tar",
   "tarPlugin",
   "rrhelper",
