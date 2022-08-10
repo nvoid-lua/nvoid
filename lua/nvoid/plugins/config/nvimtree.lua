@@ -40,5 +40,5 @@ nvim_tree.setup {
       glyphs = icons.nvimtree,
     },
   },
-  filters = { custom = { "^.git$" } },
+  filters = { custom = { "^.git$" }, exclude = { vim.fn.stdpath "config" .. "/lua/custom" } },
 }
