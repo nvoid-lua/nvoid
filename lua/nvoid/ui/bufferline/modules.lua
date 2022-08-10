@@ -1,21 +1,21 @@
 local api = vim.api
 local devicons_present, devicons = pcall(require, "nvim-web-devicons")
 local fn = vim.fn
+local cmd = vim.cmd
 
-vim.cmd "function! GoToBuf(bufnr,b,c,d) \n execute 'b'..a:bufnr \n endfunction"
+cmd "function! GoToBuf(bufnr,b,c,d) \n execute 'b'..a:bufnr \n endfunction"
 
-vim.cmd [[
+cmd [[
   function! KillBuf(bufnr,b,c,d)
     call luaeval('require("nvoid.core.utils").bufferclose(_A)', a:bufnr)
   endfunction]]
 
-vim.cmd "function! NewTab(a,b,c,d) \n tabnew \n endfunction"
-vim.cmd "function! GotoTab(tabnr,b,c,d) \n execute a:tabnr ..'tabnext' \n endfunction"
-vim.cmd "function! TabClose(a,b,c,d) \n lua require('nvoid.core.utils').closeallbufs('closeTab') \n endfunction"
-vim.cmd "function! CloseAllBufs(a,b,c,d) \n lua require('nvoid.core.utils').closeallbufs() \n endfunction"
-vim.cmd "function! ToggleTabs(a,b,c,d) \n let g:TabsToggled = !g:TabsToggled | redrawtabline \n endfunction"
+cmd "function! NewTab(a,b,c,d) \n tabnew \n endfunction"
+cmd "function! GotoTab(tabnr,b,c,d) \n execute a:tabnr ..'tabnext' \n endfunction"
+cmd "function! TabClose(a,b,c,d) \n lua require('nvoid.core.utils').closeallbufs('closeTab') \n endfunction"
+cmd "function! CloseAllBufs(a,b,c,d) \n lua require('nvoid.core.utils').closeallbufs() \n endfunction"
+cmd "function! ToggleTabs(a,b,c,d) \n let g:TabsToggled = !g:TabsToggled | redrawtabline \n endfunction"
 
--------------------------------------------------------- functions ------------------------------------------------------------
 local function new_hl(group1, group2)
   local fg = fn.synIDattr(fn.synIDtrans(fn.hlID(group1)), "fg#")
   local bg = fn.synIDattr(fn.synIDtrans(fn.hlID(group2)), "bg#")
@@ -58,8 +58,7 @@ local function add_fileInfo(name, bufnr)
     )
 
     name = (#name > 15 and string.sub(name, 1, 13) .. "..") or name
-    name = (api.nvim_get_current_buf() == bufnr and "%#LineBufOn# " .. name .. " ")
-      or ("%#LineBufOff# " .. name .. " ")
+    name = (api.nvim_get_current_buf() == bufnr and "%#LineBufOn# " .. name .. " ") or ("%#LineBufOff# " .. name .. " ")
 
     return string.rep(" ", pad) .. icon .. name .. string.rep(" ", pad - 1)
   end
@@ -84,7 +83,6 @@ local function styleBufferTab(nr)
   return name
 end
 
----------------------------------------------------------- components ------------------------------------------------------------
 local M = {}
 
 M.CoverNvimTree = function()
@@ -129,8 +127,7 @@ M.tablist = function()
 
     local tabstoggleBtn = "%@ToggleTabs@ %#TabTitle#%X"
 
-    return vim.g.TabsToggled == 1 and tabstoggleBtn:gsub("()", { [36] = " " })
-      or tabstoggleBtn .. result
+    return vim.g.TabsToggled == 1 and tabstoggleBtn:gsub("()", { [36] = " " }) or tabstoggleBtn .. result
   end
 end
 
@@ -138,9 +135,4 @@ M.buttons = function()
   local CloseAllBufsBtn = "%@CloseAllBufs@%#LineCloseAllBufsBtn#" .. "  " .. "%X"
   return CloseAllBufsBtn
 end
-
-M.run = function()
-  return M.CoverNvimTree() .. M.bufferlist() .. (M.tablist() or "") .. M.buttons()
-end
-
 return M
