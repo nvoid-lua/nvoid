@@ -1,13 +1,16 @@
 local api = vim.api
 local autocmd = vim.api.nvim_create_autocmd
+local cmd = vim.cmd
+local opt = vim.opt
 
-vim.cmd [[autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]]
+-- Fix NvimTree
+cmd [[autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]]
 
 -- Use 'q' to quit from common plugins
 autocmd({ "FileType" }, {
   pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "lir" },
   callback = function()
-    vim.cmd [[
+    cmd [[
       nnoremap <silent> <buffer> q :close<CR> 
       set nobuflisted 
     ]]
@@ -18,23 +21,23 @@ autocmd({ "FileType" }, {
 autocmd("FileType", {
   pattern = "alpha",
   callback = function()
-    vim.opt.laststatus = 0
-    vim.opt.showtabline = 0
+    opt.laststatus = 0
+    opt.showtabline = 0
   end,
 })
 
 autocmd("BufUnload", {
   buffer = 0,
   callback = function()
-    vim.opt.laststatus = 3
-    vim.opt.showtabline = 2
+    opt.laststatus = 3
+    opt.showtabline = 2
   end,
 })
 
 -- Fixes Autocomment
 autocmd("BufEnter", {
   pattern = "*",
-  command = "set fo-=c fo-=r fo-=o",
+  commnd = "set fo-=c fo-=r fo-=o",
 })
 
 -- Highlight Yanked Text
@@ -50,8 +53,6 @@ autocmd({ "BufAdd", "BufEnter" }, {
       vim.t.bufs = { args.buf }
     else
       local bufs = vim.t.bufs
-
-      -- check for duplicates
       if not vim.tbl_contains(bufs, args.buf) and (args.event == "BufAdd" or vim.bo[args.buf].buflisted) then
         table.insert(bufs, args.buf)
         vim.t.bufs = bufs
@@ -82,8 +83,8 @@ autocmd({ "BufNewFile", "BufRead", "TabEnter" }, {
   group = vim.api.nvim_create_augroup("TabuflineLazyLoad", {}),
   callback = function()
     if #vim.fn.getbufinfo { buflisted = 1 } >= 2 then
-      vim.opt.showtabline = 2
-      vim.opt.tabline = "%!v:lua.require'nvoid.ui.bufferline'.run()"
+      opt.showtabline = 2
+      opt.tabline = "%!v:lua.require'nvoid.ui.bufferline'.run()"
       vim.api.nvim_del_augroup_by_name "TabuflineLazyLoad"
     end
   end,
