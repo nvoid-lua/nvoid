@@ -19,6 +19,7 @@ autocmd("FileType", {
   pattern = "alpha",
   callback = function()
     vim.opt.laststatus = 0
+    vim.opt.showtabline = 0
   end,
 })
 
@@ -26,6 +27,7 @@ autocmd("BufUnload", {
   buffer = 0,
   callback = function()
     vim.opt.laststatus = 3
+    vim.opt.showtabline = 2
   end,
 })
 
