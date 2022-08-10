@@ -6,9 +6,8 @@ M.def_plugins = {
   -- Packer
   { "wbthomason/packer.nvim", event = "VimEnter" },
 
-  -- colorschemes
   {
-    "nvoid-lua/base16",
+    "nvoid-lua/nvoid-ui",
     config = function()
       require("base16").init()
     end,
@@ -26,7 +25,8 @@ M.def_plugins = {
   -- Icons
   {
     "kyazdani42/nvim-web-devicons",
-    module = "nvim-web-devicons",
+    -- after = "nvoid-ui",
+    -- module = "nvim-web-devicons",
     config = function()
       require("nvoid.plugins.config.others").devicons()
     end,

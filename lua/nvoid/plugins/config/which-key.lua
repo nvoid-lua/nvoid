@@ -2,7 +2,7 @@ local present, wk = pcall(require, "which-key")
 if not present then
   return
 end
-local icons = require("nvoid.ui.icons").whick_key
+local icons = require("ui.icons").whick_key
 
 wk.setup {
   plugins = {

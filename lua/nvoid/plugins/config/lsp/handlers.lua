@@ -1,5 +1,5 @@
 local M = {}
-local icons = require("nvoid.ui.icons").lsp
+local icons = require("ui.icons").lsp
 local lsp_config = require("nvoid.core.utils").load_config()
 
 M.setup = function()

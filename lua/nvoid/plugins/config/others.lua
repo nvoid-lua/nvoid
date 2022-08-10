@@ -72,9 +72,8 @@ M.luasnip = function()
 
   vim.api.nvim_create_autocmd("InsertLeave", {
     callback = function()
-      if
-        require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
-        and not require("luasnip").session.jump_active
+      if require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+          and not require("luasnip").session.jump_active
       then
         require("luasnip").unlink_current()
       end
@@ -86,7 +85,7 @@ M.devicons = function()
   local present, devicons = pcall(require, "nvim-web-devicons")
 
   if present then
-    local options = { override = require("nvoid.ui.icons").devicons }
+    local options = { override = require("ui.icons").devicons }
     devicons.setup(options)
   end
 end

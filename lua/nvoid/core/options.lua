@@ -15,8 +15,8 @@ opt.splitright = true
 opt.showtabline = 2
 vim.t.bufs = vim.api.nvim_list_bufs()
 opt.laststatus = 3
-opt.statusline = "%!v:lua.require'nvoid.ui.statusline'.run()"
-opt.tabline = "%!v:lua.require'nvoid.ui.bufferline'.run()"
+opt.statusline = "%!v:lua.require'ui.statusline'.run()"
+opt.tabline = "%!v:lua.require'ui.bufferline'.run()"
 
 opt.clipboard = options.clipboard
 opt.cmdheight = options.cmdheight
