@@ -9,8 +9,7 @@ M.def_plugins = {
   {
     "nvoid-lua/nvoid-ui",
     config = function()
-      require("ui").base16_init()
-      require("ui").cmd()
+      require("ui").setup()
     end,
   },
 
