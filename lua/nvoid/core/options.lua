@@ -13,6 +13,7 @@ opt.termguicolors = true
 opt.splitbelow = true
 opt.splitright = true
 opt.laststatus = 3
+opt.showtabline = 2
 opt.statusline = "%!v:lua.require'nvoid.ui.statusline'.run()"
 opt.tabline = "%!v:lua.require'nvoid.ui.bufferline'.run()"
 

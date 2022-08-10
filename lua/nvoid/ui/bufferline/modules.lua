@@ -32,7 +32,7 @@ local function getNvimTreeWidth()
   return 0
 end
 
-local function getnsWidth()
+local function getBtnsWidth()
   local width = 6
   if fn.tabpagenr "$" ~= 1 then
     width = width + ((3 * fn.tabpagenr "$") + 2) + 10
@@ -49,18 +49,36 @@ local function add_fileInfo(name, bufnr)
       icon, icon_hl = devicons.get_icon "default_icon"
     end
 
-    local fileInfo = " " .. icon .. " " .. name .. " " -- initial value
-    local pad = (24 - #fileInfo) / 2
+    local padding = (24 - #name - 5) / 2
 
     icon = (
       api.nvim_get_current_buf() == bufnr and new_hl(icon_hl, "LineBufOn") .. " " .. icon
       or new_hl(icon_hl, "LineBufOff") .. " " .. icon
     )
 
-    name = (#name > 15 and string.sub(name, 1, 13) .. "..") or name
-    name = (api.nvim_get_current_buf() == bufnr and "%#LineBufOn# " .. name .. " ") or ("%#LineBufOff# " .. name .. " ")
+    for _, value in ipairs(vim.t.bufs) do
+      if api.nvim_buf_is_valid(value) then
+        if name == fn.fnamemodify(api.nvim_buf_get_name(value), ":t") and value ~= bufnr then
+          name = api.nvim_buf_get_name(bufnr):match "[^/]*/?[^/]*$"
+          break
+        end
+      end
+    end
 
-    return string.rep(" ", pad) .. icon .. name .. string.rep(" ", pad - 1)
+    name = (#name > 18 and string.sub(name, 1, 16) .. "..") or name
+    name = (api.nvim_get_current_buf() == bufnr and "%#LineBufOn# " .. name) or ("%#LineBufOff# " .. name)
+
+    if vim.g.bufpick_showNums then
+      for index, value in ipairs(vim.t.bufs) do
+        if value == bufnr then
+          name = name .. " (" .. index .. ")"
+          vim.cmd "redrawtabline"
+          break
+        end
+      end
+    end
+
+    return string.rep(" ", padding) .. icon .. name .. string.rep(" ", padding)
   end
 end
 
@@ -90,10 +108,10 @@ M.CoverNvimTree = function()
 end
 
 M.bufferlist = function()
-  local buffers = {} -- buffersults
-  local available_space = vim.o.columns - getNvimTreeWidth() - getnsWidth()
+  local buffers = {}
+  local available_space = vim.o.columns - getNvimTreeWidth() - getBtnsWidth()
   local current_buf = api.nvim_get_current_buf()
-  local has_current = false -- have we seen current buffer yet?
+  local has_current = false
 
   for _, bufnr in ipairs(vim.t.bufs) do
     if api.nvim_buf_is_valid(bufnr) then
@@ -125,9 +143,11 @@ M.tablist = function()
       result = (i == fn.tabpagenr() and result .. "%#LineTabCloseBtn#" .. "%@TabClose@ %X") or result
     end
 
-    local tabstoggleBtn = "%@ToggleTabs@ %#TabTitle#%X"
+    local new_tabtn = "%#lineTabNewBtn#" .. "%@NewTab@  %X"
+    local tabstoggleBtn = "%@ToggleTabs@ %#TabTitle# TABS %X"
 
-    return vim.g.TabsToggled == 1 and tabstoggleBtn:gsub("()", { [36] = " " }) or tabstoggleBtn .. result
+    return vim.g.TabsToggled == 1 and tabstoggleBtn:gsub("()", { [36] = " " })
+      or new_tabtn .. tabstoggleBtn .. result
   end
 end
 
