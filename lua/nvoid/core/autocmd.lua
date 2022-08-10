@@ -37,7 +37,7 @@ autocmd("BufUnload", {
 -- Fixes Autocomment
 autocmd("BufEnter", {
   pattern = "*",
-  commnd = "set fo-=c fo-=r fo-=o",
+  command = "set fo-=c fo-=r fo-=o",
 })
 
 -- Highlight Yanked Text
@@ -74,18 +74,6 @@ autocmd("BufDelete", {
           end
         end
       end
-    end
-  end,
-})
-
-autocmd({ "BufNewFile", "BufRead", "TabEnter" }, {
-  pattern = "*",
-  group = vim.api.nvim_create_augroup("TabuflineLazyLoad", {}),
-  callback = function()
-    if #vim.fn.getbufinfo { buflisted = 1 } >= 2 then
-      opt.showtabline = 2
-      opt.tabline = "%!v:lua.require'nvoid.ui.bufferline'.run()"
-      vim.api.nvim_del_augroup_by_name "TabuflineLazyLoad"
     end
   end,
 })
