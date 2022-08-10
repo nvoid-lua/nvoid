@@ -14,6 +14,7 @@ opt.splitbelow = true
 opt.splitright = true
 opt.laststatus = 3
 opt.statusline = "%!v:lua.require'nvoid.ui.statusline'.run()"
+opt.tabline = "%!v:lua.require'nvoid.ui.bufferline'.run()"
 
 opt.clipboard = options.clipboard
 opt.cmdheight = options.cmdheight

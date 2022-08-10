@@ -14,16 +14,6 @@ M.def_plugins = {
     end,
   },
 
-  -- Bufferline
-  {
-    "akinsho/bufferline.nvim",
-    after = "base16",
-    branch = "main",
-    config = function()
-      require "nvoid.plugins.config.bufferline"
-    end,
-  },
-
   -- Term
   {
     "akinsho/toggleterm.nvim",
@@ -34,7 +24,13 @@ M.def_plugins = {
   },
 
   -- Icons
-  { "kyazdani42/nvim-web-devicons", after = "bufferline.nvim", module = "nvim-web-devicons" },
+  {
+    "kyazdani42/nvim-web-devicons",
+    module = "nvim-web-devicons",
+    config = function()
+      require("nvoid.plugins.config.others").devicons()
+    end,
+  },
 
   -- Indent Blankline
   {
@@ -68,11 +64,9 @@ M.def_plugins = {
   -- Git Sign
   {
     "lewis6991/gitsigns.nvim",
-    ft = "gitcommit",
     config = function()
       require "nvoid.plugins.config.gitsigns"
     end,
-    -- event = "BufRead",
   },
 
   -- LSP
