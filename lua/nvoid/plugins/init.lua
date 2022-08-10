@@ -25,8 +25,8 @@ M.def_plugins = {
   -- Icons
   {
     "kyazdani42/nvim-web-devicons",
-    -- after = "nvoid-ui",
-    -- module = "nvim-web-devicons",
+    after = "nvoid-ui",
+    module = "nvim-web-devicons",
     config = function()
       require("nvoid.plugins.config.others").devicons()
     end,
@@ -117,7 +117,7 @@ M.def_plugins = {
   -- Alpha
   {
     "goolord/alpha-nvim",
-    after = "base16",
+    after = "nvoid-ui",
     config = function()
       require "nvoid.plugins.config.alpha"
     end,
