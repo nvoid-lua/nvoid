@@ -55,8 +55,13 @@ lsp_installer.on_server_ready(function(server)
   end
 
   if server.name == "jsonls" then
-    local jsonls_opts = require ("nvoid.plugins.config.lsp.settings").json()
+    local jsonls_opts = require("nvoid.plugins.config.lsp.settings").json()
     opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
+  end
+
+  if server.name == "yamlls" then
+    local yamlls_opts = require("nvoid.plugins.config.lsp.settings").yaml()
+    opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
   end
 
   server:setup(opts)
