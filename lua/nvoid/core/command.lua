@@ -13,7 +13,7 @@ new_cmd("BufClose", function()
   vim.cmd [[bdelete %]]
 end, {})
 
-new_cmd("TbufPick", function()
+new_cmd("BufPick", function()
   vim.g.bufpick_showNums = true
   vim.cmd "redrawtabline"
   vim.api.nvim_echo({ { "Enter Num ", "Question" } }, false, {})
