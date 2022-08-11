@@ -4,9 +4,10 @@ local M = {}
 M.ui = {
   theme = "onedark",
   transparency = false,
-  statusline = "nvoid"
+  statusline = {
+    style = "nvoid",
+  },
 }
-
 -- OPT
 M.options = {
   clipboard = "unnamedplus",
