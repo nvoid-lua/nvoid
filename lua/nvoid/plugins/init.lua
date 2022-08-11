@@ -28,7 +28,6 @@ M.def_plugins = {
     config = function()
       require "nvoid.plugins.config.term"
     end,
-    event = "BufWinEnter",
   },
 
   -- Icons
