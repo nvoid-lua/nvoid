@@ -133,6 +133,9 @@ M.def_plugins = {
   -- Comment
   {
     "numToStr/Comment.nvim",
+    module = "Comment",
+    keys = { "gc", "gb" },
+    commit = "538dac19fb982278613688627bef7c0d9c442748",
     config = function()
       require("nvoid.plugins.config.others").commet()
     end,
