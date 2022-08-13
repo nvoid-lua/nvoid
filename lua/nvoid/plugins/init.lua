@@ -10,7 +10,7 @@ M.def_plugins = {
   {
     "nvoid-lua/base16",
     config = function()
-      require("base46").load_theme()
+      require("base16").load_theme()
     end,
   },
 

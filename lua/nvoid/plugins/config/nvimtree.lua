@@ -3,7 +3,7 @@ if not status_ok then
   return
 end
 local icons = require "ui.icons"
-require("base46").load_highlight "nvimtree"
+require("base16").load_highlight "nvimtree"
 
 nvim_tree.setup {
   auto_reload_on_write = true,

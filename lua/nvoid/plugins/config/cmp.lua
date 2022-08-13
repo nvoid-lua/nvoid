@@ -3,7 +3,7 @@ if not present then
   return
 end
 vim.opt.completeopt = "menuone,noselect"
-require("base46").load_highlight "cmp"
+require("base16").load_highlight "cmp"
 
 local function border(hl_name)
   return {

@@ -1,6 +1,6 @@
 local M = {}
 local icons = require "ui.icons"
-require("base46").load_highlight "notify-nvim"
+require("base16").load_highlight "notify-nvim"
 
 M.notify = function()
   require("notify").setup {

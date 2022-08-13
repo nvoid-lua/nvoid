@@ -36,8 +36,7 @@ opt.showmode = options.show_mode
 
 local config = require("nvoid.core.utils").load_config()
 
-g.nvchad_theme = config.ui.theme
-g.toggle_theme_icon = "   "
+g.theme = config.ui.theme
 g.transparency = config.ui.transparency
 g.theme_switcher_loaded = false
 

@@ -3,7 +3,7 @@ if not present then
   return
 end
 local icons = require("ui.icons").whick_key
-require("base46").load_highlight "whichkey"
+require("base16").load_highlight "whichkey"
 
 wk.setup {
   plugins = {
