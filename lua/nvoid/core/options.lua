@@ -34,6 +34,13 @@ opt.swapfile = options.swap_file
 opt.backup = options.backup
 opt.showmode = options.show_mode
 
+local config = require("nvoid.core.utils").load_config()
+
+g.nvchad_theme = config.ui.theme
+g.toggle_theme_icon = "   "
+g.transparency = config.ui.transparency
+g.theme_switcher_loaded = false
+
 -- disable some builtin vim plugins
 local disabled_built_ins = {
   "2html_plugin",

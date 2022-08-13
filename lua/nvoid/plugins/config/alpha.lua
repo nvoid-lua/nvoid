@@ -3,6 +3,8 @@ if not status_ok then
   return
 end
 
+require("base46").load_highlight "dashboard"
+
 local dashboard = require "alpha.themes.dashboard"
 local text = require "ui.text"
 local fn = vim.fn

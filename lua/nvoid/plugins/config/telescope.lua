@@ -3,6 +3,7 @@ if not present then
   return
 end
 local icons = require "ui.icons"
+require("base46").load_highlight "telescope"
 
 telescope.setup {
   defaults = {

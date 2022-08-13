@@ -10,7 +10,7 @@ M.def_plugins = {
   {
     "nvoid-lua/base16",
     config = function()
-      require("base16").init()
+      require("base46").load_theme()
     end,
   },
 
@@ -53,7 +53,6 @@ M.def_plugins = {
   -- Colorizer
   {
     "norcalli/nvim-colorizer.lua",
-    opt = true,
     config = function()
       require("nvoid.plugins.config.others").colorizer()
     end,
@@ -134,8 +133,6 @@ M.def_plugins = {
   -- Comment
   {
     "numToStr/Comment.nvim",
-    module = "Comment",
-    keys = { "gc", "gb" },
     config = function()
       require("nvoid.plugins.config.others").commet()
     end,
@@ -144,8 +141,6 @@ M.def_plugins = {
   -- Nvim Tree
   {
     "kyazdani42/nvim-tree.lua",
-    ft = "alpha",
-    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     config = function()
       require "nvoid.plugins.config.nvimtree"
     end,

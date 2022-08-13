@@ -1,6 +1,7 @@
 local M = {}
 local icons = require("ui.icons").lsp
 local lsp_config = require("nvoid.core.utils").load_config()
+require("base46").load_highlight "lsp"
 
 M.setup = function()
   local signs = {
