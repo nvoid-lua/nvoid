@@ -38,7 +38,6 @@ local config = require("nvoid.core.utils").load_config()
 
 g.theme = config.ui.theme
 g.transparency = config.ui.transparency
-g.theme_switcher_loaded = false
 
 -- disable some builtin vim plugins
 local disabled_built_ins = {
