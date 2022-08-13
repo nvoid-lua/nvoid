@@ -9,7 +9,6 @@
 
 ![Nvoid Issues](https://img.shields.io/github/issues/nvoid-lua/nvoid?color=red&style=flat-square)
 ![Nvoid Size](https://img.shields.io/github/repo-size/nvoid-lua/nvoid?style=flat-square)
-![Nvoid Lines](https://img.shields.io/tokei/lines/github/nvoid-lua/nvoid?color=purple&label=Total%20Lines%20of%20code&style=flat-square)
 [![Last Commit](https://img.shields.io/github/last-commit/nvoid-lua/nvoid.svg?style=flat-square&label=Last%20Commit&color=58eb34)](https://github.com/nvoid-lua/nvoid/pulse)
 ![Nvoid License](https://img.shields.io/github/license/nvoid-lua/nvoid?style=flat-square)
 [![Neovim Minimum Version](https://img.shields.io/badge/Neovim-0.7+-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=white)](https://github.com/neovim/neovim)
