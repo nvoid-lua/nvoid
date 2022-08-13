@@ -6,15 +6,7 @@ M.def_plugins = {
   -- Packer
   { "wbthomason/packer.nvim", event = "VimEnter" },
 
-  -- Colors
-  {
-    "nvoid-lua/base16",
-    config = function()
-      require("base16").load_theme()
-    end,
-  },
-
-  -- UI
+  -- UI and colors
   {
     "nvoid-lua/nvoid-ui",
     config = function()
@@ -124,7 +116,7 @@ M.def_plugins = {
   -- Alpha
   {
     "goolord/alpha-nvim",
-    after = "base16",
+    after = "nvoid-ui",
     config = function()
       require "nvoid.plugins.config.alpha"
     end,
