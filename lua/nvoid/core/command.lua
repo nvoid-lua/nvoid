@@ -4,7 +4,7 @@ local new_cmd = vim.api.nvim_create_user_command
 
 -- Nvoid
 new_cmd("NvoidUpdater", function()
-  _UPDATER()
+  require("ui").update_nvoid()
 end, {})
 new_cmd("NvoidEditConfig", function()
   cmd [[ e ~/.config/nvim/lua/custom/nvoidrc.lua ]]
