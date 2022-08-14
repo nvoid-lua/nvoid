@@ -34,6 +34,9 @@ opt.swapfile = options.swap_file
 opt.backup = options.backup
 opt.showmode = options.show_mode
 
+local config = require("nvoid.core.utils").load_config()
+vim.g.theme = config.ui.theme
+vim.g.transparency = config.ui.transparency
 -- disable some builtin vim plugins
 local disabled_built_ins = {
   "2html_plugin",
