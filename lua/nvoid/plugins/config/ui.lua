@@ -1,8 +1,10 @@
+local config = require("nvoid.core.utils").load_config()
+vim.g.theme = config.ui.theme
+vim.g.transparency = config.ui.transparency
 local present, ui = pcall(require, "ui")
 if not present then
   return
 end
-local config = require("nvoid.core.utils").load_config()
 ui.setup {
   statusline = {
     enable = config.ui.statusline.enable,
