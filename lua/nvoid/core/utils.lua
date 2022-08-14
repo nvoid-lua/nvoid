@@ -1,5 +1,6 @@
 local M = {}
 
+M.update_nvoid = require "nvoid.core.updater.update"
 M.load_config = function()
   local conf = require "nvoid.core.def-config"
   local nvoidrcExists, change = pcall(require, "custom.nvoidrc")
