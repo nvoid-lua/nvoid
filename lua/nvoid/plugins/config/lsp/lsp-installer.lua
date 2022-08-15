@@ -44,7 +44,6 @@ for _, name in pairs(user_lsp.lsp_add) do
 end
 
 lsp_installer.on_server_ready(function(server)
-
   local opts = {
     on_attach = require("nvoid.plugins.config.lsp.config").on_attach,
     capabilities = require("nvoid.plugins.config.lsp.config").capabilities,
