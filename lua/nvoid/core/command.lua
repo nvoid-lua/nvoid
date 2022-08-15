@@ -12,7 +12,11 @@ end, {})
 
 -- Lsp
 new_cmd("NvoidFormat", function()
-  vim.lsp.buf.formatting()
+  if vim.g.vim_version > 7 then
+    vim.lsp.buf.format { async = true }
+  else
+    vim.lsp.buf.formatting()
+  end
 end, {})
 new_cmd("NvoidDiagnostics", function()
   vim.diagnostic.open_float(0, { show_header = false, severity_sort = true, scope = "line" })

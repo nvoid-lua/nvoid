@@ -37,6 +37,7 @@ opt.showmode = options.show_mode
 local config = require("nvoid.core.utils").load_config()
 vim.g.theme = config.ui.theme
 vim.g.transparency = config.ui.transparency
+g.vim_version = vim.version().minor
 -- disable some builtin vim plugins
 local disabled_built_ins = {
   "2html_plugin",

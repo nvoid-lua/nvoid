@@ -45,8 +45,8 @@ end
 
 lsp_installer.on_server_ready(function(server)
   local opts = {
-    on_attach = require("nvoid.plugins.config.lsp.handlers").on_attach,
-    capabilities = require("nvoid.plugins.config.lsp.handlers").capabilities,
+    -- on_attach = require("nvoid.plugins.config.lsp.config").on_attach,
+    capabilities = require("nvoid.plugins.config.lsp.config").capabilities,
   }
 
   if server.name == "sumneko_lua" then
