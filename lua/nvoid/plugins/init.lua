@@ -146,6 +146,7 @@ M.def_plugins = {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     config = function()
+      require("base16").load_highlight "telescope"
       require "nvoid.plugins.config.treesitter"
     end,
   },
