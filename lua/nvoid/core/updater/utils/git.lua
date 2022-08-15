@@ -1,6 +1,6 @@
 local utils = require "nvoid.core.utils"
-local misc = require "nvoid.updater.utils.misc"
-local prompts = require "nvoid.updater.utils.prompts"
+local misc = require "nvoid.core.updater.utils.misc"
+local prompts = require "nvoid.core.updater.utils.prompts"
 local echo = utils.echo
 
 local M = {}
