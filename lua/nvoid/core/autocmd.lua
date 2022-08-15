@@ -41,10 +41,11 @@ autocmd("BufEnter", {
 })
 
 -- Highlight Yanked Text
-autocmd({ "TextYankPost" }, {
-  callback = function()
-    vim.highlight.on_yank { higroup = "Visual", timeout = 200 }
-  end,
+vim.api.nvim_create_augroup("Highlight", { clear = true })
+autocmd("TextYankPost", {
+  command = "silent! lua vim.highlight.on_yank({higroup='IncSearch', timeout=1500, on_visual = true})",
+  group = "Highlight",
+  desc = "Highlight yanked text",
 })
 
 autocmd({ "BufAdd", "BufEnter" }, {
