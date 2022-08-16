@@ -2,10 +2,10 @@ local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
   return
 end
-local icons = require "ui.icons"
-require("base16").load_highlight "nvimtree"
+local icons = require("ui.icons")
+require("base16").load_highlight("nvimtree")
 
-nvim_tree.setup {
+nvim_tree.setup({
   auto_reload_on_write = true,
   disable_netrw = true,
   hijack_netrw = true,
@@ -41,5 +41,5 @@ nvim_tree.setup {
       glyphs = icons.nvimtree,
     },
   },
-  filters = { custom = { "^.git$" }, exclude = { vim.fn.stdpath "config" .. "/lua/custom" } },
-}
+  filters = { custom = { "^.git$" }, exclude = { vim.fn.stdpath("config") .. "/lua/custom" } },
+})

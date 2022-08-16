@@ -4,7 +4,7 @@ if not present then
   return
 end
 
-toggleterm.setup {
+toggleterm.setup({
   on_config_done = nil,
   size = 20,
   open_mapping = [[<c-t>]],
@@ -26,7 +26,7 @@ toggleterm.setup {
       background = "Normal",
     },
   },
-}
+})
 
 local present2, toggletermup = pcall(require, "toggleterm.terminal")
 if not present2 then
@@ -34,15 +34,15 @@ if not present2 then
 end
 
 local Terminal = toggletermup.Terminal
-local updater = Terminal:new {
+local updater = Terminal:new({
   direction = "float",
   dir = "~/.config/nvim/scripts",
   cmd = "bash ./updater.sh",
   hidden = true,
   on_close = function()
-    vim.notify "Restart Nvoid"
+    vim.notify("Restart Nvoid")
   end,
-}
+})
 
 function _UPDATER()
   updater:toggle()

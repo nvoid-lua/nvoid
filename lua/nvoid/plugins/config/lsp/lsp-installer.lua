@@ -3,7 +3,7 @@ if not status_ok then
   return
 end
 
-local async = require "plenary.async"
+local async = require("plenary.async")
 local notify = require("notify").async
 
 local servers = {

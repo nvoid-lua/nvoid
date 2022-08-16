@@ -5,8 +5,8 @@ if not present then
   return
 end
 
-require("base16").load_highlight "syntax"
-require("base16").load_highlight "treesitter"
+require("base16").load_highlight("syntax")
+require("base16").load_highlight("treesitter")
 
 local options = {
   ensure_installed = config.ts_add,

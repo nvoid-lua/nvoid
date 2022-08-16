@@ -8,8 +8,8 @@ M.lua = function()
         },
         workspace = {
           library = {
-            [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-            [vim.fn.stdpath "config" .. "/lua"] = true,
+            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+            [vim.fn.stdpath("config") .. "/lua"] = true,
           },
         },
       },
@@ -27,7 +27,7 @@ M.json = function()
       commands = {
         Format = {
           function()
-            vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line "$", 0 })
+            vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
           end,
         },
       },

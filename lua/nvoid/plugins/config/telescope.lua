@@ -2,10 +2,10 @@ local present, telescope = pcall(require, "telescope")
 if not present then
   return
 end
-local icons = require "ui.icons"
-require("base16").load_highlight "telescope"
+local icons = require("ui.icons")
+require("base16").load_highlight("telescope")
 
-telescope.setup {
+telescope.setup({
   defaults = {
     vimgrep_arguments = {
       "rg",
@@ -59,9 +59,9 @@ telescope.setup {
       case_mode = "smart_case", -- or "ignore_case" or "respect_case"
     },
   },
-}
+})
 
-local extensions = { "themes", "terms", "fzf", }
+local extensions = { "themes", "terms", "fzf" }
 
 pcall(function()
   for _, ext in ipairs(extensions) do

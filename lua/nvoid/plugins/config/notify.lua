@@ -1,9 +1,9 @@
 local M = {}
-local icons = require "ui.icons"
-require("base16").load_highlight "notify-nvim"
+local icons = require("ui.icons")
+require("base16").load_highlight("notify-nvim")
 
 M.notify = function()
-  require("notify").setup {
+  require("notify").setup({
     stages = "slide",
     on_open = function(win)
       vim.api.nvim_win_set_config(win, { focusable = false })
@@ -17,8 +17,8 @@ M.notify = function()
       DEBUG = icons.lsp.debug,
       TRACE = "✎",
     },
-  }
-  local notify = require "notify"
+  })
+  local notify = require("notify")
   vim.notify = notify
 end
 

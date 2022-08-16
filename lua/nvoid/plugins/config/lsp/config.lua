@@ -1,7 +1,7 @@
 local M = {}
 local icons = require("ui.icons").lsp
 local lsp_config = require("nvoid.core.utils").load_config()
-require("base16").load_highlight "lsp"
+require("base16").load_highlight("lsp")
 
 M.setup = function()
   local signs = {
@@ -69,19 +69,19 @@ end
 M.AutoForamt = function()
   if lsp_config.lsp.autoforamt then
     local cmd = vim.cmd
-    cmd [[
+    cmd([[
     augroup LspFormatting
         autocmd! * <buffer>
         autocmd BufWritePre <buffer> NvoidFormat
     augroup END
-  ]]
+  ]] )
   end
 end
 
 if lsp_config.lsp.document_highlight then
   M.setup_document_highlight = function(client, bufnr)
     local status_ok, highlight_supported = pcall(function()
-      return client.supports_method "textDocument/documentHighlight"
+      return client.supports_method("textDocument/documentHighlight")
     end)
     if not status_ok or not highlight_supported then
       return

@@ -22,11 +22,11 @@ M.indent = function()
   if not status_ok then
     return
   end
-  require("base16").load_highlight "blankline"
+  require("base16").load_highlight("blankline")
 
-  indent.setup {
+  indent.setup({
     show_current_context = true,
-  }
+  })
   vim.opt.list = true
 end
 
@@ -35,7 +35,7 @@ M.commet = function()
   if not status_ok then
     return
   end
-  comment.setup {
+  comment.setup({
     padding = true,
     ignore = "^$",
     mappings = {
@@ -52,7 +52,7 @@ M.commet = function()
     },
     pre_hook = nil,
     post_hook = nil,
-  }
+  })
 end
 
 M.luasnip = function()
@@ -69,12 +69,13 @@ M.luasnip = function()
 
   luasnip.config.set_config(options)
   require("luasnip.loaders.from_vscode").lazy_load()
-  require("luasnip.loaders.from_vscode").lazy_load { paths = vim.g.luasnippets_path or "" }
+  require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.g.luasnippets_path or "" })
 
   vim.api.nvim_create_autocmd("InsertLeave", {
     callback = function()
-      if require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
-          and not require("luasnip").session.jump_active
+      if
+        require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+        and not require("luasnip").session.jump_active
       then
         require("luasnip").unlink_current()
       end
@@ -84,7 +85,7 @@ end
 
 M.devicons = function()
   local present, devicons = pcall(require, "nvim-web-devicons")
-  require("base16").load_highlight "devicons"
+  require("base16").load_highlight("devicons")
 
   if present then
     local options = { override = require("ui.icons").devicons }

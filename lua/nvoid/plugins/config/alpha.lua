@@ -3,10 +3,10 @@ if not status_ok then
   return
 end
 
-require("base16").load_highlight "dashboard"
+require("base16").load_highlight("dashboard")
 
-local dashboard = require "alpha.themes.dashboard"
-local text = require "ui.text"
+local dashboard = require("alpha.themes.dashboard")
+local text = require("ui.text")
 local fn = vim.fn
 local plugins_count = fn.len(fn.globpath("~/.local/share/nvim/site/pack/packer/start", "*", 0, 1))
 

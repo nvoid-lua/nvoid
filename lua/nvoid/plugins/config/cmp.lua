@@ -3,7 +3,7 @@ if not present then
   return
 end
 vim.opt.completeopt = "menuone,noselect"
-require("base16").load_highlight "cmp"
+require("base16").load_highlight("cmp")
 
 local function border(hl_name)
   return {
@@ -18,7 +18,7 @@ local function border(hl_name)
   }
 end
 
-cmp.setup {
+cmp.setup({
   -- Config
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
@@ -60,10 +60,10 @@ cmp.setup {
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
-    ["<CR>"] = cmp.mapping.confirm {
+    ["<CR>"] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
-    },
+    }),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -91,11 +91,11 @@ cmp.setup {
   },
   window = {
     completion = {
-      border = border "CmpBorder",
+      border = border("CmpBorder"),
       winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
     },
     documentation = {
-      border = border "CmpDocBorder",
+      border = border("CmpDocBorder"),
     },
   },
   sources = {
@@ -110,4 +110,4 @@ cmp.setup {
     { name = "treesitter" },
     { name = "crates" },
   },
-}
+})
