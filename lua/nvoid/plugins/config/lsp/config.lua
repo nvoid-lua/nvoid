@@ -10,6 +10,16 @@ M.setup = function()
     { name = "DiagnosticSignHint", text = icons.hint },
     { name = "DiagnosticSignInfo", text = icons.info },
   }
+  local borders = {
+    { "┌", "Normal" },
+    { "─", "Normal" },
+    { "┐", "Normal" },
+    { "│", "Normal" },
+    { "┘", "Normal" },
+    { "─", "Normal" },
+    { "└", "Normal" },
+    { "│", "Normal" },
+  }
 
   for _, sign in ipairs(signs) do
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
@@ -26,7 +36,7 @@ M.setup = function()
     float = {
       focusable = false,
       style = "minimal",
-      border = "rounded",
+      border = borders,
       source = "always",
       header = "",
       prefix = "",
@@ -36,12 +46,12 @@ M.setup = function()
   vim.diagnostic.config(config)
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
+    border = borders,
     width = 60,
   })
 
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
+    border = borders,
     width = 60,
   })
 
@@ -74,7 +84,7 @@ M.AutoForamt = function()
         autocmd! * <buffer>
         autocmd BufWritePre <buffer> NvoidFormat
     augroup END
-  ]] )
+  ]])
   end
 end
 

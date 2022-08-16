@@ -34,39 +34,28 @@ cmp.setup({
       require("luasnip").lsp_expand(args.body)
     end,
   },
-
+  -- Formatting
   formatting = {
-    fields = { "kind", "abbr", "menu" },
-    format = function(entry, vim_item)
+    format = function(_, vim_item)
       local icons = require("ui.icons").cmp
-      vim_item.kind = string.format("%s", icons[vim_item.kind], vim_item.kind)
-      vim_item.menu = ({
-        nvim_lsp = "(LSP)",
-        path = "(Path)",
-        luasnip = "(Snippet)",
-        cmp_tabnine = "(Tabnine)",
-        emoji = "(Emoji)",
-        calc = "(Calc)",
-        vsnip = "(Snippet)",
-        buffer = "(Buffer)",
-        zsh = "(ZSH)",
-      })[entry.source.name]
-
+      vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
       return vim_item
     end,
   },
   -- Duplicates
   duplicates = {
-    buffer = 0,
-    path = 0,
+    buffer = 1,
+    path = 1,
     nvim_lsp = 0,
-    luasnip = 0,
+    luasnip = 1,
   },
   duplicates_default = 0,
   -- Mappings
   mapping = {
     ["<C-p>"] = cmp.mapping.select_prev_item(),
     ["<C-n>"] = cmp.mapping.select_next_item(),
+    -- ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+    -- ["<Tab>"] = cmp.mapping.select_next_item(),
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
@@ -120,6 +109,5 @@ cmp.setup({
     { name = "emoji" },
     { name = "treesitter" },
     { name = "crates" },
-    { name = "zsh" },
   },
 })
