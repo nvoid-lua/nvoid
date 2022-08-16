@@ -4,7 +4,7 @@ local M = {}
 M.opt = {
   display = {
     open_fn = function()
-      return require("packer.util").float { border = "single" }
+      return require("packer.util").float({ border = "single" })
     end,
     prompt_border = "single",
   },
@@ -17,7 +17,7 @@ M.opt = {
 
 -- Load
 M.load = function()
-  vim.cmd "packadd packer.nvim"
+  vim.cmd("packadd packer.nvim")
   local present, packer = pcall(require, "packer")
   if not present then
     return false

@@ -4,16 +4,16 @@ local cmd = vim.cmd
 local opt = vim.opt
 
 -- Fix NvimTree
-cmd [[autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]]
+cmd([[autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]])
 
 -- Use 'q' to quit from common plugins
 autocmd({ "FileType" }, {
   pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "lir" },
   callback = function()
-    cmd [[
+    cmd([[
       nnoremap <silent> <buffer> q :close<CR> 
       set nobuflisted 
-    ]]
+    ]])
   end,
 })
 

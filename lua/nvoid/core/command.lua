@@ -7,13 +7,13 @@ new_cmd("NvoidUpdater", function()
   require("nvoid.core.utils").update_nvoid()
 end, {})
 new_cmd("NvoidEditConfig", function()
-  cmd [[ e ~/.config/nvim/lua/custom/nvoidrc.lua ]]
+  cmd([[ e ~/.config/nvim/lua/custom/nvoidrc.lua ]])
 end, {})
 
 -- Lsp
 new_cmd("NvoidFormat", function()
   if vim.g.vim_version > 7 then
-    vim.lsp.buf.format { async = true }
+    vim.lsp.buf.format({ async = true })
   else
     vim.lsp.buf.formatting()
   end
