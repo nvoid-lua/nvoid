@@ -109,5 +109,6 @@ cmp.setup({
     { name = "emoji" },
     { name = "treesitter" },
     { name = "crates" },
+    { name = "cmdline" },
   },
 })
