@@ -54,8 +54,6 @@ cmp.setup({
   mapping = {
     ["<C-p>"] = cmp.mapping.select_prev_item(),
     ["<C-n>"] = cmp.mapping.select_next_item(),
-    -- ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-    -- ["<Tab>"] = cmp.mapping.select_next_item(),
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
@@ -92,7 +90,7 @@ cmp.setup({
   window = {
     completion = {
       border = border("CmpBorder"),
-      winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+      winhighlight = "Normal:CmpPmenu,FloatBorder:Pmenu,Search:None",
     },
     documentation = {
       border = border("CmpDocBorder"),
