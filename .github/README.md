@@ -34,27 +34,23 @@ for more info go to https://nvoid.org
 ```
         
 # Gallery
-![dashboard](https://user-images.githubusercontent.com/94284073/176967715-026afc51-d292-434c-b145-2d33c91cb0bb.png)
+![alpha](https://user-images.githubusercontent.com/94284073/184992440-f347d569-2041-4c54-8789-1253a6122776.png)
 
+- Colors
+![catppuccin](https://user-images.githubusercontent.com/94284073/184992612-91cb86b1-6cc5-4dd8-952d-d104dad801c4.png)
+![classic_dark](https://user-images.githubusercontent.com/94284073/184992616-4312a74c-6044-47ed-8d62-ea9b1c5b763d.png)
+![dracula](https://user-images.githubusercontent.com/94284073/184992618-20e90e33-9404-4838-ad8d-637f6a506e99.png)
+![gruvbox](https://user-images.githubusercontent.com/94284073/184992619-2a9f4684-2745-495c-b85c-0f5069db7852.png)
+![nord](https://user-images.githubusercontent.com/94284073/184992622-41b2d0e2-a78c-426f-bacf-29b248ca6bbf.png)
+![onedark](https://user-images.githubusercontent.com/94284073/184992623-dfbc908e-e1e6-4068-bee5-955889d54c84.png)
+![solarized](https://user-images.githubusercontent.com/94284073/184992627-04c9ead7-7137-4d96-abe9-770a34a362ed.png)
+![tokyodark](https://user-images.githubusercontent.com/94284073/184992630-a7178876-83b3-4669-8b00-cc9ce35441c9.png)
+![uwu](https://user-images.githubusercontent.com/94284073/184992631-fadc3041-a491-4545-9de1-8d137338e8f9.png)
 
-<details><summary> <b>Themes (Click to expand!)</b></summary>
- 
-![catppuccin](https://user-images.githubusercontent.com/94284073/174412677-325eb0a3-f8d8-4ca0-9529-de31b57e2743.png)
-![Classic Dark](https://user-images.githubusercontent.com/94284073/174412661-b0b57330-8a63-4c47-880a-9570e2809bc9.png)
-![Nord](https://user-images.githubusercontent.com/94284073/174412671-916e9fb5-e863-43a7-b9f9-d9974059945e.png)
-![Onedark](https://user-images.githubusercontent.com/94284073/174412713-6db538c3-5909-4b09-8ad6-76e61d651162.png)
-![Solarized](https://user-images.githubusercontent.com/94284073/174412746-c30fedda-3609-4869-ac3e-4c278dee7101.png)
-![TokyoDark](https://user-images.githubusercontent.com/94284073/174412765-b85d6ed5-fa00-498e-835a-b48478824410.png)
-![UWU](https://user-images.githubusercontent.com/94284073/174412787-202e2e24-09aa-43f8-b97a-5df6128630bf.png)
-
-</details>
-
-<details><summary> <b>Status Line (Click to expand!)</b></summary>
-  
-![default](https://user-images.githubusercontent.com/94284073/177632869-7dea4a85-310a-4200-890d-6a55aea23e48.png)
-![evil](https://user-images.githubusercontent.com/94284073/177632879-32c8b97e-f5c4-40e7-9f85-63ee91c9b0f2.png)
-![minimal](https://user-images.githubusercontent.com/94284073/177632880-f8e4e97c-ddef-4003-82c8-506dd4ef27a2.png)
-![nvoid](https://user-images.githubusercontent.com/94284073/177632884-afe78c6c-97c1-4d2f-985b-7b287d285a85.png)
+- statuslines
+![evil](https://user-images.githubusercontent.com/94284073/184992719-5f8daf32-89dc-4e7f-afd1-270e1fd6707c.png)
+![minimal](https://user-images.githubusercontent.com/94284073/184992721-d20c536a-6f08-4f51-8973-28c22c35e4d2.png)
+![nvoid](https://user-images.githubusercontent.com/94284073/184992722-dc07f4c6-22d0-4250-aa62-38119a2b506c.png)
 
  
 </details>
