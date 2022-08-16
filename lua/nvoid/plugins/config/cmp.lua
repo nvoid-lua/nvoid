@@ -7,13 +7,13 @@ require("base16").load_highlight("cmp")
 
 local function border(hl_name)
   return {
-    { "╭", hl_name },
+    { "┌", hl_name },
     { "─", hl_name },
-    { "╮", hl_name },
+    { "┐", hl_name },
     { "│", hl_name },
-    { "╯", hl_name },
+    { "┘", hl_name },
     { "─", hl_name },
-    { "╰", hl_name },
+    { "└", hl_name },
     { "│", hl_name },
   }
 end
