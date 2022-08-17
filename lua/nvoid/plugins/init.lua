@@ -1,27 +1,18 @@
 local M = {}
+local lazy = require("nvoid.core.lazy_load")
 local config = require("nvoid.core.utils").load_config().plugins.remove
 M.def_plugins = {
   -- Plenary
   { "nvim-lua/plenary.nvim" },
 
   -- Packer
-  { "wbthomason/packer.nvim", event = "VimEnter" },
+  { "wbthomason/packer.nvim", cmd = lazy.packer_cmds },
 
   -- UI and colors
   {
     "nvoid-lua/nvoid-ui",
     config = function()
       require("nvoid.plugins.config.ui")
-    end,
-  },
-
-  -- Term
-  {
-    "akinsho/toggleterm.nvim",
-    disable = config.toggleterm,
-    opt = true,
-    config = function()
-      require("nvoid.plugins.config.term")
     end,
   },
 
