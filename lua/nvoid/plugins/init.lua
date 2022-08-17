@@ -20,7 +20,7 @@ M.def_plugins = {
     after = "nvoid-ui",
     module = "nvim-web-devicons",
     config = function()
-      require("nvoid.plugins.config.others").devicons()
+      require("nvoid.plugins.config.devicons")
     end,
   },
 
@@ -30,7 +30,7 @@ M.def_plugins = {
     opt = true,
     after = "nvim-treesitter",
     config = function()
-      require("nvoid.plugins.config.others").indent()
+      require("nvoid.plugins.config.indent")
     end,
   },
 
@@ -42,7 +42,7 @@ M.def_plugins = {
     end,
     opt = true,
     config = function()
-      require("nvoid.plugins.config.others").colorizer()
+      require("nvoid.plugins.config.colorizer")
     end,
   },
 
@@ -97,7 +97,7 @@ M.def_plugins = {
     wants = "friendly-snippets",
     after = "nvim-cmp",
     cpnfig = function()
-      require("nvoid.plugins.config.others").luasnip()
+      require("nvoid.plugins.config.luasnip")
     end,
   },
 
@@ -133,7 +133,7 @@ M.def_plugins = {
     keys = { "gc", "gb" },
     commit = "538dac19fb982278613688627bef7c0d9c442748",
     config = function()
-      require("nvoid.plugins.config.others").commet()
+      require("nvoid.plugins.config.comment")
     end,
   },
 
