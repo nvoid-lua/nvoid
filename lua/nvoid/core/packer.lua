@@ -42,8 +42,8 @@ M.load = function()
     user_plugins = { add = {} }
   end
 
-  if not vim.tbl_islist(user_plugins.plugins.add) then
-    user_plugins.plugins.add = {}
+  if not vim.tbl_islist(user_plugins.plugins_add) then
+    user_plugins.plugins_add = {}
   end
 
   return packer.startup(function()
@@ -55,8 +55,8 @@ M.load = function()
     end
 
     -- User Plugins
-    if user_plugins.plugins.add and not vim.tbl_isempty(user_plugins.plugins.add) then
-      for _, plugin in pairs(user_plugins.plugins.add) do
+    if user_plugins.plugins_add and not vim.tbl_isempty(user_plugins.plugins_add) then
+      for _, plugin in pairs(user_plugins.plugins_add) do
         use(plugin)
       end
     end
