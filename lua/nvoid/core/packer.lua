@@ -3,6 +3,11 @@ local M = {}
 -- Opts
 M.opt = {
   display = {
+    working_sym = "ﲊ",
+    error_sym = "✗ ",
+    done_sym = " ",
+    removed_sym = " ",
+    moved_sym = "",
     open_fn = function()
       return require("packer.util").float({ border = "single" })
     end,
@@ -15,6 +20,7 @@ M.opt = {
   compile_on_sync = true,
 }
 
+local config = require("nvoid.core.utils").load_config()
 -- Load
 M.load = function()
   vim.cmd("packadd packer.nvim")
@@ -37,13 +43,8 @@ M.load = function()
   end
 
   -- User
-  local ok2, user_plugins = pcall(require, "custom.nvoidrc")
-  if not ok2 then
-    user_plugins = { add = {} }
-  end
-
-  if not vim.tbl_islist(user_plugins.plugins_add) then
-    user_plugins.plugins_add = {}
+  if not vim.tbl_islist(config.plugins.add) then
+    config.plugins.add = {}
   end
 
   return packer.startup(function()
@@ -55,8 +56,8 @@ M.load = function()
     end
 
     -- User Plugins
-    if user_plugins.plugins_add and not vim.tbl_isempty(user_plugins.plugins_add) then
-      for _, plugin in pairs(user_plugins.plugins_add) do
+    if config.plugins.add and not vim.tbl_isempty(config.plugins.add) then
+      for _, plugin in pairs(config.plugins.add) do
         use(plugin)
       end
     end

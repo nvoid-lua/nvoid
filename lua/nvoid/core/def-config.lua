@@ -54,6 +54,11 @@ M.lsp = {
 -- Add Lsp servers
 M.lsp_add = {}
 
+-- Plugins
+M.plugins = {
+  add = {},
+}
+
 -- Add new whichkey bind
 M.whichkey_add = {}
 
