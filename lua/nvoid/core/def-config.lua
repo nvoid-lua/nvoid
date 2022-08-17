@@ -57,6 +57,17 @@ M.lsp_add = {}
 -- Plugins
 M.plugins = {
   add = {},
+  remove = {
+    alpha = false,
+    indent_blankline = false,
+    null_ls = false,
+    gitsigns = false,
+    colorizer = false,
+    toggleterm = false,
+    nvimtree = false,
+    telescope = false,
+    which_key = false,
+  },
 }
 
 -- Add new whichkey bind

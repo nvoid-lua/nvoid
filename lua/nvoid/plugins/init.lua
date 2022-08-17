@@ -1,4 +1,5 @@
 local M = {}
+local config = require("nvoid.core.utils").load_config().plugins.remove
 M.def_plugins = {
   -- Plenary
   { "nvim-lua/plenary.nvim" },
@@ -17,6 +18,8 @@ M.def_plugins = {
   -- Term
   {
     "akinsho/toggleterm.nvim",
+    disable = config.toggleterm,
+    opt = true,
     config = function()
       require("nvoid.plugins.config.term")
     end,
@@ -36,6 +39,7 @@ M.def_plugins = {
   {
     "lukas-reineke/indent-blankline.nvim",
     opt = true,
+    disable = config.indent_blankline,
     after = "nvim-treesitter",
     config = function()
       require("nvoid.plugins.config.others").indent()
@@ -45,6 +49,8 @@ M.def_plugins = {
   -- Colorizer
   {
     "norcalli/nvim-colorizer.lua",
+    disable = config.colorizer,
+    opt = true,
     config = function()
       require("nvoid.plugins.config.others").colorizer()
     end,
@@ -63,6 +69,7 @@ M.def_plugins = {
   -- Git Sign
   {
     "lewis6991/gitsigns.nvim",
+    disable = config.gitsigns,
     config = function()
       require("nvoid.plugins.config.gitsigns")
     end,
@@ -76,7 +83,7 @@ M.def_plugins = {
       require("nvoid.plugins.config.lsp")
     end,
   },
-  { "jose-elias-alvarez/null-ls.nvim", after = "nvim-lspconfig" },
+  { "jose-elias-alvarez/null-ls.nvim", after = "nvim-lspconfig", disable = config.null_ls, },
   { "rafamadriz/friendly-snippets", module = { "cmp", "cmp_nvim_lsp" } },
 
   -- CMP
@@ -116,6 +123,7 @@ M.def_plugins = {
   -- Alpha
   {
     "goolord/alpha-nvim",
+    disable = config.alpha,
     after = "nvoid-ui",
     config = function()
       require("nvoid.plugins.config.alpha")
@@ -136,6 +144,10 @@ M.def_plugins = {
   -- Nvim Tree
   {
     "kyazdani42/nvim-tree.lua",
+    requires = {
+      'kyazdani42/nvim-web-devicons',
+    },
+    tag = 'nightly',
     config = function()
       require("nvoid.plugins.config.nvimtree")
     end,
@@ -145,6 +157,7 @@ M.def_plugins = {
   {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
+    disable = config.telescope,
     config = function()
       require("base16").load_highlight("telescope")
       require("nvoid.plugins.config.treesitter")
@@ -154,6 +167,7 @@ M.def_plugins = {
   -- Which Key
   {
     "folke/which-key.nvim",
+    disable = config.which_key,
     config = function()
       require("nvoid.plugins.config.which-key")
     end,
