@@ -76,7 +76,7 @@ M.def_plugins = {
       require("nvoid.plugins.config.lsp")
     end,
   },
-  { "jose-elias-alvarez/null-ls.nvim" },
+  { "jose-elias-alvarez/null-ls.nvim", after = "nvim-lspconfig" },
   { "rafamadriz/friendly-snippets", module = { "cmp", "cmp_nvim_lsp" } },
 
   -- CMP
