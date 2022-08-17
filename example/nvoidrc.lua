@@ -41,8 +41,8 @@ M.lsp = {
 M.lsp_add = {} -- "bashls"
 
 -- Add Plugins
-M.plugins_add = {
-  -- { "folke/zen-mode.nvim" }
+M.plugins = {
+  --add = { "folke/zen-mode.nvim" }
 }
 
 -- Add new whichkey bind
