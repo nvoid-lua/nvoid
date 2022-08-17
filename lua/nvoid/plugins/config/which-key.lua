@@ -98,7 +98,6 @@ wk.register({
     I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
     r = { "<cmd>NvoidRename<cr>", "Rename" },
     f = { "<cmd>NvoidFormat<cr>", "Format" },
-    t = { "<cmd>TroubleToggle<cr>", "Trouble Toggle" },
   },
   p = {
     name = " Packer",
