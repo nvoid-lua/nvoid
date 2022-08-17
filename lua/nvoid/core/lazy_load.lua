@@ -1,9 +1,7 @@
 local M = {}
 local autocmd = vim.api.nvim_create_autocmd
+-- Thanks for the  nvchad repo
 
--- require("packer").loader(tb.plugins)
--- This must be used for plugins that need to be loaded just after a file
--- ex : treesitter, lspconfig etc
 M.lazy_load = function(tb)
   autocmd(tb.events, {
     group = vim.api.nvim_create_augroup(tb.augroup_name, {}),
@@ -11,8 +9,6 @@ M.lazy_load = function(tb)
       if tb.condition() then
         vim.api.nvim_del_augroup_by_name(tb.augroup_name)
 
-        -- dont defer for treesitter as it will show slow highlighting
-        -- This deferring only happens only when we do "nvim filename"
         if tb.plugin ~= "nvim-treesitter" then
           vim.defer_fn(function()
             require("packer").loader(tb.plugin)
@@ -27,10 +23,6 @@ M.lazy_load = function(tb)
     end,
   })
 end
-
--- load certain plugins only when there's a file opened in the buffer
--- if "nvim filename" is executed -> load the plugin after nvim gui loads
--- This gives an instant preview of nvim with the file opened
 
 M.on_file_open = function(plugin_name)
   M.lazy_load {
@@ -65,15 +57,6 @@ M.treesitter_cmds = {
   "TSEnable",
   "TSDisable",
   "TSModuleInfo",
-}
-
-M.mason_cmds = {
-  "Mason",
-  "MasonInstall",
-  "MasonInstallAll",
-  "MasonUninstall",
-  "MasonUninstallAll",
-  "MasonLog",
 }
 
 M.gitsigns = function()

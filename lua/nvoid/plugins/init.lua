@@ -1,12 +1,10 @@
 local M = {}
-local lazy = require("nvoid.core.lazy_load")
-local config = require("nvoid.core.utils").load_config().plugins.remove
 M.def_plugins = {
   -- Plenary
   { "nvim-lua/plenary.nvim" },
 
   -- Packer
-  { "wbthomason/packer.nvim", cmd = lazy.packer_cmds },
+  { "wbthomason/packer.nvim", cmd = require("nvoid.core.lazy_load").packer_cmds },
 
   -- UI and colors
   {
@@ -30,7 +28,6 @@ M.def_plugins = {
   {
     "lukas-reineke/indent-blankline.nvim",
     opt = true,
-    disable = config.indent_blankline,
     after = "nvim-treesitter",
     config = function()
       require("nvoid.plugins.config.others").indent()
@@ -40,7 +37,9 @@ M.def_plugins = {
   -- Colorizer
   {
     "norcalli/nvim-colorizer.lua",
-    disable = config.colorizer,
+    setup = function()
+      require("nvoid.core.lazy_load").on_file_open "nvim-colorizer.lua"
+    end,
     opt = true,
     config = function()
       require("nvoid.plugins.config.others").colorizer()
@@ -51,6 +50,10 @@ M.def_plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     module = "nvim-treesitter",
+    setup = function()
+      require("nvoid.core.lazy_load").on_file_open "nvim-treesitter"
+    end,
+    cmd = require("nvoid.core.lazy_load").treesitter_cmds,
     run = ":TSUpdate",
     config = function()
       require("nvoid.plugins.config.treesitter")
@@ -60,7 +63,10 @@ M.def_plugins = {
   -- Git Sign
   {
     "lewis6991/gitsigns.nvim",
-    disable = config.gitsigns,
+    ft = "gitcommit",
+    setup = function()
+      require("nvoid.core.lazy_load").gitsigns()
+    end,
     config = function()
       require("nvoid.plugins.config.gitsigns")
     end,
@@ -74,8 +80,8 @@ M.def_plugins = {
       require("nvoid.plugins.config.lsp")
     end,
   },
-  { "jose-elias-alvarez/null-ls.nvim", after = "nvim-lspconfig", disable = config.null_ls, },
-  { "rafamadriz/friendly-snippets", module = { "cmp", "cmp_nvim_lsp" } },
+  { "jose-elias-alvarez/null-ls.nvim", after = "nvim-lspconfig", },
+  { "rafamadriz/friendly-snippets", module = { "cmp", "cmp_nvim_lsp" }, event = "InsertEnter", },
 
   -- CMP
   {
@@ -114,7 +120,6 @@ M.def_plugins = {
   -- Alpha
   {
     "goolord/alpha-nvim",
-    disable = config.alpha,
     after = "nvoid-ui",
     config = function()
       require("nvoid.plugins.config.alpha")
@@ -135,9 +140,8 @@ M.def_plugins = {
   -- Nvim Tree
   {
     "kyazdani42/nvim-tree.lua",
-    requires = {
-      'kyazdani42/nvim-web-devicons',
-    },
+    ft = "alpha",
+    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     tag = 'nightly',
     config = function()
       require("nvoid.plugins.config.nvimtree")
@@ -148,7 +152,6 @@ M.def_plugins = {
   {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
-    disable = config.telescope,
     config = function()
       require("base16").load_highlight("telescope")
       require("nvoid.plugins.config.treesitter")
@@ -158,7 +161,8 @@ M.def_plugins = {
   -- Which Key
   {
     "folke/which-key.nvim",
-    disable = config.which_key,
+    module = "which-key",
+    keys = "<leader>",
     config = function()
       require("nvoid.plugins.config.which-key")
     end,
@@ -172,6 +176,6 @@ M.def_plugins = {
     end,
   },
 
-  { "lewis6991/impatient.nvim", module = "impatient" },
+  { "lewis6991/impatient.nvim" },
 }
 return M
