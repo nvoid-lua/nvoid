@@ -41,6 +41,7 @@ M.clear_last_echo = function()
   vim.api.nvim_feedkeys(":", "nx", true)
   vim.fn.inputrestore()
 end
+
 M.cmd = function(cmd, print_error)
   local result = vim.fn.system(cmd)
   if vim.api.nvim_get_vvar("shell_error") ~= 0 then

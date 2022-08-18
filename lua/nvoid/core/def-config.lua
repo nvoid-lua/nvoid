@@ -2,8 +2,6 @@ local M = {}
 
 -- UI
 M.ui = {
-  hl_override = {},
-  changed_themes = {},
   theme = "onedark", -- default theme
   transparency = false,
   statusline = {
