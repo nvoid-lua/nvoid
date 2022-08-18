@@ -1,4 +1,5 @@
 local M = {}
+local config = require("nvoid.core.utils").load_config().plugins.remove
 M.def_plugins = {
   -- Plenary
   { "nvim-lua/plenary.nvim" },
@@ -27,6 +28,7 @@ M.def_plugins = {
   -- Indent Blankline
   {
     "lukas-reineke/indent-blankline.nvim",
+    disable = config.blankline,
     opt = true,
     after = "nvim-treesitter",
     config = function()
@@ -37,6 +39,7 @@ M.def_plugins = {
   -- Colorizer
   {
     "norcalli/nvim-colorizer.lua",
+    disable = config.colorizer,
     setup = function()
       require("nvoid.core.lazy_load").on_file_open "nvim-colorizer.lua"
     end,
@@ -63,6 +66,7 @@ M.def_plugins = {
   -- Git Sign
   {
     "lewis6991/gitsigns.nvim",
+    disable = config.gitsigns,
     ft = "gitcommit",
     setup = function()
       require("nvoid.core.lazy_load").gitsigns()
@@ -126,6 +130,7 @@ M.def_plugins = {
   -- Alpha
   {
     "goolord/alpha-nvim",
+    disable = config.alpha ,
     after = "nvoid-ui",
     config = function()
       require("nvoid.plugins.config.alpha")
@@ -146,6 +151,7 @@ M.def_plugins = {
   -- Nvim Tree
   {
     "kyazdani42/nvim-tree.lua",
+    disable = config.nvimtree,
     ft = "alpha",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     tag = 'nightly',
