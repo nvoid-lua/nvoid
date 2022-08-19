@@ -3,6 +3,7 @@ if not status_ok then
   return
 end
 local icons = require("ui.icons")
+local config = require("nvoid.core.utils").load_config().plugins.nvimtree
 require("base16").load_highlight("nvimtree")
 
 nvim_tree.setup({
@@ -25,7 +26,7 @@ nvim_tree.setup({
     ignore_list = {},
   },
   git = {
-    enable = true,
+    enable = config.git,
     ignore = false,
     timeout = 200,
   },
@@ -35,6 +36,15 @@ nvim_tree.setup({
     side = "left",
   },
   renderer = {
+    indent_markers = {
+      enable = config.indent_markers,
+      icons = {
+        corner = "└",
+        edge = "│",
+        item = "│",
+        none = " ",
+      },
+    },
     root_folder_modifier = ":t",
     highlight_git = true,
     icons = {

@@ -60,6 +60,10 @@ M.plugins = {
     gitsigns = false,
     nvimtree = false,
   },
+  nvimtree = {
+    git = true,
+    indent_markers = true,
+  },
 }
 
 -- Add new whichkey bind

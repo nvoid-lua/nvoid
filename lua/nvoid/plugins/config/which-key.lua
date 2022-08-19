@@ -34,9 +34,9 @@ wk.setup({
     spacing = 3,
     align = "center",
   },
-  ignore_missing = false,
+  ignore_missing = true,
   hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " },
-  show_help = true,
+  show_help = false,
   triggers = "auto",
   triggers_blacklist = {
     i = { "j", "k" },
