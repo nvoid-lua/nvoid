@@ -13,6 +13,7 @@ opt.termguicolors = true
 opt.splitbelow = true
 opt.splitright = true
 opt.showtabline = 2
+opt.shm = "I"
 vim.t.bufs = vim.api.nvim_list_bufs()
 opt.laststatus = 3
 
