@@ -221,7 +221,9 @@ install_deps
 copy_old_config
 clone_repo
 clone_packer
+
 config
+
 echo "Preparing Packer setup"
 packer
 echo -e "\nCompile Complete"
