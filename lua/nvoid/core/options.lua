@@ -16,7 +16,7 @@ opt.showtabline = 2
 vim.t.bufs = vim.api.nvim_list_bufs()
 opt.laststatus = 3
 opt.ai = true
-opt.si = true
+opt.smartindent = true
 opt.path:append({ "**" })
 
 opt.clipboard = options.clipboard
