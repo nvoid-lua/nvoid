@@ -43,14 +43,13 @@ M.ts_add = {
   "python",
 }
 
--- Lsp Settings
+-- Lsp
 M.lsp = {
+  add = { "sumneko_lua" },
+  virtual_text = true,
   document_highlight = true,
   autoforamt = false,
 }
-
--- Add Lsp servers
-M.lsp_add = {}
 
 -- Plugins
 M.plugins = {
