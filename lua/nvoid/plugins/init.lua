@@ -41,7 +41,7 @@ M.def_plugins = {
     "norcalli/nvim-colorizer.lua",
     disable = config.colorizer,
     setup = function()
-      require("nvoid.core.lazy_load").on_file_open "nvim-colorizer.lua"
+      require("nvoid.core.lazy_load").on_file_open("nvim-colorizer.lua")
     end,
     opt = true,
     config = function()
@@ -54,7 +54,7 @@ M.def_plugins = {
     "nvim-treesitter/nvim-treesitter",
     module = "nvim-treesitter",
     setup = function()
-      require("nvoid.core.lazy_load").on_file_open "nvim-treesitter"
+      require("nvoid.core.lazy_load").on_file_open("nvim-treesitter")
     end,
     cmd = require("nvoid.core.lazy_load").treesitter_cmds,
     run = ":TSUpdate",
@@ -89,9 +89,9 @@ M.def_plugins = {
     after = "nvim-lspconfig",
     config = function()
       require("nvoid.plugins.config.lsp.null_ls")
-    end
+    end,
   },
-  { "rafamadriz/friendly-snippets", module = { "cmp", "cmp_nvim_lsp" }, event = "InsertEnter", },
+  { "rafamadriz/friendly-snippets", module = { "cmp", "cmp_nvim_lsp" }, event = "InsertEnter" },
 
   -- CMP
   {
@@ -130,7 +130,7 @@ M.def_plugins = {
   -- Alpha
   {
     "goolord/alpha-nvim",
-    disable = config.alpha ,
+    disable = config.alpha,
     after = "nvoid-ui",
     config = function()
       require("nvoid.plugins.config.alpha")
@@ -154,7 +154,7 @@ M.def_plugins = {
     disable = config.nvimtree,
     ft = "alpha",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    tag = 'nightly',
+    tag = "nightly",
     config = function()
       require("nvoid.plugins.config.nvimtree")
     end,
