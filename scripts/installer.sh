@@ -203,16 +203,17 @@ packer() {
 }
 
 ### Config
-nvoidrc() = {
+nvoidrc() {
   cd ~/.config/nvim/lua/
   cp -r ../example ./custom 
 }
+
 config() {
   read -p "Do you want to Create an nvoidrc ? (default no)  " -n 1 -r
   echo
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
-    nvoidrc()
+    nvoidrc
   fi
 }
 
