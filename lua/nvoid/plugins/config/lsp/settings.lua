@@ -1,7 +1,19 @@
 local M = {}
 
 M.lua = function()
-  return { settings = { Lua = { diagnostics = { globals = { "vim" } } } } }
+  return {
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = { "vim" },
+        },
+        workspace = {
+          library = vim.api.nvim_get_runtime_file("", true),
+          checkThirdParty = false,
+        },
+      },
+    },
+  }
 end
 M.json = function()
   return {
