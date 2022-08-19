@@ -43,7 +43,7 @@ M.ts_add = {
 
 -- Lsp
 M.lsp = {
-  add = { "lua-language-server", "sumneko_lua", "stylua" },
+  add = { "lua-language-server", "sumneko_lua" },
   virtual_text = true,
   document_highlight = true,
   autoforamt = false,
