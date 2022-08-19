@@ -2,12 +2,14 @@ local M = {}
 
 -- UI
 M.ui = {
-  theme = "onedark", -- "catppuccin" "classic-dark" "dracula" "gruvbox" "nord" "onedark" "solarized" "tokyodark" "uwu"
+  theme = "onedark", -- aquarium | catppuccin | classic-dark | dracula | gruvbox | nightfox | nord | onedark | radium | solarized | tokyodark | uwu
   transparency = false,
-  statusline = "nvoid", -- "default" "evil" "minimal" "nvoid"
+  statusline = {
+    enable = true,
+    style = "nvoid", -- evil | minimal | nvoid
+  },
 }
-
--- Options
+-- OPT
 M.options = {
   clipboard = "unnamedplus",
   cmdheight = 1,
@@ -28,26 +30,36 @@ M.options = {
   show_mode = false,
 }
 
--- Add treesitter highliter
-M.ts_add = {} -- "all"
+-- Add Treesitter langs
+M.ts_add = {} -- fish
 
--- Lsp Settings
+-- Lsp
 M.lsp = {
+  add = {},
+  virtual_text = true,
   document_highlight = true,
-  autoforamt = true,
+  autoforamt = false,
 }
 
--- Add new LSP server
-M.lsp_add = {} -- "bashls"
-
--- Add Plugins
+-- Plugins
 M.plugins = {
-  --add = { "folke/zen-mode.nvim" }
+  add = {},
+  remove = {
+    alpha = false,
+    blankline = false,
+    colorizer = false,
+    gitsigns = false,
+    nvimtree = false,
+  },
+  nvimtree = {
+    git = true,
+    indent_markers = true,
+  },
 }
 
 -- Add new whichkey bind
-M.whichkey_add = {
-  -- ["z"] = { "<cmd>ZenMode<cr>", "Zen Mode" }
-}
+M.whichkey_add = {}
+
+-- Note: Visit "https://github.com/ysfgrgO7/nvoid-custom-config" For more info how the file works
 
 return M
