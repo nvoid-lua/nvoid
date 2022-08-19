@@ -202,10 +202,25 @@ packer() {
     nvim --headless +'autocmd User PackerComplete sleep 10m | qall' +PackerSync
 }
 
+### Config
+nvoidrc() = {
+  cd ~/.config/nvim/lua/
+  cp -r ../example ./custom 
+}
+config() {
+  read -p "Do you want to Create an nvoidrc ? (default no)  " -n 1 -r
+  echo
+  if [[ $REPLY =~ ^[Yy]$ ]]
+  then
+    nvoidrc()
+  fi
+}
+
 install_deps
 copy_old_config
 clone_repo
 clone_packer
+config
 echo "Preparing Packer setup"
 packer
 echo -e "\nCompile Complete"
