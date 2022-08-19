@@ -7,11 +7,11 @@ end
 
 local options = {
   ensure_installed = config.ts_add,
+  auto_install = true,
   highlight = {
     enable = true,
     use_languagetree = true,
   },
-
   matchup = {
     enable = true,
   },
