@@ -59,4 +59,17 @@ M.treesitter_cmds = {
   "TSModuleInfo",
 }
 
+M.gitsigns = function()
+  autocmd({ "BufRead" }, {
+    callback = function()
+      vim.fn.system("git rev-parse 2>/dev/null " .. vim.fn.expand("%:p:h"))
+      if vim.v.shell_error == 0 then
+        vim.schedule(function()
+          require("packer").loader("gitsigns.nvim")
+        end)
+      end
+    end,
+  })
+end
+
 return M

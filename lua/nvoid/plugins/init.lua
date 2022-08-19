@@ -67,8 +67,9 @@ M.def_plugins = {
   {
     "lewis6991/gitsigns.nvim",
     disable = config.gitsigns,
-    ft = "gitcommit",
-    event = "BufRead",
+    setup = function()
+      require("nvoid.core.lazy_load").gitsigns()
+    end,
     config = function()
       require("nvoid.plugins.config.gitsigns")
     end,
