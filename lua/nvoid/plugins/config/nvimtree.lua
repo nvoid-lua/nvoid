@@ -4,7 +4,6 @@ if not status_ok then
 end
 local icons = require("ui.icons")
 local config = require("nvoid.core.utils").load_config().plugins.nvimtree
-require("base16").load_highlight("nvimtree")
 
 nvim_tree.setup({
   auto_reload_on_write = true,

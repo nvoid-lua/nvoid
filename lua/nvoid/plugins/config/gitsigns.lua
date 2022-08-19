@@ -2,7 +2,6 @@ local status_ok, gitsigns = pcall(require, "gitsigns")
 if not status_ok then
   return
 end
-require("base16").load_highlight("git")
 
 gitsigns.setup({
   signs = {
