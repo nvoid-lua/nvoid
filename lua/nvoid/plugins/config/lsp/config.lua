@@ -1,6 +1,5 @@
 local M = {}
 local lsp_config = require("nvoid.core.utils").load_config()
-require("base16").load_highlight("lsp")
 
 M.AutoForamt = function()
   if lsp_config.lsp.autoforamt then
@@ -10,7 +9,7 @@ M.AutoForamt = function()
         autocmd! * <buffer>
         autocmd BufWritePre <buffer> NvoidFormat
     augroup END
-  ]])
+  ]] )
   end
 end
 
