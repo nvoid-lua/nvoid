@@ -15,7 +15,8 @@ new_cmd("NvoidFormat", function()
   if vim.g.vim_version > 7 then
     vim.lsp.buf.format({ async = true })
   else
-    vim.lsp.buf.formatting()
+    -- vim.lsp.buf.formatting()
+    vim.lsp.buf.formatting_seq_sync()
   end
 end, {})
 new_cmd("NvoidDiagnostics", function()

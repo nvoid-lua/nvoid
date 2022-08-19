@@ -76,7 +76,8 @@ M.def_plugins = {
   },
 
   -- LSP
-  { "williamboman/nvim-lsp-installer" },
+  { "williamboman/mason.nvim" },
+  { "williamboman/mason-lspconfig.nvim" },
   {
     "neovim/nvim-lspconfig",
     config = function()

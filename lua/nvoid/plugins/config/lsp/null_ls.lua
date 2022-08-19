@@ -12,4 +12,13 @@ local sources = {
 null_ls.setup({
   debug = true,
   sources = sources,
+  on_attach = function()
+    vim.cmd([[
+      augroup document_highlight
+        autocmd! * <buffer>
+        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      augroup END
+    ]])
+  end,
 })
