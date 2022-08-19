@@ -24,7 +24,6 @@ M.options = {
   expand_tab = true,
   ignore_case = true,
   smart_case = true,
-  smart_indent = true,
   swap_file = false,
   backup = false,
   show_mode = false,

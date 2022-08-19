@@ -15,6 +15,9 @@ opt.splitright = true
 opt.showtabline = 2
 vim.t.bufs = vim.api.nvim_list_bufs()
 opt.laststatus = 3
+opt.ai = true
+opt.si = true
+opt.path:append({ "**" })
 
 opt.clipboard = options.clipboard
 opt.cmdheight = options.cmdheight
@@ -29,7 +32,6 @@ opt.hidden = options.hidden
 opt.expandtab = options.expand_tab
 opt.ignorecase = options.ignore_case
 opt.smartcase = options.smart_case
-opt.smartindent = options.smart_indent
 opt.swapfile = options.swap_file
 opt.backup = options.backup
 opt.showmode = options.show_mode
