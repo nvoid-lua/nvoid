@@ -9,7 +9,16 @@ if not status_ok2 then
 end
 local config = require("nvoid.core.utils").load_config().lsp.add
 
-mason.setup()
+mason.setup({
+  ui = {
+    border = "single",
+    icons = {
+      package_installed = " ",
+      package_pending = "ﲊ",
+      package_uninstalled = " ",
+    },
+  },
+})
 mason_lspconfig.setup({
   ensure_installed = config,
 })
