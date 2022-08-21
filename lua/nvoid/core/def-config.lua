@@ -63,6 +63,15 @@ M.plugins = {
     git = true,
     indent_markers = true,
   },
+  terminal = {
+    behavior = {
+      close_on_exit = true,
+    },
+    window = {
+      vsplit_ratio = 0.5,
+      split_ratio = 0.3,
+    },
+  },
 }
 
 -- Add new whichkey bind

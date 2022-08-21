@@ -1,5 +1,8 @@
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
+local utils = require("nvoid.core.utils")
+local config = utils.load_config()
+local terminal_options = config.plugins.terminal
 
 map("n", "<C-h>", "<C-w>h", opts)
 map("n", "<C-j>", "<C-w>j", opts)
@@ -25,6 +28,20 @@ map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 map("n", "<C-t>", '<CMD>lua require("FTerm").toggle()<CR>', opts)
 map("t", "<C-t>", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)
 -- Term
-map("n", "<A-t>", ":ToggleTerm<CR>", opts)
-map("i", "<A-t>", "<Esc>:ToggleTerm<CR>", opts)
-map("t", "<A-t>", "<C-\\><C-n>:ToggleTerm<CR>", opts)
+map(
+  "n",
+  "<A-t>",
+  "<cmd>lua require('nvoid.core.terminal').new_or_toggle('horizontal', "
+    .. tostring(terminal_options.window.split_height)
+    .. ")<cr>",
+  opts
+)
+
+map(
+  "t",
+  "<A-t>",
+  "<cmd>lua require('nvoid.core.terminal').new_or_toggle('horizontal', "
+    .. tostring(terminal_options.window.split_height)
+    .. ")<cr>",
+  opts
+)
