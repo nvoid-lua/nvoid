@@ -15,10 +15,10 @@ new_cmd("NvoidFormat", function()
   if vim.g.vim_version > 7 then
     vim.lsp.buf.format({ async = true })
   else
-    -- vim.lsp.buf.formatting()
     vim.lsp.buf.formatting_seq_sync()
   end
 end, {})
+
 new_cmd("NvoidDiagnostics", function()
   vim.diagnostic.open_float(0, { show_header = false, severity_sort = true, scope = "line" })
 end, {})
@@ -29,4 +29,12 @@ new_cmd("NvoidComment", function()
 end, {})
 new_cmd("NvoidCommentV", function()
   require("Comment.api").toggle_linewise_op(vim.fn.visualmode())
+end, {})
+
+new_cmd("FTermOpen", function()
+  require("FTerm").open()
+end, {})
+
+new_cmd("ToggleTerm", function()
+  cmd([[call TermToggle(12)]])
 end, {})

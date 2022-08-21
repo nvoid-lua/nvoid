@@ -1,6 +1,7 @@
 vim.defer_fn(function()
   pcall(require, "impatient")
 end, 0)
+require("nvoid.core.toggleterm")
 require("nvoid.core.autocmd")
 require("nvoid.core.command")
 require("nvoid.core.options")
