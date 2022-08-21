@@ -1,25 +1,26 @@
-vim.g.term_buf = 0
-vim.g.term_win = 0
-vim.cmd([[
-  function! TermToggle(height)
-      if win_gotoid(g:term_win)
-          hide
-      else
-          botright new
-          exec "resize " . a:height
-          try
-              exec "buffer " . g:term_buf
-          catch
-              call termopen($SHELL, {"detach": 0})
-              set nonumber
-              set norelativenumber
-              set signcolumn=no
-          endtry
-          startinsert!
-          let g:term_win = win_getid()
-      endif
-  endfunction
-]])
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+
+map("n", "<C-h>", "<C-w>h", opts)
+map("n", "<C-j>", "<C-w>j", opts)
+map("n", "<C-k>", "<C-w>k", opts)
+map("n", "<C-l>", "<C-w>l", opts)
+map("n", "<C-Up>", ":resize -1<CR>", opts)
+map("n", "<C-Down>", ":resize +1<CR>", opts)
+map("n", "<C-Left>", ":vertical resize -2<CR>", opts)
+map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+map("n", "<C-q>", ":q<CR>", opts)
+map("n", "<C-s>", ":w<CR>", opts)
+map("n", "<TAB>", ":BufNext<CR>", opts)
+map("n", "<S-TAB>", ":BufPrev<CR>", opts)
+map("n", "<S-x>", ":BufClose<CR>", opts)
+map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+map("n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+
 -- Float Term
 map("n", "<C-t>", '<CMD>lua require("FTerm").toggle()<CR>', opts)
 map("t", "<C-t>", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)
