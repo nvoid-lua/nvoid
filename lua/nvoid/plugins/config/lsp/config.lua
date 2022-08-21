@@ -1,6 +1,5 @@
 local M = {}
 local config = require("nvoid.core.utils").load_config().lsp
-local cmd = vim.cmd
 local icons = require("ui.icons").lsp
 local signs = {
   { name = "DiagnosticSignError", text = icons.error },
@@ -77,24 +76,10 @@ end
 
 M.AutoForamt = function()
   if config.autoforamt then
-    cmd([[
-    augroup LspFormatting
-        autocmd! * <buffer>
-        autocmd BufWritePre <buffer> NvoidFormat
-    augroup END
-  ]])
-  end
-end
-
-M.DocumentHighLight = function()
-  if config.document_highlight then
-    cmd([[
-      augroup document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]])
+    local autocmd = vim.api.nvim_create_autocmd
+    autocmd({ "BufWritePre" }, {
+      command = "NvoidFormat",
+    })
   end
 end
 
