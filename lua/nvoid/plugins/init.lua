@@ -86,6 +86,7 @@ M.def_plugins = {
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
+    after = "nvim-lspconfig",
     config = function()
       require("nvoid.plugins.config.lsp.null_ls")
     end,
