@@ -15,6 +15,15 @@ M.def_plugins = {
     end,
   },
 
+  -- Term
+  {
+    "numToStr/FTerm.nvim",
+    module = "FTerm",
+    config = function()
+      require("nvoid.plugins.config.fterm")
+    end,
+  },
+
   -- Icons
   {
     "kyazdani42/nvim-web-devicons",

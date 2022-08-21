@@ -15,14 +15,10 @@ local opts = {
 
 mason_lspconfig.setup_handlers({
   function(server_name) -- Default handler (optional)
-    lspconfig[server_name].setup {
+    lspconfig[server_name].setup({
       on_attach = opts.on_attach,
       capabilities = opts.capabilities,
-    }
-  end,
-
-  ["rust_analyzer"] = function()
-    require('rust-tools').setup({})
+    })
   end,
 
   ["sumneko_lua"] = function()
@@ -56,9 +52,9 @@ mason_lspconfig.setup_handlers({
         python = {
           analysis = {
             -- Disable strict type checking
-            typeCheckingMode = "off"
-          }
-        }
+            typeCheckingMode = "off",
+          },
+        },
       },
     })
   end,
@@ -119,7 +115,7 @@ mason_lspconfig.setup_handlers({
         commands = {
           Format = {
             function()
-              vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line "$", 0 })
+              vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
             end,
           },
         },
