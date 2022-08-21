@@ -27,3 +27,4 @@ mason_lspconfig.setup_handlers({
     require("lspconfig")[server_name].setup({})
   end,
 })
+require("nvoid.plugins.config.lsp.mason.settings")
