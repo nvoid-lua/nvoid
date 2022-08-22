@@ -37,34 +37,26 @@ if config.lsp.document_highlight then
   M.on_attach = function(client)
     if vim.g.vim_version > 7 then
       if client.server_capabilities.documentHighlightProvider then
-        vim.api.nvim_create_augroup("lsp_document_highlight", {})
-        vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-          group = "lsp_document_highlight",
-          buffer = 0,
-          callback = vim.lsp.buf.document_highlight,
-        })
-        vim.api.nvim_create_autocmd("CursorMoved", {
-          group = "lsp_document_highlight",
-          buffer = 0,
-          callback = vim.lsp.buf.clear_references,
-        })
+        vim.cmd([[
+          augroup document_highlight
+            autocmd! * <buffer>
+            autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+            autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+          augroup END
+        ]])
       end
     else
       if client.resolved_capabilities.document_highlight then
         if client.name == "tsserver" or client.name == "sumneko_lua" then
           client.resolved_capabilities.document_formatting = false
         end
-        vim.api.nvim_create_augroup("lsp_document_highlight", {})
-        vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-          group = "lsp_document_highlight",
-          buffer = 0,
-          callback = vim.lsp.buf.document_highlight,
-        })
-        vim.api.nvim_create_autocmd("CursorMoved", {
-          group = "lsp_document_highlight",
-          buffer = 0,
-          callback = vim.lsp.buf.clear_references,
-        })
+        vim.cmd([[
+          augroup document_highlight
+            autocmd! * <buffer>
+            autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+            autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+          augroup END
+        ]])
       end
     end
   end
