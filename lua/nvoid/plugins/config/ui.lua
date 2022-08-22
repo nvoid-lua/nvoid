@@ -5,7 +5,6 @@ if not present then
 end
 ui.setup({
   statusline = {
-    enable = config.ui.statusline.enable,
     style = config.ui.statusline.style,
   },
 })

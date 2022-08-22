@@ -5,7 +5,6 @@ M.ui = {
   theme = "onedarker", -- default theme
   transparency = false,
   statusline = {
-    enable = true,
     style = "nvoid",
   },
 }
