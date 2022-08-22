@@ -5,7 +5,6 @@ M.ui = {
   theme = "onedark", -- aquarium | catppuccin | classic-dark | dracula | gruvbox | nightfox | nord | onedark | radium | solarized | tokyodark | uwu
   transparency = false,
   statusline = {
-    enable = true,
     style = "nvoid", -- evil | minimal | nvoid
   },
 }
