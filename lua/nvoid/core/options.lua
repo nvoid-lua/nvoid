@@ -41,7 +41,10 @@ g.theme = config.ui.theme
 g.transparency = config.ui.transparency
 
 -- UI
-opt.statusline = "%!v:lua.require('nvoid.ui.statusline').run()"
+if config.ui.statusline.enabled then
+  opt.statusline = "%!v:lua.require('nvoid.ui.statusline').run()"
+end
+-- Bufferline
 if config.ui.bufferline.enabled and config.ui.bufferline.lazyload then
   require("nvoid.core.lazy_load").bufferline()
 elseif config.ui.bufferline.enabled then

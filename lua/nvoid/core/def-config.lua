@@ -6,6 +6,7 @@ M.ui = {
   transparency = false,
   statusline = {
     style = "nvoid",
+    enabled = true,
   },
   bufferline = {
     enabled = true,
