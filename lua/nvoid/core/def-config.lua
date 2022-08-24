@@ -8,7 +8,7 @@ M.ui = {
     style = "nvoid",
   },
   bufferline = {
-    enabled = false,
+    enabled = true,
     lazyload = true,
   }
 }
