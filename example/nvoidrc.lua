@@ -6,7 +6,12 @@ M.ui = {
   transparency = false,
   statusline = {
     style = "nvoid", -- evil | minimal | nvoid
+    enabled = true,
   },
+  bufferline = {
+    enabled = true,
+    lazyload = true,
+  }
 }
 -- OPT
 M.options = {
