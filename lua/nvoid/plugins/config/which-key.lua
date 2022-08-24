@@ -2,7 +2,7 @@ local present, wk = pcall(require, "which-key")
 if not present then
   return
 end
-local icons = require("ui.icons").whick_key
+local icons = require("nvoid.ui.icons").whick_key
 
 wk.setup({
   plugins = {
@@ -33,7 +33,7 @@ wk.setup({
     spacing = 3,
     align = "center",
   },
-  ignore_missing = true,
+  ignore_missing = false,
   hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " },
   show_help = false,
   triggers = "auto",

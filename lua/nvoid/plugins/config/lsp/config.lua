@@ -1,6 +1,6 @@
 local M = {}
 local config = require("nvoid.core.utils").load_config().lsp
-local icons = require("ui.icons").lsp
+local icons = require("nvoid.ui.icons").lsp
 local signs = {
   { name = "DiagnosticSignError", text = icons.error },
   { name = "DiagnosticSignWarn", text = icons.warn },

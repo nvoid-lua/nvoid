@@ -38,3 +38,37 @@ end, {})
 new_cmd("ToggleTerm", function()
   cmd([[call TermToggle(12)]])
 end, {})
+
+-- Rename
+new_cmd("NvoidRename", function()
+  require("nvoid.ui.rename").open()
+end, {})
+
+if require("nvoid.core.utils").load_config().ui.bufferline.enabled then
+  -- Bufferline
+  new_cmd("BufNext", function()
+    require("nvoid.ui.bufferline.utils").bufferlinenext()
+  end, {})
+  new_cmd("BufPrev", function()
+    require("nvoid.ui.bufferline.utils").bufferlineprev()
+  end, {})
+  new_cmd("BufClose", function()
+    vim.cmd([[bdelete %]])
+  end, {})
+  new_cmd("BufPick", function()
+    vim.g.bufpick_showNums = true
+    vim.cmd("redrawtabline")
+    vim.api.nvim_echo({ { "Enter Num ", "Question" } }, false, {})
+    local key = tonumber(vim.fn.nr2char(vim.fn.getchar()))
+    if key then
+      vim.cmd("b" .. vim.t.bufs[key])
+      vim.api.nvim_echo({ { "" } }, false, {})
+      vim.cmd("redraw")
+    else
+      vim.cmd("redraw")
+      print("bufpick cancelled, press a number key!")
+    end
+    vim.g.bufpick_showNums = false
+    vim.cmd("redrawtabline")
+  end, {})
+end

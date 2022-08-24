@@ -14,9 +14,6 @@ map("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 map("n", "<C-q>", ":q<CR>", opts)
 map("n", "<C-s>", ":w<CR>", opts)
-map("n", "<TAB>", ":BufNext<CR>", opts)
-map("n", "<S-TAB>", ":BufPrev<CR>", opts)
-map("n", "<S-x>", ":BufClose<CR>", opts)
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
@@ -45,3 +42,10 @@ map(
     .. ")<cr>",
   opts
 )
+
+if require("nvoid.core.utils").load_config().ui.bufferline.enabled then
+  map("n", "<TAB>", ":BufNext<CR>", opts)
+  map("n", "<S-TAB>", ":BufPrev<CR>", opts)
+  map("n", "<S-x>", ":BufClose<CR>", opts)
+end
+

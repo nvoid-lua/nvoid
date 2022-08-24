@@ -2,7 +2,7 @@ local present, telescope = pcall(require, "telescope")
 if not present then
   return
 end
-local icons = require("ui.icons")
+local icons = require("nvoid.ui.icons")
 
 telescope.setup({
   defaults = {

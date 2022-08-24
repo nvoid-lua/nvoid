@@ -1,5 +1,5 @@
 local M = {}
-local icons = require("ui.icons")
+local icons = require("nvoid.ui.icons")
 
 M.notify = function()
   require("notify").setup({

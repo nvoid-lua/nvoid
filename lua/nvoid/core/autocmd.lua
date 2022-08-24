@@ -22,7 +22,6 @@ autocmd("FileType", {
   pattern = "alpha",
   callback = function()
     opt.laststatus = 0
-    opt.showtabline = 0
   end,
 })
 
@@ -30,7 +29,6 @@ autocmd("BufUnload", {
   buffer = 0,
   callback = function()
     opt.laststatus = 3
-    opt.showtabline = 2
   end,
 })
 

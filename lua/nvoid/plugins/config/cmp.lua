@@ -36,7 +36,7 @@ cmp.setup({
   -- Formatting
   formatting = {
     format = function(_, vim_item)
-      local icons = require("ui.icons").cmp
+      local icons = require("nvoid.ui.icons").cmp
       vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
       return vim_item
     end,

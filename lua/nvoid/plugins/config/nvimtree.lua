@@ -2,7 +2,7 @@ local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
   return
 end
-local icons = require("ui.icons")
+local icons = require("nvoid.ui.icons")
 local config = require("nvoid.core.utils").load_config().plugins.nvimtree
 
 nvim_tree.setup({

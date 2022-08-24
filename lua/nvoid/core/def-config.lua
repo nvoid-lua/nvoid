@@ -7,6 +7,10 @@ M.ui = {
   statusline = {
     style = "nvoid",
   },
+  bufferline = {
+    enabled = false,
+    lazyload = true,
+  }
 }
 -- OPT
 M.options = {

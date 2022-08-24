@@ -1,6 +1,7 @@
 local opt = vim.opt
 local g = vim.g
 local options = require("nvoid.core.utils").load_config().options
+
 opt.history = 100
 opt.shiftwidth = 2
 opt.synmaxcol = 240
@@ -12,7 +13,6 @@ opt.updatetime = 300
 opt.termguicolors = true
 opt.splitbelow = true
 opt.splitright = true
-opt.showtabline = 2
 vim.t.bufs = vim.api.nvim_list_bufs()
 opt.laststatus = 3
 opt.ai = true
@@ -37,8 +37,18 @@ opt.backup = options.backup
 opt.showmode = options.show_mode
 
 local config = require("nvoid.core.utils").load_config()
-vim.g.theme = config.ui.theme
-vim.g.transparency = config.ui.transparency
+g.theme = config.ui.theme
+g.transparency = config.ui.transparency
+
+-- UI
+opt.statusline = "%!v:lua.require('nvoid.ui.statusline').run()"
+if config.ui.bufferline.enabled and config.ui.bufferline.lazyload then
+  require("nvoid.core.lazy_load").bufferline()
+elseif config.ui.bufferline.enabled then
+  vim.opt.showtabline = 2
+  vim.opt.tabline = "%!v:lua.require'nvoid.ui.bufferline'.run()"
+end
+
 g.vim_version = vim.version().minor
 -- disable some builtin vim plugins
 local disabled_built_ins = {

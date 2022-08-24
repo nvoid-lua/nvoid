@@ -9,9 +9,9 @@ M.def_plugins = {
 
   -- UI and colors
   {
-    "nvoid-lua/nvoid-ui",
+    "nvoid-lua/base16",
     config = function()
-      require("nvoid.plugins.config.ui")
+      require("base16").load_theme()
     end,
   },
 
@@ -27,7 +27,6 @@ M.def_plugins = {
   -- Icons
   {
     "kyazdani42/nvim-web-devicons",
-    after = "nvoid-ui",
     module = "nvim-web-devicons",
     config = function()
       require("nvoid.plugins.config.devicons")
@@ -140,7 +139,7 @@ M.def_plugins = {
   {
     "goolord/alpha-nvim",
     disable = config.alpha,
-    after = "nvoid-ui",
+    after = "base16",
     config = function()
       require("nvoid.plugins.config.alpha")
     end,
