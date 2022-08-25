@@ -7,6 +7,15 @@ if not status then
   return
 end
 
+local function attach_navic(client, bufnr)
+  vim.g.navic_silence = true
+  local status_ok, navic = pcall(require, "nvim-navic")
+  if not status_ok then
+    return
+  end
+  navic.attach(client, bufnr)
+end
+
 M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
 if config.lsp.document_highlight then
@@ -34,7 +43,8 @@ if config.lsp.document_highlight then
       callback = vim.lsp.buf.clear_references,
     })
   end
-  M.on_attach = function(client)
+  M.on_attach = function(client, bufnr)
+    attach_navic(client, bufnr)
     if vim.g.vim_version > 7 then
       if client.server_capabilities.documentHighlightProvider then
         vim.cmd([[
