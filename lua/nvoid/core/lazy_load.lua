@@ -72,18 +72,4 @@ M.gitsigns = function()
   })
 end
 
-M.bufferline = function()
-  autocmd({ "BufNewFile", "BufRead", "TabEnter" }, {
-    pattern = "*",
-    group = vim.api.nvim_create_augroup("TabuflineLazyLoad", {}),
-    callback = function()
-      if #vim.fn.getbufinfo({ buflisted = 1 }) >= 2 then
-        vim.opt.showtabline = 2
-        vim.opt.tabline = "%!v:lua.require'nvoid.ui.bufferline'.run()"
-        vim.api.nvim_del_augroup_by_name("TabuflineLazyLoad")
-      end
-    end,
-  })
-end
-
 return M

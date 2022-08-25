@@ -44,12 +44,21 @@ g.transparency = config.ui.transparency
 if config.ui.statusline.enabled then
   opt.statusline = "%!v:lua.require('nvoid.ui.statusline').run()"
 end
--- Bufferline
-if config.ui.bufferline.enabled and config.ui.bufferline.lazyload then
-  require("nvoid.core.lazy_load").bufferline()
-elseif config.ui.bufferline.enabled then
-  vim.opt.showtabline = 2
+
+if config.ui.bufferline.enabled then
   vim.opt.tabline = "%!v:lua.require'nvoid.ui.bufferline'.run()"
+end
+
+if config.ui.bufferline.always_show then
+  local autocmd = vim.api.nvim_create_autocmd
+  autocmd({ "BufNewFile", "BufRead", "TabEnter" }, {
+    pattern = "*",
+    callback = function()
+      if #vim.fn.getbufinfo({ buflisted = 1 }) >= 2 then
+        vim.opt.showtabline = 2
+      end
+    end,
+  })
 end
 
 g.vim_version = vim.version().minor
