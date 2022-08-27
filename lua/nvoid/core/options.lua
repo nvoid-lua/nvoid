@@ -13,6 +13,7 @@ opt.updatetime = 300
 opt.termguicolors = true
 opt.splitbelow = true
 opt.splitright = true
+opt.hidden = false
 vim.t.bufs = vim.api.nvim_list_bufs()
 opt.laststatus = 3
 opt.ai = true
@@ -28,7 +29,6 @@ opt.number = options.number
 opt.relativenumber = options.relative_number
 opt.numberwidth = options.number_width
 opt.cursorline = options.cursor_line
-opt.hidden = options.hidden
 opt.expandtab = options.expand_tab
 opt.ignorecase = options.ignore_case
 opt.smartcase = options.smart_case
@@ -54,6 +54,8 @@ if config.ui.bufferline.enabled then
       callback = function()
         if #vim.fn.getbufinfo({ buflisted = 1 }) >= 2 then
           vim.opt.showtabline = 2
+        else
+          vim.opt.showtabline = 0
         end
       end,
     })

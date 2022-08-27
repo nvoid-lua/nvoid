@@ -24,7 +24,6 @@ M.options = {
   relative_number = false,
   number_width = 6,
   cursor_line = true,
-  hidden = true,
   expand_tab = true,
   ignore_case = true,
   smart_case = true,
