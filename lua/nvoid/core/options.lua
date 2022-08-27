@@ -42,7 +42,7 @@ g.transparency = config.ui.transparency
 
 -- UI
 if config.ui.statusline.enabled then
-  opt.statusline = "%!v:lua.require('nvoid.ui.statusline').run()"
+  opt.statusline = config.ui.statusline.config
 end
 
 if config.ui.bufferline.enabled then

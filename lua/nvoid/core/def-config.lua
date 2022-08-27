@@ -5,6 +5,7 @@ M.ui = {
   theme = "onedarker", -- default theme
   transparency = false,
   statusline = {
+    config = "%!v:lua.require('nvoid.ui.statusline').run()",
     style = "nvoid",
     enabled = true,
   },
