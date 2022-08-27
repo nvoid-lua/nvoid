@@ -21,6 +21,9 @@ autocmd({ "FileType" }, {
 autocmd("FileType", {
   pattern = "alpha",
   callback = function()
+    if require("nvoid.core.utils").load_config().ui.bufferline.always_show then
+      opt.showtabline = 0
+    end
     opt.laststatus = 0
   end,
 })
@@ -28,6 +31,9 @@ autocmd("FileType", {
 autocmd("BufUnload", {
   buffer = 0,
   callback = function()
+    if require("nvoid.core.utils").load_config().ui.bufferline.always_show then
+      opt.showtabline = 2
+    end
     opt.laststatus = 3
   end,
 })

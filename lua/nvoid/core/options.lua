@@ -48,6 +48,8 @@ end
 if config.ui.bufferline.enabled then
   vim.opt.tabline = "%!v:lua.require'nvoid.ui.bufferline'.run()"
   if config.ui.bufferline.always_show then
+    vim.opt.showtabline = 2
+  else
     local autocmd = vim.api.nvim_create_autocmd
     autocmd({ "BufNewFile", "BufRead", "TabEnter" }, {
       pattern = "*",
