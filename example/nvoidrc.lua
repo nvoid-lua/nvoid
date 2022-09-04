@@ -56,7 +56,7 @@ M.plugins = {
   },
   nvimtree = {
     git = true,
-    indent_markers = true,
+    indent_markers = false,
   },
 }
 

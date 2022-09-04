@@ -3,6 +3,8 @@ local g = vim.g
 local config = require("nvoid.core.utils").load_config()
 
 -- Defs
+vim.t.bufs = vim.api.nvim_list_bufs()
+g.vim_version = vim.version().minor
 opt.history = 100
 opt.shiftwidth = 2
 opt.synmaxcol = 240
@@ -14,17 +16,19 @@ opt.updatetime = 300
 opt.termguicolors = true
 opt.splitbelow = true
 opt.splitright = true
-vim.t.bufs = vim.api.nvim_list_bufs()
 opt.ai = true
 opt.smartindent = true
 opt.path:append({ "**" })
 
+-- User Config
+g.theme = config.ui.theme
+g.transparency = config.ui.transparency
+g.mapleader = config.options.mapleader
 opt.clipboard = config.options.clipboard
 opt.cmdheight = config.options.cmdheight
 opt.laststatus = config.options.laststatus
 opt.hidden = config.options.hidden
 opt.mouse = config.options.mouse
-g.mapleader = config.options.mapleader
 opt.wrap = config.options.wrap
 opt.number = config.options.number
 opt.relativenumber = config.options.relative_number
@@ -37,10 +41,6 @@ opt.swapfile = config.options.swap_file
 opt.backup = config.options.backup
 opt.showmode = config.options.show_mode
 
-g.theme = config.ui.theme
-g.transparency = config.ui.transparency
-
-g.vim_version = vim.version().minor
 -- disable some builtin vim plugins
 local disabled_built_ins = {
   "2html_plugin",
