@@ -1,7 +1,8 @@
 local opt = vim.opt
 local g = vim.g
-local options = require("nvoid.core.utils").load_config().options
+local config = require("nvoid.core.utils").load_config()
 
+-- Defs
 opt.history = 100
 opt.shiftwidth = 2
 opt.synmaxcol = 240
@@ -13,30 +14,29 @@ opt.updatetime = 300
 opt.termguicolors = true
 opt.splitbelow = true
 opt.splitright = true
-opt.hidden = false
 vim.t.bufs = vim.api.nvim_list_bufs()
-opt.laststatus = 3
 opt.ai = true
 opt.smartindent = true
 opt.path:append({ "**" })
 
-opt.clipboard = options.clipboard
-opt.cmdheight = options.cmdheight
-opt.mouse = options.mouse
-g.mapleader = options.mapleader
-opt.wrap = options.wrap
-opt.number = options.number
-opt.relativenumber = options.relative_number
-opt.numberwidth = options.number_width
-opt.cursorline = options.cursor_line
-opt.expandtab = options.expand_tab
-opt.ignorecase = options.ignore_case
-opt.smartcase = options.smart_case
-opt.swapfile = options.swap_file
-opt.backup = options.backup
-opt.showmode = options.show_mode
+opt.clipboard = config.options.clipboard
+opt.cmdheight = config.options.cmdheight
+opt.laststatus = config.options.laststatus
+opt.hidden = config.options.hidden
+opt.mouse = config.options.mouse
+g.mapleader = config.options.mapleader
+opt.wrap = config.options.wrap
+opt.number = config.options.number
+opt.relativenumber = config.options.relative_number
+opt.numberwidth = config.options.number_width
+opt.cursorline = config.options.cursor_line
+opt.expandtab = config.options.expand_tab
+opt.ignorecase = config.options.ignore_case
+opt.smartcase = config.options.smart_case
+opt.swapfile = config.options.swap_file
+opt.backup = config.options.backup
+opt.showmode = config.options.show_mode
 
-local config = require("nvoid.core.utils").load_config()
 g.theme = config.ui.theme
 g.transparency = config.ui.transparency
 

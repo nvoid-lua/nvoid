@@ -17,6 +17,8 @@ M.ui = {
 -- OPT
 M.options = {
   clipboard = "unnamedplus",
+  laststatus = 3,
+  hidden = false,
   cmdheight = 1,
   mouse = "a",
   mapleader = " ",

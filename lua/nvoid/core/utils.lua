@@ -11,7 +11,7 @@ M.load_config = function()
     if type(nvoidrc) == "table" then
       config = merge_tb("force", config, nvoidrc) or {}
     else
-      error("nvoidrc must return a table!")
+      vim.notify("nvoidrc must return a table!")
     end
   end
 
