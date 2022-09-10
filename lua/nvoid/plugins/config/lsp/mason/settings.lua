@@ -29,7 +29,7 @@ mason_lspconfig.setup_handlers({
       settings = {
         Lua = {
           diagnostics = {
-            globals = { "vim" },
+            globals = { "vim", "nvoid", "lvim" },
           },
 
           workspace = {
