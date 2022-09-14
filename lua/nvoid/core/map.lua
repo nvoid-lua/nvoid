@@ -28,7 +28,7 @@ map("t", "<C-t>", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)
 map(
   "n",
   "<A-t>",
-  "<cmd>lua require('nvoid.core.terminal').new_or_toggle('horizontal', "
+  "<cmd>lua require('nvoid.builtin.terminal').new_or_toggle('horizontal', "
     .. tostring(terminal_options.window.split_height)
     .. ")<cr>",
   opts
@@ -37,7 +37,7 @@ map(
 map(
   "t",
   "<A-t>",
-  "<cmd>lua require('nvoid.core.terminal').new_or_toggle('horizontal', "
+  "<cmd>lua require('nvoid.builtin.terminal').new_or_toggle('horizontal', "
     .. tostring(terminal_options.window.split_height)
     .. ")<cr>",
   opts
@@ -48,4 +48,3 @@ if require("nvoid.core.utils").load_config().ui.bufferline.enabled then
   map("n", "<S-TAB>", ":BufPrev<CR>", opts)
   map("n", "<S-x>", ":BufClose<CR>", opts)
 end
-
