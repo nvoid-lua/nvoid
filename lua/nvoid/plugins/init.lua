@@ -194,7 +194,5 @@ M.def_plugins = {
       require("nvoid.plugins.config.notify").notify()
     end,
   },
-
-  { "lewis6991/impatient.nvim" },
 }
 return M

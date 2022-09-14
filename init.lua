@@ -1,6 +1,4 @@
-vim.defer_fn(function()
-  pcall(require, "impatient")
-end, 0)
+require("nvoid.builtin")
 vim.schedule_wrap(require("nvoid.core.terminal").init())
 require("nvoid.core.autocmd")
 require("nvoid.core.command")
