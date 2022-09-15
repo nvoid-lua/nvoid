@@ -21,8 +21,6 @@ opt.smartindent = true
 opt.path:append({ "**" })
 
 -- User Config
-g.theme = config.ui.theme
-g.transparency = config.ui.transparency
 g.mapleader = config.options.mapleader
 opt.clipboard = config.options.clipboard
 opt.cmdheight = config.options.cmdheight
