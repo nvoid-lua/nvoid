@@ -7,14 +7,6 @@ M.def_plugins = {
   -- Packer
   { "wbthomason/packer.nvim", cmd = require("nvoid.core.lazy_load").packer_cmds },
 
-  -- UI and colors
-  {
-    "nvoid-lua/base16",
-    config = function()
-      require("base16").load_theme()
-    end,
-  },
-
   -- Term
   {
     "numToStr/FTerm.nvim",
@@ -139,7 +131,7 @@ M.def_plugins = {
   {
     "goolord/alpha-nvim",
     disable = config.alpha,
-    after = "base16",
+    requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
       require("nvoid.plugins.config.alpha")
     end,
