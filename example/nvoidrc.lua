@@ -10,7 +10,7 @@ M.ui = {
   },
   bufferline = {
     enabled = true,
-    always_show = true,
+    lazyload = true,
   }
 }
 -- OPT
