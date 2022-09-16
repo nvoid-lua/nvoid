@@ -217,6 +217,7 @@ config() {
   fi
 }
 
+echo "Hello, $(whoami)!"
 install_deps
 copy_old_config
 clone_repo
