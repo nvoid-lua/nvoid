@@ -9,6 +9,9 @@ end, {})
 new_cmd("NvoidEditConfig", function()
   cmd([[ e ~/.config/nvim/lua/custom/nvoidrc.lua ]])
 end, {})
+new_cmd("NvoidInfo", function()
+  require("nvoid.core.info").toggle_popup(vim.bo.filetype)
+end, {})
 
 -- Lsp
 new_cmd("NvoidFormat", function()
