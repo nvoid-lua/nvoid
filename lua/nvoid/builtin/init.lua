@@ -7,6 +7,12 @@ end, 0)
 ------ terminal ------
 vim.schedule_wrap(require("nvoid.builtin.terminal").init())
 
+------ StatusLine ------
+local opt = vim.opt
+if config.ui.statusline.enabled then
+  opt.statusline = config.ui.statusline.config
+end
+
 ------ Bufferline ------
 if config.ui.bufferline.enabled then
   local present = pcall(require, "nvim-web-devicons")

@@ -2,7 +2,7 @@ local S = {}
 
 local config = require("nvoid.core.utils").load_config().ui.statusline.style
 
-local M = require "nvoid.ui.statusline.modules"
+local M = require "nvoid.builtin.statusline.modules"
 
 S.run = function()
   if config == "nvoid" then
