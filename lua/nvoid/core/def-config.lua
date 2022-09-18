@@ -10,7 +10,7 @@ M.ui = {
     enabled = true,
   },
   bufferline = {
-    enabled = false,
+    enabled = true,
     always_show = true,
   },
 }
