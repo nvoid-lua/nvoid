@@ -47,10 +47,10 @@ end, {})
 if require("nvoid.core.utils").load_config().ui.bufferline.enabled then
   -- Bufferline
   new_cmd("BufNext", function()
-    require("nvoid.ui.bufferline.utils").bufferlinenext()
+    require("nvoid.builtin.bufferline.utils").bufferlinenext()
   end, {})
   new_cmd("BufPrev", function()
-    require("nvoid.ui.bufferline.utils").bufferlineprev()
+    require("nvoid.builtin.bufferline.utils").bufferlineprev()
   end, {})
   new_cmd("BufClose", function()
     vim.cmd([[bdelete %]])
