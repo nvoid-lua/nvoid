@@ -82,21 +82,11 @@ function M.toggle_popup(ft)
   end
 
   local function set_syntax_hl()
-    vim.cmd([[highlight NVInfoIdentifier gui=bold]])
-    vim.cmd([[highlight link NVInfoHeader Type]])
     vim.fn.matchadd("NVInfoHeader", "Buffer info")
     vim.fn.matchadd("NVInfoHeader", "Active client(s)")
-    vim.fn.matchadd("NVInfoHeader", fmt("Overridden %s server(s)", ft))
-    vim.fn.matchadd("NVInfoHeader", "Formatters info")
-    vim.fn.matchadd("NVInfoHeader", "Linters info")
-    vim.fn.matchadd("NVInfoHeader", "Code actions info")
-    vim.fn.matchadd("NVInfoHeader", "Automatic LSP info")
-    vim.fn.matchadd("NVInfoIdentifier", " " .. ft .. "$")
-    vim.fn.matchadd("string", "true")
+    vim.fn.matchadd("NVInfoStar", "*")
     vim.fn.matchadd("string", "active")
-    vim.fn.matchadd("string", "")
     vim.fn.matchadd("boolean", "inactive")
-    vim.fn.matchadd("error", "false")
   end
 
   local Popup = require("nvoid.ui.popup"):new({
