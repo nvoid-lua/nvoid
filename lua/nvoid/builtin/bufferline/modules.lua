@@ -7,13 +7,13 @@ cmd "function! GoToBuf(bufnr,b,c,d) \n execute 'b'..a:bufnr \n endfunction"
 
 cmd [[
   function! KillBuf(bufnr,b,c,d)
-    call luaeval('require("nvoid.ui.bufferline.utils").bufferclose(_A)', a:bufnr)
+    call luaeval('require("nvoid.builtin.bufferline.utils").bufferclose(_A)', a:bufnr)
   endfunction]]
 
 cmd "function! NewTab(a,b,c,d) \n tabnew \n endfunction"
 cmd "function! GotoTab(tabnr,b,c,d) \n execute a:tabnr ..'tabnext' \n endfunction"
-cmd "function! TabClose(a,b,c,d) \n lua require('nvoid.ui.bufferline.utils').closeallbufs('closeTab') \n endfunction"
-cmd "function! CloseAllBufs(a,b,c,d) \n lua require('nvoid.ui.bufferline.utils').closeallbufs() \n endfunction"
+cmd "function! TabClose(a,b,c,d) \n lua require('nvoid.builtin.bufferline.utils').closeallbufs('closeTab') \n endfunction"
+cmd "function! CloseAllBufs(a,b,c,d) \n lua require('nvoid.builtin.bufferline.utils').closeallbufs() \n endfunction"
 cmd "function! ToggleTabs(a,b,c,d) \n let g:TabsToggled = !g:TabsToggled | redrawtabline \n endfunction"
 
 local function new_hl(group1, group2)
