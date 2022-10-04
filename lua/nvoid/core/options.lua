@@ -4,7 +4,6 @@ local config = require("nvoid.core.utils").load_config()
 
 -- Defs
 vim.t.bufs = vim.api.nvim_list_bufs()
-g.vim_version = vim.version().minor
 opt.history = 100
 opt.shiftwidth = 2
 opt.synmaxcol = 240

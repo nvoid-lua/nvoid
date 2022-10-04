@@ -45,7 +45,6 @@ if config.lsp.document_highlight then
   end
   M.on_attach = function(client, bufnr)
     attach_navic(client, bufnr)
-    if vim.g.vim_version > 7 then
       if client.server_capabilities.documentHighlightProvider then
         vim.cmd([[
           augroup document_highlight
@@ -55,20 +54,6 @@ if config.lsp.document_highlight then
           augroup END
         ]])
       end
-    else
-      if client.resolved_capabilities.document_highlight then
-        if client.name == "tsserver" or client.name == "sumneko_lua" then
-          client.resolved_capabilities.document_formatting = false
-        end
-        vim.cmd([[
-          augroup document_highlight
-            autocmd! * <buffer>
-            autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-            autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-          augroup END
-        ]])
-      end
-    end
   end
 end
 
