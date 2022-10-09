@@ -45,7 +45,7 @@ end
 
 function M.generate_settings()
   -- Opens a file in append mode
-  local file = io.open("lv-settings.lua", "w")
+  local file = io.open("nv-settings.lua", "w")
 
   -- sets the default output file as test.lua
   io.output(file)
