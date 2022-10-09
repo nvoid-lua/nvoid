@@ -385,7 +385,7 @@ function backup_old_config() {
 
 function clone_nvoid() {
   msg "Cloning nvoid configuration"
-  git clone https://github.com/ysfgrgO7/nvim.git ~/.local/share/nvoid/nvoid/
+  git clone https://github.com/nvoid/nvoid.git ~/.local/share/nvoid/nvoid/
 }
 
 function link_local_nvoid() {
