@@ -24,8 +24,10 @@
 bash <(curl -s https://raw.githubusercontent.com/nvoid/nvoid/master/utils/installer/install.sh)
 ```
 
-for more info go to https://nvoid.org
 
+for more info go to https://nvoid.org
+## Config
+the user config for nvoid is located art `~/.config/nvoid/config.lua` nearly every thing is configurable
 
 # Install LSP
 + it comes by default with Lua languages
