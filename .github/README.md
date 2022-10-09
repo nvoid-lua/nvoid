@@ -1,5 +1,3 @@
-# Nvoid(Rolling)
-
 <div align="center">
         
 [![Lua](https://img.shields.io/badge/Made%20with%20Lua-blue.svg?style=for-the-badge&logo=lua)](https://lua.org)
