@@ -1,18 +1,21 @@
-local M = {}
-local config = require("nvoid.core.utils").load_config().plugins.remove
-M.def_plugins = {
+local core_plugins = {
   -- Plenary
   { "nvim-lua/plenary.nvim" },
 
   -- Packer
-  { "wbthomason/packer.nvim", cmd = require("nvoid.core.lazy_load").packer_cmds },
+  { "wbthomason/packer.nvim" },
 
-  -- UI and colors
+  -- Base16
   {
     "nvoid-lua/base16",
+    branch = "nvoid-rolling",
     config = function()
       require("base16").load_theme()
     end,
+  },
+  {
+    "SmiteshP/nvim-navic",
+    requires = "neovim/nvim-lspconfig",
   },
 
   -- Term
@@ -29,14 +32,13 @@ M.def_plugins = {
     "kyazdani42/nvim-web-devicons",
     module = "nvim-web-devicons",
     config = function()
-      require("nvoid.plugins.config.devicons")
+      require("nvoid.plugins.config.devions")
     end,
   },
 
   -- Indent Blankline
   {
     "lukas-reineke/indent-blankline.nvim",
-    disable = config.blankline,
     opt = true,
     after = "nvim-treesitter",
     config = function()
@@ -47,7 +49,6 @@ M.def_plugins = {
   -- Colorizer
   {
     "norcalli/nvim-colorizer.lua",
-    disable = config.colorizer,
     setup = function()
       require("nvoid.core.lazy_load").on_file_open("nvim-colorizer.lua")
     end,
@@ -67,41 +68,37 @@ M.def_plugins = {
     cmd = require("nvoid.core.lazy_load").treesitter_cmds,
     run = ":TSUpdate",
     config = function()
-      require("nvoid.plugins.config.treesitter")
+      require("nvoid.plugins.config.treesitter").setup()
     end,
   },
 
-  -- Git Sign
+  -- Gitsigns
   {
     "lewis6991/gitsigns.nvim",
-    disable = config.gitsigns,
+    disable = not nvoid.builtin.gitsigns.active,
+    config = function()
+      require("nvoid.plugins.config.gitsigns").setup()
+    end,
     setup = function()
       require("nvoid.core.lazy_load").gitsigns()
     end,
-    config = function()
-      require("nvoid.plugins.config.gitsigns")
-    end,
   },
 
-  -- LSP
-  { "williamboman/mason.nvim" },
+  -- Lsp, cmp and luadev
+  {
+    "williamboman/mason.nvim",
+    config = function()
+      require("nvoid.plugins.config.mason").setup()
+    end,
+  },
   { "williamboman/mason-lspconfig.nvim" },
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      require("nvoid.plugins.config.lsp")
-    end,
-  },
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    after = "nvim-lspconfig",
-    config = function()
-      require("nvoid.plugins.config.lsp.null_ls")
-    end,
-  },
+  { "neovim/nvim-lspconfig" },
+  { "jose-elias-alvarez/null-ls.nvim" },
   { "rafamadriz/friendly-snippets", module = { "cmp", "cmp_nvim_lsp" }, event = "InsertEnter" },
-
-  -- CMP
+  {
+    "folke/lua-dev.nvim",
+    module = "lua-dev",
+  },
   {
     "hrsh7th/nvim-cmp",
     after = "friendly-snippets",
@@ -126,64 +123,62 @@ M.def_plugins = {
   { "hrsh7th/cmp-buffer", after = "cmp-nvim-lsp" },
   { "hrsh7th/cmp-path", after = "cmp-buffer" },
 
-  -- Auto Pairs
+  -- Autopairs
   {
     "windwp/nvim-autopairs",
     after = "nvim-cmp",
     config = function()
-      require("nvoid.plugins.config.autopairs")
+      require("nvoid.plugins.config.autopairs").setup()
     end,
+    disable = not nvoid.builtin.autopairs.active,
   },
 
   -- Alpha
   {
     "goolord/alpha-nvim",
-    disable = config.alpha,
     after = "base16",
     config = function()
       require("nvoid.plugins.config.alpha")
     end,
   },
 
-  -- Comment
+  -- Comments
   {
     "numToStr/Comment.nvim",
-    module = "Comment",
-    keys = { "gc", "gb" },
-    commit = "538dac19fb982278613688627bef7c0d9c442748",
     config = function()
       require("nvoid.plugins.config.comment")
     end,
   },
 
-  -- Nvim Tree
+  -- NvimTree
   {
     "kyazdani42/nvim-tree.lua",
-    disable = config.nvimtree,
+    disable = not nvoid.builtin.nvimtree.active,
     ft = "alpha",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     tag = "nightly",
     config = function()
-      require("nvoid.plugins.config.nvimtree")
+      require("nvoid.plugins.config.nvimtree").setup()
     end,
   },
 
-  -- telescope
+  -- Telescope
   {
     "nvim-telescope/telescope.nvim",
-    cmd = "Telescope",
+    branch = "0.1.x",
     config = function()
-      require("nvoid.plugins.config.treesitter")
+      require("nvoid.plugins.config.telescope").setup()
     end,
+    disable = not nvoid.builtin.telescope.active,
   },
 
-  -- Which Key
+  -- Whichkey
   {
     "folke/which-key.nvim",
     module = "which-key",
     keys = "<leader>",
     config = function()
-      require("nvoid.plugins.config.which-key")
+      require("nvoid.plugins.config.which-key").setup()
     end,
   },
 
@@ -191,8 +186,12 @@ M.def_plugins = {
   {
     "rcarriga/nvim-notify",
     config = function()
-      require("nvoid.plugins.config.notify").notify()
+      require("nvoid.plugins.config.notify").setup()
     end,
+    requires = { "nvim-telescope/telescope.nvim" },
+    disable = not nvoid.builtin.notify.active or not nvoid.builtin.telescope.active,
   },
+
 }
-return M
+
+return core_plugins

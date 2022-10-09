@@ -4,9 +4,9 @@ if not status_ok then
 end
 
 local dashboard = require("alpha.themes.dashboard")
-local text = require("nvoid.ui.text")
+local text = require("nvoid.interface.text")
 local fn = vim.fn
-local plugins_count = fn.len(fn.globpath("~/.local/share/nvim/site/pack/packer/start", "*", 0, 1))
+local plugins_count = fn.len(fn.globpath("~/.local/share/nvoid/site/pack/packer/start/", "*", 0, 1))
 
 -- Header
 local header = {
@@ -45,7 +45,7 @@ local buttons = {
     button("f", "  Find file", ":Telescope find_files <CR>"),
     button("n", "  New file", ":ene <BAR> startinsert <CR>"),
     button("o", "  Recent Files", ":Telescope oldfiles <CR>"),
-    button("e", "  Configuration", ":e ~/.config/nvim/lua/custom/nvoidrc.lua <CR>"),
+    button("e", "  Configuration", ":e ~/.config/nvoid/config.lua <CR>"),
     button("u", "  Update plugins", ":PackerSync<CR>"),
     button("U", "ﮮ  Update Nvoid", ":NvoidUpdater<CR>"),
     button("q", "  Quit", ":qa<CR>"),
@@ -89,5 +89,19 @@ local opts = {
     margin = 0,
   },
 }
+
+  local group = "_dashboard_settings"
+  vim.api.nvim_create_augroup(group, {})
+  vim.api.nvim_create_autocmd("FileType", {
+    group = group,
+    pattern = "alpha",
+    command = "set showtabline=0 | autocmd BufLeave <buffer> set showtabline=" .. vim.opt.showtabline._value,
+  })
+    -- https://github.com/goolord/alpha-nvim/issues/42
+    vim.api.nvim_create_autocmd("FileType", {
+      group = group,
+      pattern = "alpha",
+      command = "set laststatus=0 | autocmd BufUnload <buffer> set laststatus=" .. vim.opt.laststatus._value,
+    })
 
 alpha.setup(opts)

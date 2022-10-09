@@ -110,8 +110,7 @@ local config_handler = function(config)
 end
 
 M.init = function()
-  local config = require("nvoid.core.utils").load_config().plugins.terminal
-  config_handler(config)
+  config_handler(nvoid.terminal)
 end
 
 return M

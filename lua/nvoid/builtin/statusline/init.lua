@@ -1,11 +1,9 @@
 local S = {}
 
-local config = require("nvoid.core.utils").load_config().ui.statusline.style
-
 local M = require "nvoid.builtin.statusline.modules"
 
 S.run = function()
-  if config == "nvoid" then
+  if nvoid.statusline.style == "nvoid" then
     return table.concat {
       M.modeN(),
       M.fileInfo(),
@@ -20,7 +18,7 @@ S.run = function()
       M.lsp(),
       M.scrollbar(),
     }
-  elseif config == "minimal" then
+  elseif nvoid.statusline.style == "minimal" then
     return table.concat {
       M.modeM(),
       M.git(),
@@ -35,7 +33,7 @@ S.run = function()
       M.fileInfo(),
       M.scrollbar(),
     }
-  elseif config == "evil" then
+  elseif nvoid.statusline.style == "evil" then
     return table.concat {
       M.modeE(),
       M.fileInfo(),

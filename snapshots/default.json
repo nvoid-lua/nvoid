@@ -1,0 +1,116 @@
+{
+  "Comment.nvim": {
+    "commit": "30d23aa"
+  },
+  "FixCursorHold.nvim": {
+    "commit": "5aa5ff1"
+  },
+  "LuaSnip": {
+    "commit": "6e506ce"
+  },
+  "alpha-nvim": {
+    "commit": "0bb6fc0"
+  },
+  "bufferline.nvim": {
+    "commit": "ffa1d00"
+  },
+  "cmp-buffer": {
+    "commit": "3022dbc"
+  },
+  "cmp-nvim-lsp": {
+    "commit": "affe808"
+  },
+  "cmp-path": {
+    "commit": "447c87c"
+  },
+  "cmp_luasnip": {
+    "commit": "a9de941"
+  },
+  "dap-buddy.nvim": {
+    "commit": "3679132"
+  },
+  "friendly-snippets": {
+    "commit": "22a9975"
+  },
+  "gitsigns.nvim": {
+    "commit": "d7e0bcb"
+  },
+  "lua-dev.nvim": {
+    "commit": "fd7a18e"
+  },
+  "lualine.nvim": {
+    "commit": "a52f078"
+  },
+  "mason-lspconfig.nvim": {
+    "commit": "1534b61"
+  },
+  "mason.nvim": {
+    "commit": "b56ea0b"
+  },
+  "nlsp-settings.nvim": {
+    "commit": "e1fcc6e"
+  },
+  "null-ls.nvim": {
+    "commit": "bf02782"
+  },
+  "nvim-autopairs": {
+    "commit": "5fe2441"
+  },
+  "nvim-cmp": {
+    "commit": "913eb85"
+  },
+  "nvim-dap": {
+    "commit": "d9b315a"
+  },
+  "nvim-lspconfig": {
+    "commit": "f8b3c24"
+  },
+  "nvim-notify": {
+    "commit": "7076ce8"
+  },
+  "nvim-tree.lua": {
+    "commit": "fb8735e"
+  },
+  "nvim-treesitter": {
+    "commit": "2eaf188"
+  },
+  "nvim-ts-context-commentstring": {
+    "commit": "4d3a68c"
+  },
+  "nvim-web-devicons": {
+    "commit": "2d02a56"
+  },
+  "onedarker.nvim": {
+    "commit": "b00dd21"
+  },
+  "packer.nvim": {
+    "commit": "6afb674"
+  },
+  "plenary.nvim": {
+    "commit": "4b66054"
+  },
+  "popup.nvim": {
+    "commit": "b7404d3"
+  },
+  "project.nvim": {
+    "commit": "090bb11"
+  },
+  "schemastore.nvim": {
+    "commit": "92efc7c"
+  },
+  "structlog.nvim": {
+    "commit": "232a8e2"
+  },
+  "telescope-fzf-native.nvim": {
+    "commit": "65c0ee3"
+  },
+  "telescope.nvim": {
+    "commit": "0b1c41a"
+  },
+  "toggleterm.nvim": {
+    "commit": "5e393e5"
+  },
+  "which-key.nvim": {
+    "commit": "d5f0c63"
+  }
+}

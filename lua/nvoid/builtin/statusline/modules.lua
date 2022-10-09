@@ -1,5 +1,5 @@
 local fn = vim.fn
-local icons = require "nvoid.ui.icons"
+local icons = require "nvoid.interface.icons"
 
 local modesM = {
   ["n"] = { " normal", "St_ModeM" },
