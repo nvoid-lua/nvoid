@@ -60,7 +60,7 @@ return {
     float = {
       focusable = false,
       style = "minimal",
-      border = "rounded",
+      border = "single",
       source = "always",
       header = "",
       prefix = "",
@@ -78,7 +78,7 @@ return {
   float = {
     focusable = true,
     style = "minimal",
-    border = "rounded",
+    border = "single",
   },
   peek = {
     max_height = 15,

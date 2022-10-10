@@ -18,6 +18,12 @@ M.defaults = {
     end,
   },
   {
+    name = "NvoidDiagnostics",
+    fn = function()
+      vim.diagnostic.open_float(0, { show_header = false, severity_sort = true, scope = "line" })
+    end
+  },
+  {
     name = "NvoidFormat",
     fn = function()
       vim.lsp.buf.format({ async = true })
