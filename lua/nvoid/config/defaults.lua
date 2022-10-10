@@ -20,10 +20,6 @@ return {
     config = "%!v:lua.require('nvoid.builtin.statusline').run()",
     style = "nvoid"
   },
-  bufferline = {
-    enabled = true,
-    always_show = false
-  },
   terminal = {
     behavior = {
       close_on_exit = true,
