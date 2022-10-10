@@ -74,10 +74,10 @@ M.config = function()
     -- NOTE: Prefer using : over <cmd> as the latter avoids going back in normal-mode.
     -- see https://neovim.io/doc/user/map.html#:map-cmd
     vmappings = {
-      ["/"] = { "<Plug>(comment_toggle_linewise_visual)", "Comment toggle linewise (visual)" },
+      ["/"] = { "<Plug>(comment_toggle_linewise_visual)", "蘒Comment toggle linewise (visual)" },
     },
     mappings = {
-      ["/"] = { "<Plug>(comment_toggle_linewise_current)<cr>", "蘒Comment" },
+      ["/"] = { "<Plug>(comment_toggle_linewise_current)", "蘒Comment" },
       [";"] = { "<cmd>Alpha<cr>", " Alpha" },
       ["b"] = { "<cmd>Telescope buffers<cr>", "﬘ Buffers" },
       ["e"] = { "<cmd>NvimTreeToggle<cr>", " Explorer" },
