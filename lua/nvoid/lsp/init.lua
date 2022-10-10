@@ -94,10 +94,8 @@ function M.setup()
     return
   end
 
-  if nvoid.use_icons then
-    for _, sign in ipairs(nvoid.lsp.diagnostics.signs.values) do
-      vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
-    end
+  for _, sign in ipairs(nvoid.lsp.diagnostics.signs.values) do
+    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
   end
 
   require("nvoid.lsp.handlers").setup()

@@ -39,6 +39,7 @@ local skipped_servers = {
 local skipped_filetypes = { "markdown", "rst", "plaintext" }
 
 local join_paths = require("nvoid.utils").join_paths
+local icons = require("nvoid.interface.icons")
 
 return {
   templates_dir = join_paths(get_runtime_dir(), "site", "after", "ftplugin"),
@@ -46,10 +47,10 @@ return {
     signs = {
       active = true,
       values = {
-        { name = "DiagnosticSignError", text = "" },
-        { name = "DiagnosticSignWarn", text = "" },
-        { name = "DiagnosticSignHint", text = "" },
-        { name = "DiagnosticSignInfo", text = "" },
+        { name = "DiagnosticSignError", text = icons.lsp.error },
+        { name = "DiagnosticSignWarn", text = icons.lsp.warn },
+        { name = "DiagnosticSignHint", text = icons.lsp.hint },
+        { name = "DiagnosticSignInfo", text = icons.lsp.Info },
       },
     },
     virtual_text = true,

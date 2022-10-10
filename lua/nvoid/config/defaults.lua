@@ -12,8 +12,6 @@ return {
   },
   keys = {},
 
-  use_icons = true,
-
   builtin = {},
   statusline = {
     enabled = true,

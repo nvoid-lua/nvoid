@@ -28,24 +28,6 @@ function M:init()
 
   local nvoid_lsp_config = require "nvoid.lsp.config"
   nvoid.lsp = vim.deepcopy(nvoid_lsp_config)
-
-  ---@deprecated replaced with nvoid.builtin.alpha
-  nvoid.builtin.dashboard = {
-    active = false,
-    on_config_done = nil,
-    search_handler = "",
-    disable_at_vim_enter = 0,
-    session_directory = "",
-    custom_header = {},
-    custom_section = {},
-    footer = {},
-  }
-
-  nvoid.builtin.luasnip = {
-    sources = {
-      friendly_snippets = true,
-    },
-  }
 end
 
 --- Override the configuration with a user provided one
