@@ -24,15 +24,6 @@ local defaults = {
 }
 
 function M.config()
-  if not nvoid.use_icons then
-    defaults.opts.icons = {
-      ERROR = "[ERROR]",
-      WARN = "[WARNING]",
-      INFO = "[INFo]",
-      DEBUG = "[DEBUG]",
-      TRACE = "[TRACE]",
-    }
-  end
   nvoid.builtin.notify = vim.tbl_deep_extend("force", defaults, nvoid.builtin.notify or {})
 end
 
