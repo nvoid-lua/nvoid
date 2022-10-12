@@ -53,7 +53,7 @@ function M.load_defaults()
       "FileType",
       {
         group = "_buffer_mappings",
-        pattern = { "qf", "help", "man", "floaterm", "lspinfo", "lsp-installer", "null-ls-info" },
+        pattern = { "qf", "help", "man", "floaterm", "lspinfo", "lir", "spectre_panel", "lsp-installer", "null-ls-info" },
         command = "nnoremap <silent> <buffer> q :close<CR>",
       },
     },
@@ -71,6 +71,14 @@ function M.load_defaults()
         group = "_auto_resize",
         pattern = "*",
         command = "tabdo wincmd =",
+      },
+    },
+
+    {
+      "BufEnter",
+      {
+        pattern = "*",
+        command = "set fo-=c fo-=r fo-=o",
       },
     },
   }
@@ -128,6 +136,7 @@ function M.toggle_format_on_save()
     M.disable_format_on_save()
   end
 end
+
 --- Clean autocommand in a group if it exists
 --- This is safer than trying to delete the augroup itself
 ---@param name string the augroup name
