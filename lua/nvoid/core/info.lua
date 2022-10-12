@@ -220,4 +220,5 @@ function M.toggle_popup(ft)
 
   return Popup
 end
+
 return M
