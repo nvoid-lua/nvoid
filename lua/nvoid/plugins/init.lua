@@ -96,8 +96,8 @@ local core_plugins = {
   { "jose-elias-alvarez/null-ls.nvim" },
   { "rafamadriz/friendly-snippets", module = { "cmp", "cmp_nvim_lsp" }, event = "InsertEnter" },
   {
-    "folke/lua-dev.nvim",
-    module = "lua-dev",
+    "folke/neodev.nvim",
+    module = "neodev",
   },
   {
     "hrsh7th/nvim-cmp",
