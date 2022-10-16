@@ -18,11 +18,6 @@ local function border(hl_name)
 end
 
 cmp.setup {
-  -- Config
-  confirm_opts = {
-    behavior = cmp.ConfirmBehavior.Replace,
-    select = false,
-  },
   -- Completion
   completion = {
     keyword_length = 1,
