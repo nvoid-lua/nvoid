@@ -21,7 +21,7 @@
 
 # Install In One Command
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/nvoid/nvoid/master/utils/installer/install.sh)
+bash <(curl -s https://raw.githubusercontent.com/nvoid-lua/nvoid/master/utils/installer/install.sh)
 ```
 
 
