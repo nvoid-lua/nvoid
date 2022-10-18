@@ -103,7 +103,7 @@ local core_plugins = {
     "hrsh7th/nvim-cmp",
     after = "friendly-snippets",
     config = function()
-      require("nvoid.plugins.config.cmp")
+      require("nvoid.plugins.config.cmp").setup()
     end,
   },
 
