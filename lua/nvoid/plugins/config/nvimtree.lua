@@ -58,15 +58,7 @@ function M.config()
         highlight_git = true,
         icons = { glyphs = icons.nvimtree }
       },
-      open_on_setup = false,
-      open_on_setup_file = false,
       sort_by = "name",
-      ignore_buffer_on_setup = false,
-      ignore_ft_on_setup = {
-        "startify",
-        "dashboard",
-        "alpha",
-      },
       hijack_directories = {
         enable = true,
         auto_open = true,
