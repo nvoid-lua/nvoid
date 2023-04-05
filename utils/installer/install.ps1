@@ -2,7 +2,7 @@
 $ErrorActionPreference = "Stop" # exit when command fails
 
 # set script variables
-$NVOID_BRANCH = $NVOID_BRANCH ?? "main"
+$NVOID_BRANCH = $NVOID_BRANCH ?? "master"
 $NVOID_REMOTE = $NVOID_REMOTE ?? "nvoid-lua/nvoid.git"
 $INSTALL_PREFIX = $INSTALL_PREFIX ?? "$HOME\.local"
 
