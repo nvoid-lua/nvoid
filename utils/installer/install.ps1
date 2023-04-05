@@ -3,7 +3,7 @@ $ErrorActionPreference = "Stop" # exit when command fails
 
 # set script variables
 $NVOID_BRANCH = $NVOID_BRANCH ?? "main"
-$NVOID_REMOTE = $NVOID_REMOTE ?? "sarvex/nvoid.git"
+$NVOID_REMOTE = $NVOID_REMOTE ?? "nvoid-lua/nvoid.git"
 $INSTALL_PREFIX = $INSTALL_PREFIX ?? "$HOME\.local"
 
 $env:XDG_DATA_HOME = $env:XDG_DATA_HOME ?? $env:APPDATA
