@@ -11,12 +11,14 @@ $env:XDG_CONFIG_HOME = $env:XDG_CONFIG_HOME ?? $env:LOCALAPPDATA
 $env:XDG_CACHE_HOME = $env:XDG_CACHE_HOME ?? $env:TEMP
 
 $env:NVOID_RUNTIME_DIR = $env:NVOID_RUNTIME_DIR ?? "$env:XDG_DATA_HOME\nvoid"
+$env:NVOID_BASE16_DIR = $env:NVOID_BASE16_DIR ?? "$XDG_DATA_HOME/nvoid/site/pack/packer/start/base16/lua/base16/highlight"
 $env:NVOID_CONFIG_DIR = $env:NVOID_CONFIG_DIR ?? "$env:XDG_CONFIG_HOME\nvoid"
 $env:NVOID_CACHE_DIR = $env:NVOID_CACHE_DIR ?? "$env:XDG_CACHE_HOME\nvoid"
 $env:NVOID_BASE_DIR = $env:NVOID_BASE_DIR ?? "$env:NVOID_RUNTIME_DIR\nvoid"
 
 $__nvoid_dirs = (
   $env:NVOID_BASE_DIR,
+  $env:NVOID_BASE16_DIR,
   $env:NVOID_RUNTIME_DIR,
   $env:NVOID_CONFIG_DIR,
   $env:NVOID_CACHE_DIR
