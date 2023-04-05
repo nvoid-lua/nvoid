@@ -253,7 +253,7 @@ function validate_nvoid_files() {
     Invoke-Command -ScriptBlock { nvoid --headless -c 'NvoidUpdate' -c "$verify_version_cmd" } -ErrorAction SilentlyContinue
   }
   catch {
-    Write-Output "Unable to guarantee data integrity while updating. Please run `:NvoidUpdate` manually instead."
+    Write-Output "Unable to guarantee data integrity while updating. Please run `:PackerUpdate` manually instead."
     exit 1
   }
   Write-Output "Your Nvoid installation is now up to date!"
@@ -263,14 +263,14 @@ function create_alias {
   try {
     $answer = Read-Host $(`
         "Would you like to create an alias inside your Powershell profile?`n" + `
-        "(This enables you to start nvoid with the command 'nvoid') [y]es or [n]o (default: no)" )
+        "(This enables you to start nvoid with the command 'nvoid') [y]es or [n]o (default: yes)" )
   }
   catch {
     msg "Non-interactive mode detected. Skipping alias creation"
     return
   }
 
-  if ("$answer" -ne "y" -or "$answer" -ne "Y") {
+  if ("$answer" -eq "n" -or "$answer" -eq "N") {
     return
   }
 
