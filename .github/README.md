@@ -23,6 +23,11 @@
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/nvoid-lua/nvoid/master/utils/installer/install.sh)
 ```
+or 
+
+```powershell
+iwr https://raw.githubusercontent.com/nvoid-lua/nvoid/master/utils/installer/install.ps1 -UseBasicParsing | iex
+```
 
 
 for more info go to https://nvoid.org
