@@ -210,7 +210,7 @@ function check_neovim_min_version() {
   fi
 }
 
-function validate_lunarvim_files() {
+function validate_nvoidvim_files() {
   local verify_version_cmd='if v:errmsg != "" | cquit | else | quit | endif'
   if ! "$INSTALL_PREFIX/bin/nvoid" --headless -c 'NvoidUpdate' -c "$verify_version_cmd" &>/dev/null; then
     msg "Removing old installation files"
