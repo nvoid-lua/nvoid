@@ -11,7 +11,7 @@ local function find_root_dir()
     return ts_client.config.root_dir
   end
   local dirname = vim.fn.expand "%:p:h"
-  return util.root_pattern "package.json" (dirname)
+  return util.root_pattern "package.json"(dirname)
 end
 
 local function from_node_modules(command)
