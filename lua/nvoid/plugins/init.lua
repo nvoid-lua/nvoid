@@ -91,10 +91,17 @@ local core_plugins = {
       require("nvoid.plugins.config.mason").setup()
     end,
   },
-  { "williamboman/mason-lspconfig.nvim" },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    config = function()
+      require("mason-lspconfig").setup(nvoid.lsp.installer.setup)
+      local settings = require "mason-lspconfig.settings"
+      settings.current.automatic_installation = false
+    end,
+  },
   { "neovim/nvim-lspconfig" },
   { "jose-elias-alvarez/null-ls.nvim" },
-  { "rafamadriz/friendly-snippets", module = { "cmp", "cmp_nvim_lsp" }, event = "InsertEnter" },
+  { "rafamadriz/friendly-snippets",   module = { "cmp", "cmp_nvim_lsp" }, event = "InsertEnter" },
   {
     "folke/neodev.nvim",
     module = "neodev",
@@ -111,17 +118,14 @@ local core_plugins = {
     "L3MON4D3/LuaSnip",
     wants = "friendly-snippets",
     after = "nvim-cmp",
-    cpnfig = function()
-      require("nvoid.plugins.config.luasnip")
-    end,
   },
 
   -- CMP Extensions
   { "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
-  { "hrsh7th/cmp-nvim-lua", after = "cmp_luasnip" },
-  { "hrsh7th/cmp-nvim-lsp", after = "cmp-nvim-lua" },
-  { "hrsh7th/cmp-buffer", after = "cmp-nvim-lsp" },
-  { "hrsh7th/cmp-path", after = "cmp-buffer" },
+  { "hrsh7th/cmp-nvim-lua",     after = "cmp_luasnip" },
+  { "hrsh7th/cmp-nvim-lsp",     after = "cmp-nvim-lua" },
+  { "hrsh7th/cmp-buffer",       after = "cmp-nvim-lsp" },
+  { "hrsh7th/cmp-path",         after = "cmp-buffer" },
 
   -- Autopairs
   {

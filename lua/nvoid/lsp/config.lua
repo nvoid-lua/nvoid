@@ -1,90 +1,68 @@
 local skipped_servers = {
   "angularls",
   "ansiblels",
+  "antlersls",
+  "azure_pipelines_ls",
   "ccls",
-  "csharp_ls",
+  "omnisharp",
   "cssmodules_ls",
   "denols",
+  "docker_compose_language_service",
   "ember",
   "emmet_ls",
   "eslint",
   "eslintls",
+  "glint",
   "golangci_lint_ls",
+  "gradle_ls",
   "graphql",
+  "java_language_server",
   "jedi_language_server",
   "ltex",
+  "neocmake",
   "ocamlls",
   "phpactor",
   "psalm",
   "pylsp",
+  "pylyzer",
+  "pyre",
   "quick_lint_js",
-  "rome",
   "reason_ls",
+  "rnix",
+  "rome",
+  "ruby_ls",
+  "ruff_lsp",
   "scry",
   "solang",
+  "solc",
   "solidity_ls",
+  "solidity_ls_nomicfoundation",
   "sorbet",
   "sourcekit",
   "sourcery",
   "spectral",
   "sqlls",
   "sqls",
+  "standardrb",
   "stylelint_lsp",
-  "tflint",
   "svlangserver",
+  "tflint",
+  "unocss",
   "verible",
+  "vtsls",
   "vuels",
 }
 
-local skipped_filetypes = { "markdown", "rst", "plaintext" }
+local skipped_filetypes = { "markdown", "rst", "plaintext", "toml", "proto" }
 
 local join_paths = require("nvoid.utils").join_paths
-local icons = require("nvoid.interface.icons")
 
 return {
   templates_dir = join_paths(get_runtime_dir(), "site", "after", "ftplugin"),
-  diagnostics = {
-    signs = {
-      active = true,
-      values = {
-        { name = "DiagnosticSignError", text = icons.lsp.error },
-        { name = "DiagnosticSignWarn", text = icons.lsp.warn },
-        { name = "DiagnosticSignHint", text = icons.lsp.hint },
-        { name = "DiagnosticSignInfo", text = icons.lsp.Info },
-      },
-    },
-    virtual_text = true,
-    update_in_insert = false,
-    underline = true,
-    severity_sort = true,
-    float = {
-      focusable = false,
-      style = "minimal",
-      border = "single",
-      source = "always",
-      header = "",
-      prefix = "",
-      format = function(d)
-        local code = d.code or (d.user_data and d.user_data.lsp.code)
-        if code then
-          return string.format("%s [%s]", d.message, code):gsub("1. ", "")
-        end
-        return d.message
-      end,
-    },
-  },
-  document_highlight = true,
+  ---@deprecated use vim.diagnostic.config({ ... }) instead
+  diagnostics = {},
+  document_highlight = false,
   code_lens_refresh = true,
-  float = {
-    focusable = true,
-    style = "minimal",
-    border = "single",
-  },
-  peek = {
-    max_height = 15,
-    max_width = 30,
-    context = 10,
-  },
   on_attach_callback = nil,
   on_init_callback = nil,
   automatic_configuration = {
@@ -95,23 +73,22 @@ return {
   },
   buffer_mappings = {
     normal_mode = {
-      ["K"] = { vim.lsp.buf.hover, "Show hover" },
-      ["gd"] = { vim.lsp.buf.definition, "Goto Definition" },
-      ["gD"] = { vim.lsp.buf.declaration, "Goto declaration" },
-      ["gr"] = { vim.lsp.buf.references, "Goto references" },
-      ["gI"] = { vim.lsp.buf.implementation, "Goto Implementation" },
-      ["gs"] = { vim.lsp.buf.signature_help, "show signature help" },
-      ["gp"] = {
-        function()
-          require("nvoid.lsp.peek").Peek "definition"
-        end,
-        "Peek definition",
-      },
+      ["K"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show hover" },
+      ["gd"] = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Goto definition" },
+      ["gD"] = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Goto Declaration" },
+      ["gr"] = { "<cmd>lua vim.lsp.buf.references()<cr>", "Goto references" },
+      ["gI"] = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "Goto Implementation" },
+      ["gs"] = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "show signature help" },
       ["gl"] = {
         function()
-          local config = nvoid.lsp.diagnostics.float
-          config.scope = "line"
-          vim.diagnostic.open_float(0, config)
+          local float = vim.diagnostic.config().float
+
+          if float then
+            local config = type(float) == "table" and float or {}
+            config.scope = "line"
+
+            vim.diagnostic.open_float(config)
+          end
         end,
         "Show line diagnostics",
       },
@@ -134,8 +111,19 @@ return {
       },
     },
   },
+  nlsp_settings = {
+    setup = {
+      config_home = join_paths(get_config_dir(), "lsp-settings"),
+      -- set to false to overwrite schemastore.nvim
+      append_default_schemas = true,
+      ignored_servers = {},
+      loader = "json",
+    },
+  },
   null_ls = {
-    setup = {},
+    setup = {
+      debug = false,
+    },
     config = {},
   },
   ---@deprecated use nvoid.lsp.automatic_configuration.skipped_servers instead

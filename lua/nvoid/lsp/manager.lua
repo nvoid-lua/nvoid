@@ -62,7 +62,7 @@ local function client_is_configured(server_name, ft)
   ft = ft or vim.bo.filetype
   local active_autocmds = vim.api.nvim_get_autocmds { event = "FileType", pattern = ft }
   for _, result in ipairs(active_autocmds) do
-    if result.command:match(server_name) then
+    if result.desc ~= nil and result.desc:match("server " .. server_name .. " ") then
       Log:debug(string.format("[%q] is already configured", server_name))
       return true
     end
@@ -72,6 +72,16 @@ end
 
 local function launch_server(server_name, config)
   pcall(function()
+    local command = config.cmd
+        or (function()
+          local default_config = require("lspconfig.server_configurations." .. server_name).default_config
+          return default_config.cmd
+        end)()
+    -- some servers have dynamic commands defined with on_new_config
+    if type(command) == "table" and type(command[1]) == "string" and vim.fn.executable(command[1]) ~= 1 then
+      Log:debug(string.format("[%q] is either not installed, missing from PATH, or not executable.", server_name))
+      return
+    end
     require("lspconfig")[server_name].setup(config)
     buf_try_add(server_name)
   end)
@@ -119,7 +129,6 @@ function M.setup(server_name, user_config)
           end)
         end
       end)
-      return
     else
       Log:debug(server_name .. " is not managed by the automatic installer")
     end
