@@ -17,9 +17,9 @@ nvoid.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- }
 
 -- Lsp
-nvoid.lsp.diagnostics.virtual_text = true
 nvoid.lsp.format_on_save = false
 nvoid.lsp.document_highlight = true
+nvoid.lsp.installer.setuep = {}
 -- nvoid.lsp. ...
 
 -- Plugins
