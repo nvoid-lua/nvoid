@@ -1,7 +1,7 @@
 local M = {}
 
 local tbl = require "nvoid.utils.table"
-local Log = require "nvoid.core.log"
+local Log = require("nvoid.core.log")
 
 function M.is_client_active(name)
   local clients = vim.lsp.get_active_clients()
@@ -23,14 +23,25 @@ function M.get_active_clients_by_ft(filetype)
 end
 
 function M.get_client_capabilities(client_id)
-  local client = vim.lsp.get_client_by_id(tonumber(client_id))
+  local client
+  if not client_id then
+    local buf_clients = vim.lsp.buf_get_clients()
+    for _, buf_client in pairs(buf_clients) do
+      if buf_client.name ~= "null-ls" then
+        client = buf_client
+        break
+      end
+    end
+  else
+    client = vim.lsp.get_client_by_id(tonumber(client_id))
+  end
   if not client then
-    Log:warn("Unable to determine client from client_id: " .. client_id)
+    error "Unable to determine client_id"
     return
   end
 
   local enabled_caps = {}
-  for capability, status in pairs(client.server_capabilities) do
+  for capability, status in pairs(client.server_capabilities or client.resolved_capabilities) do
     if status == true then
       table.insert(enabled_caps, capability)
     end
@@ -72,37 +83,25 @@ function M.get_all_supported_filetypes()
 end
 
 function M.setup_document_highlight(client, bufnr)
-  if nvoid.builtin.illuminate.active then
-    Log:debug "skipping setup for document_highlight, illuminate already active"
-    return
-  end
   local status_ok, highlight_supported = pcall(function()
     return client.supports_method "textDocument/documentHighlight"
   end)
   if not status_ok or not highlight_supported then
     return
   end
-  local group = "lsp_document_highlight"
-  local hl_events = { "CursorHold", "CursorHoldI" }
-
-  local ok, hl_autocmds = pcall(vim.api.nvim_get_autocmds, {
-    group = group,
-    buffer = bufnr,
-    event = hl_events,
+  local augroup_exist, _ = pcall(vim.api.nvim_get_autocmds, {
+    group = "lsp_document_highlight",
   })
-
-  if ok and #hl_autocmds > 0 then
-    return
+  if not augroup_exist then
+    vim.api.nvim_create_augroup("lsp_document_highlight", {})
   end
-
-  vim.api.nvim_create_augroup(group, { clear = false })
-  vim.api.nvim_create_autocmd(hl_events, {
-    group = group,
+  vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    group = "lsp_document_highlight",
     buffer = bufnr,
     callback = vim.lsp.buf.document_highlight,
   })
   vim.api.nvim_create_autocmd("CursorMoved", {
-    group = group,
+    group = "lsp_document_highlight",
     buffer = bufnr,
     callback = vim.lsp.buf.clear_references,
   })
@@ -128,20 +127,14 @@ function M.setup_codelens_refresh(client, bufnr)
   if not status_ok or not codelens_supported then
     return
   end
-  local group = "lsp_code_lens_refresh"
-  local cl_events = { "BufEnter", "InsertLeave" }
-  local ok, cl_autocmds = pcall(vim.api.nvim_get_autocmds, {
-    group = group,
-    buffer = bufnr,
-    event = cl_events,
+  local augroup_exist, _ = pcall(vim.api.nvim_get_autocmds, {
+    group = "lsp_code_lens_refresh",
   })
-
-  if ok and #cl_autocmds > 0 then
-    return
+  if not augroup_exist then
+    vim.api.nvim_create_augroup("lsp_code_lens_refresh", {})
   end
-  vim.api.nvim_create_augroup(group, { clear = false })
-  vim.api.nvim_create_autocmd(cl_events, {
-    group = group,
+  vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave" }, {
+    group = "lsp_code_lens_refresh",
     buffer = bufnr,
     callback = vim.lsp.codelens.refresh,
   })
@@ -156,9 +149,9 @@ function M.format_filter(client)
   local n = require "null-ls"
   local s = require "null-ls.sources"
   local method = n.methods.FORMATTING
-  local available_formatters = s.get_available(filetype, method)
+  local avalable_formatters = s.get_available(filetype, method)
 
-  if #available_formatters > 0 then
+  if #avalable_formatters > 0 then
     return client.name == "null-ls"
   elseif client.supports_method "textDocument/formatting" then
     return true
@@ -167,13 +160,47 @@ function M.format_filter(client)
   end
 end
 
----Simple wrapper for vim.lsp.buf.format() to provide defaults
----@param opts table|nil
+---Provide vim.lsp.buf.format for nvim <0.8
+---@param opts table
 function M.format(opts)
   opts = opts or {}
   opts.filter = opts.filter or M.format_filter
 
-  return vim.lsp.buf.format(opts)
+  if vim.lsp.buf.format then
+    return vim.lsp.buf.format(opts)
+  end
+
+  local bufnr = opts.bufnr or vim.api.nvim_get_current_buf()
+
+  ---@type table|nil
+  local clients = vim.lsp.get_active_clients {
+    id = opts.id,
+    bufnr = bufnr,
+    name = opts.name,
+  }
+
+  if opts.filter then
+    clients = vim.tbl_filter(opts.filter, clients)
+  end
+
+  clients = vim.tbl_filter(function(client)
+    return client.supports_method "textDocument/formatting"
+  end, clients)
+
+  if #clients == 0 then
+    vim.notify_once "[LSP] Format request failed, no matching language servers."
+  end
+
+  local timeout_ms = opts.timeout_ms or 1000
+  for _, client in pairs(clients) do
+    local params = vim.lsp.util.make_formatting_params(opts.formatting_options)
+    local result, err = client.request_sync("textDocument/formatting", params, timeout_ms, bufnr)
+    if result and result.result then
+      vim.lsp.util.apply_text_edits(result.result, bufnr, client.offset_encoding)
+    elseif err then
+      vim.notify(string.format("[LSP][%s] %s", client.name, err), vim.log.levels.WARN)
+    end
+  end
 end
 
 return M
