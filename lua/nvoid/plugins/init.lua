@@ -26,6 +26,13 @@ local core_plugins = {
       require("nvoid.plugins.config.fterm")
     end,
   },
+  {
+    "RRethy/vim-illuminate",
+    config = function()
+      require("nvoid.plugins.config.illuminate").setup()
+    end,
+    disable = not nvoid.builtin.illuminate.active,
+  },
 
   -- Icons
   {
@@ -86,10 +93,8 @@ local core_plugins = {
 
   -- Lsp, cmp and luadev
   {
-    "williamboman/mason.nvim",
-    config = function()
-      require("nvoid.plugins.config.mason").setup()
-    end,
+    "neovim/nvim-lspconfig",
+    dependencies = { "mason-lspconfig.nvim", "nlsp-settings.nvim" }
   },
   {
     "williamboman/mason-lspconfig.nvim",
@@ -98,9 +103,21 @@ local core_plugins = {
       local settings = require "mason-lspconfig.settings"
       settings.current.automatic_installation = false
     end,
+    dependencies = "mason.nvim",
   },
-  { "neovim/nvim-lspconfig" },
-  { "jose-elias-alvarez/null-ls.nvim" },
+  { "tamago324/nlsp-settings.nvim", cmd = "LspSettings", lazy = true },
+  { "jose-elias-alvarez/null-ls.nvim", lazy = true },
+  {
+    "williamboman/mason.nvim",
+    config = function()
+      require("nvoid.plugins.config.mason").setup()
+    end,
+    build = function()
+      pcall(function()
+        require("mason-registry").refresh()
+      end)
+    end,
+  },
   { "rafamadriz/friendly-snippets",   module = { "cmp", "cmp_nvim_lsp" }, event = "InsertEnter" },
   {
     "folke/neodev.nvim",
@@ -116,6 +133,20 @@ local core_plugins = {
 
   {
     "L3MON4D3/LuaSnip",
+    config = function()
+      local utils = require "nvoid.utils"
+      local paths = {}
+      local user_snippets = utils.join_paths(get_config_dir(), "snippets")
+      if utils.is_directory(user_snippets) then
+        paths[#paths + 1] = user_snippets
+      end
+      require("luasnip.loaders.from_lua").lazy_load()
+      require("luasnip.loaders.from_vscode").lazy_load {
+        paths = paths,
+      }
+      require("luasnip.loaders.from_snipmate").lazy_load()
+    end,
+    event = "InsertEnter",
     wants = "friendly-snippets",
     after = "nvim-cmp",
   },
@@ -195,7 +226,6 @@ local core_plugins = {
     requires = { "nvim-telescope/telescope.nvim" },
     disable = not nvoid.builtin.notify.active or not nvoid.builtin.telescope.active,
   },
-
 }
 
 return core_plugins

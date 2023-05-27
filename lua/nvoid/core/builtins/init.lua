@@ -10,6 +10,7 @@ local builtins = {
   "nvoid.plugins.config.autopairs",
   "nvoid.plugins.config.notify",
   "nvoid.plugins.config.mason",
+  "nvoid.plugins.config.illuminate",
 }
 
 function M.config(config)
