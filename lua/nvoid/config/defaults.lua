@@ -12,6 +12,9 @@ return {
   },
   keys = {},
 
+  use_icons = true,
+  icons = require "nvoid.builtin.icons",
+
   builtin = {},
   statusline = {
     enabled = true,
