@@ -150,6 +150,7 @@ function main() {
   setup_nvoid
 
   msg "$ADDITIONAL_WARNINGS"
+  nvoid -c w ~/.config/nvoid/config.lua -c q!
   msg "Thank you for installing nvoid!!"
   echo "You can start it by running: $INSTALL_PREFIX/bin/nvoid"
   echo "Do not forget to use a font with glyphs (icons) support [https://github.com/ryanoasis/nerd-fonts]"
