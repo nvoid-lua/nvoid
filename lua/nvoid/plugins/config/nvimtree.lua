@@ -1,5 +1,4 @@
 local M = {}
-
 local Log = require "nvoid.core.log"
 local icons = require("nvoid.interface.icons")
 
@@ -115,38 +114,6 @@ function M.config()
   }
 end
 
-function M.setup()
-  local status_ok, nvim_tree = pcall(require, "nvim-tree")
-  if not status_ok then
-    Log:error "Failed to load nvim-tree"
-    return
-  end
-  if nvoid.builtin.nvimtree._setup_called then
-    Log:debug "ignoring repeated setup call for nvim-tree, see kyazdani42/nvim-tree.lua#1308"
-    return
-  end
-  nvoid.builtin.nvimtree._setup_called = true
-  local function telescope_find_files(_)
-    require("nvoid.plugins.config.nvimtree").start_telescope "find_files"
-  end
-  local function telescope_live_grep(_)
-    require("nvoid.plugins.config.nvimtree").start_telescope "live_grep"
-  end
-  if #nvoid.builtin.nvimtree.setup.view.mappings.list == 0 then
-    nvoid.builtin.nvimtree.setup.view.mappings.list = {
-      { key = { "l", "<CR>", "o" }, action = "edit", mode = "n" },
-      { key = "h", action = "close_node" },
-      { key = "v", action = "vsplit" },
-      { key = "C", action = "cd" },
-      { key = "gtf", action = "telescope_find_files", action_cb = telescope_find_files },
-      { key = "gtg", action = "telescope_live_grep", action_cb = telescope_live_grep },
-    }
-  end
-  nvim_tree.setup(nvoid.builtin.nvimtree.setup)
-  if nvoid.builtin.nvimtree.on_config_done then
-    nvoid.builtin.nvimtree.on_config_done(nvim_tree)
-  end
-end
 function M.start_telescope(telescope_mode)
   local node = require("nvim-tree.lib").get_node_at_cursor()
   local abspath = node.link_to or node.absolute_path
@@ -155,6 +122,41 @@ function M.start_telescope(telescope_mode)
   require("telescope.builtin")[telescope_mode] {
     cwd = basedir,
   }
+end
+
+function M.setup()
+  local status_ok, nvim_tree = pcall(require, "nvim-tree")
+
+  if not status_ok then
+    Log:error "Failed to load nvim-tree"
+    return
+  end
+
+  -- Add useful keymaps
+  local function telescope_find_files(_)
+    require("nvoid.plugins.config.nvimtree").start_telescope "find_files"
+  end
+
+  local function telescope_live_grep(_)
+    require("nvoid.plugins.config.nvimtree").start_telescope "live_grep"
+  end
+
+  if #nvoid.builtin.nvimtree.setup.view.mappings.list == 0 then
+    nvoid.builtin.nvimtree.setup.view.mappings.list = {
+      { key = { "l", "<CR>", "o" }, action = "edit",                 mode = "n" },
+      { key = "h",                  action = "close_node" },
+      { key = "v",                  action = "vsplit" },
+      { key = "C",                  action = "cd" },
+      { key = "gtf",                action = "telescope_find_files", action_cb = telescope_find_files },
+      { key = "gtg",                action = "telescope_live_grep",  action_cb = telescope_live_grep },
+    }
+  end
+
+  nvim_tree.setup(nvoid.builtin.nvimtree.setup)
+
+  if nvoid.builtin.nvimtree.on_config_done then
+    nvoid.builtin.nvimtree.on_config_done(nvim_tree)
+  end
 end
 
 return M

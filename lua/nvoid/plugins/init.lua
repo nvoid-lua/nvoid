@@ -105,8 +105,8 @@ local core_plugins = {
     end,
     dependencies = "mason.nvim",
   },
-  { "tamago324/nlsp-settings.nvim", cmd = "LspSettings", lazy = true },
-  { "jose-elias-alvarez/null-ls.nvim", lazy = true },
+  { "tamago324/nlsp-settings.nvim",   cmd = "LspSettings" },
+  { "jose-elias-alvarez/null-ls.nvim" },
   {
     "williamboman/mason.nvim",
     config = function()
@@ -118,17 +118,25 @@ local core_plugins = {
       end)
     end,
   },
-  { "rafamadriz/friendly-snippets",   module = { "cmp", "cmp_nvim_lsp" }, event = "InsertEnter" },
+  { "rafamadriz/friendly-snippets", module = { "cmp", "cmp_nvim_lsp" }, event = "InsertEnter" },
   {
     "folke/neodev.nvim",
     module = "neodev",
   },
   {
     "hrsh7th/nvim-cmp",
-    after = "friendly-snippets",
     config = function()
-      require("nvoid.plugins.config.cmp").setup()
+      if nvoid.builtin.cmp then
+        require("nvoid.plugins.config.cmp").setup()
+      end
     end,
+    event = { "InsertEnter", "CmdlineEnter" },
+    dependencies = {
+      "cmp-nvim-lsp",
+      "cmp_luasnip",
+      "cmp-buffer",
+      "cmp-path",
+    },
   },
 
   {
@@ -153,8 +161,7 @@ local core_plugins = {
 
   -- CMP Extensions
   { "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
-  { "hrsh7th/cmp-nvim-lua",     after = "cmp_luasnip" },
-  { "hrsh7th/cmp-nvim-lsp",     after = "cmp-nvim-lua" },
+  { "hrsh7th/cmp-nvim-lsp",     after = "cmp_luasnip" },
   { "hrsh7th/cmp-buffer",       after = "cmp-nvim-lsp" },
   { "hrsh7th/cmp-path",         after = "cmp-buffer" },
 
