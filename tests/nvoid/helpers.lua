@@ -29,7 +29,7 @@ function M.file_contains(file, query)
 end
 
 function M.log_contains(query)
-  local logfile = require("lvim.core.log"):get_path()
+  local logfile = require("nvoid.core.log"):get_path()
   local ret, stdout, stderr = M.search_file(logfile, query)
   if ret == 0 then
     return true

@@ -62,11 +62,11 @@ function remove_nvoid_bin() {
 
 function main() {
   parse_arguments "$@"
-  echo "Removing LunarVim binary..."
+  echo "Removing Nvoid binary..."
   remove_nvoid_bin
-  echo "Removing LunarVim directories..."
+  echo "Removing Nvoid directories..."
   remove_nvoid_dirs
-  echo "Uninstalled LunarVim!"
+  echo "Uninstalled Nvoid!"
 }
 
 main "$@"

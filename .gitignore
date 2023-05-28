@@ -11,16 +11,16 @@ session
 wiki/
 pack/
 utils/java/*
-lv-config.lua
+nv-config.lua
 lua-language-server/
 eclipse.jdt.ls/
 .language-servers/
 .debuggers/
 spell/
 nv-settings.lua
-lv-settings.lua
-lua/lv-user/
-lua/lv-user-config/
+nv-settings.lua
+lua/nv-user/
+lua/nv-user-config/
 
 *.tmp
 *.temp

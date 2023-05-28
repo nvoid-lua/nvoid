@@ -142,7 +142,7 @@ function main() {
   if [ "$ARGS_LOCAL" -eq 1 ]; then
     link_local_nvoid
   elif [ -d "$NVOID_BASE_DIR" ]; then
-    validate_lunarvim_files
+    validate_nvoid_files
   else
     clone_nvoid
   fi

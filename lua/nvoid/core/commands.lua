@@ -68,7 +68,7 @@ M.defaults = {
   {
     name = "NvoidChangelog",
     fn = function()
-      require("nvoid.core.telescope.custom-finders").view_lunarvim_changelog()
+      require("nvoid.core.telescope.custom-finders").view_nvoid_changelog()
     end,
   },
   {

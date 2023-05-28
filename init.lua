@@ -1,4 +1,4 @@
-local base_dir = vim.env.LUNARVIM_BASE_DIR
+local base_dir = vim.env.NVOID_BASE_DIR
     or (function()
       local init_path = debug.getinfo(1, "S").source
       return init_path:sub(2):match("(.*[/\\])"):sub(1, -2)
@@ -17,7 +17,7 @@ local plugins = require "nvoid.plugins"
 require("nvoid.plugin-loader").load { plugins, nvoid.plugins }
 
 local Log = require "nvoid.core.log"
-Log:debug "Starting LunarVim"
+Log:debug "Starting Nvoid"
 
 local commands = require "nvoid.core.commands"
 commands.load(commands.defaults)

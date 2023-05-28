@@ -11,13 +11,13 @@ local _, make_entry = pcall(require, "telescope.make_entry")
 
 local utils = require "nvoid.utils"
 
-function M.find_lunarvim_files(opts)
+function M.find_nvoid_files(opts)
   opts = opts or {}
   local theme_opts = themes.get_ivy {
     sorting_strategy = "ascending",
     layout_strategy = "bottom_pane",
     prompt_prefix = ">> ",
-    prompt_title = "~ LunarVim files ~",
+    prompt_title = "~ Nvoid files ~",
     cwd = get_runtime_dir(),
     search_dirs = { utils.join_paths(get_runtime_dir(), "nvoid"), nvoid.lsp.templates_dir },
   }
@@ -25,13 +25,13 @@ function M.find_lunarvim_files(opts)
   builtin.find_files(opts)
 end
 
-function M.grep_lunarvim_files(opts)
+function M.grep_nvoid_files(opts)
   opts = opts or {}
   local theme_opts = themes.get_ivy {
     sorting_strategy = "ascending",
     layout_strategy = "bottom_pane",
     prompt_prefix = ">> ",
-    prompt_title = "~ search LunarVim ~",
+    prompt_title = "~ search Nvoid ~",
     cwd = get_runtime_dir(),
     search_dirs = { utils.join_paths(get_runtime_dir(), "nvoid"), nvoid.lsp.templates_dir },
   }
@@ -49,7 +49,7 @@ local copy_to_clipboard_action = function(prompt_bufnr)
   actions.close(prompt_bufnr)
 end
 
-function M.view_lunarvim_changelog()
+function M.view_nvoid_changelog()
   local opts = themes.get_ivy {
     cwd = get_nvoid_base_dir(),
   }
@@ -57,7 +57,7 @@ function M.view_lunarvim_changelog()
 
   pickers
     .new(opts, {
-      prompt_title = "~ LunarVim Changelog ~",
+      prompt_title = "~ Nvoid Changelog ~",
 
       finder = finders.new_oneshot_job(
         vim.tbl_flatten {

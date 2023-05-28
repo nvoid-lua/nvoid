@@ -1,6 +1,6 @@
 local a = require "plenary.async_lib.tests"
-local utils = require "lvim.utils"
-local helpers = require "tests.lvim.helpers"
+local utils = require "nvoid.utils"
+local helpers = require "tests.nvoid.helpers"
 local spy = require "luassert.spy"
 
 a.describe("lsp workflow", function()
@@ -34,24 +34,24 @@ a.describe("lsp workflow", function()
       assert.equal(vim.fn.delete(nvoid.lsp.templates_dir, "rf"), 0)
     end
 
-    require("lvim.lsp").setup()
+    require("nvoid.lsp").setup()
 
     assert.True(utils.is_directory(nvoid.lsp.templates_dir))
   end)
 
   a.it("should not include blacklisted servers in the generated templates", function()
-    require("lvim.lsp").setup()
+    require("nvoid.lsp").setup()
 
     for _, file in ipairs(vim.fn.glob(nvoid.lsp.templates_dir .. "/*.lua", 1, 1)) do
       for _, server_name in ipairs(nvoid.lsp.override) do
-        local setup_cmd = string.format([[require("lvim.lsp.manager").setup(%q)]], server_name)
+        local setup_cmd = string.format([[require("nvoid.lsp.manager").setup(%q)]], server_name)
         assert.False(helpers.file_contains(file, setup_cmd))
       end
     end
   end)
 
   a.it("should only include one server per generated template", function()
-    require("lvim.lsp").setup()
+    require("nvoid.lsp").setup()
 
     local allowed_dupes = { "tailwindcss" }
     for _, file in ipairs(vim.fn.glob(nvoid.lsp.templates_dir .. "/*.lua", 1, 1)) do
@@ -75,11 +75,11 @@ a.describe("lsp workflow", function()
   end)
 
   a.it("should not attempt to re-generate ftplugin templates", function()
-    local s = spy.on(require "lvim.lsp.templates", "generate_templates")
-    local plugins = require "lvim.plugins"
-    require("lvim.plugin-loader").load { plugins, nvoid.plugins }
+    local s = spy.on(require "nvoid.lsp.templates", "generate_templates")
+    local plugins = require "nvoid.plugins"
+    require("nvoid.plugin-loader").load { plugins, nvoid.plugins }
 
-    require("lvim.lsp").setup()
+    require("nvoid.lsp").setup()
     assert.spy(s).was_not_called()
     s:revert()
   end)

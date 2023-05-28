@@ -191,24 +191,24 @@ function M.toggle_popup(ft)
   end
 
   local function set_syntax_hl()
-    vim.cmd [[highlight LvimInfoIdentifier gui=bold]]
-    vim.cmd [[highlight link LvimInfoHeader Type]]
-    vim.fn.matchadd("LvimInfoHeader", "Buffer info")
-    vim.fn.matchadd("LvimInfoHeader", "Active client(s)")
-    vim.fn.matchadd("LvimInfoHeader", fmt("Overridden %s server(s)", ft))
-    vim.fn.matchadd("LvimInfoHeader", "Formatters info")
-    vim.fn.matchadd("LvimInfoHeader", "Linters info")
-    vim.fn.matchadd("LvimInfoHeader", "Code actions info")
-    vim.fn.matchadd("LvimInfoHeader", "Automatic LSP info")
-    vim.fn.matchadd("LvimInfoIdentifier", " " .. ft .. "$")
+    vim.cmd [[highlight NvoidInfoIdentifier gui=bold]]
+    vim.cmd [[highlight link NvoidInfoHeader Type]]
+    vim.fn.matchadd("NvoidInfoHeader", "Buffer info")
+    vim.fn.matchadd("NvoidInfoHeader", "Active client(s)")
+    vim.fn.matchadd("NvoidInfoHeader", fmt("Overridden %s server(s)", ft))
+    vim.fn.matchadd("NvoidInfoHeader", "Formatters info")
+    vim.fn.matchadd("NvoidInfoHeader", "Linters info")
+    vim.fn.matchadd("NvoidInfoHeader", "Code actions info")
+    vim.fn.matchadd("NvoidInfoHeader", "Automatic LSP info")
+    vim.fn.matchadd("NvoidInfoIdentifier", " " .. ft .. "$")
     vim.fn.matchadd("string", "true")
     vim.fn.matchadd("string", "active")
     vim.fn.matchadd("string", "")
     vim.fn.matchadd("boolean", "inactive")
     vim.fn.matchadd("error", "false")
-    tbl_set_highlight(require("nvoid.lsp.null-ls.formatters").list_registered(ft), "LvimInfoIdentifier")
-    tbl_set_highlight(require("nvoid.lsp.null-ls.linters").list_registered(ft), "LvimInfoIdentifier")
-    tbl_set_highlight(require("nvoid.lsp.null-ls.code_actions").list_registered(ft), "LvimInfoIdentifier")
+    tbl_set_highlight(require("nvoid.lsp.null-ls.formatters").list_registered(ft), "NvoidInfoIdentifier")
+    tbl_set_highlight(require("nvoid.lsp.null-ls.linters").list_registered(ft), "NvoidInfoIdentifier")
+    tbl_set_highlight(require("nvoid.lsp.null-ls.code_actions").list_registered(ft), "NvoidInfoIdentifier")
   end
 
   local Popup = require("nvoid.interface.popup"):new {

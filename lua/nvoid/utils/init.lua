@@ -50,7 +50,7 @@ function M.generate_settings()
   -- sets the default output file as test.lua
   io.output(file)
 
-  -- write all `nvoid` related settings to `lv-settings.lua` file
+  -- write all `nvoid` related settings to `nv-settings.lua` file
   r_inspect_settings(nvoid, 10000, ".")
 
   -- closes the open file

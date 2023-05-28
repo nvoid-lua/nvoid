@@ -55,7 +55,7 @@ function M.run_post_update()
   if vim.fn.has "nvim-0.7" ~= 1 then
     local compat_tag = "1.1.3"
     vim.notify(
-      "Please upgrade your Neovim base installation. Newer version of Lunarvim requires v0.7+",
+      "Please upgrade your Neovim base installation. Newer version of Nvoid requires v0.7+",
       vim.log.levels.WARN
     )
     vim.wait(1000, function()
