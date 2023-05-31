@@ -49,23 +49,27 @@ function M:load(config_path)
   vim.g.mapleader = (nvoid.leader == "space" and " ") or nvoid.leader
 
   require("nvoid.core.keymappings").load(nvoid.keys)
+
+  if nvoid.reload_config_on_save then
+    autocmds.enable_reload_config_on_save()
+  end
 end
 
 --- Override the configuration with a user provided one
 -- @param config_path The path to the configuration overrides
 function M:reload()
   vim.schedule(function()
-    require_clean("nvoid.utils.hooks").run_pre_reload()
+    reload("nvoid.utils.hooks").run_pre_reload()
 
     M:load()
 
-    require("nvoid.core.autocmds").configure_format_on_save()
+    reload("nvoid.core.autocmds").configure_format_on_save()
 
-    local plugins = require "nvoid.plugins"
-    local plugin_loader = require "nvoid.plugin-loader"
+    local plugins = reload "nvoid.plugins"
+    local plugin_loader = reload "nvoid.plugin-loader"
 
     plugin_loader.reload { plugins, nvoid.plugins }
-    require_clean("nvoid.utils.hooks").run_post_reload()
+    reload("nvoid.utils.hooks").run_post_reload()
   end)
 end
 

@@ -23,13 +23,22 @@ function M.load_defaults()
       },
     },
     {
-      "BufWritePost",
+      "FileType",
       {
-        group = "_general_settings",
-        pattern = user_config_file,
-        desc = "Trigger NvoidReload on saving " .. vim.fn.expand "%:~",
+        group = "_filetype_settings",
+        pattern = { "lua" },
+        desc = "fix gf functionality inside .lua files",
         callback = function()
-          require("nvoid.config"):reload()
+          ---@diagnostic disable: assign-type-mismatch
+          -- credit: https://github.com/sam4llis/nvim-lua-gf
+          vim.opt_local.include = [[\v<((do|load)file|require|reload)[^''"]*[''"]\zs[^''"]+]]
+          vim.opt_local.includeexpr = "substitute(v:fname,'\\.','/','g')"
+          vim.opt_local.suffixesadd:prepend ".lua"
+          vim.opt_local.suffixesadd:prepend "init.lua"
+
+          for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
+            vim.opt_local.path:append(path .. "/lua")
+          end
         end,
       },
     },
@@ -166,6 +175,20 @@ function M.toggle_format_on_save()
   else
     M.disable_format_on_save()
   end
+end
+
+function M.enable_reload_config_on_save()
+  local pattern = get_config_dir():gsub("\\", "/") .. "/*.lua"
+
+  vim.api.nvim_create_augroup("nvoid_reload_config_on_save", {})
+  vim.api.nvim_create_autocmd("BufWritePost", {
+    group = "nvoid_reload_config_on_save",
+    pattern = pattern,
+    desc = "Trigger LvimReload on saving config.lua",
+    callback = function()
+      require("nvoid.config"):reload()
+    end,
+  })
 end
 
 --- Clean autocommand in a group if it exists

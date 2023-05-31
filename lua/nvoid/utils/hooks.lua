@@ -26,8 +26,9 @@ end
 
 function M.run_post_reload()
   Log:debug "Starting post-reload hook"
-  M.reset_cache()
-  M._reload_triggered = true
+  -- Log:debug "Starting post-reload hook"
+  -- M.reset_cache()
+  -- M._reload_triggered = true
 end
 
 ---Reset any startup cache files used by Packer and Impatient

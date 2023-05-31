@@ -5,6 +5,8 @@ nvoid.colorscheme = "onedarker"
 -- Log
 nvoid.log.level = "warn"
 -- nvoid.log. ...
+-- enable / disable autoreload config.lua
+-- nvoid.autocommands.enable_reload_config_on_save = true
 
 -- Keys
 nvoid.leader = "space"

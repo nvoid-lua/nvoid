@@ -1,8 +1,9 @@
 local M = {}
 
-if vim.fn.has "nvim-0.7" ~= 1 then
-  vim.notify("Please upgrade your Neovim base installation. NVOID requires v0.7+", vim.log.levels.WARN)
+if vim.fn.has "nvim-0.8" ~= 1 then
+  vim.notify("Please upgrade your Neovim base installation. Nvoid requires v0.8+", vim.log.levels.WARN)
   vim.wait(5000, function()
+    ---@diagnostic disable-next-line: redundant-return-value
     return false
   end)
   vim.cmd "cquit"
@@ -18,18 +19,12 @@ function _G.join_paths(...)
   return result
 end
 
----Require a module in protected mode without relying on its cached value
----@param module string
----@return any
-function _G.require_clean(module)
-  package.loaded[module] = nil
-  _G[module] = nil
-  local _, requested = pcall(require, module)
-  return requested
-end
+_G.require_clean = require("nvoid.utils.modules").require_clean
+_G.require_safe = require("nvoid.utils.modules").require_safe
+_G.reload = require("nvoid.utils.modules").reload
 
 ---Get the full path to `$NVOID_RUNTIME_DIR`
----@return string
+---@return string|nil
 function _G.get_runtime_dir()
   local nvoid_runtime_dir = os.getenv "NVOID_RUNTIME_DIR"
   if not nvoid_runtime_dir then
@@ -40,7 +35,7 @@ function _G.get_runtime_dir()
 end
 
 ---Get the full path to `$NVOID_CONFIG_DIR`
----@return string
+---@return string|nil
 function _G.get_config_dir()
   local nvoid_config_dir = os.getenv "NVOID_CONFIG_DIR"
   if not nvoid_config_dir then
@@ -50,7 +45,7 @@ function _G.get_config_dir()
 end
 
 ---Get the full path to `$NVOID_CACHE_DIR`
----@return string
+---@return string|nil
 function _G.get_cache_dir()
   local nvoid_cache_dir = os.getenv "NVOID_CACHE_DIR"
   if not nvoid_cache_dir then
@@ -113,14 +108,18 @@ function M:init(base_dir)
   return self
 end
 
----Update NVOID
+---Update Nvoid
 ---pulls the latest changes from github and, resets the startup cache
 function M:update()
-  require_clean("nvoid.utils.hooks").run_pre_update()
-  local ret = require_clean("nvoid.utils.git").update_base_nvoid()
-  if ret then
-    require_clean("nvoid.utils.hooks").run_post_update()
-  end
+  require("nvoid.core.log"):info "Trying to update Nvoid..."
+
+  vim.schedule(function()
+    reload("nvoid.utils.hooks").run_pre_update()
+    local ret = reload("nvoid.utils.git").update_base_nvoid()
+    if ret then
+      reload("nvoid.utils.hooks").run_post_update()
+    end
+  end)
 end
 
 return M
