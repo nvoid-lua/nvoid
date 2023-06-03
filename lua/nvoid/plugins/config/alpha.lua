@@ -1,107 +1,88 @@
-local status_ok, alpha = pcall(require, "alpha")
-if not status_ok then
-  return
+local M = {}
+
+function M.config()
+  local nvoid_dashboard = require "nvoid.plugins.config.alpha.dashboard"
+  local nvoid_startify = require "nvoid.plugins.config.alpha.startify"
+  nvoid.builtin.alpha = {
+    dashboard = {
+      config = {},
+      section = nvoid_dashboard.get_sections(),
+      opts = { autostart = true },
+    },
+    startify = {
+      config = {},
+      section = nvoid_startify.get_sections(),
+      opts = { autostart = true },
+    },
+    active = true,
+    mode = "dashboard",
+  }
 end
 
-local dashboard = require("alpha.themes.dashboard")
-local text = require("nvoid.interface.text")
-local fn = vim.fn
-local plugins_count = fn.len(fn.globpath("~/.local/share/nvoid/site/pack/packer/start/", "*", 0, 1))
+local function resolve_buttons(theme_name, button_section)
+  if button_section.val and #button_section.val > 0 then
+    return button_section.val
+  end
 
--- Header
-local header = {
-  type = "text",
-  val = {
-    "⠘⢵⢕⢽⡸⣕⢵⢝⡄⠀⠑⡽⡸⡄⠹⡜⣝⡄⠀⠀⠀⠀⠀⡔⡽⡸⠁",
-    "⠀⠈⣗⡳⣉⠈⠸⣕⢝⣄⠀⠘⣝⢮⣂⠙⣜⢮⢆⠀⠀⢀⢜⡎⡗⠁ ",
-    "⠀⠀⠐⢝⢼⢄⠀⠘⡵⣕⢆⠀⠘⣎⢮⢆⠘⡎⡗⡧⡀⣎⢧⡫⠀  ",
-    "   ⠈⢳⡹⣢⠀⠘⢮⢝⢦⠀⠈⢮⢳⡱⡈⢗⡕⣗⢕⠇⠀⠀  ",
-    "   ⠀⠀⢫⢮⣢⠀⠈⢮⢳⢕⡀⠈⢧⢳⢕⡀⢯⢪⠋⠀    ",
-    "   ⠀⠀⠀⢣⡳⣕⡀⠈⢣⢗⢵⡀⠈⢮⢳⡱⡀⠋⠀     ",
-    "    ⠀⠀⠀⠱⡵⣱⡀⠀⢫⣣⢳⢄⢠⡳⣹⠕⠀      ",
-    "   ⠀⠀⠀⠀⠀⠹⣜⢼⡀⠀⠪⡳⡕⣗⢝⠊⠀       ",
-    "   ⠀     ⠘⡮⡺⡄⠀⠙⡼⣪⠃         ",
-    "   ⠀     ⠀⠘⡵⡝⣆⠀⠘⠁          ",
-    "   ⠀     ⠀⠀⠘⡺⡜⣆⠀           ",
-    "            ⠈⢞⠁            ",
-  },
-  opts = {
-    position = "center",
-    hl = "DashboardHeader",
-  },
-}
+  local selected_theme = require("alpha.themes." .. theme_name)
+  local val = {}
+  for _, entry in pairs(button_section.entries) do
+    local on_press = function()
+      local sc_ = entry[1]:gsub("%s", ""):gsub("SPC", "<leader>")
+      local key = vim.api.nvim_replace_termcodes(sc_, true, false, true)
+      vim.api.nvim_feedkeys(key, "normal", false)
+    end
+    local button_element = selected_theme.button(entry[1], entry[2], entry[3])
+    -- this became necessary after recent changes in alpha.nvim (06ade3a20ca9e79a7038b98d05a23d7b6c016174)
+    button_element.on_press = on_press
 
--- Buttons
-local function button(sc, txt, keybind, keybind_opts)
-  local b = dashboard.button(sc, txt, keybind, keybind_opts)
-  b.opts.hl = "DashboardCenter"
-  b.opts.hl_shortcut = "DashboardShortcut"
-  return b
+    -- account for different icon byte sizes in cursor offset
+    local _, icon_length = button_element.val:find "[\128-\255]*"
+    button_element.opts.cursor = icon_length + 2
+    button_element.opts = vim.tbl_extend("force", button_element.opts, entry[4] or button_section.opts or {})
+
+    table.insert(val, button_element)
+  end
+  return val
 end
 
-local buttons = {
-  type = "group",
-  val = {
-    button("f", "  Find file", ":Telescope find_files <CR>"),
-    button("n", "  New file", ":ene <BAR> startinsert <CR>"),
-    button("o", "  Recent Files", ":Telescope oldfiles <CR>"),
-    button("e", "  Configuration", ":e ~/.config/nvoid/config.lua <CR>"),
-    button("u", "  Update plugins", ":PackerSync<CR>"),
-    button("U", "ﮮ  Update Nvoid", ":NvoidUpdater<CR>"),
-    button("q", "  Quit", ":qa<CR>"),
-  },
-  opts = {
-    spacing = 0,
-  },
-}
+local function resolve_config(theme_name)
+  local selected_theme = require("alpha.themes." .. theme_name)
+  local resolved_section = selected_theme.section
+  local section = nvoid.builtin.alpha[theme_name].section
 
-local heading = {
-  type = "text",
-  val = text.align_center({ width = 0 }, { "Nvoid loaded " .. plugins_count .. " plugins  " }, 0.5),
-  opts = {
-    position = "center",
-    hl = "DashboardShortcut",
-  },
-}
+  for name, el in pairs(section) do
+    for k, v in pairs(el) do
+      if name:match "buttons" and k == "entries" then
+        resolved_section[name].val = resolve_buttons(theme_name, el)
+      elseif v then
+        resolved_section[name][k] = v
+      end
+    end
 
-local nvoid_site = "爵nvoid.org"
-local footer = {
-  type = "text",
-  val = text.align_center({ width = 0 }, { nvoid_site }, 0.5),
-  opts = {
-    position = "center",
-    hl = "DashboardFooter",
-  },
-}
+    resolved_section[name].opts = el.opts or {}
+  end
 
-local opts = {
-  layout = {
-    { type = "padding", val = 5 },
-    header,
-    { type = "padding", val = 1 },
-    heading,
-    { type = "padding", val = 1 },
-    buttons,
-    { type = "padding", val = 1 },
-    footer,
-  },
-  opts = {
-    margin = 0,
-  },
-}
+  local opts = nvoid.builtin.alpha[theme_name].opts or {}
+  selected_theme.config.opts = vim.tbl_extend("force", selected_theme.config.opts, opts)
 
-  local group = "_dashboard_settings"
-  vim.api.nvim_create_augroup(group, {})
-  vim.api.nvim_create_autocmd("FileType", {
-    group = group,
-    pattern = "alpha",
-    command = "set showtabline=0 | autocmd BufLeave <buffer> set showtabline=" .. vim.opt.showtabline._value,
-  })
-    -- https://github.com/goolord/alpha-nvim/issues/42
-    vim.api.nvim_create_autocmd("FileType", {
-      group = group,
-      pattern = "alpha",
-      command = "set laststatus=0 | autocmd BufUnload <buffer> set laststatus=" .. vim.opt.laststatus._value,
-    })
+  return selected_theme.config
+end
 
-alpha.setup(opts)
+function M.setup()
+  local status_ok, alpha = pcall(require, "alpha")
+  if not status_ok then
+    return
+  end
+  local mode = nvoid.builtin.alpha.mode
+  local config = nvoid.builtin.alpha[mode].config
+
+  -- this makes it easier to use a completely custom configuration
+  if vim.tbl_isempty(config) then
+    config = resolve_config(mode)
+  end
+
+  alpha.setup(config)
+end
+
+return M

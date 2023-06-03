@@ -1,128 +1,60 @@
 local core_plugins = {
-  -- Plenary
-  { "nvim-lua/plenary.nvim" },
-
-  -- Packer
-  { "wbthomason/packer.nvim" },
-
-  -- Base16
+  {
+    "neovim/nvim-lspconfig",
+    lazy = true,
+    dependencies = { "mason-lspconfig.nvim", "nlsp-settings.nvim" },
+  },
   {
     "nvoid-lua/base16",
-    branch = "nvoid-rolling",
     config = function()
       require("base16").load_theme()
     end,
   },
   {
-    "SmiteshP/nvim-navic",
-    requires = "neovim/nvim-lspconfig",
-  },
-
-  -- Term
-  {
-    "numToStr/FTerm.nvim",
-    module = "FTerm",
-    config = function()
-      require("nvoid.plugins.config.fterm")
-    end,
-  },
-  {
-    "RRethy/vim-illuminate",
-    config = function()
-      require("nvoid.plugins.config.illuminate").setup()
-    end,
-    disable = not nvoid.builtin.illuminate.active,
-  },
-
-  -- Icons
-  {
-    "kyazdani42/nvim-web-devicons",
-    module = "nvim-web-devicons",
-    config = function()
-      require("nvoid.plugins.config.devions")
-    end,
-  },
-
-  -- Indent Blankline
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    opt = true,
-    after = "nvim-treesitter",
-    config = function()
-      require("nvoid.plugins.config.indent")
-    end,
-  },
-
-  -- Colorizer
-  {
-    "norcalli/nvim-colorizer.lua",
-    setup = function()
-      require("nvoid.core.lazy_load").on_file_open("nvim-colorizer.lua")
-    end,
-    opt = true,
-    config = function()
-      require("nvoid.plugins.config.colorizer")
-    end,
-  },
-
-  -- Tree Sitter
-  {
-    "nvim-treesitter/nvim-treesitter",
-    module = "nvim-treesitter",
-    setup = function()
-      require("nvoid.core.lazy_load").on_file_open("nvim-treesitter")
-    end,
-    cmd = require("nvoid.core.lazy_load").treesitter_cmds,
-    run = ":TSUpdate",
-    config = function()
-      require("nvoid.plugins.config.treesitter").setup()
-    end,
-  },
-
-  -- Gitsigns
-  {
-    "lewis6991/gitsigns.nvim",
-    disable = not nvoid.builtin.gitsigns.active,
-    config = function()
-      require("nvoid.plugins.config.gitsigns").setup()
-    end,
-    setup = function()
-      require("nvoid.core.lazy_load").gitsigns()
-    end,
-  },
-
-  -- Lsp, cmp and luadev
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = { "mason-lspconfig.nvim", "nlsp-settings.nvim" }
-  },
-  {
     "williamboman/mason-lspconfig.nvim",
+    cmd = { "LspInstall", "LspUninstall" },
     config = function()
       require("mason-lspconfig").setup(nvoid.lsp.installer.setup)
+
+      -- automatic_installation is handled by lsp-manager
       local settings = require "mason-lspconfig.settings"
       settings.current.automatic_installation = false
     end,
+    lazy = true,
+    event = "User FileOpened",
     dependencies = "mason.nvim",
   },
-  { "tamago324/nlsp-settings.nvim",   cmd = "LspSettings" },
-  { "jose-elias-alvarez/null-ls.nvim" },
+  { "tamago324/nlsp-settings.nvim", cmd = "LspSettings", lazy = true },
+  { "jose-elias-alvarez/null-ls.nvim", lazy = true },
   {
     "williamboman/mason.nvim",
     config = function()
       require("nvoid.plugins.config.mason").setup()
     end,
+    cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUninstallAll", "MasonLog" },
     build = function()
       pcall(function()
         require("mason-registry").refresh()
       end)
     end,
+    event = "User FileOpened",
+    lazy = true,
   },
-  { "rafamadriz/friendly-snippets", module = { "cmp", "cmp_nvim_lsp" }, event = "InsertEnter" },
+
+  { "nvim-lua/plenary.nvim", cmd = { "PlenaryBustedFile", "PlenaryBustedDirectory" }, lazy = true },
+  -- Telescope
   {
-    "folke/neodev.nvim",
-    module = "neodev",
+    "nvim-telescope/telescope.nvim",
+    branch = "0.1.x",
+    config = function()
+      require("nvoid.plugins.config.telescope").setup()
+    end,
+    dependencies = { "telescope-fzf-native.nvim" },
+    lazy = true,
+    cmd = "Telescope",
+    enabled = nvoid.builtin.telescope.active,
   },
+  -- Install nvim-cmp, and buffer source as a dependency
   {
     "hrsh7th/nvim-cmp",
     config = function()
@@ -136,14 +68,26 @@ local core_plugins = {
       "cmp_luasnip",
       "cmp-buffer",
       "cmp-path",
+      "cmp-cmdline",
     },
   },
-
+  { "hrsh7th/cmp-nvim-lsp", lazy = true },
+  { "saadparwaiz1/cmp_luasnip", lazy = true },
+  { "hrsh7th/cmp-buffer", lazy = true },
+  { "hrsh7th/cmp-path", lazy = true },
+  {
+    "hrsh7th/cmp-cmdline",
+    lazy = true,
+    enabled = nvoid.builtin.cmp and nvoid.builtin.cmp.cmdline.enable or false,
+  },
   {
     "L3MON4D3/LuaSnip",
     config = function()
       local utils = require "nvoid.utils"
       local paths = {}
+      if nvoid.builtin.luasnip.sources.friendly_snippets then
+        paths[#paths + 1] = utils.join_paths(get_runtime_dir(), "site", "pack", "lazy", "opt", "friendly-snippets")
+      end
       local user_snippets = utils.join_paths(get_config_dir(), "snippets")
       if utils.is_directory(user_snippets) then
         paths[#paths + 1] = user_snippets
@@ -155,84 +99,159 @@ local core_plugins = {
       require("luasnip.loaders.from_snipmate").lazy_load()
     end,
     event = "InsertEnter",
-    wants = "friendly-snippets",
-    after = "nvim-cmp",
+    dependencies = {
+      "friendly-snippets",
+    },
   },
-
-  -- CMP Extensions
-  { "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
-  { "hrsh7th/cmp-nvim-lsp",     after = "cmp_luasnip" },
-  { "hrsh7th/cmp-buffer",       after = "cmp-nvim-lsp" },
-  { "hrsh7th/cmp-path",         after = "cmp-buffer" },
+  { "rafamadriz/friendly-snippets", lazy = true, cond = nvoid.builtin.luasnip.sources.friendly_snippets },
+  {
+    "folke/neodev.nvim",
+    lazy = true,
+  },
 
   -- Autopairs
   {
     "windwp/nvim-autopairs",
-    after = "nvim-cmp",
+    event = "InsertEnter",
     config = function()
       require("nvoid.plugins.config.autopairs").setup()
     end,
-    disable = not nvoid.builtin.autopairs.active,
+    enabled = nvoid.builtin.autopairs.active,
+    dependencies = { "nvim-treesitter/nvim-treesitter", "hrsh7th/nvim-cmp" },
   },
 
-  -- Alpha
+  -- Treesitter
   {
-    "goolord/alpha-nvim",
-    after = "base16",
+    "nvim-treesitter/nvim-treesitter",
+    -- run = ":TSUpdate",
     config = function()
-      require("nvoid.plugins.config.alpha")
+      local utils = require "nvoid.utils"
+      local path = utils.join_paths(get_runtime_dir(), "site", "pack", "lazy", "opt", "nvim-treesitter")
+      vim.opt.rtp:prepend(path) -- treesitter needs to be before nvim's runtime in rtp
+      require("nvoid.plugins.config.treesitter").setup()
     end,
+    cmd = {
+      "TSInstall",
+      "TSUninstall",
+      "TSUpdate",
+      "TSUpdateSync",
+      "TSInstallInfo",
+      "TSInstallSync",
+      "TSInstallFromGrammar",
+    },
+    event = "User FileOpened",
+  },
+
+  -- NvimTree
+  {
+    "kyazdani42/nvim-tree.lua",
+    config = function()
+      require("nvoid.plugins.config.nvimtree").setup()
+    end,
+    enabled = nvoid.builtin.nvimtree.active,
+    cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeFocus", "NvimTreeFindFileToggle" },
+    event = "User DirOpened",
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("nvoid.plugins.config.gitsigns").setup()
+    end,
+    event = "User FileOpened",
+    cmd = "Gitsigns",
+    enabled = nvoid.builtin.gitsigns.active,
+  },
+
+  -- Whichkey
+  {
+    "folke/which-key.nvim",
+    config = function()
+      require("nvoid.plugins.config.which-key").setup()
+    end,
+    cmd = "WhichKey",
+    event = "VeryLazy",
+    enabled = nvoid.builtin.which_key.active,
   },
 
   -- Comments
   {
     "numToStr/Comment.nvim",
     config = function()
-      require("nvoid.plugins.config.comment")
+      require("nvoid.plugins.config.comment").setup()
     end,
+    keys = { { "gc", mode = { "n", "v" } }, { "gb", mode = { "n", "v" } } },
+    event = "User FileOpened",
+    enabled = nvoid.builtin.comment.active,
   },
 
-  -- NvimTree
+  -- Icons
   {
-    "kyazdani42/nvim-tree.lua",
-    disable = not nvoid.builtin.nvimtree.active,
-    ft = "alpha",
-    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    tag = "nightly",
-    config = function()
-      require("nvoid.plugins.config.nvimtree").setup()
-    end,
+    "nvim-tree/nvim-web-devicons",
+    enabled = nvoid.use_icons,
+    lazy = true,
   },
 
-  -- Telescope
+  -- alpha
   {
-    "nvim-telescope/telescope.nvim",
-    branch = "0.1.x",
+    "goolord/alpha-nvim",
     config = function()
-      require("nvoid.plugins.config.telescope").setup()
+      require("nvoid.plugins.config.alpha").setup()
     end,
-    disable = not nvoid.builtin.telescope.active,
+    enabled = nvoid.builtin.alpha.active,
+    event = "VimEnter",
   },
 
-  -- Whichkey
   {
-    "folke/which-key.nvim",
-    module = "which-key",
-    keys = "<leader>",
+    "RRethy/vim-illuminate",
     config = function()
-      require("nvoid.plugins.config.which-key").setup()
+      require("nvoid.plugins.config.illuminate").setup()
     end,
+    event = "User FileOpened",
+    enabled = nvoid.builtin.illuminate.active,
   },
 
-  -- Notify
   {
-    "rcarriga/nvim-notify",
+    "lukas-reineke/indent-blankline.nvim",
     config = function()
-      require("nvoid.plugins.config.notify").setup()
+      require("nvoid.plugins.config.indentlines").setup()
     end,
-    requires = { "nvim-telescope/telescope.nvim" },
-    disable = not nvoid.builtin.notify.active or not nvoid.builtin.telescope.active,
+    event = "User FileOpened",
+    enabled = nvoid.builtin.indentlines.active,
+  },
+
+  {
+    "lunarvim/bigfile.nvim",
+    config = function()
+      pcall(function()
+        require("bigfile").config(nvoid.builtin.bigfile.config)
+      end)
+    end,
+    enabled = nvoid.builtin.bigfile.active,
+    event = { "FileReadPre", "BufReadPre", "User FileOpened" },
   },
 }
+
+local default_snapshot_path = join_paths(get_nvoid_base_dir(), "snapshots", "default.json")
+local content = vim.fn.readfile(default_snapshot_path)
+local default_sha1 = assert(vim.fn.json_decode(content))
+
+-- taken form <https://github.com/folke/lazy.nvim/blob/c7122d64cdf16766433588486adcee67571de6d0/lua/lazy/core/plugin.lua#L27>
+local get_short_name = function(long_name)
+  local name = long_name:sub(-4) == ".git" and long_name:sub(1, -5) or long_name
+  local slash = name:reverse():find("/", 1, true) --[[@as number?]]
+  return slash and name:sub(#name - slash + 2) or long_name:gsub("%W+", "_")
+end
+
+local get_default_sha1 = function(spec)
+  local short_name = get_short_name(spec[1])
+  return default_sha1[short_name] and default_sha1[short_name].commit
+end
+
+if not vim.env.NVOID_DEV_MODE then
+  --  Manually lock the commit hashes of core plugins
+  for _, spec in ipairs(core_plugins) do
+    spec["commit"] = get_default_sha1(spec)
+  end
+end
 
 return core_plugins

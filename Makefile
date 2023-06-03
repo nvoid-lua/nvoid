@@ -16,6 +16,10 @@ uninstall:
 	@echo starting Nvoid uninstaller
 	bash ./utils/installer/uninstall.sh
 
+generate_new_lockfile:
+	@echo generating core-plugins latest lockfile
+	bash ./utils/ci/generate_new_lockfile.sh
+
 lint: lint-lua lint-sh
 
 lint-lua:
@@ -31,5 +35,8 @@ style-lua:
 
 style-sh:
 	shfmt -f . | grep -v jdtls | xargs shfmt -i 2 -ci -bn -l -d
+
+test:
+	bash ./utils/ci/run_test.sh "$(TEST)"
 
 .PHONY: install install-neovim-binary uninstall lint style test

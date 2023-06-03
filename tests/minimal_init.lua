@@ -1,5 +1,5 @@
 local path_sep = vim.loop.os_uname().version:match "Windows" and "\\" or "/"
-local base_dir = os.getenv "NVOID_RUNTIME_DIR" .. path_sep .. "nvoid"
+local base_dir = vim.env.NVOID_BASE_DIR
 local tests_dir = base_dir .. path_sep .. "tests"
 
 vim.opt.rtp:append(tests_dir)

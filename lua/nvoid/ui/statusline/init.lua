@@ -1,27 +1,26 @@
 local S = {}
 
-local M = require "nvoid.builtin.statusline.modules"
+local M = require "nvoid.ui.statusline.modules"
 
 S.run = function()
-  if nvoid.statusline.style == "nvoid" then
+  if nvoid.ui.statusline.style == "nvoid" then
     return table.concat {
       M.modeN(),
       M.fileInfo(),
-      M.git(),
+      -- M.git(),
 
       "%=",
       M.lsp_progress(),
       "%=",
 
-      M.treesitter_status(),
       M.diagnostics(),
-      M.lsp(),
+      -- M.lsp(),
       M.scrollbar(),
     }
-  elseif nvoid.statusline.style == "minimal" then
+  elseif nvoid.ui.statusline.style == "minimal" then
     return table.concat {
       M.modeM(),
-      M.git(),
+      -- M.git(),
       " ",
       M.diagnostics(),
 
@@ -29,23 +28,21 @@ S.run = function()
       M.lsp_progress(),
       "%=",
 
-      M.treesitter_status(),
       M.fileInfo(),
       M.scrollbar(),
     }
-  elseif nvoid.statusline.style == "evil" then
+  elseif nvoid.ui.statusline.style == "evil" then
     return table.concat {
       M.modeE(),
       M.fileInfo(),
-      M.git(),
+      -- M.git(),
 
       "%=",
       M.lsp_progress(),
       "%=",
 
-      M.treesitter_status(),
       M.diagnostics(),
-      M.lsp(),
+      -- M.lsp(),
       M.scrollbar(),
     }
   end

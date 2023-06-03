@@ -8,7 +8,7 @@ a.describe("initial start", function()
   local nvoid_cache_path = get_cache_dir()
 
   a.it("should be able to detect test environment", function()
-    assert.truthy(os.getenv "LVIM_TEST_ENV")
+    assert.truthy(os.getenv "NVOID_TEST_ENV")
     assert.falsy(package.loaded["nvoid.impatient"])
   end)
 

@@ -8,6 +8,7 @@ function M.config()
       check_outdated_packages_on_open = true,
       width = 0.8,
       height = 0.9,
+      border = "rounded",
       keymaps = {
         toggle_package_expand = "<CR>",
         install_package = "i",
@@ -26,20 +27,14 @@ function M.config()
       package_pending = "◍",
       package_uninstalled = "◍",
     },
-
     install_root_dir = join_paths(vim.fn.stdpath "data", "mason"),
-
     PATH = "skip",
-
     pip = {
       upgrade_pip = false,
       install_args = {},
     },
-
     log_level = vim.log.levels.INFO,
-
     max_concurrent_installers = 4,
-
     registries = {
       "lua:mason-registry.index",
       "github:mason-org/mason-registry",
@@ -48,11 +43,9 @@ function M.config()
       "mason.providers.registry-api",
       "mason.providers.client",
     },
-
     github = {
       download_url_template = "https://github.com/%s/releases/download/%s/%s",
     },
-
     on_config_done = nil,
   }
 end

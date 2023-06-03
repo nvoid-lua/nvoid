@@ -5,15 +5,15 @@ local base_dir = vim.env.NVOID_BASE_DIR
     end)()
 
 if not vim.tbl_contains(vim.opt.rtp:get(), base_dir) then
-  vim.opt.rtp:append(base_dir)
+  vim.opt.rtp:prepend(base_dir)
 end
 
 require("nvoid.bootstrap"):init(base_dir)
 
-
 require("nvoid.config"):load()
 
 local plugins = require "nvoid.plugins"
+
 require("nvoid.plugin-loader").load { plugins, nvoid.plugins }
 
 local Log = require "nvoid.core.log"
@@ -21,8 +21,4 @@ Log:debug "Starting Nvoid"
 
 local commands = require "nvoid.core.commands"
 commands.load(commands.defaults)
-
-require("nvoid.lsp").setup()
-
--- Terminals, Statusline
-require("nvoid.builtin")
+require("nvoid.ui")

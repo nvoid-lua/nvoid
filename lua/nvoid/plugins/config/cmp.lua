@@ -359,12 +359,39 @@ M.config = function()
         fallback() -- if not exited early, always fallback
       end),
     },
+    cmdline = {
+      enable = false,
+      options = {
+        {
+          type = ":",
+          sources = {
+            { name = "path" },
+            { name = "cmdline" },
+          },
+        },
+        {
+          type = { "/", "?" },
+          sources = {
+            { name = "buffer" },
+          },
+        },
+      },
+    },
   }
 end
 
 function M.setup()
   local cmp = require "cmp"
   cmp.setup(nvoid.builtin.cmp)
+
+  if nvoid.builtin.cmp.cmdline.enable then
+    for _, option in ipairs(nvoid.builtin.cmp.cmdline.options) do
+      cmp.setup.cmdline(option.type, {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = option.sources,
+      })
+    end
+  end
 
   if nvoid.builtin.cmp.on_config_done then
     nvoid.builtin.cmp.on_config_done(cmp)

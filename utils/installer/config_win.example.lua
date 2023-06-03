@@ -1,11 +1,12 @@
---[[
- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
- `nvoid` is the global options object
-]]
+-- Read the docs: https://www.nvoid.org/configuration
+-- Video Tutorials: https://www.youtube.com/watch?v=sFA9kX-Ud_c&list=PLhoH5vyxr6QqGu0i7tt_XoVK9v-KvZ3m6
+-- Forum: https://www.reddit.com/r/nvoid/
+-- Discord: https://discord.com/invite/Xb9B4Ny
+
 -- Enable powershell as your default shell
 vim.opt.shell = "pwsh.exe -NoLogo"
 vim.opt.shellcmdflag =
-"-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+  "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
 vim.cmd [[
 		let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 		let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
@@ -23,32 +24,3 @@ vim.g.clipboard = {
     ["*"] = "win32yank.exe -o --lf",
   },
 }
-
--- Lsp
-nvoid.lsp.diagnostics.virtual_text = true
-nvoid.lsp.format_on_save = false
-nvoid.lsp.document_highlight = true
--- nvoid.lsp. ...
-
--- Plugins
-nvoid.builtin.notify.active = true
-nvoid.builtin.nvimtree.setup.view.side = "left"
-nvoid.builtin.treesitter.ensure_installed = {
-  "bash",
-  "c",
-  "javascript",
-  "json",
-  "lua",
-  "python",
-  "typescript",
-  "tsx",
-  "css",
-  "rust",
-  "java",
-  "yaml",
-}
-
-nvoid.builtin.treesitter.ignore_install = { "haskell" }
-nvoid.builtin.treesitter.highlight.enabled = true
--- Add Plugins
--- nvoid.plugins = {}

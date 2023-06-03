@@ -6,11 +6,36 @@ M.config = function()
     on_config_done = nil,
     opts = {
       signs = {
-        add = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-        change = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-        delete = { hl = "GitSignsDelete", text = "契", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-        topdelete = { hl = "GitSignsDelete", text = "契", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-        changedelete = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+        add = {
+          hl = "GitSignsAdd",
+          text = nvoid.icons.ui.BoldLineLeft,
+          numhl = "GitSignsAddNr",
+          linehl = "GitSignsAddLn",
+        },
+        change = {
+          hl = "GitSignsChange",
+          text = nvoid.icons.ui.BoldLineLeft,
+          numhl = "GitSignsChangeNr",
+          linehl = "GitSignsChangeLn",
+        },
+        delete = {
+          hl = "GitSignsDelete",
+          text = nvoid.icons.ui.Triangle,
+          numhl = "GitSignsDeleteNr",
+          linehl = "GitSignsDeleteLn",
+        },
+        topdelete = {
+          hl = "GitSignsDelete",
+          text = nvoid.icons.ui.Triangle,
+          numhl = "GitSignsDeleteNr",
+          linehl = "GitSignsDeleteLn",
+        },
+        changedelete = {
+          hl = "GitSignsChange",
+          text = nvoid.icons.ui.BoldLineLeft,
+          numhl = "GitSignsChangeNr",
+          linehl = "GitSignsChangeLn",
+        },
       },
       numhl = false,
       linehl = false,
@@ -52,7 +77,8 @@ M.config = function()
 end
 
 M.setup = function()
-  local gitsigns = require "gitsigns"
+  local gitsigns = reload "gitsigns"
+
   gitsigns.setup(nvoid.builtin.gitsigns.opts)
   if nvoid.builtin.gitsigns.on_config_done then
     nvoid.builtin.gitsigns.on_config_done(gitsigns)

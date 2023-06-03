@@ -13,25 +13,21 @@ local temp_dir = vim.loop.os_getenv "TEMP" or "/tmp"
 vim.cmd("set packpath=" .. join_paths(temp_dir, "nvim", "site"))
 
 local package_root = join_paths(temp_dir, "nvim", "site", "pack")
-local install_path = join_paths(package_root, "packer", "start", "packer.nvim")
-local compile_path = join_paths(install_path, "plugin", "packer_compiled.lua")
+local plugins_dir = join_paths(package_root, "lazy", "opt")
+local install_path = join_paths(package_root, "lazy.nvim")
 
 -- Choose whether to use the executable that's managed by mason
 local use_lsp_installer = true
 
 local function load_plugins()
-  require("packer").startup {
-    {
-      "wbthomason/packer.nvim",
-      "neovim/nvim-lspconfig",
-      "williamboman/mason-lspconfig.nvim",
-      "williamboman/mason.nvim",
-    },
-    config = {
-      package_root = package_root,
-      compile_path = compile_path,
-    },
-  }
+  vim.opt.rtp:prepend(install_path)
+  require("lazy").setup({
+    "neovim/nvim-lspconfig",
+    "williamboman/mason-lspconfig.nvim",
+    "williamboman/mason.nvim",
+  }, {
+    root = plugins_dir,
+  })
 end
 
 function _G.dump(...)
@@ -71,11 +67,11 @@ _G.load_config = function()
     vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
     vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
     vim.keymap.set("n", "<space>li", "<cmd>LspInfo<CR>", opts)
-    vim.keymap.set("n", "<space>lI", "<cmd>MasonCR>", opts)
+    vim.keymap.set("n", "<space>lI", "<cmd>Mason<CR>", opts)
   end
 
   -- Add the server that troubles you here, e.g. "clangd", "pyright", "tsserver"
-  local name = "sumneko_lua"
+  local name = "lua_ls"
 
   local setup_opts = {
     on_attach = on_attach,
@@ -98,12 +94,19 @@ _G.load_config = function()
 end
 
 if vim.fn.isdirectory(install_path) == 0 then
-  vim.fn.system { "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path }
+  print "Installing lazy.nvim"
+  vim.fn.system {
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "--single-branch",
+    "https://github.com/folke/lazy.nvim.git",
+    install_path,
+  }
   load_plugins()
-  require("packer").sync()
-  vim.cmd [[autocmd User PackerComplete ++once lua load_config()]]
+  vim.cmd [[autocmd User LazyDone ++once lua load_config()]]
 else
   load_plugins()
-  require("packer").sync()
+  require("lazy").sync()
   _G.load_config()
 end

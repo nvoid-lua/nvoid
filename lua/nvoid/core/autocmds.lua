@@ -3,13 +3,6 @@ local Log = require "nvoid.core.log"
 
 --- Load the default set of autogroups and autocommands.
 function M.load_defaults()
-  local user_config_file = require("nvoid.config"):get_user_config_path()
-
-  if vim.loop.os_uname().version:match "Windows" then
-    -- autocmds require forward slashes even on windows
-    user_config_file = user_config_file:gsub("\\", "/")
-  end
-
   local definitions = {
     {
       "TextYankPost",
@@ -18,8 +11,16 @@ function M.load_defaults()
         pattern = "*",
         desc = "Highlight text on yank",
         callback = function()
-          require("vim.highlight").on_yank { higroup = "Search", timeout = 200 }
+          vim.highlight.on_yank { higroup = "Search", timeout = 100 }
         end,
+      },
+    },
+    {
+      "FileType",
+      {
+        group = "_hide_dap_repl",
+        pattern = "dap-repl",
+        command = "set nobuflisted",
       },
     },
     {
@@ -45,33 +46,24 @@ function M.load_defaults()
     {
       "FileType",
       {
-        group = "_filetype_settings",
-        pattern = "qf",
-        command = "set nobuflisted",
-      },
-    },
-    {
-      "FileType",
-      {
-        group = "_filetype_settings",
-        pattern = { "gitcommit", "markdown" },
-        command = "setlocal wrap spell",
-      },
-    },
-    {
-      "FileType",
-      {
         group = "_buffer_mappings",
-        pattern = { "qf", "help", "man", "floaterm", "lspinfo", "lir", "spectre_panel", "lsp-installer", "null-ls-info" },
-        command = "nnoremap <silent> <buffer> q :close<CR>",
-      },
-    },
-    {
-      { "BufWinEnter", "BufRead", "BufNewFile" },
-      {
-        group = "_format_options",
-        pattern = "*",
-        command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
+        pattern = {
+          "qf",
+          "help",
+          "man",
+          "floaterm",
+          "lspinfo",
+          "lir",
+          "lsp-installer",
+          "null-ls-info",
+          "tsplayground",
+          "DressingSelect",
+          "Jaq",
+        },
+        callback = function()
+          vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = true })
+          vim.opt_local.buflisted = false
+        end,
       },
     },
     {
@@ -82,16 +74,52 @@ function M.load_defaults()
         command = "tabdo wincmd =",
       },
     },
-
     {
-      "BufEnter",
+      "FileType",
       {
-        pattern = "*",
-        command = "set fo-=c fo-=r fo-=o",
+        group = "_filetype_settings",
+        pattern = "alpha",
+        callback = function()
+          vim.cmd [[
+            set nobuflisted
+          ]]
+        end,
       },
     },
-    -- From Astro
     {
+      "FileType",
+      {
+        group = "_filetype_settings",
+        pattern = "lir",
+        callback = function()
+          vim.opt_local.number = false
+          vim.opt_local.relativenumber = false
+        end,
+      },
+    },
+    {
+      "ColorScheme",
+      {
+        group = "_nvoid_colorscheme",
+        callback = function()
+          -- if nvoid.builtin.breadcrumbs.active then
+          --   require("nvoid.core.breadcrumbs").get_winbar()
+          -- end
+          local statusline_hl = vim.api.nvim_get_hl_by_name("StatusLine", true)
+          local cursorline_hl = vim.api.nvim_get_hl_by_name("CursorLine", true)
+          local normal_hl = vim.api.nvim_get_hl_by_name("Normal", true)
+          vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+          vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
+          vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" })
+          vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
+          vim.api.nvim_set_hl(0, "SLCopilot", { fg = "#6CC644", bg = statusline_hl.background })
+          vim.api.nvim_set_hl(0, "SLGitIcon", { fg = "#E8AB53", bg = cursorline_hl.background })
+          vim.api.nvim_set_hl(0, "SLBranchName", { fg = normal_hl.foreground, bg = cursorline_hl.background })
+          vim.api.nvim_set_hl(0, "SLSeparator", { fg = cursorline_hl.background, bg = statusline_hl.background })
+        end,
+      },
+    },
+    { -- taken from AstroNvim
       "BufEnter",
       {
         group = "_dir_opened",
@@ -106,7 +134,7 @@ function M.load_defaults()
         end,
       },
     },
-    {
+    { -- taken from AstroNvim
       { "BufRead", "BufWinEnter", "BufNewFile" },
       {
         group = "_file_opened",
@@ -128,14 +156,14 @@ end
 
 local get_format_on_save_opts = function()
   local defaults = require("nvoid.config.defaults").format_on_save
-  -- accept a basic boolean `nvoid.lsp.format_on_save=true`
-  if type(nvoid.lsp.format_on_save) ~= "table" then
+  -- accept a basic boolean `nvoid.format_on_save=true`
+  if type(nvoid.format_on_save) ~= "table" then
     return defaults
   end
 
   return {
-    pattern = nvoid.lsp.format_on_save.pattern or defaults.pattern,
-    timeout = nvoid.lsp.format_on_save.timeout or defaults.timeout,
+    pattern = nvoid.format_on_save.pattern or defaults.pattern,
+    timeout = nvoid.format_on_save.timeout or defaults.timeout,
   }
 end
 
@@ -158,7 +186,9 @@ function M.disable_format_on_save()
 end
 
 function M.configure_format_on_save()
-  if nvoid.lsp.format_on_save then
+  if type(nvoid.format_on_save) == "table" and nvoid.format_on_save.enabled then
+    M.enable_format_on_save()
+  elseif nvoid.format_on_save == true then
     M.enable_format_on_save()
   else
     M.disable_format_on_save()
@@ -178,17 +208,40 @@ function M.toggle_format_on_save()
 end
 
 function M.enable_reload_config_on_save()
+  -- autocmds require forward slashes (even on windows)
   local pattern = get_config_dir():gsub("\\", "/") .. "/*.lua"
 
   vim.api.nvim_create_augroup("nvoid_reload_config_on_save", {})
   vim.api.nvim_create_autocmd("BufWritePost", {
     group = "nvoid_reload_config_on_save",
     pattern = pattern,
-    desc = "Trigger LvimReload on saving config.lua",
+    desc = "Trigger NvoidReload on saving config.lua",
     callback = function()
       require("nvoid.config"):reload()
     end,
   })
+end
+
+function M.enable_transparent_mode()
+  vim.api.nvim_create_autocmd("ColorScheme", {
+    pattern = "*",
+    callback = function()
+      local hl_groups = {
+        "Normal",
+        "SignColumn",
+        "NormalNC",
+        "TelescopeBorder",
+        "NvimTreeNormal",
+        "NvimTreeNormalNC",
+        "EndOfBuffer",
+        "MsgArea",
+      }
+      for _, name in ipairs(hl_groups) do
+        vim.cmd(string.format("highlight %s ctermbg=none guibg=none", name))
+      end
+    end,
+  })
+  vim.opt.fillchars = "eob: "
 end
 
 --- Clean autocommand in a group if it exists

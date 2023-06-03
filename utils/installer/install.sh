@@ -1,20 +1,25 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
+OS="$(uname -s)"
+
 #Set branch to master unless specified by the user
-declare -r INSTALL_PREFIX="${INSTALL_PREFIX:-"$HOME/.local"}"
+declare -x NV_BRANCH="${NV_BRANCH:-"main"}"
+declare -xr NV_REMOTE="${NV_REMOTE:-nvoid-lua/nvoid.git}"
+declare -xr INSTALL_PREFIX="${INSTALL_PREFIX:-"$HOME/.local"}"
 
-declare -r XDG_DATA_HOME="${XDG_DATA_HOME:-"$HOME/.local/share"}"
-declare -r XDG_CACHE_HOME="${XDG_CACHE_HOME:-"$HOME/.cache"}"
-declare -r XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-"$HOME/.config"}"
+declare -xr XDG_DATA_HOME="${XDG_DATA_HOME:-"$HOME/.local/share"}"
+declare -xr XDG_CACHE_HOME="${XDG_CACHE_HOME:-"$HOME/.cache"}"
+declare -xr XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-"$HOME/.config"}"
 
-declare -r NVOID_RUNTIME_DIR="${NVOID_RUNTIME_DIR:-"$XDG_DATA_HOME/nvoid"}"
-declare -r NVOID_BASE16_DIR="${NVOID_BASE16_DIR:-"$XDG_DATA_HOME/nvoid/site/pack/packer/start/base16/lua/base16/highlight"}"
-declare -r NVOID_CONFIG_DIR="${NVOID_CONFIG_DIR:-"$XDG_CONFIG_HOME/nvoid"}"
-declare -r NVOID_CACHE_DIR="${NVOID_CACHE_DIR:-"$XDG_CACHE_HOME/nvoid"}"
-declare -r NVOID_BASE_DIR="${NVOID_BASE_DIR:-"$NVOID_RUNTIME_DIR/nvoid"}"
+declare -xr NVIM_APPNAME="${NVIM_APPNAME:-"nvoid"}"
 
-declare -r NVOID_LOG_LEVEL="${NVOID_LOG_LEVEL:-warn}"
+declare -xr NVOID_RUNTIME_DIR="${NVOID_RUNTIME_DIR:-"$XDG_DATA_HOME/nvoid"}"
+declare -xr NVOID_CONFIG_DIR="${NVOID_CONFIG_DIR:-"$XDG_CONFIG_HOME/$NVIM_APPNAME"}"
+declare -xr NVOID_CACHE_DIR="${NVOID_CACHE_DIR:-"$XDG_CACHE_HOME/$NVIM_APPNAME"}"
+declare -xr NVOID_BASE_DIR="${NVOID_BASE_DIR:-"$NVOID_RUNTIME_DIR/$NVIM_APPNAME"}"
+
+declare -xr NVOID_LOG_LEVEL="${NVOID_LOG_LEVEL:-warn}"
 
 declare BASEDIR
 BASEDIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
@@ -28,19 +33,26 @@ declare INTERACTIVE_MODE=1
 declare ADDITIONAL_WARNINGS=""
 
 declare -a __nvoid_dirs=(
-  "$NVOID_CONFIG_DIR"
   "$NVOID_RUNTIME_DIR"
-  "$NVOID_BASE16_DIR"
   "$NVOID_CACHE_DIR"
+  "$NVOID_BASE_DIR"
 )
 
 declare -a __npm_deps=(
   "neovim"
-  "tree-sitter-cli"
 )
+# treesitter installed with brew causes conflicts #3738
+if ! command -v tree-sitter &>/dev/null; then
+  __npm_deps+=("tree-sitter-cli")
+fi
 
 declare -a __pip_deps=(
   "pynvim"
+)
+
+declare -a __rust_deps=(
+  "fd::fd-find"
+  "rg::ripgrep"
 )
 
 function usage() {
@@ -48,10 +60,10 @@ function usage() {
   echo ""
   echo "Options:"
   echo "    -h, --help                               Print this help message"
-  echo "    -l, --local                              Install local copy of nvoid"
+  echo "    -l, --local                              Install local copy of Nvoid"
   echo "    -y, --yes                                Disable confirmation prompts (answer yes to all questions)"
-  echo "    --overwrite                              Overwrite previous nvoid configuration (a backup is always performed first)"
-  echo "    --[no]-install-dependencies              Whether to automatically install external dependencies (will prompt by default)"
+  echo "    --overwrite                              Overwrite previous Nvoid configuration (a backup is always performed first)"
+  echo "    --[no-]install-dependencies              Whether to automatically install external dependencies (will prompt by default)"
 }
 
 function parse_arguments() {
@@ -107,6 +119,10 @@ function confirm() {
   done
 }
 
+function stringify_array() {
+  echo -n "${@}" | sed 's/ /, /'
+}
+
 function main() {
   parse_arguments "$@"
 
@@ -119,13 +135,13 @@ function main() {
 
   if [ "$ARGS_INSTALL_DEPENDENCIES" -eq 1 ]; then
     if [ "$INTERACTIVE_MODE" -eq 1 ]; then
-      if confirm "Would you like to install nvoid's NodeJS dependencies?"; then
+      if confirm "Would you like to install Nvoid's NodeJS dependencies: $(stringify_array "${__npm_deps[@]}")?"; then
         install_nodejs_deps
       fi
-      if confirm "Would you like to install nvoid's Python dependencies?"; then
+      if confirm "Would you like to install Nvoid's Python dependencies: $(stringify_array "${__pip_deps[@]}")?"; then
         install_python_deps
       fi
-      if confirm "Would you like to install nvoid's Rust dependencies?"; then
+      if confirm "Would you like to install Nvoid's Rust dependencies: $(stringify_array "${__rust_deps[@]}")?"; then
         install_rust_deps
       fi
     else
@@ -135,14 +151,12 @@ function main() {
     fi
   fi
 
-  backup_old_config
+  remove_old_cache_files
 
   verify_nvoid_dirs
 
   if [ "$ARGS_LOCAL" -eq 1 ]; then
     link_local_nvoid
-  elif [ -d "$NVOID_BASE_DIR" ]; then
-    validate_nvoid_files
   else
     clone_nvoid
   fi
@@ -150,14 +164,12 @@ function main() {
   setup_nvoid
 
   msg "$ADDITIONAL_WARNINGS"
-  nvoid -c w ~/.config/nvoid/config.lua -c q!
-  msg "Thank you for installing nvoid!!"
-  echo "You can start it by running: $INSTALL_PREFIX/bin/nvoid"
+  msg "Thank you for installing Nvoid!!"
+  echo "You can start it by running: $INSTALL_PREFIX/bin/$NVIM_APPNAME"
   echo "Do not forget to use a font with glyphs (icons) support [https://github.com/ryanoasis/nerd-fonts]"
 }
 
 function detect_platform() {
-  OS="$(uname -s)"
   case "$OS" in
     Linux)
       if [ -f "/etc/arch-release" ] || [ -f "/etc/artix-release" ]; then
@@ -202,22 +214,22 @@ function print_missing_dep_msg() {
 }
 
 function check_neovim_min_version() {
-  local verify_version_cmd='if !has("nvim-0.7") | cquit | else | quit | endif'
+  local verify_version_cmd='if !has("nvim-0.8") | cquit | else | quit | endif'
 
   # exit with an error if min_version not found
   if ! nvim --headless -u NONE -c "$verify_version_cmd"; then
-    echo "[ERROR]: nvoid requires at least Neovim v0.7 or higher"
+    echo "[ERROR]: Nvoid requires at least Neovim v0.8 or higher"
     exit 1
   fi
 }
 
-function validate_nvoidvim_files() {
-  local verify_version_cmd='if v:errmsg != "" | cquit | else | quit | endif'
-  if ! "$INSTALL_PREFIX/bin/nvoid" --headless -c 'NvoidUpdate' -c "$verify_version_cmd" &>/dev/null; then
-    msg "Removing old installation files"
-    rm -rf "$NVOID_BASE_DIR"
-    clone_nvoid
+function verify_core_plugins() {
+  msg "Verifying core plugins"
+  if ! bash "$NVOID_BASE_DIR/utils/ci/verify_plugins.sh"; then
+    echo "[ERROR]: Unable to verify plugins, make sure to manually run ':Lazy sync' when starting nvoid for the first time."
+    exit 1
   fi
+  echo "Verification complete!"
 }
 
 function validate_install_prefix() {
@@ -336,8 +348,7 @@ function __attempt_to_install_with_cargo() {
 
 # we try to install the missing one with cargo even though it's unlikely to be found
 function install_rust_deps() {
-  local -a deps=("fd::fd-find" "rg::ripgrep")
-  for dep in "${deps[@]}"; do
+  for dep in "${__rust_deps[@]}"; do
     if ! command -v "${dep%%::*}" &>/dev/null; then
       __attempt_to_install_with_cargo "${dep##*::}"
     fi
@@ -345,57 +356,56 @@ function install_rust_deps() {
   echo "All Rust dependencies are successfully installed"
 }
 
-function verify_nvoid_dirs() {
-  if [ "$ARGS_OVERWRITE" -eq 1 ]; then
-    for dir in "${__nvoid_dirs[@]}"; do
-      [ -d "$dir" ] && rm -rf "$dir"
-    done
-  fi
-
-  for dir in "${__nvoid_dirs[@]}"; do
-    mkdir -p "$dir"
-  done
-}
-
-function backup_old_config() {
-  local src="$NVOID_CONFIG_DIR"
+function __backup_dir() {
+  local src="$1"
   if [ ! -d "$src" ]; then
     return
   fi
   mkdir -p "$src.old"
-  touch "$src/ignore"
   msg "Backing up old $src to $src.old"
   if command -v rsync &>/dev/null; then
-    rsync --archive -hh --stats --partial --copy-links --cvs-exclude "$src"/ "$src.old"
+    rsync --archive --quiet --backup --partial --copy-links --cvs-exclude "$src"/ "$src.old"
   else
-    OS="$(uname -s)"
     case "$OS" in
-      Linux | *BSD)
-        cp -r "$src/"* "$src.old/."
-        ;;
       Darwin)
-        cp -R "$src/"* "$src.old/."
+        cp -R "$src/." "$src.old/."
         ;;
       *)
-        echo "OS $OS is not currently supported."
+        cp -r "$src/." "$src.old/."
         ;;
     esac
   fi
-  msg "Backup operation complete"
+}
+
+function verify_nvoid_dirs() {
+  for dir in "${__nvoid_dirs[@]}"; do
+    if [ -d "$dir" ]; then
+      if [ "$ARGS_OVERWRITE" -eq 0 ]; then
+        __backup_dir "$dir"
+      fi
+      rm -rf "$dir"
+    fi
+    mkdir -p "$dir"
+  done
+  mkdir -p "$NVOID_CONFIG_DIR"
 }
 
 function clone_nvoid() {
-  msg "Cloning nvoid configuration"
-  git clone https://github.com/nvoid-lua/nvoid.git ~/.local/share/nvoid/nvoid/
+  msg "Cloning Nvoid configuration"
+  if ! git clone --branch "$NV_BRANCH" \
+    "https://github.com/${NV_REMOTE}" "$NVOID_BASE_DIR"; then
+    echo "Failed to clone repository. Installation failed."
+    exit 1
+  fi
 }
 
 function link_local_nvoid() {
-  echo "Linking local nvoid repo"
+  echo "Linking local Nvoid repo"
 
   # Detect whether it's a symlink or a folder
   if [ -d "$NVOID_BASE_DIR" ]; then
-    echo "Removing old installation files"
-    rm -rf "$NVOID_BASE_DIR"
+    msg "Moving old files to ${NVOID_BASE_DIR}.old"
+    mv "$NVOID_BASE_DIR" "${NVOID_BASE_DIR}".old
   fi
 
   echo "   - $BASEDIR -> $NVOID_BASE_DIR"
@@ -407,56 +417,47 @@ function setup_shim() {
 }
 
 function remove_old_cache_files() {
-  local packer_cache="$NVOID_CONFIG_DIR/plugin/packer_compiled.lua"
-  if [ -e "$packer_cache" ]; then
-    msg "Removing old packer cache file"
-    rm -f "$packer_cache"
-  fi
-
-  if [ -e "$NVOID_CACHE_DIR/luacache" ] || [ -e "$NVOID_CACHE_DIR/nvoid_cache" ]; then
-    msg "Removing old startup cache file"
-    rm -f "$NVOID_CACHE_DIR/{luacache,nvoid_cache}"
+  local lazy_cache="$NVOID_CACHE_DIR/lazy/cache"
+  if [ -e "$lazy_cache" ]; then
+    msg "Removing old lazy cache file"
+    rm -f "$lazy_cache"
   fi
 }
 
 function setup_nvoid() {
 
-  remove_old_cache_files
-
-  msg "Installing nvoid shim"
+  msg "Installing Nvoid shim"
 
   setup_shim
 
-  cp "$NVOID_BASE_DIR/utils/installer/config.example.lua" "$NVOID_CONFIG_DIR/config.lua"
 
-  echo "Preparing Packer setup"
+  [ ! -f "$NVOID_CONFIG_DIR/config.lua" ] \
+    && cp "$NVOID_BASE_DIR/utils/installer/config.example.lua" "$NVOID_CONFIG_DIR/config.lua"
 
-  "$INSTALL_PREFIX/bin/nvoid" --headless \
-    -c "lua require('nvoid.core.log'):set_level([[$NVOID_LOG_LEVEL]])" \
-    -c 'autocmd User PackerComplete quitall' \
-    -c 'PackerSync'
+  echo "Preparing Lazy setup"
 
-  echo "Packer setup complete"
+  "$INSTALL_PREFIX/bin/$NVIM_APPNAME" --headless -c 'quitall'
 
-  # verify_core_plugins
+  printf "\nLazy setup complete"
+
+  verify_core_plugins
 }
 
 function print_logo() {
   cat <<'EOF'
-
-⠘⢵⢕⢽⡸⣕⢵⢝⡄⠀⠑⡽⡸⡄⠹⡜⣝⡄⠀⠀⠀⠀⠀⡔⡽⡸⠁
-⠀⠈⣗⡳⣉⠈⠸⣕⢝⣄⠀⠘⣝⢮⣂⠙⣜⢮⢆⠀⠀⢀⢜⡎⡗⠁ 
-⠀⠀⠐⢝⢼⢄⠀⠘⡵⣕⢆⠀⠘⣎⢮⢆⠘⡎⡗⡧⡀⣎⢧⡫⠀  
-   ⠈⢳⡹⣢⠀⠘⢮⢝⢦⠀⠈⢮⢳⡱⡈⢗⡕⣗⢕⠇⠀⠀  
-   ⠀⠀⢫⢮⣢⠀⠈⢮⢳⢕⡀⠈⢧⢳⢕⡀⢯⢪⠋⠀    
-   ⠀⠀⠀⢣⡳⣕⡀⠈⢣⢗⢵⡀⠈⢮⢳⡱⡀⠋⠀     
+⠘⢵⢕⢽⡸⣕⢵⢝⡄⠀⠑⡽⡸⡄⠹⡜⣝⡄⠀⠀⠀⠀⠀⡔⡽⡸⠁ 
+⠀⠈⣗⡳⣉⠈⠸⣕⢝⣄⠀⠘⣝⢮⣂⠙⣜⢮⢆⠀⠀⢀⢜⡎⡗⠁  
+⠀⠀⠐⢝⢼⢄⠀⠘⡵⣕⢆⠀⠘⣎⢮⢆⠘⡎⡗⡧⡀⣎⢧⡫    
+   ⠈⢳⡹⣢⠀⠘⢮⢝⢦⠀⠈⢮⢳⡱⡈⢗⡕⣗⢕⠇     
+   ⠀⠀⢫⢮⣢⠀⠈⢮⢳⢕⡀⠈⢧⢳⢕⡀⢯⢪⠋      
+   ⠀⠀⠀⢣⡳⣕⡀⠈⢣⢗⢵⡀⠈⢮⢳⡱⡀⠋       
     ⠀⠀⠀⠱⡵⣱⡀⠀⢫⣣⢳⢄⢠⡳⣹⠕⠀      
    ⠀⠀⠀⠀⠀⠹⣜⢼⡀⠀⠪⡳⡕⣗⢝⠊⠀       
    ⠀     ⠘⡮⡺⡄⠀⠙⡼⣪⠃         
    ⠀     ⠀⠘⡵⡝⣆⠀⠘⠁          
    ⠀     ⠀⠀⠘⡺⡜⣆⠀           
             ⠈⢞⠁            
-
+01001110 01010110 01001111 01001001 01000100 
 EOF
 }
 

@@ -12,33 +12,36 @@ vim.cmd [[
 
 M.defaults = {
   {
+    name = "BufferKill",
+    fn = function()
+      require("nvoid.core.bufferline").buf_kill "bd"
+    end,
+  },
+  {
     name = "NvoidToggleFormatOnSave",
     fn = function()
       require("nvoid.core.autocmds").toggle_format_on_save()
     end,
   },
   {
-    name = "NvoidDiagnostics",
-    fn = function()
-      vim.diagnostic.open_float(0, { show_header = false, severity_sort = true, scope = "line" })
-    end
-  },
-  {
-    name = "NvoidFormat",
-    fn = function()
-      vim.lsp.buf.format({ async = true })
-    end
-  },
-  {
-    name = "NvoidRename",
-    fn = function()
-      require("nvoid.interface.rename").open()
-    end
-  },
-  {
     name = "NvoidInfo",
     fn = function()
       require("nvoid.core.info").toggle_popup(vim.bo.filetype)
+    end,
+  },
+  {
+    name = "NvoidDocs",
+    fn = function()
+      local documentation_url = "https://www.nvoid.org/docs/beginners-guide"
+      if vim.fn.has "mac" == 1 or vim.fn.has "macunix" == 1 then
+        vim.fn.execute("!open " .. documentation_url)
+      elseif vim.fn.has "win32" == 1 or vim.fn.has "win64" == 1 then
+        vim.fn.execute("!start " .. documentation_url)
+      elseif vim.fn.has "unix" == 1 then
+        vim.fn.execute("!xdg-open " .. documentation_url)
+      else
+        vim.notify "Opening docs in a browser is not supported on your OS"
+      end
     end,
   },
   {

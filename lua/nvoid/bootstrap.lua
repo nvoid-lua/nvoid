@@ -61,11 +61,11 @@ function M:init(base_dir)
   self.config_dir = get_config_dir()
   self.cache_dir = get_cache_dir()
   self.pack_dir = join_paths(self.runtime_dir, "site", "pack")
-  self.packer_install_dir = join_paths(self.runtime_dir, "site", "pack", "packer", "start", "packer.nvim")
-  self.packer_cache_path = join_paths(self.config_dir, "plugin", "packer_compiled.lua")
+  self.lazy_install_dir = join_paths(self.pack_dir, "lazy", "opt", "lazy.nvim")
 
-  ---@meta overridden to use NVOID_CACHE_DIR instead, since a lot of plugins call this function interally
+  ---@meta overridden to use NVOID_CACHE_DIR instead, since a lot of plugins call this function internally
   ---NOTE: changes to "data" are currently unstable, see #2507
+  ---@diagnostic disable-next-line: duplicate-set-field
   vim.fn.stdpath = function(what)
     if what == "cache" then
       return _G.get_cache_dir()
@@ -73,7 +73,7 @@ function M:init(base_dir)
     return vim.call("stdpath", what)
   end
 
-  ---Get the full path to NVOID's base directory
+  ---Get the full path to Nvoid's base directory
   ---@return string
   function _G.get_nvoid_base_dir()
     return base_dir
@@ -82,28 +82,28 @@ function M:init(base_dir)
   if os.getenv "NVOID_RUNTIME_DIR" then
     vim.opt.rtp:remove(join_paths(vim.call("stdpath", "data"), "site"))
     vim.opt.rtp:remove(join_paths(vim.call("stdpath", "data"), "site", "after"))
-    vim.opt.rtp:prepend(join_paths(self.runtime_dir, "site"))
+    -- vim.opt.rtp:prepend(join_paths(self.runtime_dir, "site"))
+    vim.opt.rtp:append(join_paths(self.runtime_dir, "nvoid", "after"))
     vim.opt.rtp:append(join_paths(self.runtime_dir, "site", "after"))
 
     vim.opt.rtp:remove(vim.call("stdpath", "config"))
     vim.opt.rtp:remove(join_paths(vim.call("stdpath", "config"), "after"))
     vim.opt.rtp:prepend(self.config_dir)
     vim.opt.rtp:append(join_paths(self.config_dir, "after"))
-    -- TODO: we need something like this: vim.opt.packpath = vim.opt.rtp
 
-    vim.cmd [[let &packpath = &runtimepath]]
+    vim.opt.packpath = vim.opt.rtp:get()
   end
-
-  -- FIXME: currently unreliable in unit-tests
-  _G.PLENARY_DEBUG = false
-  require "nvoid.impatient"
-
-  require("nvoid.config"):init()
 
   require("nvoid.plugin-loader").init {
     package_root = self.pack_dir,
-    install_path = self.packer_install_dir,
+    install_path = self.lazy_install_dir,
   }
+
+  require("nvoid.config"):init()
+  vim.g.theme = nvoid.ui.theme
+  vim.g.transparency = nvoid.ui.transparency
+
+  require("nvoid.plugins.config.mason").bootstrap()
 
   return self
 end

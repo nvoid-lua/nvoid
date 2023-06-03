@@ -31,7 +31,7 @@ M.winbar_filetype_exclude = {
 M.get_filename = function()
   local filename = vim.fn.expand("%:t")
   local extension = vim.fn.expand("%:e")
-  local f = require("nvoid.builtin.winbar.functions")
+  local f = require("nvoid.ui.winbar.functions")
 
   if not f.isempty(filename) then
     local file_icon, file_icon_color =
@@ -67,8 +67,8 @@ local get_gps = function()
     return ""
   end
 
-  if not require("nvoid.builtin.winbar.functions").isempty(gps_location) then
-    return require("nvoid.builtin.icons").ui.ChevronRight .. " " .. gps_location
+  if not require("nvoid.ui.winbar.functions").isempty(gps_location) then
+    return require("nvoid.ui.icons").ui.ChevronRight .. " " .. gps_location
   else
     return ""
   end
@@ -86,7 +86,7 @@ M.get_winbar = function()
   if excludes() then
     return
   end
-  local f = require("nvoid.builtin.winbar.functions")
+  local f = require("nvoid.ui.winbar.functions")
   local value = M.get_filename()
 
   local gps_added = false
@@ -99,7 +99,7 @@ M.get_winbar = function()
   end
 
   if not f.isempty(value) and f.get_buf_option("mod") then
-    local mod = "%#LspCodeLens#" .. require("nvoid.builtin.icons").ui.Circle .. "%*"
+    local mod = "%#LspCodeLens#" .. require("nvoid.ui.icons").ui.Circle .. "%*"
     if gps_added then
       value = value .. " " .. mod
     else
@@ -130,7 +130,7 @@ M.create_winbar = function()
         callback = function()
           local status_ok, _ = pcall(vim.api.nvim_buf_get_var, 0, "lsp_floating_window")
           if not status_ok then
-            require("nvoid.builtin.winbar").get_winbar()
+            require("nvoid.ui.winbar").get_winbar()
           end
         end,
       }

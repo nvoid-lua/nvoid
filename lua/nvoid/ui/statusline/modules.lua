@@ -1,5 +1,5 @@
 local fn = vim.fn
-local icons = require "nvoid.interface.icons"
+local icons = require "nvoid.ui.icons"
 
 local modesM = {
   ["n"] = { " normal", "St_ModeM" },
@@ -191,11 +191,6 @@ M.lsp = function(msg)
   end
   local unique_client_names = vim.fn.uniq(buf_client_names)
   return "%#St_LspStatus#" .. icons.statusline.lsp .. table.concat(unique_client_names, ", ") .. " "
-end
-
-M.treesitter_status = function()
-  local ts_avail, ts = pcall(require, "nvim-treesitter.parsers")
-  return (ts_avail and ts.has_parser()) and "%#St_Treesitter#" .. icons.statusline.treesitter .. " " or ""
 end
 
 M.scrollbar = function()

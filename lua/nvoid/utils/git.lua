@@ -1,6 +1,7 @@
 local M = {}
 
 local Log = require "nvoid.core.log"
+local fmt = string.format
 local if_nil = vim.F.if_nil
 
 local function git_cmd(opts)
@@ -39,12 +40,19 @@ local function safe_deep_fetch()
     Log:error(vim.inspect(error))
     return
   end
-  -- git fetch --unshallow will cause an error on a a complete clone
+  -- git fetch --unshallow will cause an error on a complete clone
   local fetch_mode = result[1] == "true" and "--unshallow" or "--all"
   ret = git_cmd { args = { "fetch", fetch_mode } }
   if ret ~= 0 then
-    Log:error("Git fetch failed! Please pull the changes manually in " .. get_nvoid_base_dir())
+    Log:error(fmt "Git fetch %s failed! Please pull the changes manually in %s", fetch_mode, get_nvoid_base_dir())
     return
+  end
+  if fetch_mode == "--unshallow" then
+    ret = git_cmd { args = { "remote", "set-branches", "origin", "*" } }
+    if ret ~= 0 then
+      Log:error(fmt "Git fetch %s failed! Please pull the changes manually in %s", fetch_mode, get_nvoid_base_dir())
+      return
+    end
   end
   return true
 end
@@ -52,6 +60,11 @@ end
 ---pulls the latest changes from github
 function M.update_base_nvoid()
   Log:info "Checking for updates"
+
+  if not vim.loop.fs_access(get_nvoid_base_dir(), "w") then
+    Log:warn(fmt("Nvoid update aborted! cannot write to %s", get_nvoid_base_dir()))
+    return
+  end
 
   if not safe_deep_fetch() then
     return
@@ -95,7 +108,7 @@ function M.switch_nvoid_branch(branch)
   return true
 end
 
----Get the current nvoid development branch
+---Get the current Nvoid development branch
 ---@return string|nil
 function M.get_nvoid_branch()
   local _, results = git_cmd { args = { "rev-parse", "--abbrev-ref", "HEAD" } }
@@ -113,6 +126,15 @@ function M.get_nvoid_tag()
   return tag
 end
 
+---Get the description of currently checked-out commit of Nvoid
+---@return string|nil
+function M.get_nvoid_description()
+  local _, results = git_cmd { args = { "describe", "--dirty", "--always" } }
+
+  local description = if_nil(results[1], M.get_nvoid_branch())
+  return description
+end
+
 ---Get currently running version of Nvoid
 ---@return string
 function M.get_nvoid_version()
@@ -120,19 +142,11 @@ function M.get_nvoid_version()
 
   local nvoid_version
   if current_branch ~= "HEAD" or "" then
-    nvoid_version = current_branch .. "-" .. M.get_nvoid_current_sha()
+    nvoid_version = current_branch .. "-" .. M.get_nvoid_description()
   else
     nvoid_version = "v" .. M.get_nvoid_tag()
   end
   return nvoid_version
-end
-
----Get the commit hash of currently checked-out commit of Nvoid
----@return string|nil
-function M.get_nvoid_current_sha()
-  local _, log_results = git_cmd { args = { "log", "--pretty=format:%h", "-1" } }
-  local abbrev_version = if_nil(log_results[1], "")
-  return abbrev_version
 end
 
 return M
