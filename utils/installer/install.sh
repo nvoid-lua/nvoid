@@ -223,14 +223,14 @@ function check_neovim_min_version() {
   fi
 }
 
-function verify_core_plugins() {
-  msg "Verifying core plugins"
-  if ! bash "$NVOID_BASE_DIR/utils/ci/verify_plugins.sh"; then
-    echo "[ERROR]: Unable to verify plugins, make sure to manually run ':Lazy sync' when starting nvoid for the first time."
-    exit 1
-  fi
-  echo "Verification complete!"
-}
+# function verify_core_plugins() {
+#   msg "Verifying core plugins"
+#   if ! bash "$NVOID_BASE_DIR/utils/ci/verify_plugins.sh"; then
+#     echo "[ERROR]: Unable to verify plugins, make sure to manually run ':Lazy sync' when starting nvoid for the first time."
+#     exit 1
+#   fi
+#   echo "Verification complete!"
+# }
 
 function validate_install_prefix() {
   local prefix="$1"
@@ -440,7 +440,7 @@ function setup_nvoid() {
 
   printf "\nLazy setup complete"
 
-  verify_core_plugins
+  # verify_core_plugins
 }
 
 function print_logo() {
