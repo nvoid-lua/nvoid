@@ -9,8 +9,10 @@ if not vim.tbl_contains(vim.opt.rtp:get(), base_dir) then
 end
 
 require("nvoid.bootstrap"):init(base_dir)
-
 require("nvoid.config"):load()
+
+vim.g.theme = nvoid.colorscheme
+vim.g.transparency = nvoid.ui.transparency
 
 local plugins = require "nvoid.plugins"
 

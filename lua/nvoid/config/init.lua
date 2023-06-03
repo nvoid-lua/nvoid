@@ -100,7 +100,6 @@ function M:reload()
     local plugin_loader = reload "nvoid.plugin-loader"
 
     plugin_loader.reload { plugins, nvoid.plugins }
-    reload("nvoid.plugins.config.theme").setup()
     reload("nvoid.utils.hooks").run_post_reload()
   end)
 end

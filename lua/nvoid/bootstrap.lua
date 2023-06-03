@@ -100,8 +100,8 @@ function M:init(base_dir)
   }
 
   require("nvoid.config"):init()
-  vim.g.theme = nvoid.ui.theme
-  vim.g.transparency = nvoid.ui.transparency
+  -- vim.g.theme = nvoid.ui.theme
+  -- vim.g.transparency = nvoid.ui.transparency
 
   require("nvoid.plugins.config.mason").bootstrap()
 

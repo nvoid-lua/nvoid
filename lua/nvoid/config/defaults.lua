@@ -1,10 +1,9 @@
 return {
   leader = "space",
   reload_config_on_save = true,
-  colorscheme = "lunar",
   transparent_window = false,
   ui = {
-    theme        = "onedark",
+    colorscheme  = "onedark",
     transparency = false,
     statusline   = {
       enabled = true,
