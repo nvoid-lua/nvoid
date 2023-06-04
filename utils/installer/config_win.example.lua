@@ -21,3 +21,5 @@ vim.g.clipboard = {
     ["*"] = "win32yank.exe -o --lf",
   },
 }
+
+nvoid.ui.colorscheme = "onedark"
