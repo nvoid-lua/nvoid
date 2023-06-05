@@ -13,8 +13,8 @@ S.run = function()
       M.lsp_progress(),
       "%=",
 
-      M.diagnostics(),
-      -- M.lsp(),
+      -- M.diagnostics(),
+      M.get_lsp(),
       M.scrollbar(),
     }
   elseif nvoid.ui.statusline.style == "minimal" then
@@ -22,7 +22,7 @@ S.run = function()
       M.modeM(),
       -- M.git(),
       " ",
-      M.diagnostics(),
+      -- M.diagnostics(),
 
       "%=",
       M.lsp_progress(),
@@ -41,8 +41,8 @@ S.run = function()
       M.lsp_progress(),
       "%=",
 
-      M.diagnostics(),
-      -- M.lsp(),
+      -- M.diagnostics(),
+      M.get_lsp(),
       M.scrollbar(),
     }
   end

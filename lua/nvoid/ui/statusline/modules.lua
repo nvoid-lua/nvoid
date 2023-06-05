@@ -1,5 +1,4 @@
 local fn = vim.fn
-local icons = require "nvoid.ui.icons"
 
 local modesM = {
   ["n"] = { " normal", "St_ModeM" },
@@ -116,28 +115,49 @@ M.fileInfo = function()
   return "%#St_file_info#" .. icon .. filename .. " " .. "%#St_file_sep#"
 end
 
-M.git = function()
-  if not vim.b.gitsigns_head or vim.b.gitsigns_git_status then
-    return ""
+-- LSP STUFF
+M.get_lsp = function()
+  local buf_clients = vim.lsp.get_active_clients { bufnr = 0 }
+  if #buf_clients == 0 then
+    return "LSP Inactive"
   end
 
-  local git_status = vim.b.gitsigns_status_dict
+  local buf_ft = vim.bo.filetype
+  local buf_client_names = {}
+  local copilot_active = false
 
-  local added = (git_status.added and git_status.added ~= 0) and ("%#St_gitAdd#" .. icons.git.added .. git_status.added)
-      or ""
-  local changed = (git_status.changed and git_status.changed ~= 0)
-      and ("%#St_gitMod#" .. icons.git.modified .. git_status.changed)
-      or ""
-  local removed = (git_status.removed and git_status.removed ~= 0)
-      and ("%#St_gitRem#" .. icons.git.removed .. git_status.removed)
-      or ""
-  local branch_name = "   " .. git_status.head .. " "
-  local git_info = "%#St_gitIcons#" .. branch_name .. added .. " " .. changed .. " " .. removed
+  -- add client
+  for _, client in pairs(buf_clients) do
+    if client.name ~= "null-ls" and client.name ~= "copilot" then
+      table.insert(buf_client_names, client.name)
+    end
 
-  return "%#St_gitIcons#" .. git_info
+    if client.name == "copilot" then
+      copilot_active = true
+    end
+  end
+
+  -- add formatter
+  local formatters = require "nvoid.lsp.null-ls.formatters"
+  local supported_formatters = formatters.list_registered(buf_ft)
+  vim.list_extend(buf_client_names, supported_formatters)
+
+  -- add linter
+  local linters = require "nvoid.lsp.null-ls.linters"
+  local supported_linters = linters.list_registered(buf_ft)
+  vim.list_extend(buf_client_names, supported_linters)
+
+  local unique_client_names = vim.fn.uniq(buf_client_names)
+
+  local language_servers = nvoid.icons.statusline.lsp .. table.concat(unique_client_names, ", ")
+
+  if copilot_active then
+    language_servers = language_servers .. "%#SLCopilot#" .. " " .. nvoid.icons.git.Octoface .. "%*"
+  end
+
+  return "%#St_LspStatus#" .. language_servers .. " "
 end
 
--- LSP STUFF
 M.lsp_progress = function()
   local Lsp = vim.lsp.util.get_progress_messages()[1]
 
@@ -154,43 +174,6 @@ M.lsp_progress = function()
   local content = string.format(" %%<%s %s %s (%s%%%%) ", spinners[frame + 1], title, msg, percentage)
 
   return ("%#St_LspProgress#" .. content) or ""
-end
-
-M.diagnostics = function()
-  if not #vim.diagnostic.get(0) then
-    return ""
-  end
-
-  local Errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
-  local Warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
-  local Hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
-  local Info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
-
-  local errors = (Errors and Errors > 0) and ("%#St_LspError#" .. icons.lsp.error .. Errors .. " ") or ""
-  local warnings = (Warnings and Warnings > 0) and ("%#St_LspWarning#" .. icons.lsp.warn .. Warnings .. " ") or ""
-  local hints = (Hints and Hints > 0) and ("%#St_LspHints#" .. icons.lsp.hint .. Hints .. " ") or ""
-  local info = (Info and Info > 0) and ("%#St_LspInfo#" .. icons.lsp.info .. Info .. " ") or ""
-
-  return errors .. warnings .. hints .. info
-end
-
-M.lsp = function(msg)
-  msg = msg or ""
-  local buf_clients = vim.lsp.buf_get_clients()
-  if next(buf_clients) == nil then
-    if type(msg) == "boolean" or #msg == 0 then
-      return ""
-    end
-    return msg
-  end
-  local buf_client_names = {}
-  for _, client in pairs(buf_clients) do
-    if client.name ~= "null-ls" then
-      table.insert(buf_client_names, client.name)
-    end
-  end
-  local unique_client_names = vim.fn.uniq(buf_client_names)
-  return "%#St_LspStatus#" .. icons.statusline.lsp .. table.concat(unique_client_names, ", ") .. " "
 end
 
 M.scrollbar = function()
