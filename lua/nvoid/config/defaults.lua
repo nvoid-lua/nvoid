@@ -45,10 +45,10 @@ return {
     opts = {
       install = {
         missing = true,
-        colorscheme = { "lunar", "habamax" },
+        -- colorscheme = { "base16" },
       },
       ui = {
-        border = "rounded",
+        border = "single",
       },
       root = require("nvoid.utils").join_paths(get_runtime_dir(), "site", "pack", "lazy", "opt"),
       git = {

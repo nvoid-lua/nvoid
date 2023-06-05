@@ -102,7 +102,7 @@ function plugin_loader.load(configurations)
   vim.opt.runtimepath:remove(join_paths(plugins_dir, "*"))
 
   local status_ok = xpcall(function()
-    table.insert(nvoid.lazy.opts.install.colorscheme, 1, nvoid.colorscheme)
+    -- table.insert(nvoid.lazy.opts.install.colorscheme, 1, nvoid.colorscheme)
     lazy.setup(configurations, nvoid.lazy.opts)
   end, debug.traceback)
 

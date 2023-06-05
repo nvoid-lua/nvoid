@@ -24,6 +24,12 @@ M.defaults = {
     end,
   },
   {
+    name = "NvoidDiagnostics",
+    fn = function()
+      vim.diagnostic.open_float(0, { show_header = false, severity_sort = true, scope = "line" })
+    end
+  },
+  {
     name = "NvoidInfo",
     fn = function()
       require("nvoid.core.info").toggle_popup(vim.bo.filetype)
