@@ -115,6 +115,27 @@ M.fileInfo = function()
   return "%#St_file_info#" .. icon .. filename .. " " .. "%#St_file_sep#"
 end
 
+-- Git
+M.git = function()
+  if not vim.b.gitsigns_head or vim.b.gitsigns_git_status then
+    return ""
+  end
+
+  local git_status = vim.b.gitsigns_status_dict
+
+  local added = (git_status.added and git_status.added ~= 0) and (nvoid.icons.git.LineAdded .. git_status.added) or ""
+  local changed = (git_status.changed and git_status.changed ~= 0) and
+      (nvoid.icons.git.LineModified .. git_status.changed) or ""
+  local removed = (git_status.removed and git_status.removed ~= 0) and
+      (nvoid.icons.git.LineRemoved .. git_status.removed) or ""
+  local branch_name = nvoid.icons.git.Branch .. " " .. git_status.head
+
+  return "%#St_gitIcons#" ..
+      " " ..
+      branch_name ..
+      " " .. "%#St_gitAdd#" .. added .. " " .. "%#St_gitMod#" .. changed .. " " .. "%#St_gitRem#" .. removed
+end
+
 -- LSP STUFF
 M.get_lsp = function()
   local buf_clients = vim.lsp.get_active_clients { bufnr = 0 }

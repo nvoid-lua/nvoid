@@ -7,7 +7,7 @@ S.run = function()
     return table.concat {
       M.modeN(),
       M.fileInfo(),
-      -- M.git(),
+      M.git(),
 
       "%=",
       M.lsp_progress(),
@@ -20,7 +20,7 @@ S.run = function()
   elseif nvoid.ui.statusline.style == "minimal" then
     return table.concat {
       M.modeM(),
-      -- M.git(),
+      M.git(),
       " ",
       -- M.diagnostics(),
 
@@ -35,7 +35,7 @@ S.run = function()
     return table.concat {
       M.modeE(),
       M.fileInfo(),
-      -- M.git(),
+      M.git(),
 
       "%=",
       M.lsp_progress(),
