@@ -197,6 +197,26 @@ M.lsp_progress = function()
   return ("%#St_LspProgress#" .. content) or ""
 end
 
+M.lsp_diagnostics = function()
+  if not rawget(vim, "lsp") then
+    return ""
+  end
+
+  local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+  local warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+  local hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
+  local info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
+
+  errors = (errors and errors > 0) and ("%#St_lspError#" .. nvoid.icons.diagnostics.BoldError .. " " .. errors .. " ") or
+  ""
+  warnings = (warnings and warnings > 0) and
+  ("%#St_lspWarning#" .. nvoid.icons.diagnostics.BoldWarning .. " " .. warnings .. " ") or ""
+  hints = (hints and hints > 0) and ("%#St_lspHints#" .. nvoid.icons.diagnostics.BoldHint .. " " .. hints .. " ") or ""
+  info = (info and info > 0) and ("%#St_lspInfo#" .. nvoid.icons.diagnostics.BoldInformation .. " " .. info .. " ") or ""
+
+  return errors .. warnings .. hints .. info
+end
+
 M.scrollbar = function()
   local current_line = vim.fn.line "."
   local total_lines = vim.fn.line "$"

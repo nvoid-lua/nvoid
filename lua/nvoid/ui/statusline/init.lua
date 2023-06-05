@@ -13,7 +13,7 @@ S.run = function()
       M.lsp_progress(),
       "%=",
 
-      -- M.diagnostics(),
+      M.lsp_diagnostics(),
       M.get_lsp(),
       M.scrollbar(),
     }
@@ -22,7 +22,7 @@ S.run = function()
       M.modeM(),
       M.git(),
       " ",
-      -- M.diagnostics(),
+      M.lsp_diagnostics(),
 
       "%=",
       M.lsp_progress(),
@@ -41,7 +41,7 @@ S.run = function()
       M.lsp_progress(),
       "%=",
 
-      -- M.diagnostics(),
+      M.lsp_diagnostics(),
       M.get_lsp(),
       M.scrollbar(),
     }
