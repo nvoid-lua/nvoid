@@ -35,7 +35,7 @@ function M.config()
           quit_on_focus_loss = true,
           open_win_config = {
             relative = "editor",
-            border = "rounded",
+            border = "single",
             width = 30,
             height = 30,
             row = 1,

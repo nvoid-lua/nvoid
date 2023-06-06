@@ -22,7 +22,7 @@ function Popup:new(opts)
     height = math.floor(editor_layout.height * 0.9),
     width = math.floor(editor_layout.width * 0.8),
     style = "minimal",
-    border = "rounded",
+    border = "single",
   }
   popup_layout.row = math.floor((editor_layout.height - popup_layout.height) / 2)
   popup_layout.col = math.floor((editor_layout.width - popup_layout.width) / 2)

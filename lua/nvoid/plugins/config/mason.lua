@@ -8,7 +8,7 @@ function M.config()
       check_outdated_packages_on_open = true,
       width = 0.8,
       height = 0.9,
-      border = "rounded",
+      border = "single",
       keymaps = {
         toggle_package_expand = "<CR>",
         install_package = "i",

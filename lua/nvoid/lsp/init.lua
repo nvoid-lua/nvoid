@@ -75,8 +75,8 @@ function M.common_on_attach(client, bufnr)
   add_lsp_buffer_keybindings(bufnr)
   add_lsp_buffer_options(bufnr)
   lu.setup_document_symbols(client, bufnr)
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
 end
 
 function M.get_common_opts()
@@ -120,8 +120,8 @@ function M.setup()
     end
   end
 
-  set_handler_opts_if_not_set("textDocument/hover", vim.lsp.handlers.hover, { border = "rounded" })
-  set_handler_opts_if_not_set("textDocument/signatureHelp", vim.lsp.handlers.signature_help, { border = "rounded" })
+  set_handler_opts_if_not_set("textDocument/hover", vim.lsp.handlers.hover, { border = "single" })
+  set_handler_opts_if_not_set("textDocument/signatureHelp", vim.lsp.handlers.signature_help, { border = "single" })
 end
 
 return M
