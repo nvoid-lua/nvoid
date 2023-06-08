@@ -53,7 +53,6 @@ local core_plugins = {
     config = function()
       require("nvoid.plugins.config.telescope").setup()
     end,
-    dependencies = { "telescope-fzf-native.nvim" },
     lazy = true,
     cmd = "Telescope",
     enabled = nvoid.builtin.telescope.active,
