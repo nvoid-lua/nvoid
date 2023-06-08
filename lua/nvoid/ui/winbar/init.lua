@@ -68,7 +68,7 @@ local get_gps = function()
   end
 
   if not require("nvoid.ui.winbar.functions").isempty(gps_location) then
-    return require("nvoid.ui.icons").ui.ChevronRight .. " " .. gps_location
+    return nvoid.icons.ui.ChevronRight .. " " .. gps_location
   else
     return ""
   end
@@ -99,7 +99,7 @@ M.get_winbar = function()
   end
 
   if not f.isempty(value) and f.get_buf_option("mod") then
-    local mod = "%#LspCodeLens#" .. require("nvoid.ui.icons").ui.Circle .. "%*"
+    local mod = "%#LspCodeLens#" .. nvoid.icons.ui.Circle .. "%*"
     if gps_added then
       value = value .. " " .. mod
     else
