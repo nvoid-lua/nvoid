@@ -110,14 +110,7 @@ function M.config()
         enable_preview = true,
       },
     },
-    extensions = {
-      fzf = {
-        fuzzy = true,                   -- false will only do exact matching
-        override_generic_sorter = true, -- override the generic sorter
-        override_file_sorter = true,    -- override the file sorter
-        case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
-      },
-    },
+    extensions = {},
   }
 end
 
@@ -144,12 +137,6 @@ function M.setup()
 
   if nvoid.builtin.telescope.on_config_done then
     nvoid.builtin.telescope.on_config_done(telescope)
-  end
-
-  if nvoid.builtin.telescope.extensions and nvoid.builtin.telescope.extensions.fzf then
-    pcall(function()
-      require("telescope").load_extension "fzf"
-    end)
   end
 end
 
