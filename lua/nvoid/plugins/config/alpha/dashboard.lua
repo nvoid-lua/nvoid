@@ -21,7 +21,7 @@ function M.get_sections()
     val = M.banner,
     opts = {
       position = "center",
-      hl = "Label",
+      hl = "DashboardHeader",
     },
   }
 
@@ -32,13 +32,13 @@ function M.get_sections()
     val = text.align_center({ width = 0 }, { "爵nvoid.org" }, 0.5),
     opts = {
       position = "center",
-      hl = "Number",
+      hl = "DashboardFooter",
     },
   }
 
   local buttons = {
     opts = {
-      hl_shortcut = "Include",
+      hl_shortcut = "DashboardShortcut",
       spacing = 1,
     },
     entries = {
@@ -48,9 +48,9 @@ function M.get_sections()
       { "e", nvoid.icons.ui.Gear .. "  Configuration",
         "<CMD>edit " ..
         require("nvoid.config"):get_user_config_path() .. " <CR>", },
-      { "t", nvoid.icons.ui.FindText .. "  Find Text",      "<CMD>Telescope live_grep<CR>" },
+      { "t", nvoid.icons.ui.FindText .. "  Find Text",         "<CMD>Telescope live_grep<CR>" },
       { "u", nvoid.icons.ui.ArrowCircleUp .. "  Update Nvoid", "<CMD>NvoidUpdate<CR>" },
-      { "q", nvoid.icons.ui.Close .. "  Quit",              "<CMD>:qa<CR>" },
+      { "q", nvoid.icons.ui.Close .. "  Quit",                 "<CMD>:qa<CR>" },
     },
   }
   return {

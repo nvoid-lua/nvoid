@@ -14,7 +14,7 @@ function M.get_sections()
       [[ ]],
     },
     opts = {
-      hl = "Label",
+      hl = "DashboardHeader",
       shrink_margin = false,
       -- wrap = "overflow";
     },
