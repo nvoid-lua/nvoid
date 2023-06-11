@@ -12,12 +12,6 @@ vim.cmd [[
 
 M.defaults = {
   {
-    name = "BufferKill",
-    fn = function()
-      require("nvoid.core.bufferline").buf_kill "bd"
-    end,
-  },
-  {
     name = "NvoidToggleFormatOnSave",
     fn = function()
       require("nvoid.core.autocmds").toggle_format_on_save()
@@ -38,7 +32,7 @@ M.defaults = {
   {
     name = "NvoidDocs",
     fn = function()
-      local documentation_url = "https://www.nvoid.org/docs/beginners-guide"
+      local documentation_url = "https://www.nvoid.org/"
       if vim.fn.has "mac" == 1 or vim.fn.has "macunix" == 1 then
         vim.fn.execute("!open " .. documentation_url)
       elseif vim.fn.has "win32" == 1 or vim.fn.has "win64" == 1 then
@@ -72,18 +66,6 @@ M.defaults = {
     name = "NvoidSyncCorePlugins",
     fn = function()
       require("nvoid.plugin-loader").sync_core_plugins()
-    end,
-  },
-  {
-    name = "NvoidChangelog",
-    fn = function()
-      require("nvoid.core.telescope.custom-finders").view_nvoid_changelog()
-    end,
-  },
-  {
-    name = "NvoidVersion",
-    fn = function()
-      print(require("nvoid.utils.git").get_nvoid_version())
     end,
   },
   {
