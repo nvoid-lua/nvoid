@@ -139,7 +139,7 @@ M.config = function()
       n = {
         name = " Nvoid",
         u = { "<cmd>NvoidUpdate<CR>", "ﮮ Update" },
-        e = { "<cmd>:e ~/.config/nvoid/config.lua<CR>", " Edit Config" },
+        e = { "<cmd>edit" .. require("nvoid.config"):get_user_config_path() .. "<CR>", " Edit Config" },
         r = { "<cmd>NvoidReload<CR>", "勒Reload" },
         i = { "<cmd>NvoidInfo<cr>", " Info" },
       },
