@@ -95,6 +95,7 @@ M.config = function()
       f = {
         name = " Find",
         b = { "<cmd>lua require 'telescope'.extensions.file_browser.file_browser()<cr>", "File Browser" },
+        c = { "<cmd>Telescope themes<cr>", "Change Colors" },
         f = { "<cmd>Telescope find_files<cr>", "Find files" },
         h = { "<cmd>Telescope oldfiles<cr>", "Old Files" },
         H = { "<cmd>Telescope help_tags<cr>", "CMD Help" },
@@ -121,7 +122,6 @@ M.config = function()
         i = { "<cmd>LspInfo<cr>", "Info" },
         l = { "<cmd>MasonLog<cr>", "Mason Log" },
         m = { "<cmd>Mason<cr>", "Mason" },
-        -- r = { "<cmd>NvoidRename<cr>", "Rename" },
         r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
         f = { "<cmd>lua require('nvoid.lsp.utils').format()<cr>", "Format" },
       },
