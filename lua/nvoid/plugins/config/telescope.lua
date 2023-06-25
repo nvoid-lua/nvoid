@@ -134,6 +134,7 @@ function M.setup()
   end
 
   telescope.setup(nvoid.builtin.telescope)
+  require("telescope").load_extension("themes")
 
   if nvoid.builtin.telescope.on_config_done then
     nvoid.builtin.telescope.on_config_done(telescope)

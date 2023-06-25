@@ -3,6 +3,8 @@ return {
   reload_config_on_save = true,
   transparent_window = false,
   ui = {
+    hl_add       = {},
+    hl_override  = {},
     colorscheme  = "onedark",
     transparency = false,
     statusline   = {

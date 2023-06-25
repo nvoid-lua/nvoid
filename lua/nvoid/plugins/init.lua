@@ -8,6 +8,7 @@ local core_plugins = {
     "nvoid-lua/base16",
     config = function()
       require("base16").load_theme()
+      require("base16").load_all_highlights()
     end,
   },
   {
