@@ -102,14 +102,6 @@ function M.load_defaults()
       {
         group = "_dashboard_settings",
         pattern = "alpha",
-        command = "set showtabline=0 | autocmd BufLeave <buffer> set showtabline=" .. vim.opt.showtabline._value,
-      },
-    },
-    {
-      "FileType",
-      {
-        group = "_dashboard_settings",
-        pattern = "alpha",
         command = "set laststatus=0 | autocmd BufUnload <buffer> set laststatus=" .. vim.opt.laststatus._value,
       },
     },
