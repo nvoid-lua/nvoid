@@ -11,9 +11,6 @@ end
 require("nvoid.bootstrap"):init(base_dir)
 require("nvoid.config"):load()
 
-vim.g.theme = nvoid.ui.colorscheme
-vim.g.transparency = nvoid.ui.transparency
-
 local plugins = require "nvoid.plugins"
 
 require("nvoid.plugin-loader").load { plugins, nvoid.plugins }

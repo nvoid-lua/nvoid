@@ -46,6 +46,8 @@ end
 --- Override the configuration with a user provided one
 -- @param config_path The path to the configuration overrides
 function M:load(config_path)
+  vim.g.theme = nvoid.ui.colorscheme
+  vim.g.transparency = nvoid.ui.transparency
   local autocmds = reload "nvoid.core.autocmds"
   config_path = config_path or self:get_user_config_path()
   local ok, err = pcall(dofile, config_path)
