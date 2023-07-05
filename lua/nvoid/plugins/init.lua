@@ -13,6 +13,7 @@ local core_plugins = {
   {
     "SmiteshP/nvim-navic",
     dependencies = "neovim/nvim-lspconfig",
+    enabled = nvoid.ui.winbar or false,
   },
   {
     "williamboman/mason-lspconfig.nvim",

@@ -7,4 +7,6 @@ end
 vim.schedule_wrap(require("nvoid.ui.terminal").init())
 
 -- Winbar
-require("nvoid.ui.winbar")
+if nvoid.ui.winbar then
+  require "nvoid.ui.winbar"
+end
