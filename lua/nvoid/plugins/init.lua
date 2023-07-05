@@ -7,7 +7,6 @@ local core_plugins = {
   {
     "nvoid-lua/base16",
     config = function()
-      require("base16").load_theme()
       require("base16").load_all_highlights()
     end,
   },
@@ -29,7 +28,7 @@ local core_plugins = {
     event = "User FileOpened",
     dependencies = "mason.nvim",
   },
-  { "tamago324/nlsp-settings.nvim",    cmd = "LspSettings", lazy = true },
+  { "tamago324/nlsp-settings.nvim", cmd = "LspSettings", lazy = true },
   { "jose-elias-alvarez/null-ls.nvim", lazy = true },
   {
     "williamboman/mason.nvim",
@@ -46,7 +45,7 @@ local core_plugins = {
     lazy = true,
   },
 
-  { "nvim-lua/plenary.nvim",    cmd = { "PlenaryBustedFile", "PlenaryBustedDirectory" }, lazy = true },
+  { "nvim-lua/plenary.nvim", cmd = { "PlenaryBustedFile", "PlenaryBustedDirectory" }, lazy = true },
   -- Telescope
   {
     "nvim-telescope/telescope.nvim",
@@ -75,10 +74,10 @@ local core_plugins = {
       "cmp-cmdline",
     },
   },
-  { "hrsh7th/cmp-nvim-lsp",     lazy = true },
+  { "hrsh7th/cmp-nvim-lsp", lazy = true },
   { "saadparwaiz1/cmp_luasnip", lazy = true },
-  { "hrsh7th/cmp-buffer",       lazy = true },
-  { "hrsh7th/cmp-path",         lazy = true },
+  { "hrsh7th/cmp-buffer", lazy = true },
+  { "hrsh7th/cmp-path", lazy = true },
   {
     "hrsh7th/cmp-cmdline",
     lazy = true,
@@ -186,7 +185,7 @@ local core_plugins = {
   {
     "numToStr/FTerm.nvim",
     config = function()
-      require("nvoid.plugins.config.fterm")
+      require "nvoid.plugins.config.fterm"
     end,
   },
 

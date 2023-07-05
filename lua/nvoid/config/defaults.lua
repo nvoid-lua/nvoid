@@ -3,14 +3,15 @@ return {
   reload_config_on_save = true,
   transparent_window = false,
   ui = {
-    hl_add       = {},
-    hl_override  = {},
-    colorscheme  = "onedark",
+    hl_override = {},
+    hl_add = {},
+    extended_integrations = {},
+    colorscheme = "onedark",
     transparency = false,
-    statusline   = {
+    statusline = {
       enabled = true,
       config = "%!v:lua.require('nvoid.ui.statusline').run()",
-      style = "nvoid"
+      style = "nvoid",
     },
   },
   terminal = {
