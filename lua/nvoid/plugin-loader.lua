@@ -10,7 +10,7 @@ function plugin_loader.init(opts)
   opts = opts or {}
 
   local lazy_install_dir = opts.install_path
-    or join_paths(vim.fn.stdpath "data", "site", "pack", "lazy", "opt", "lazy.nvim")
+      or join_paths(vim.fn.stdpath "data", "site", "pack", "lazy", "opt", "lazy.nvim")
 
   if not utils.is_directory(lazy_install_dir) then
     print "Initializing first time setup"
@@ -100,6 +100,9 @@ function plugin_loader.load(configurations)
 
   -- remove plugins from rtp before loading lazy, so that all plugins won't be loaded on startup
   vim.opt.runtimepath:remove(join_paths(plugins_dir, "*"))
+  vim.g.theme = nvoid.ui.colorscheme
+  vim.g.transparency = nvoid.ui.transparency
+
 
   local status_ok = xpcall(function()
     -- table.insert(nvoid.lazy.opts.install.colorscheme, 1, nvoid.colorscheme)
