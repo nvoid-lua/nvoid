@@ -7,7 +7,7 @@ local core_plugins = {
   {
     "nvoid-lua/base16",
     config = function()
-      require("base16").setup()
+      require("base16").load_all_highlights()
     end,
   },
   {
@@ -250,6 +250,9 @@ local core_plugins = {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
       require("nvoid.plugins.config.indentlines").setup()
+    end,
+    init = function()
+      require("nvoid.core.lazyload").lazy_load "indent-blankline.nvim"
     end,
     event = "User FileOpened",
     enabled = nvoid.builtin.indentlines.active,
