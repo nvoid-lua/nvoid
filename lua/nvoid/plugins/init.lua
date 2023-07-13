@@ -6,7 +6,7 @@ local core_plugins = {
   },
   {
     "nvoid-lua/base16",
-    config = function()
+    build = function()
       require("base16").load_all_highlights()
     end,
   },

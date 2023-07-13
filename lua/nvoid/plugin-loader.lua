@@ -10,7 +10,7 @@ function plugin_loader.init(opts)
   opts = opts or {}
 
   local lazy_install_dir = opts.install_path
-    or join_paths(vim.fn.stdpath "data", "site", "pack", "lazy", "opt", "lazy.nvim")
+      or join_paths(vim.fn.stdpath "data", "site", "pack", "lazy", "opt", "lazy.nvim")
 
   if not utils.is_directory(lazy_install_dir) then
     print "Initializing first time setup"
@@ -39,6 +39,10 @@ function plugin_loader.init(opts)
       }
     end
 
+    local function echo(str)
+      vim.cmd "redraw"
+      vim.api.nvim_echo({ { str, "Bold" } }, true, {})
+    end
     vim.api.nvim_create_autocmd("User", { pattern = "LazyDone", callback = require("nvoid.lsp").setup })
   end
 
