@@ -11,6 +11,14 @@ local core_plugins = {
     end,
   },
   {
+    "nvoid-lua/bufferline.lua",
+    dependencies = "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("nvoid.plugins.config.bufferline").setup()
+    end,
+    enabled = nvoid.builtin.bufferline.active,
+  },
+  {
     "SmiteshP/nvim-navic",
     dependencies = "neovim/nvim-lspconfig",
     enabled = nvoid.ui.winbar or false,

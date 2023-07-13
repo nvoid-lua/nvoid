@@ -8,9 +8,6 @@
   "alpha-nvim": {
     "commit": "87c2040"
   },
-  "bigfile.nvim": {
-    "commit": "c1bad34"
-  },
   "bufferline.nvim": {
     "commit": "a4bd445"
   },

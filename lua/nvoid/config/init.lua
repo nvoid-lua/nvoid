@@ -35,11 +35,6 @@ function M:init()
     },
   }
 
-  nvoid.builtin.bigfile = {
-    active = true,
-    config = {},
-  }
-
   require("nvoid.config._deprecated").handle()
 end
 

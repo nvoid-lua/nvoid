@@ -15,14 +15,6 @@ function M.config()
     highlight = {
       enable = true, -- false will disable the whole extension
       additional_vim_regex_highlighting = false,
-      disable = function(lang, buf)
-        if vim.tbl_contains({ "latex" }, lang) then
-          return true
-        end
-
-        local status_ok, big_file_detected = pcall(vim.api.nvim_buf_get_var, buf, "bigfile_disable_treesitter")
-        return status_ok and big_file_detected
-      end,
     },
     context_commentstring = {
       enable = true,

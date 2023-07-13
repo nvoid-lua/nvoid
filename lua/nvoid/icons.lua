@@ -56,6 +56,7 @@ return {
     treesitter = "",
   },
   ui = {
+    Add = "",
     ArrowCircleDown = "",
     ArrowCircleLeft = "",
     ArrowCircleRight = "",
