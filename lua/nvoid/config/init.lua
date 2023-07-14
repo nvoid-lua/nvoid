@@ -96,6 +96,7 @@ function M:reload()
 
     plugin_loader.reload { plugins, nvoid.plugins }
     reload("nvoid.utils.hooks").run_post_reload()
+    require("base16").compile()
   end)
 end
 

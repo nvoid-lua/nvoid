@@ -204,6 +204,7 @@ function M.enable_reload_config_on_save()
     desc = "Trigger NvoidReload on saving config.lua",
     callback = function()
       require("nvoid.config"):reload()
+      require("base16").compile()
     end,
   })
 end
