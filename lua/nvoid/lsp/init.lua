@@ -89,7 +89,6 @@ function M.get_common_opts()
 end
 
 function M.setup()
-  dofile(vim.g.base16_cache .. "lsp")
   Log:debug "Setting up LSP support"
 
   local lsp_status_ok, _ = pcall(require, "lspconfig")

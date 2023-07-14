@@ -20,6 +20,3 @@ Log:debug "Starting Nvoid"
 local commands = require "nvoid.core.commands"
 commands.load(commands.defaults)
 require("nvoid.ui")
-dofile(vim.g.base16_cache .. "syntax")
-dofile(vim.g.base16_cache .. "defaults")
-dofile(vim.g.base16_cache .. "treesitter")
