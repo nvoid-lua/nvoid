@@ -18,10 +18,10 @@ vim.g.transparency = nvoid.ui.transparency
 if not vim.loop.fs_stat then
   require("base16").compile()
 end
-dofile(vim.g.base16_cache .. "defaults")
 
 local plugins = require "nvoid.plugins"
 require("nvoid.plugin-loader").load { plugins, nvoid.plugins }
+dofile(vim.g.base16_cache .. "defaults")
 
 local Log = require "nvoid.core.log"
 Log:debug "Starting Nvoid"
