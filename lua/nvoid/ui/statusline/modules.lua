@@ -93,24 +93,19 @@ M.modeN = function()
 end
 
 M.fileInfo = function()
-  local icon = ""
-  local filename = fn.fnamemodify(fn.expand "%:t", ":r")
-  local extension = fn.expand "%:e"
+  local icon = " 󰈚 "
+  local filename = (fn.expand "%" == "" and "Empty ") or fn.expand "%:t"
 
-  if filename == "" then
-    icon = icon .. "  Empty"
-  else
-    filename = " " .. filename
+  if filename ~= "Empty " then
+    local devicons_present, devicons = pcall(require, "nvim-web-devicons")
+
+    if devicons_present then
+      local ft_icon = devicons.get_icon(filename)
+      icon = (ft_icon ~= nil and " " .. ft_icon) or ""
+    end
+
+    filename = " " .. filename .. " "
   end
-
-  local devicons_present, devicons = pcall(require, "nvim-web-devicons")
-
-  if not devicons_present then
-    return " "
-  end
-
-  local ft_icon = devicons.get_icon(filename, extension)
-  icon = (ft_icon ~= nil and " " .. ft_icon) or icon
 
   return "%#St_file_info#" .. icon .. filename .. " " .. "%#St_file_sep#"
 end
@@ -208,9 +203,9 @@ M.lsp_diagnostics = function()
   local info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
 
   errors = (errors and errors > 0) and ("%#St_lspError#" .. nvoid.icons.diagnostics.BoldError .. " " .. errors .. " ") or
-  ""
+      ""
   warnings = (warnings and warnings > 0) and
-  ("%#St_lspWarning#" .. nvoid.icons.diagnostics.BoldWarning .. " " .. warnings .. " ") or ""
+      ("%#St_lspWarning#" .. nvoid.icons.diagnostics.BoldWarning .. " " .. warnings .. " ") or ""
   hints = (hints and hints > 0) and ("%#St_lspHints#" .. nvoid.icons.diagnostics.BoldHint .. " " .. hints .. " ") or ""
   info = (info and info > 0) and ("%#St_lspInfo#" .. nvoid.icons.diagnostics.BoldInformation .. " " .. info .. " ") or ""
 

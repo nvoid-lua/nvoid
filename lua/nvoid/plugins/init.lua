@@ -28,15 +28,13 @@ local core_plugins = {
   {
     "SmiteshP/nvim-navic",
     dependencies = "neovim/nvim-lspconfig",
-    enabled = nvoid.ui.winbar or false,
+    enabled = nvoid.ui.winbar,
   },
   {
     "williamboman/mason-lspconfig.nvim",
     cmd = { "LspInstall", "LspUninstall" },
     config = function()
       require("mason-lspconfig").setup(nvoid.lsp.installer.setup)
-
-      -- automatic_installation is handled by lsp-manager
       local settings = require "mason-lspconfig.settings"
       settings.current.automatic_installation = false
     end,
@@ -81,7 +79,6 @@ local core_plugins = {
         require("nvoid.plugins.config.cmp").setup()
       end
     end,
-    -- event = { "InsertEnter", "CmdlineEnter" },
     event = cmp_events(),
     dependencies = {
       "cmp-nvim-lsp",
