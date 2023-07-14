@@ -8,12 +8,15 @@ end
 local core_plugins = {
   {
     "neovim/nvim-lspconfig",
+    config = function()
+      dofile(vim.g.base16_cache .. "lsp")
+    end,
     lazy = true,
     dependencies = { "mason-lspconfig.nvim", "nlsp-settings.nvim" },
   },
   {
     "nvoid-lua/base16",
-    config = function()
+    build = function()
       require("base16").load_all_highlights()
     end,
   },
@@ -21,8 +24,10 @@ local core_plugins = {
     "nvoid-lua/bufferline.lua",
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
+      dofile(vim.g.base16_cache .. "bufferline")
       require("nvoid.plugins.config.bufferline").setup()
     end,
+    event = "User FileOpened",
     enabled = nvoid.builtin.bufferline.active,
   },
   {
@@ -65,6 +70,7 @@ local core_plugins = {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
     config = function()
+      dofile(vim.g.base16_cache .. "telescope")
       require("nvoid.plugins.config.telescope").setup()
     end,
     lazy = true,
@@ -75,6 +81,7 @@ local core_plugins = {
   {
     "hrsh7th/nvim-cmp",
     config = function()
+      dofile(vim.g.base16_cache .. "cmp")
       if nvoid.builtin.cmp then
         require("nvoid.plugins.config.cmp").setup()
       end
@@ -149,6 +156,7 @@ local core_plugins = {
       local utils = require "nvoid.utils"
       local path = utils.join_paths(get_runtime_dir(), "site", "pack", "lazy", "opt", "nvim-treesitter")
       vim.opt.rtp:prepend(path)
+      dofile(vim.g.base16_cache .. "syntax")
       require("nvoid.plugins.config.treesitter").setup()
     end,
     -- event = "User FileOpened",
@@ -158,6 +166,7 @@ local core_plugins = {
   {
     "kyazdani42/nvim-tree.lua",
     config = function()
+      dofile(vim.g.base16_cache .. "nvimtree")
       require("nvoid.plugins.config.nvimtree").setup()
     end,
     enabled = nvoid.builtin.nvimtree.active,
@@ -183,6 +192,7 @@ local core_plugins = {
       })
     end,
     config = function()
+      dofile(vim.g.base16_cache .. "git")
       require("nvoid.plugins.config.gitsigns").setup()
     end,
     enabled = nvoid.builtin.gitsigns.active,
@@ -225,12 +235,16 @@ local core_plugins = {
     "nvim-tree/nvim-web-devicons",
     enabled = nvoid.use_icons,
     lazy = true,
+    config = function()
+      dofile(vim.g.base16_cache .. "devicons")
+    end
   },
 
   -- alpha
   {
     "goolord/alpha-nvim",
     config = function()
+      dofile(vim.g.base16_cache .. "alpha")
       require("nvoid.plugins.config.alpha").setup()
     end,
     enabled = nvoid.builtin.alpha.active,
@@ -249,6 +263,7 @@ local core_plugins = {
   {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
+      dofile(vim.g.base16_cache .. "blankline")
       require("nvoid.plugins.config.indentlines").setup()
     end,
     init = function()
@@ -263,6 +278,7 @@ local core_plugins = {
     "folke/which-key.nvim",
     keys = { "<leader>", '"', "'", "`", "c", "v", "g" },
     config = function()
+      dofile(vim.g.base16_cache .. "whichkey")
       require("nvoid.plugins.config.which-key").setup()
     end,
     enabled = nvoid.builtin.which_key.active,
