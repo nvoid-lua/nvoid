@@ -1,3 +1,10 @@
+local cmp_events = function()
+  if nvoid.builtin.cmp.cmdline.enable then
+    return { "InsertEnter", "CmdlineEnter" }
+  else
+    return { "InsertEnter" }
+  end
+end
 local core_plugins = {
   {
     "neovim/nvim-lspconfig",
@@ -74,7 +81,8 @@ local core_plugins = {
         require("nvoid.plugins.config.cmp").setup()
       end
     end,
-    event = { "InsertEnter", "CmdlineEnter" },
+    -- event = { "InsertEnter", "CmdlineEnter" },
+    event = cmp_events(),
     dependencies = {
       "cmp-nvim-lsp",
       "cmp_luasnip",
@@ -191,10 +199,10 @@ local core_plugins = {
   {
     'akinsho/toggleterm.nvim',
     version = "*",
-    init = function ()
+    init = function()
       require("nvoid.plugins.config.toggleterm").init()
     end,
-    config = function ()
+    config = function()
       require("nvoid.plugins.config.toggleterm").setup()
     end,
     cmd = {
