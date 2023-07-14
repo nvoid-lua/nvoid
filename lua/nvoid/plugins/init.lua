@@ -1,10 +1,5 @@
-local cmp_events = function()
-  if nvoid.builtin.cmp.cmdline.enable then
-    return { "InsertEnter", "CmdlineEnter" }
-  else
-    return { "InsertEnter" }
-  end
-end
+-- local cmp_events = function()
+-- end
 local core_plugins = {
   {
     "neovim/nvim-lspconfig",
@@ -86,7 +81,13 @@ local core_plugins = {
         require("nvoid.plugins.config.cmp").setup()
       end
     end,
-    event = cmp_events(),
+    event = function()
+      if nvoid.builtin.cmp.cmdline.enable then
+        return { "InsertEnter", "CmdlineEnter" }
+      else
+        return { "InsertEnter" }
+      end
+    end,
     dependencies = {
       "cmp-nvim-lsp",
       "cmp_luasnip",
