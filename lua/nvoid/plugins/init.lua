@@ -12,8 +12,6 @@ local core_plugins = {
     config = function()
       dofile(vim.g.base16_cache .. "syntax")
       dofile(vim.g.base16_cache .. "defaults")
-      dofile(vim.g.base16_cache .. "devicons")
-      dofile(vim.g.base16_cache .. "lsp")
     end
   },
   {
@@ -237,6 +235,9 @@ local core_plugins = {
   {
     "nvim-tree/nvim-web-devicons",
     enabled = nvoid.use_icons,
+    config = function ()
+      dofile(vim.g.base16_cache .. "devicons")
+    end,
     lazy = true,
   },
 
