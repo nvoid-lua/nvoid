@@ -73,7 +73,6 @@ local core_plugins = {
     "hrsh7th/nvim-cmp",
     config = function()
       if nvoid.builtin.cmp then
-        dofile(vim.g.base16_cache .. "cmp")
         require("nvoid.plugins.config.cmp").setup()
       end
     end,
