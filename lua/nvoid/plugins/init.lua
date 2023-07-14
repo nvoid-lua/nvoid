@@ -143,23 +143,18 @@ local core_plugins = {
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    -- run = ":TSUpdate",
+    init = function()
+      require("nvoid.core.lazyload").lazy_load "nvim-treesitter"
+    end,
+    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+    build = ":TSUpdate",
     config = function()
       local utils = require "nvoid.utils"
       local path = utils.join_paths(get_runtime_dir(), "site", "pack", "lazy", "opt", "nvim-treesitter")
-      vim.opt.rtp:prepend(path) -- treesitter needs to be before nvim's runtime in rtp
+      vim.opt.rtp:prepend(path)
       require("nvoid.plugins.config.treesitter").setup()
     end,
-    cmd = {
-      "TSInstall",
-      "TSUninstall",
-      "TSUpdate",
-      "TSUpdateSync",
-      "TSInstallInfo",
-      "TSInstallSync",
-      "TSInstallFromGrammar",
-    },
-    event = "User FileOpened",
+    -- event = "User FileOpened",
   },
 
   -- NvimTree
