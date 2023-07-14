@@ -100,6 +100,9 @@ function plugin_loader.load(configurations)
 
   -- remove plugins from rtp before loading lazy, so that all plugins won't be loaded on startup
   vim.opt.runtimepath:remove(join_paths(plugins_dir, "*"))
+  vim.g.base16_cache = vim.fn.stdpath "data" .. "/base16/"
+  vim.g.theme = nvoid.ui.colorscheme
+  vim.g.transparency = nvoid.ui.transparency
 
   local status_ok = xpcall(function()
     -- table.insert(nvoid.lazy.opts.install.colorscheme, 1, nvoid.colorscheme)
