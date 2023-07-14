@@ -72,13 +72,7 @@ local core_plugins = {
         require("nvoid.plugins.config.cmp").setup()
       end
     end,
-    -- event = function()
-    --   if nvoid.builtin.cmp.cmdline.enable then
-    --     return { "InsertEnter", "CmdlineEnter" }
-    --   else
-    --     return { "InsertEnter" }
-    --   end
-    -- end,
+    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
       "cmp-nvim-lsp",
       "cmp_luasnip",
