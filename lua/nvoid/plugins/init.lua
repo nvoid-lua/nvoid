@@ -9,10 +9,6 @@ local core_plugins = {
     build = function()
       require("base16").load_all_highlights()
     end,
-    config = function()
-      dofile(vim.g.base16_cache .. "syntax")
-      dofile(vim.g.base16_cache .. "defaults")
-    end
   },
   {
     "nvoid-lua/bufferline.lua",
@@ -144,7 +140,6 @@ local core_plugins = {
     "nvim-treesitter/nvim-treesitter",
     -- run = ":TSUpdate",
     config = function()
-      dofile(vim.g.base16_cache .. "treesitter")
       local utils = require "nvoid.utils"
       local path = utils.join_paths(get_runtime_dir(), "site", "pack", "lazy", "opt", "nvim-treesitter")
       vim.opt.rtp:prepend(path) -- treesitter needs to be before nvim's runtime in rtp
