@@ -6,14 +6,21 @@ local core_plugins = {
   },
   {
     "nvoid-lua/base16",
-    config = function()
+    build = function()
       require("base16").load_all_highlights()
     end,
+    config = function()
+      dofile(vim.g.base16_cache .. "syntax")
+      dofile(vim.g.base16_cache .. "defaults")
+      dofile(vim.g.base16_cache .. "devicons")
+      dofile(vim.g.base16_cache .. "lsp")
+    end
   },
   {
     "nvoid-lua/bufferline.lua",
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
+      dofile(vim.g.base16_cache .. "bufferline")
       require("nvoid.plugins.config.bufferline").setup()
     end,
     enabled = nvoid.builtin.bufferline.active,
@@ -37,7 +44,7 @@ local core_plugins = {
     event = "User FileOpened",
     dependencies = "mason.nvim",
   },
-  { "tamago324/nlsp-settings.nvim", cmd = "LspSettings", lazy = true },
+  { "tamago324/nlsp-settings.nvim",    cmd = "LspSettings", lazy = true },
   { "jose-elias-alvarez/null-ls.nvim", lazy = true },
   {
     "williamboman/mason.nvim",
@@ -54,12 +61,13 @@ local core_plugins = {
     lazy = true,
   },
 
-  { "nvim-lua/plenary.nvim", cmd = { "PlenaryBustedFile", "PlenaryBustedDirectory" }, lazy = true },
+  { "nvim-lua/plenary.nvim",    cmd = { "PlenaryBustedFile", "PlenaryBustedDirectory" }, lazy = true },
   -- Telescope
   {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
     config = function()
+      dofile(vim.g.base16_cache .. "telescope")
       require("nvoid.plugins.config.telescope").setup()
     end,
     lazy = true,
@@ -71,6 +79,7 @@ local core_plugins = {
     "hrsh7th/nvim-cmp",
     config = function()
       if nvoid.builtin.cmp then
+        dofile(vim.g.base16_cache .. "cmp")
         require("nvoid.plugins.config.cmp").setup()
       end
     end,
@@ -83,10 +92,10 @@ local core_plugins = {
       "cmp-cmdline",
     },
   },
-  { "hrsh7th/cmp-nvim-lsp", lazy = true },
+  { "hrsh7th/cmp-nvim-lsp",     lazy = true },
   { "saadparwaiz1/cmp_luasnip", lazy = true },
-  { "hrsh7th/cmp-buffer", lazy = true },
-  { "hrsh7th/cmp-path", lazy = true },
+  { "hrsh7th/cmp-buffer",       lazy = true },
+  { "hrsh7th/cmp-path",         lazy = true },
   {
     "hrsh7th/cmp-cmdline",
     lazy = true,
@@ -137,6 +146,7 @@ local core_plugins = {
     "nvim-treesitter/nvim-treesitter",
     -- run = ":TSUpdate",
     config = function()
+      dofile(vim.g.base16_cache .. "treesitter")
       local utils = require "nvoid.utils"
       local path = utils.join_paths(get_runtime_dir(), "site", "pack", "lazy", "opt", "nvim-treesitter")
       vim.opt.rtp:prepend(path) -- treesitter needs to be before nvim's runtime in rtp
@@ -158,6 +168,7 @@ local core_plugins = {
   {
     "kyazdani42/nvim-tree.lua",
     config = function()
+      dofile(vim.g.base16_cache .. "nvimtree")
       require("nvoid.plugins.config.nvimtree").setup()
     end,
     enabled = nvoid.builtin.nvimtree.active,
@@ -183,6 +194,7 @@ local core_plugins = {
       })
     end,
     config = function()
+      dofile(vim.g.base16_cache .. "git")
       require("nvoid.plugins.config.gitsigns").setup()
     end,
     -- event = "User FileOpened",
@@ -202,6 +214,7 @@ local core_plugins = {
   {
     "folke/which-key.nvim",
     config = function()
+      dofile(vim.g.base16_cache .. "whichkey")
       require("nvoid.plugins.config.which-key").setup()
     end,
     cmd = "WhichKey",
@@ -231,6 +244,7 @@ local core_plugins = {
   {
     "goolord/alpha-nvim",
     config = function()
+      dofile(vim.g.base16_cache .. "alpha")
       require("nvoid.plugins.config.alpha").setup()
     end,
     enabled = nvoid.builtin.alpha.active,
@@ -249,6 +263,7 @@ local core_plugins = {
   {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
+      dofile(vim.g.base16_cache .. "blankline")
       require("nvoid.plugins.config.indentlines").setup()
     end,
     init = function()
