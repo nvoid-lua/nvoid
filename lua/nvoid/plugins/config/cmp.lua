@@ -349,7 +349,6 @@ end
 
 function M.setup()
   local cmp = require "cmp"
-  dofile(vim.g.base16_cache .. "cmp")
   cmp.setup(nvoid.builtin.cmp)
 
   if nvoid.builtin.cmp.cmdline.enable then
