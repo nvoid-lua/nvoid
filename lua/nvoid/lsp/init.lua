@@ -122,6 +122,7 @@ function M.setup()
 
   set_handler_opts_if_not_set("textDocument/hover", vim.lsp.handlers.hover, { border = "single" })
   set_handler_opts_if_not_set("textDocument/signatureHelp", vim.lsp.handlers.signature_help, { border = "single" })
+  dofile(vim.g.base16_cache .. "lsp")
 end
 
 return M

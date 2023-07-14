@@ -14,7 +14,6 @@ require("nvoid.config"):load()
 local plugins = require "nvoid.plugins"
 require("nvoid.plugin-loader").load { plugins, nvoid.plugins }
 dofile(vim.g.base16_cache .. "defaults")
-dofile(vim.g.base16_cache .. "lsp")
 
 local Log = require "nvoid.core.log"
 Log:debug "Starting Nvoid"
