@@ -217,28 +217,6 @@ function M.enable_reload_config_on_save()
   })
 end
 
-function M.enable_transparent_mode()
-  vim.api.nvim_create_autocmd("ColorScheme", {
-    pattern = "*",
-    callback = function()
-      local hl_groups = {
-        "Normal",
-        "SignColumn",
-        "NormalNC",
-        "TelescopeBorder",
-        "NvimTreeNormal",
-        "NvimTreeNormalNC",
-        "EndOfBuffer",
-        "MsgArea",
-      }
-      for _, name in ipairs(hl_groups) do
-        vim.cmd(string.format("highlight %s ctermbg=none guibg=none", name))
-      end
-    end,
-  })
-  vim.opt.fillchars = "eob: "
-end
-
 --- Clean autocommand in a group if it exists
 --- This is safer than trying to delete the augroup itself
 ---@param name string the augroup name

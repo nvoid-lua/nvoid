@@ -1,7 +1,6 @@
 return {
   leader = "space",
   reload_config_on_save = true,
-  transparent_window = false,
   ui = {
     hl_override = {},
     hl_add = {},

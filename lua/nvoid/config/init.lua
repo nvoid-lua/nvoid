@@ -72,10 +72,6 @@ function M:load(config_path)
 
   reload("nvoid.keymappings").load(nvoid.keys)
 
-  if nvoid.transparent_window then
-    autocmds.enable_transparent_mode()
-  end
-
   if nvoid.reload_config_on_save then
     autocmds.enable_reload_config_on_save()
   end
