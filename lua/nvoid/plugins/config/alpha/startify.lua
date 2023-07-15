@@ -23,9 +23,11 @@ function M.get_sections()
   local top_buttons = {
     entries = {
       { "o", nvoid.icons.ui.NewFile .. " New File", "<CMD>ene!<CR>" },
-      { "e", nvoid.icons.ui.Gear .. " Configuration",
-        "<CMD>edit " ..
-        require("nvoid.config"):get_user_config_path() .. " <CR>", },
+      {
+        "e",
+        nvoid.icons.ui.Gear .. " Configuration",
+        "<CMD>edit " .. require("nvoid.config"):get_user_config_path() .. " <CR>",
+      },
     },
   }
 

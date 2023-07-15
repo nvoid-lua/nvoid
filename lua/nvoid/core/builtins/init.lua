@@ -24,6 +24,6 @@ function M.config(config)
     builtin.config(config)
   end
 end
-require("nvoid.plugins.config.toggleterm")
+require "nvoid.plugins.config.toggleterm"
 
 return M

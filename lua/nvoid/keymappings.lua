@@ -67,10 +67,10 @@ local defaults = {
     ["]q"] = ":cnext<CR>",
     ["[q"] = ":cprev<CR>",
     ["<C-q>"] = ":call QuickFixToggle()<CR>",
-    ["<A-t>"] = "<cmd>lua require('nvoid.ui.terminal').new_or_toggle('horizontal', "
-        .. tostring(terminal_options.window.split_height)
-        .. ")<cr>",
-    ["<C-t>"] = "<cmd>lua require('FTerm').toggle()<cr>"
+    ["<A-t>"] = "<cmd>lua require('nvoid.ui.terminal').new_or_toggle('horizontal', " .. tostring(
+      terminal_options.window.split_height
+    ) .. ")<cr>",
+    ["<C-t>"] = "<cmd>lua require('FTerm').toggle()<cr>",
   },
 
   term_mode = {
@@ -79,10 +79,10 @@ local defaults = {
     ["<C-j>"] = "<C-\\><C-N><C-w>j",
     ["<C-k>"] = "<C-\\><C-N><C-w>k",
     ["<C-l>"] = "<C-\\><C-N><C-w>l",
-    ["<A-t>"] = "<cmd>lua require('nvoid.ui.terminal').new_or_toggle('horizontal', "
-        .. tostring(terminal_options.window.split_height)
-        .. ")<cr>",
-    ["<C-t>"] = "<cmd>lua require('FTerm').toggle()<cr>"
+    ["<A-t>"] = "<cmd>lua require('nvoid.ui.terminal').new_or_toggle('horizontal', " .. tostring(
+      terminal_options.window.split_height
+    ) .. ")<cr>",
+    ["<C-t>"] = "<cmd>lua require('FTerm').toggle()<cr>",
   },
 
   visual_mode = {

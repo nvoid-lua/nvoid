@@ -119,16 +119,26 @@ M.git = function()
   local git_status = vim.b.gitsigns_status_dict
 
   local added = (git_status.added and git_status.added ~= 0) and (nvoid.icons.git.LineAdded .. git_status.added) or ""
-  local changed = (git_status.changed and git_status.changed ~= 0) and
-      (nvoid.icons.git.LineModified .. git_status.changed) or ""
-  local removed = (git_status.removed and git_status.removed ~= 0) and
-      (nvoid.icons.git.LineRemoved .. git_status.removed) or ""
+  local changed = (git_status.changed and git_status.changed ~= 0)
+      and (nvoid.icons.git.LineModified .. git_status.changed)
+    or ""
+  local removed = (git_status.removed and git_status.removed ~= 0)
+      and (nvoid.icons.git.LineRemoved .. git_status.removed)
+    or ""
   local branch_name = nvoid.icons.git.Branch .. " " .. git_status.head
 
-  return "%#St_gitIcons#" ..
-      " " ..
-      branch_name ..
-      " " .. "%#St_gitAdd#" .. added .. " " .. "%#St_gitMod#" .. changed .. " " .. "%#St_gitRem#" .. removed
+  return "%#St_gitIcons#"
+    .. " "
+    .. branch_name
+    .. " "
+    .. "%#St_gitAdd#"
+    .. added
+    .. " "
+    .. "%#St_gitMod#"
+    .. changed
+    .. " "
+    .. "%#St_gitRem#"
+    .. removed
 end
 
 -- LSP STUFF
@@ -202,12 +212,14 @@ M.lsp_diagnostics = function()
   local hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
   local info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
 
-  errors = (errors and errors > 0) and ("%#St_lspError#" .. nvoid.icons.diagnostics.BoldError .. " " .. errors .. " ") or
-      ""
-  warnings = (warnings and warnings > 0) and
-      ("%#St_lspWarning#" .. nvoid.icons.diagnostics.BoldWarning .. " " .. warnings .. " ") or ""
+  errors = (errors and errors > 0) and ("%#St_lspError#" .. nvoid.icons.diagnostics.BoldError .. " " .. errors .. " ")
+    or ""
+  warnings = (warnings and warnings > 0)
+      and ("%#St_lspWarning#" .. nvoid.icons.diagnostics.BoldWarning .. " " .. warnings .. " ")
+    or ""
   hints = (hints and hints > 0) and ("%#St_lspHints#" .. nvoid.icons.diagnostics.BoldHint .. " " .. hints .. " ") or ""
-  info = (info and info > 0) and ("%#St_lspInfo#" .. nvoid.icons.diagnostics.BoldInformation .. " " .. info .. " ") or ""
+  info = (info and info > 0) and ("%#St_lspInfo#" .. nvoid.icons.diagnostics.BoldInformation .. " " .. info .. " ")
+    or ""
 
   return errors .. warnings .. hints .. info
 end

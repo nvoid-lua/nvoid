@@ -42,15 +42,17 @@ function M.get_sections()
       spacing = 1,
     },
     entries = {
-      { "f", nvoid.icons.ui.FindFile .. "  Find File",   "<CMD>Telescope find_files<CR>" },
-      { "n", nvoid.icons.ui.NewFile .. "  New File",     "<CMD>ene!<CR>" },
+      { "f", nvoid.icons.ui.FindFile .. "  Find File", "<CMD>Telescope find_files<CR>" },
+      { "n", nvoid.icons.ui.NewFile .. "  New File", "<CMD>ene!<CR>" },
       { "o", nvoid.icons.ui.History .. "  Recent files", ":Telescope oldfiles <CR>" },
-      { "e", nvoid.icons.ui.Gear .. "  Configuration",
-        "<CMD>edit " ..
-        require("nvoid.config"):get_user_config_path() .. " <CR>", },
-      { "t", nvoid.icons.ui.FindText .. "  Find Text",         "<CMD>Telescope live_grep<CR>" },
+      {
+        "e",
+        nvoid.icons.ui.Gear .. "  Configuration",
+        "<CMD>edit " .. require("nvoid.config"):get_user_config_path() .. " <CR>",
+      },
+      { "t", nvoid.icons.ui.FindText .. "  Find Text", "<CMD>Telescope live_grep<CR>" },
       { "u", nvoid.icons.ui.ArrowCircleUp .. "  Update Nvoid", "<CMD>NvoidUpdate<CR>" },
-      { "q", nvoid.icons.ui.Close .. "  Quit",                 "<CMD>:qa<CR>" },
+      { "q", nvoid.icons.ui.Close .. "  Quit", "<CMD>:qa<CR>" },
     },
   }
   return {

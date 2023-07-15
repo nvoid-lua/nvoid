@@ -3,7 +3,6 @@ dofile(vim.g.base16_cache .. "syntax")
 dofile(vim.g.base16_cache .. "lsp")
 dofile(vim.g.base16_cache .. "cmp")
 
-
 if nvoid.ui.statusline.enabled then
   dofile(vim.g.base16_cache .. "statusline")
 end

@@ -12,4 +12,4 @@ if nvoid.ui.winbar then
 end
 
 -- Load HL
-require("nvoid.ui.base16")
+require "nvoid.ui.base16"

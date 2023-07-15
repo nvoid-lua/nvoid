@@ -47,7 +47,7 @@ M.show_term = function(term)
   term.win = vim.api.nvim_get_current_win()
   vim.api.nvim_set_current_win(term.win)
   vim.api.nvim_set_current_buf(term.buf)
-  vim.api.nvim_input("i") --term enter
+  vim.api.nvim_input "i" --term enter
 end
 
 M.hide = function(direction)
@@ -70,7 +70,7 @@ M.new = function(direction)
   local term = create_term()
   add_term(direction, term)
   vim.api.nvim_win_set_buf(term.win, term.buf)
-  vim.cmd("term")
+  vim.cmd "term"
   vim.api.nvim_buf_set_option(term.buf, "buflisted", false)
 end
 
@@ -99,9 +99,9 @@ end
 local config_handler = function(config)
   local behavior_handler = function(behavior)
     if behavior.close_on_exit then
-      vim.cmd("au TermClose * lua vim.api.nvim_input('<CR>')")
+      vim.cmd "au TermClose * lua vim.api.nvim_input('<CR>')"
     end
-    vim.cmd([[ au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal | startinsert]])
+    vim.cmd [[ au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal | startinsert]]
   end
   behavior_handler(config["behavior"])
   terms.winsize["horizontal"] = config.window.split_ratio or 0.5
