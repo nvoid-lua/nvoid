@@ -204,7 +204,15 @@ function M.enable_reload_config_on_save()
     desc = "Trigger NvoidReload on saving config.lua",
     callback = function()
       require("nvoid.config"):reload()
-      require("base16").compile()
+      -- require("base16").compile()
+
+      require("plenary.reload").reload_module "base16"
+      require("plenary.reload").reload_module "nvoid"
+      require("plenary.reload").reload_module "config"
+      require("plenary.reload").reload_module(get_config_dir())
+      vim.g.theme = nvoid.ui.colorscheme
+      vim.g.transparency = nvoid.ui.transparency
+      require("base16").load_all_highlights()
     end,
   })
 end

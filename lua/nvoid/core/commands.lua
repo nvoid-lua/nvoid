@@ -21,7 +21,7 @@ M.defaults = {
     name = "NvoidDiagnostics",
     fn = function()
       vim.diagnostic.open_float(0, { show_header = false, severity_sort = true, scope = "line" })
-    end
+    end,
   },
   {
     name = "NvoidInfo",
