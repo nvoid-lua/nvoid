@@ -15,6 +15,7 @@ local builtins = {
   "nvoid.plugins.config.comment",
   "nvoid.plugins.config.alpha",
   "nvoid.plugins.config.mason",
+  "nvoid.plugins.config.navic",
 }
 
 function M.config(config)

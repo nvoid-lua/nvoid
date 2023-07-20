@@ -12,7 +12,6 @@ return {
       config = "%!v:lua.require('nvoid.ui.statusline').run()",
       style = "nvoid",
     },
-    winbar = true,
   },
   terminal = {
     behavior = {

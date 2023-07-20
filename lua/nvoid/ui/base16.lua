@@ -7,7 +7,7 @@ if nvoid.ui.statusline.enabled then
   dofile(vim.g.base16_cache .. "statusline")
 end
 
-if nvoid.ui.winbar then
+if nvoid.builtin.winbar.active then
   dofile(vim.g.base16_cache .. "navic")
 end
 
