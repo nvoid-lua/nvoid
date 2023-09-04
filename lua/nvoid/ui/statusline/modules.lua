@@ -3,25 +3,25 @@ local fn = vim.fn
 local modesM = {
   ["n"] = { " normal", "St_ModeM" },
   ["no"] = { " normal", "St_ModeM" },
-  ["i"] = { "פֿ insert", "St_ModeM" },
-  ["ic"] = { "פֿ insert", "St_ModeM" },
-  ["t"] = { " terminal", "St_ModeM" },
-  ["nt"] = { " terminal", "St_ModeM" },
-  ["v"] = { "濾visual", "St_ModeM" },
-  ["V"] = { "濾v-line", "St_ModeM" },
-  [""] = { "濾v-block", "St_ModeM" },
-  ["R"] = { "李replace", "St_ModeM" },
-  ["Rv"] = { "李replace", "St_ModeM" },
-  ["s"] = { "Nvoid", "St_ModeM" },
-  ["S"] = { "Nvoid", "St_ModeM" },
-  [""] = { "Nvoid", "St_ModeM" },
-  ["c"] = { " command", "St_ModeM" },
-  ["cv"] = { " command", "St_ModeM" },
-  ["ce"] = { " command", "St_ModeM" },
-  ["r"] = { "", "St_ModeM" },
-  ["rm"] = { "", "St_ModeM" },
-  ["r?"] = { "", "St_ModeM" },
-  ["!"] = { "", "St_ModeM" },
+  ["i"] = { " insert", "St_ModeM" },
+  ["ic"] = { " insert", "St_ModeM" },
+  ["t"] = { " terminal", "St_ModeM" },
+  ["nt"] = { " terminal", "St_ModeM" },
+  ["v"] = { " visual", "St_ModeM" },
+  ["V"] = { " v-line", "St_ModeM" },
+  [""] = { " v-block", "St_ModeM" },
+  ["R"] = { " replace", "St_ModeM" },
+  ["Rv"] = { " replace", "St_ModeM" },
+  ["s"] = { " select", "St_ModeM" },
+  ["S"] = { " s-line", "St_ModeM" },
+  [""] = { " s-block", "St_ModeM" },
+  ["c"] = { " command", "St_ModeM" },
+  ["cv"] = { " command", "St_ModeM" },
+  ["ce"] = { " command", "St_ModeM" },
+  ["r"] = { " prompt", "St_ModeM" },
+  ["rm"] = { " more", "St_ModeM" },
+  ["r?"] = { " confirm", "St_ModeM" },
+  ["!"] = { " shell", "St_ModeM" },
 }
 
 local modesE = {
@@ -93,7 +93,7 @@ M.modeN = function()
 end
 
 M.fileInfo = function()
-  local icon = " 󰈚 "
+  local icon = " " .. nvoid.icons.ui.File .. " "
   local filename = (fn.expand "%" == "" and "Empty ") or fn.expand "%:t"
 
   if filename ~= "Empty " then
@@ -117,13 +117,13 @@ M.git = function()
   end
 
   local git_status = vim.b.gitsigns_status_dict
-
-  local added = (git_status.added and git_status.added ~= 0) and (nvoid.icons.git.LineAdded .. git_status.added) or ""
+  local added = (git_status.added and git_status.added ~= 0) and (nvoid.icons.git.LineAdded .. " " .. git_status.added)
+    or ""
   local changed = (git_status.changed and git_status.changed ~= 0)
-      and (nvoid.icons.git.LineModified .. git_status.changed)
+      and (nvoid.icons.git.LineModified .. " " .. git_status.changed)
     or ""
   local removed = (git_status.removed and git_status.removed ~= 0)
-      and (nvoid.icons.git.LineRemoved .. git_status.removed)
+      and (nvoid.icons.git.LineRemoved .. " " .. git_status.removed)
     or ""
   local branch_name = nvoid.icons.git.Branch .. " " .. git_status.head
 
@@ -175,7 +175,7 @@ M.get_lsp = function()
 
   local unique_client_names = vim.fn.uniq(buf_client_names)
 
-  local language_servers = nvoid.icons.statusline.lsp .. table.concat(unique_client_names, ", ")
+  local language_servers = nvoid.icons.ui.Lsp .. " " .. table.concat(unique_client_names, ", ")
 
   if copilot_active then
     language_servers = language_servers .. "%#SLCopilot#" .. " " .. nvoid.icons.git.Octoface .. "%*"
@@ -194,7 +194,7 @@ M.lsp_progress = function()
   local msg = Lsp.message or ""
   local percentage = Lsp.percentage or 0
   local title = Lsp.title or ""
-  local spinners = { "", "" }
+  local spinners = { nvoid.icons.ui.spinnerInactive, nvoid.icons.ui.spinnerActive }
   local ms = vim.loop.hrtime() / 1000000
   local frame = math.floor(ms / 120) % #spinners
   local content = string.format(" %%<%s %s %s (%s%%%%) ", spinners[frame + 1], title, msg, percentage)
@@ -227,7 +227,7 @@ end
 M.scrollbar = function()
   local current_line = vim.fn.line "."
   local total_lines = vim.fn.line "$"
-  local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
+  local chars = nvoid.icons.Scroll
   local line_ratio = current_line / total_lines
   local index = math.ceil(line_ratio * #chars)
   return "%#St_pos_text#" .. chars[index]
