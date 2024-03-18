@@ -7,7 +7,7 @@ if ($PSVersionTable.PSVersion -lt 7.1) {
 # set script variables
 $NV_BRANCH = $NV_BRANCH ?? "main"
 $NV_REMOTE = $NV_REMOTE ??  "nvoid-lua/nvoid.git"
-$INSTALL_PREFIX = $INSTALL_PREFIX ?? "$HOME\.local"
+$NV_INSTALL_PREFIX = $NV_INSTALL_PREFIX ?? "$HOME\.local"
 
 $env:XDG_DATA_HOME = $env:XDG_DATA_HOME ?? $env:APPDATA
 $env:XDG_CONFIG_HOME = $env:XDG_CONFIG_HOME ?? $env:LOCALAPPDATA
@@ -180,11 +180,11 @@ function clone_nvoid() {
 }
 
 function setup_shim() {
-    if ((Test-Path "$INSTALL_PREFIX\bin") -eq $false) {
-        New-Item "$INSTALL_PREFIX\bin" -ItemType Directory | Out-Null
+    if ((Test-Path "$NV_INSTALL_PREFIX\bin") -eq $false) {
+        New-Item "$NV_INSTALL_PREFIX\bin" -ItemType Directory | Out-Null
     }
 
-    Copy-Item -Force "$env:NVOID_BASE_DIR\utils\bin\nvoid.ps1" "$INSTALL_PREFIX\bin\nvoid.ps1"
+    Copy-Item -Force "$env:NVOID_BASE_DIR\utils\bin\nvoid.ps1" "$NV_INSTALL_PREFIX\bin\nvoid.ps1"
 }
 
 function uninstall_nvoid() {
@@ -226,13 +226,13 @@ function setup_nvoid() {
 
     msg "Thank you for installing Nvoid!!"
 
-    Write-Output "You can start it by running: $INSTALL_PREFIX\bin\nvoid.ps1"
+    Write-Output "You can start it by running: $NV_INSTALL_PREFIX\bin\nvoid.ps1"
     Write-Output "Do not forget to use a font with glyphs (icons) support [https://github.com/ryanoasis/nerd-fonts]"
 }
 
 
 function validate_nvoid_files() {
-    Set-Alias nvoid "$INSTALL_PREFIX\bin\nvoid.ps1"
+    Set-Alias nvoid "$NV_INSTALL_PREFIX\bin\nvoid.ps1"
     try {
         $verify_version_cmd="if !empty(v:errmsg) | cquit | else | quit | endif"
         Invoke-Command -ScriptBlock { nvoid --headless -c 'NvoidUpdate' -c "$verify_version_cmd" } -ErrorAction SilentlyContinue
@@ -259,7 +259,7 @@ function create_alias {
         return
     }
 
-    $nvoid_bin="$INSTALL_PREFIX\bin\nvoid.ps1"
+    $nvoid_bin="$NV_INSTALL_PREFIX\bin\nvoid.ps1"
     $nvoid_alias = Get-Alias nvoid -ErrorAction SilentlyContinue
 
     if ($nvoid_alias.Definition -eq $nvoid_bin) {
