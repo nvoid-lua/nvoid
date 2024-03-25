@@ -1,5 +1,7 @@
 <div align="center">
-        
+
+![nvoid_logo](https://github.com/nvoid-lua/nvoid/assets/94284073/9899f37a-25dd-4db3-85f1-d5efab89a413)
+
 [![Lua](https://img.shields.io/badge/Made%20with%20Lua-blue.svg?style=for-the-badge&logo=lua)](https://lua.org)
 
 </div>
