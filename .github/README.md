@@ -63,7 +63,7 @@ the user config for nvoid is located art `~/.config/nvoid/config.lua` nearly eve
 </details>
         
 # Thanks To
-+ [Nvoid](https://github.com/Nvoid/Nvoid)
++ [LunarVim](https://github.com/LunarVim/LunarVim)
 + [Nvchad](https://github.com/NvChad/NvChad)
 + [CosmicNvim](https://github.com/mattleong/CosmicNvim)
 + [Nv-ide](https://github.com/crivotz/nv-ide)
