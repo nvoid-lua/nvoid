@@ -247,9 +247,6 @@ local core_plugins = {
     config = function()
       require("nvoid.plugins.config.indentlines").setup()
     end,
-    init = function()
-      require("nvoid.core.lazyload").lazy_load "indent-blankline.nvim"
-    end,
     event = "User FileOpened",
     enabled = nvoid.builtin.indentlines.active,
   },

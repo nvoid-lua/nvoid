@@ -35,6 +35,11 @@ function M:init()
     },
   }
 
+  nvoid.builtin.bigfile = {
+    active = true,
+    config = {},
+  }
+
   require("nvoid.config._deprecated").handle()
 end
 
@@ -71,6 +76,10 @@ function M:load(config_path)
   vim.g.mapleader = (nvoid.leader == "space" and " ") or nvoid.leader
 
   reload("nvoid.keymappings").load(nvoid.keys)
+
+  if nvoid.transparent_window then
+    autocmds.enable_transparent_mode()
+  end
 
   if nvoid.reload_config_on_save then
     autocmds.enable_reload_config_on_save()
