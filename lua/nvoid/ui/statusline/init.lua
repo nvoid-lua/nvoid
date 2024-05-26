@@ -10,7 +10,7 @@ S.run = function()
       M.git(),
 
       "%=",
-      M.lsp_progress(),
+      -- M.lsp_progress(),
       "%=",
 
       M.lsp_diagnostics(),
@@ -25,7 +25,7 @@ S.run = function()
       M.lsp_diagnostics(),
 
       "%=",
-      M.lsp_progress(),
+      -- M.lsp_progress(),
       "%=",
 
       M.fileInfo(),
@@ -38,7 +38,7 @@ S.run = function()
       M.git(),
 
       "%=",
-      M.lsp_progress(),
+      -- M.lsp_progress(),
       "%=",
 
       M.lsp_diagnostics(),

@@ -75,8 +75,6 @@ function M.common_on_attach(client, bufnr)
   add_lsp_buffer_keybindings(bufnr)
   add_lsp_buffer_options(bufnr)
   lu.setup_document_symbols(client, bufnr)
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
 end
 
 function M.get_common_opts()
@@ -115,7 +113,7 @@ function M.setup()
   autocmds.configure_format_on_save()
 
   local function set_handler_opts_if_not_set(name, handler, opts)
-    if debug.getinfo(vim.lsp.handlers[name], "S").source:match(vim.env.VIMRUNTIME) then
+    if debug.getinfo(vim.lsp.handlers[name], "S").source:find(vim.env.VIMRUNTIME, 1, true) then
       vim.lsp.handlers[name] = vim.lsp.with(handler, opts)
     end
   end
