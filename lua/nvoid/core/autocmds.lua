@@ -114,7 +114,8 @@ function M.load_defaults()
           local bufname = vim.api.nvim_buf_get_name(args.buf)
           if require("nvoid.utils").is_directory(bufname) then
             vim.api.nvim_del_augroup_by_name "_dir_opened"
-            vim.cmd "do User DirOpened"
+            -- vim.cmd "do User DirOpened"
+            vim.api.nvim_exec_autocmds("User", { pattern = "DirOpened" })
             vim.api.nvim_exec_autocmds(args.event, { buffer = args.buf, data = args.data })
           end
         end,
@@ -129,7 +130,8 @@ function M.load_defaults()
           local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
           if not (vim.fn.expand "%" == "" or buftype == "nofile") then
             vim.api.nvim_del_augroup_by_name "_file_opened"
-            vim.cmd "do User FileOpened"
+            -- vim.cmd "do User FileOpened"
+            vim.api.nvim_exec_autocmds("User", { pattern = "FileOpened" })
             require("nvoid.lsp").setup()
           end
         end,
