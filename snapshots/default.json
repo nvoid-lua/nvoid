@@ -1,128 +1,80 @@
 {
   "Comment.nvim": {
-    "commit": "38d3b7e"
+    "commit": "0236521"
   },
   "LuaSnip": {
-    "commit": "e77fa9a"
+    "commit": "1def353"
   },
   "alpha-nvim": {
-    "commit": "87c2040"
-  },
-  "bufferline.nvim": {
-    "commit": "a4bd445"
+    "commit": "29074ee"
   },
   "cmp-buffer": {
     "commit": "3022dbc"
   },
   "cmp-cmdline": {
-    "commit": "5af1bb7"
+    "commit": "d250c63"
   },
   "cmp-nvim-lsp": {
-    "commit": "0e6b2ed"
+    "commit": "5af77f5"
   },
   "cmp-path": {
     "commit": "91ff86c"
   },
   "cmp_luasnip": {
-    "commit": "1809552"
+    "commit": "05a9ab2"
   },
   "friendly-snippets": {
-    "commit": "631f79e"
+    "commit": "3e9a3f5"
   },
   "gitsigns.nvim": {
-    "commit": "e5edefd"
+    "commit": "805610a"
   },
   "indent-blankline.nvim": {
-    "commit": "018bd04"
+    "commit": "9637670"
   },
   "lazy.nvim": {
-    "commit": "d6a782c"
-  },
-  "lir.nvim": {
-    "commit": "1aa871f"
-  },
-  "lualine.nvim": {
-    "commit": "84ffb80"
-  },
-  "lunar.nvim": {
-    "commit": "08bbc93"
+    "commit": "bef521a"
   },
   "mason-lspconfig.nvim": {
-    "commit": "7276fff"
+    "commit": "273fdde"
   },
   "mason.nvim": {
-    "commit": "057ac5c"
+    "commit": "751b1fc"
   },
-  "neodev.nvim": {
-    "commit": "0043cf9"
-  },
-  "nlsp-settings.nvim": {
-    "commit": "32aa12d"
-  },
-  "null-ls.nvim": {
-    "commit": "33b853a"
+  "none-ls.nvim": {
+    "commit": "3a48266"
   },
   "nvim-autopairs": {
-    "commit": "7566a86"
+    "commit": "14e9737"
   },
   "nvim-cmp": {
-    "commit": "11102d3"
-  },
-  "nvim-dap": {
-    "commit": "6cedcb5"
-  },
-  "nvim-dap-ui": {
-    "commit": "286f682"
+    "commit": "cd2cf0c"
   },
   "nvim-lspconfig": {
-    "commit": "427378a"
-  },
-  "nvim-navic": {
-    "commit": "83dc174"
+    "commit": "aa5f4f4"
   },
   "nvim-tree.lua": {
-    "commit": "bb375fb"
+    "commit": "64f61e4"
   },
   "nvim-treesitter": {
-    "commit": "2ce3c90"
-  },
-  "nvim-ts-context-commentstring": {
-    "commit": "0bf8fbc"
+    "commit": "d5a1c2b"
   },
   "nvim-web-devicons": {
-    "commit": "986875b"
-  },
-  "onedarker.nvim": {
-    "commit": "b00dd21"
+    "commit": "5b90678"
   },
   "plenary.nvim": {
-    "commit": "9ac3e95"
-  },
-  "project.nvim": {
-    "commit": "8c6bad7"
-  },
-  "schemastore.nvim": {
-    "commit": "0b396f5"
-  },
-  "structlog.nvim": {
-    "commit": "45b26a2"
-  },
-  "telescope-fzf-native.nvim": {
-    "commit": "580b6c4"
+    "commit": "08e3019"
   },
   "telescope.nvim": {
-    "commit": "9de317b"
+    "commit": "6312868"
   },
   "toggleterm.nvim": {
-    "commit": "68fdf85"
-  },
-  "tokyonight.nvim": {
-    "commit": "c5df636"
+    "commit": "066cccf"
   },
   "vim-illuminate": {
-    "commit": "a290727"
+    "commit": "e522e0d"
   },
   "which-key.nvim": {
-    "commit": "4acffc9"
+    "commit": "4433e5e"
   }
 }
