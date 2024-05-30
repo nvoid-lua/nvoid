@@ -13,7 +13,7 @@ function M.config()
       enable = false,
     },
     highlight = {
-      enable = true, -- false will disable the whole extension
+      enable = true,
       additional_vim_regex_highlighting = false,
       disable = function(lang, buf)
         if vim.tbl_contains({ "latex" }, lang) then
@@ -54,8 +54,8 @@ function M.config()
     playground = {
       enable = false,
       disable = {},
-      updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-      persist_queries = false, -- Whether the query persists across vim sessions
+      updatetime = 25,
+      persist_queries = false,
       keybindings = {
         toggle_query_editor = "o",
         toggle_hl_groups = "i",
@@ -71,8 +71,8 @@ function M.config()
     },
     rainbow = {
       enable = false,
-      extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
-      max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
+      extended_mode = true,
+      max_file_lines = 1000,
     },
   }
 end
