@@ -74,9 +74,10 @@ function M.buffer(ft)
 end
 
 function M.nvoidinfo()
+  local plugins_count = vim.fn.len(vim.fn.globpath("~/.local/share/nvoid/site/pack/lazy/opt", "*", 0, 1))
   return {
     fmt(nvoid.icons.ui.spinnerActive .. " Colorscheme: %s", vim.g.theme),
-    -- fmt(nvoid.icons.ui.spinnerActive .. " Plugins: %s", "11"),
+    fmt(nvoid.icons.ui.spinnerActive .. " Number Of Plugins: %s", plugins_count),
   }
 end
 
