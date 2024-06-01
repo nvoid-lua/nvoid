@@ -126,7 +126,7 @@ M.config = function()
         f = { "<cmd>lua require('nvoid.lsp.utils').format()<cr>", "Format" },
       },
       d = {
-        name = "Debug",
+        name = " " .. nvoid.icons.ui.Bug .." Debug",
         t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
         b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
         c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },

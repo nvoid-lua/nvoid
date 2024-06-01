@@ -1,12 +1,12 @@
 local M = {}
 
-local fmt = string.format
 local text = require "nvoid.ui.text"
 local modules = require "nvoid.ui.voidashboard.modules"
 
 function M.toggle_popup(ft)
   local banner = modules.banner
-  local buffer = modules.buffer(ft)
+  local nvoidinfo = text.format_table(modules.nvoidinfo(), 2, "    ")
+  local buffer = text.format_table(modules.buffer(ft), 2, "    ")
 
   local clients = vim.lsp.get_active_clients()
   local client_names = {}
@@ -19,8 +19,8 @@ function M.toggle_popup(ft)
     table.insert(client_names, client.name)
   end
 
-  local formatters_info = modules.formatters(ft)
-  local linters_info = modules.linters(ft)
+  local lsp = text.format_table(lsp_info, 2, "    ")
+  local lint_format = text.format_table(modules.linters_formater(ft), 2, "    ")
 
   local content_provider = function(popup)
     local content = {}
@@ -31,6 +31,11 @@ function M.toggle_popup(ft)
       { "" },
       { "" },
 
+      -- Nvoid
+      text.align_center(popup, { "Nvoid Info" }, 0.5),
+      text.align_left(popup, nvoidinfo, 0.5),
+      { "" },
+
       -- Buffer
       text.align_center(popup, { "Buffer Info" }, 0.5),
       text.align_left(popup, buffer, 0.5),
@@ -38,18 +43,14 @@ function M.toggle_popup(ft)
 
       -- Lsp
       text.align_center(popup, { "Active Client(s)" }, 0.5),
-      text.align_left(popup, lsp_info, 0.5),
+      text.align_left(popup, lsp, 0.5),
       { "" },
 
-      -- Formatters
-      text.align_center(popup, { "Formatters Info" }, 0.5),
-      text.align_left(popup, formatters_info, 0.5),
+      -- Formatters and linters
+      text.align_center(popup, { "Formatters and Linters" }, 0.5),
+      text.align_left(popup, lint_format, 0.5),
       { "" },
 
-      -- Linters
-      text.align_center(popup, { "Linters Info" }, 0.5),
-      text.align_left(popup, linters_info, 0.5),
-      { "" },
     } do
       vim.list_extend(content, section)
     end
@@ -62,7 +63,7 @@ function M.toggle_popup(ft)
     buf_opts = { modifiable = false, filetype = "lspinfo" },
   }
   Popup:display(content_provider)
-  require "nvoid.ui.voidashboard.hl"(ft)
+  require "nvoid.ui.voidashboard.hl" (ft)
 
   return Popup
 end

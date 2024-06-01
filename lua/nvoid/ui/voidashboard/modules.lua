@@ -15,33 +15,27 @@ M.banner = {
   [[ |_| \_|   \/   \____/_____|_____/  ]],
 }
 
-function M.linters(ft)
+function M.linters_formater(ft)
   local null_linters = require "nvoid.lsp.null-ls.linters"
   local supported_linters = null_linters.list_supported(ft)
   local registered_linters = null_linters.list_registered(ft)
-  local section = {
-    fmt(
-      nvoid.icons.ui.spinnerActive .. " Active: %s%s",
-      table.concat(registered_linters, " " .. nvoid.icons.ui.BoxChecked .. " , "),
-      vim.tbl_count(registered_linters) > 0 and " " .. nvoid.icons.ui.BoxChecked .. " " or ""
-    ),
-    fmt(nvoid.icons.ui.spinnerActive .. " Supported: %s", str_list(supported_linters)),
-  }
-
-  return section
-end
-
-function M.formatters(ft)
   local null_formatters = require "nvoid.lsp.null-ls.formatters"
   local registered_formatters = null_formatters.list_registered(ft)
   local supported_formatters = null_formatters.list_supported(ft)
+
   local section = {
     fmt(
-      nvoid.icons.ui.spinnerActive .. " Active: %s%s",
+      nvoid.icons.ui.spinnerActive .. " Active Linters: %s%s",
+      table.concat(registered_linters, " " .. nvoid.icons.ui.BoxChecked .. " , "),
+      vim.tbl_count(registered_linters) > 0 and " " .. nvoid.icons.ui.BoxChecked .. " " or ""
+    ),
+    fmt(
+      nvoid.icons.ui.spinnerActive .. " Active Formatters: %s%s",
       table.concat(registered_formatters, " " .. " , "),
       vim.tbl_count(registered_formatters) > 0 and " " .. " " or ""
     ),
-    fmt(nvoid.icons.ui.spinnerActive .. " Supported: %s", str_list(supported_formatters)),
+    fmt(nvoid.icons.ui.spinnerActive .. " Supported Linters: %s", str_list(supported_linters)), --.
+    fmt(nvoid.icons.ui.spinnerActive .. " Supported Formatters: %s", str_list(supported_formatters)),
   }
 
   return section
@@ -76,6 +70,13 @@ function M.buffer(ft)
   return {
     fmt(nvoid.icons.ui.spinnerActive .. " filetype: %s", ft),
     fmt(nvoid.icons.ui.spinnerActive .. " treesitter status: %s", M.is_treesitter_active()),
+  }
+end
+
+function M.nvoidinfo()
+  return {
+    fmt(nvoid.icons.ui.spinnerActive .. " Colorscheme: %s", vim.g.theme),
+    -- fmt(nvoid.icons.ui.spinnerActive .. " Plugins: %s", "11"),
   }
 end
 
