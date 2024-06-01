@@ -50,6 +50,12 @@
   "nvim-cmp": {
     "commit": "cd2cf0c"
   },
+  "nvim-dap": {
+    "commit": "13ce59d"
+  },
+  "nvim-dap-ui": {
+    "commit": "34160a7"
+  },
   "nvim-lspconfig": {
     "commit": "aa5f4f4"
   },

@@ -229,6 +229,29 @@ local core_plugins = {
     lazy = true,
   },
 
+  -- Debugging
+  {
+    "mfussenegger/nvim-dap",
+    config = function()
+      require("nvoid.plugins.config.dap").setup()
+    end,
+    lazy = true,
+    dependencies = {
+      "rcarriga/nvim-dap-ui",
+    },
+    enabled = nvoid.builtin.dap.active,
+  },
+
+  -- Debugger user interface
+  {
+    "rcarriga/nvim-dap-ui",
+    config = function()
+      require("nvoid.plugins.config.dap").setup_ui()
+    end,
+    lazy = true,
+    enabled = nvoid.builtin.dap.active,
+  },
+
   -- alpha
   {
     "goolord/alpha-nvim",
