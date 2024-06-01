@@ -26,7 +26,7 @@ M.defaults = {
   {
     name = "NvoidInfo",
     fn = function()
-      require("nvoid.core.info").toggle_popup(vim.bo.filetype)
+      require("nvoid.ui.voidashboard").toggle_popup(vim.bo.filetype)
     end,
   },
   {
