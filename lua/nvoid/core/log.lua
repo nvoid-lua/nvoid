@@ -14,17 +14,17 @@ local log_notify_as_notification = false
 
 function Log:set_level(level)
   if
-      not pcall(function()
-        local logger_ok, logger = pcall(function()
-          return require("structlog").get_logger "nvoid"
-        end)
-        local log_level = Log.levels[level:upper()]
-        if logger_ok and logger and log_level then
-          for _, pipeline in ipairs(logger.pipelines) do
-            pipeline.level = log_level
-          end
-        end
+    not pcall(function()
+      local logger_ok, logger = pcall(function()
+        return require("structlog").get_logger "nvoid"
       end)
+      local log_level = Log.levels[level:upper()]
+      if logger_ok and logger and log_level then
+        for _, pipeline in ipairs(logger.pipelines) do
+          pipeline.level = log_level
+        end
+      end
+    end)
   then
     vim.notify "structlog version too old, run `:Lazy sync`"
   end
@@ -126,13 +126,13 @@ end
 ---@param event any
 function Log:add_entry(level, msg, event)
   if
-      not pcall(function()
-        local logger = self:get_logger()
-        if not logger then
-          return
-        end
-        logger:log(level, vim.inspect(msg), event)
-      end)
+    not pcall(function()
+      local logger = self:get_logger()
+      if not logger then
+        return
+      end
+      logger:log(level, vim.inspect(msg), event)
+    end)
   then
     vim.notify "structlog version too old, run `:Lazy sync`"
   end
