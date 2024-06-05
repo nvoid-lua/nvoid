@@ -42,3 +42,7 @@ end
 if nvoid.builtin.bufferline.active then
   dofile(vim.g.base16_cache .. "bufferline")
 end
+
+if nvoid.builtin.dap.active then
+  dofile(vim.g.base16_cache .. "dap")
+end
