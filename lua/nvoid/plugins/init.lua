@@ -136,9 +136,7 @@ local core_plugins = {
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    init = function()
-      require("nvoid.core.lazyload").lazy_load "nvim-treesitter"
-    end,
+    event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",
     config = function()
@@ -147,7 +145,6 @@ local core_plugins = {
       vim.opt.rtp:prepend(path)
       require("nvoid.plugins.config.treesitter").setup()
     end,
-    -- event = "User FileOpened",
   },
 
   {
