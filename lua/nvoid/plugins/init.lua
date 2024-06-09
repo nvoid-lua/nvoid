@@ -208,16 +208,6 @@ local core_plugins = {
     enabled = nvoid.builtin.terminal.active,
   },
 
-  -- Comments
-  {
-    "numToStr/Comment.nvim",
-    config = function()
-      require("nvoid.plugins.config.comment").setup()
-    end,
-    keys = { { "gc", mode = { "n", "v" } }, { "gb", mode = { "n", "v" } } },
-    event = "User FileOpened",
-    enabled = nvoid.builtin.comment.active,
-  },
 
   -- Icons
   {
