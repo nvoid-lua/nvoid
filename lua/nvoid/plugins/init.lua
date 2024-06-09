@@ -75,7 +75,7 @@ local core_plugins = {
         require("nvoid.plugins.config.cmp").setup()
       end
     end,
-    event = { "InsertEnter", "CmdlineEnter" },
+    event = { "InsertEnter" },
     dependencies = {
       "cmp-nvim-lsp",
       "cmp_luasnip",
@@ -92,6 +92,7 @@ local core_plugins = {
     "hrsh7th/cmp-cmdline",
     lazy = true,
     enabled = nvoid.builtin.cmp and nvoid.builtin.cmp.cmdline.enable or false,
+    event = { "CmdlineEnter" },
   },
   {
     "L3MON4D3/LuaSnip",
