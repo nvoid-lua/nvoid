@@ -1,3 +1,4 @@
+dofile(vim.g.base16_cache .. "treesitter")
 dofile(vim.g.base16_cache .. "defaults")
 dofile(vim.g.base16_cache .. "syntax")
 dofile(vim.g.base16_cache .. "lsp")

@@ -4,7 +4,6 @@ return {
   ui = {
     hl_override = {},
     hl_add = {},
-    extended_integrations = {},
     colorscheme = "onedark",
     transparency = false,
     statusline = {
