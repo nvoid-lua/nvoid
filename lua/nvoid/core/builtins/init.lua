@@ -12,6 +12,7 @@ local builtins = {
   "nvoid.plugins.config.illuminate",
   "nvoid.plugins.config.indentlines",
   "nvoid.plugins.config.autopairs",
+  "nvoid.plugins.config.comment",
   "nvoid.plugins.config.dap",
   "nvoid.plugins.config.alpha",
   "nvoid.plugins.config.mason",
