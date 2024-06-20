@@ -4,7 +4,7 @@ return {
   ui = {
     hl_override = {},
     hl_add = {},
-    colorscheme = "onedark",
+    colorscheme = "ashes",
     transparency = false,
     statusline = {
       enabled = true,
