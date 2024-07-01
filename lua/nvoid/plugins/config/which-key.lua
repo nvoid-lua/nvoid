@@ -126,7 +126,7 @@ M.config = function()
         f = { "<cmd>lua require('nvoid.lsp.utils').format()<cr>", "Format" },
       },
       d = {
-        name = " " .. nvoid.icons.ui.Bug .." Debug",
+        name = " " .. nvoid.icons.ui.Bug .. " Debug",
         t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
         b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
         c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
@@ -155,6 +155,7 @@ M.config = function()
       },
       n = {
         name = " " .. nvoid.icons.ui.Nvoid .. " Nvoid",
+        d = { "<cmd>NvoidDocs<CR>", "Docs" },
         u = { "<cmd>NvoidUpdate<CR>", "Update" },
         e = { "<cmd>edit" .. require("nvoid.config"):get_user_config_path() .. "<CR>", "Edit Config" },
         r = { "<cmd>NvoidReload<CR>", "Reload" },

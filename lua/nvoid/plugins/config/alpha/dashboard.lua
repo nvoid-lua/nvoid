@@ -29,7 +29,7 @@ function M.get_sections()
 
   local footer = {
     type = "text",
-    val = text.align_center({ width = 0 }, { "爵nvoid.org" }, 0.5),
+    val = text.align_center({ width = 0 }, { "checkout the new docs @ nvoid.org" }, 0.5),
     opts = {
       position = "center",
       hl = "DashboardFooter",
@@ -52,6 +52,7 @@ function M.get_sections()
       },
       { "t", nvoid.icons.ui.FindText .. "  Find Text", "<CMD>Telescope live_grep<CR>" },
       { "u", nvoid.icons.ui.ArrowCircleUp .. "  Update Nvoid", "<CMD>NvoidUpdate<CR>" },
+      { "d", nvoid.icons.ui.BookMark .. "  Nvoid Docs", "<CMD>NvoidDocs<CR>" },
       { "q", nvoid.icons.ui.Close .. "  Quit", "<CMD>:qa<CR>" },
     },
   }
