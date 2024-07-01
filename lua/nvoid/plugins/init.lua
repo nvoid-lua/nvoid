@@ -281,10 +281,11 @@ local core_plugins = {
   -- Whichkey
   {
     "folke/which-key.nvim",
-    keys = { "<leader>", '"', "'", "`", "c", "v", "g" },
     config = function()
       require("nvoid.plugins.config.which-key").setup()
     end,
+    cmd = "WhichKey",
+    event = "VeryLazy",
     enabled = nvoid.builtin.which_key.active,
   },
 }
