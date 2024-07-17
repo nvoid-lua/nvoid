@@ -27,7 +27,7 @@ local mode_adapters = {
 ---@class Keys
 ---@field insert_mode table
 ---@field normal_mode table
----@field terminal_mode table
+---@field term_mode table
 ---@field visual_mode table
 ---@field visual_block_mode table
 ---@field command_mode table
@@ -37,9 +37,8 @@ local defaults = {
   insert_mode = {
     -- Move current line / block with Alt-j/k ala vscode.
     ["<A-j>"] = "<Esc>:m .+1<CR>==gi",
-    -- Move current line / block with Alt-j/k ala vscode.
     ["<A-k>"] = "<Esc>:m .-2<CR>==gi",
-    -- navigation
+    -- Navigation
     ["<A-Up>"] = "<C-\\><C-N><C-w>k",
     ["<A-Down>"] = "<C-\\><C-N><C-w>j",
     ["<A-Left>"] = "<C-\\><C-N><C-w>h",
@@ -52,17 +51,14 @@ local defaults = {
     ["<C-j>"] = "<C-w>j",
     ["<C-k>"] = "<C-w>k",
     ["<C-l>"] = "<C-w>l",
-
     -- Resize with arrows
     ["<C-Up>"] = ":resize -2<CR>",
     ["<C-Down>"] = ":resize +2<CR>",
     ["<C-Left>"] = ":vertical resize -2<CR>",
     ["<C-Right>"] = ":vertical resize +2<CR>",
-
-    -- Move current line / block with Alt-j/k a la vscode.
+    -- Move current line / block with Alt-j/k ala vscode.
     ["<A-j>"] = ":m .+1<CR>==",
     ["<A-k>"] = ":m .-2<CR>==",
-
     -- QuickFix
     ["]q"] = ":cnext<CR>",
     ["[q"] = ":cprev<CR>",
@@ -89,9 +85,6 @@ local defaults = {
     -- Better indenting
     ["<"] = "<gv",
     [">"] = ">gv",
-
-    -- ["p"] = '"0p',
-    -- ["P"] = '"0P',
   },
 
   visual_block_mode = {
@@ -101,19 +94,18 @@ local defaults = {
   },
 
   command_mode = {
-    -- navigate tab completion with <c-j> and <c-k>
-    -- runs conditionally
+    -- Navigate tab completion with <c-j> and <c-k> conditionally
     ["<C-j>"] = { 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true } },
     ["<C-k>"] = { 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true } },
   },
 }
 
-if vim.fn.has "mac" == 1 then
+if vim.fn.has("mac") == 1 then
   defaults.normal_mode["<A-Up>"] = defaults.normal_mode["<C-Up>"]
   defaults.normal_mode["<A-Down>"] = defaults.normal_mode["<C-Down>"]
   defaults.normal_mode["<A-Left>"] = defaults.normal_mode["<C-Left>"]
   defaults.normal_mode["<A-Right>"] = defaults.normal_mode["<C-Right>"]
-  Log:debug "Activated mac keymappings"
+  Log:debug("Activated mac keymappings")
 end
 
 -- Unsets all keybindings defined in keymaps
@@ -121,9 +113,9 @@ end
 function M.clear(keymaps)
   local default = M.get_defaults()
   for mode, mappings in pairs(keymaps) do
-    local translated_mode = mode_adapters[mode] and mode_adapters[mode] or mode
+    local translated_mode = mode_adapters[mode] or mode
     for key, _ in pairs(mappings) do
-      -- some plugins may override default bindings that the user hasn't manually overriden
+      -- Some plugins may override default bindings that the user hasn't manually overridden
       if default[mode][key] ~= nil or (default[translated_mode] ~= nil and default[translated_mode][key] ~= nil) then
         pcall(vim.api.nvim_del_keymap, translated_mode, key)
       end

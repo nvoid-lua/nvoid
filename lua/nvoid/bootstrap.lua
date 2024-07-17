@@ -1,12 +1,9 @@
 local M = {}
 
-if vim.fn.has "nvim-0.9" ~= 1 then
+if vim.fn.has("nvim-0.9") ~= 1 then
   vim.notify("Please upgrade your Neovim base installation. Nvoid requires v0.9+", vim.log.levels.WARN)
-  vim.wait(5000, function()
-    ---@diagnostic disable-next-line: redundant-return-value
-    return false
-  end)
-  vim.cmd "cquit"
+  vim.wait(5000, function() return false end)
+  vim.cmd("cquit")
 end
 
 local uv = vim.loop
@@ -15,8 +12,7 @@ local path_sep = uv.os_uname().version:match "Windows" and "\\" or "/"
 ---Join path segments that were passed as input
 ---@return string
 function _G.join_paths(...)
-  local result = table.concat({ ... }, path_sep)
-  return result
+  return table.concat({ ... }, path_sep)
 end
 
 _G.require_clean = require("nvoid.utils.modules").require_clean
@@ -26,35 +22,23 @@ _G.reload = require("nvoid.utils.modules").reload
 ---Get the full path to `$NVOID_RUNTIME_DIR`
 ---@return string|nil
 function _G.get_runtime_dir()
-  local nvoid_runtime_dir = os.getenv "NVOID_RUNTIME_DIR"
-  if not nvoid_runtime_dir then
-    -- when nvim is used directly
-    return vim.call("stdpath", "data")
-  end
-  return nvoid_runtime_dir
+  return os.getenv "NVOID_RUNTIME_DIR" or vim.call("stdpath", "data")
 end
 
 ---Get the full path to `$NVOID_CONFIG_DIR`
 ---@return string|nil
 function _G.get_config_dir()
-  local nvoid_config_dir = os.getenv "NVOID_CONFIG_DIR"
-  if not nvoid_config_dir then
-    return vim.call("stdpath", "config")
-  end
-  return nvoid_config_dir
+  return os.getenv "NVOID_CONFIG_DIR" or vim.call("stdpath", "config")
 end
 
 ---Get the full path to `$NVOID_CACHE_DIR`
 ---@return string|nil
 function _G.get_cache_dir()
-  local nvoid_cache_dir = os.getenv "NVOID_CACHE_DIR"
-  if not nvoid_cache_dir then
-    return vim.call("stdpath", "cache")
-  end
-  return nvoid_cache_dir
+  return os.getenv "NVOID_CACHE_DIR" or vim.call("stdpath", "cache")
 end
 
 ---Initialize the `&runtimepath` variables and prepare for startup
+---@param base_dir string
 ---@return table
 function M:init(base_dir)
   self.runtime_dir = get_runtime_dir()
@@ -66,6 +50,7 @@ function M:init(base_dir)
   ---@meta overridden to use NVOID_CACHE_DIR instead, since a lot of plugins call this function internally
   ---NOTE: changes to "data" are currently unstable, see #2507
   ---@diagnostic disable-next-line: duplicate-set-field
+  ---Override stdpath to use NVOID_CACHE_DIR instead
   vim.fn.stdpath = function(what)
     if what == "cache" then
       return _G.get_cache_dir()
@@ -100,7 +85,6 @@ function M:init(base_dir)
   }
 
   require("nvoid.config"):init()
-
   require("nvoid.plugins.config.mason").bootstrap()
 
   return self
@@ -109,7 +93,7 @@ end
 ---Update Nvoid
 ---pulls the latest changes from github and, resets the startup cache
 function M:update()
-  require("nvoid.core.log"):info "Trying to update Nvoid..."
+  require("nvoid.core.log"):info("Trying to update Nvoid...")
 
   vim.schedule(function()
     reload("nvoid.utils.hooks").run_pre_update()
