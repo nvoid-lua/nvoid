@@ -15,6 +15,7 @@ S.run = function()
 
       M.lsp_diagnostics(),
       M.get_lsp(),
+      " ",
       M.scrollbar(),
     }
   elseif nvoid.ui.statusline.style == "minimal" then
@@ -43,6 +44,7 @@ S.run = function()
 
       M.lsp_diagnostics(),
       M.get_lsp(),
+      " ",
       M.scrollbar(),
     }
   end

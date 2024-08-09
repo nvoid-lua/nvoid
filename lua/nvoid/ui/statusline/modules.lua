@@ -1,4 +1,6 @@
 local fn = vim.fn
+local version = vim.version().minor
+local icons = nvoid.icons
 
 local modesM = {
   ["n"] = { " normal", "St_ModeM" },
@@ -93,7 +95,7 @@ M.modeN = function()
 end
 
 M.fileInfo = function()
-  local icon = " " .. nvoid.icons.ui.File .. " "
+  local icon = " " .. icons.ui.File .. " "
   local filename = (fn.expand "%" == "" and "Empty ") or fn.expand "%:t"
 
   if filename ~= "Empty " then
@@ -117,15 +119,14 @@ M.git = function()
   end
 
   local git_status = vim.b.gitsigns_status_dict
-  local added = (git_status.added and git_status.added ~= 0) and (nvoid.icons.git.LineAdded .. " " .. git_status.added)
-    or ""
+  local added = (git_status.added and git_status.added ~= 0) and (icons.git.LineAdded .. " " .. git_status.added) or ""
   local changed = (git_status.changed and git_status.changed ~= 0)
-      and (nvoid.icons.git.LineModified .. " " .. git_status.changed)
+      and (icons.git.LineModified .. " " .. git_status.changed)
     or ""
   local removed = (git_status.removed and git_status.removed ~= 0)
-      and (nvoid.icons.git.LineRemoved .. " " .. git_status.removed)
+      and (icons.git.LineRemoved .. " " .. git_status.removed)
     or ""
-  local branch_name = nvoid.icons.git.Branch .. " " .. git_status.head
+  local branch_name = icons.git.Branch .. " " .. git_status.head
 
   return "%#St_gitIcons#"
     .. " "
@@ -175,26 +176,31 @@ M.get_lsp = function()
 
   local unique_client_names = vim.fn.uniq(buf_client_names)
 
-  local language_servers = nvoid.icons.ui.Lsp .. " " .. table.concat(unique_client_names, ", ")
+  local language_servers = icons.ui.Lsp .. " " .. table.concat(unique_client_names, ", ")
 
   if copilot_active then
-    language_servers = language_servers .. "%#SLCopilot#" .. " " .. nvoid.icons.git.Octoface .. "%*"
+    language_servers = language_servers .. "%#SLCopilot#" .. " " .. icons.git.Octoface .. "%*"
   end
 
-  return "%#St_LspStatus#" .. language_servers .. " "
+  return "%#St_LspStatus#" .. language_servers
 end
 
 M.lsp_progress = function()
+  if version < 10 then
+    return ""
+  end
+
   local msg = vim.lsp.status()
+
   if #msg == 0 or vim.o.columns < 120 then
     return ""
   end
-  local spinners = { nvoid.icons.ui.spinnerInactive, nvoid.icons.ui.spinnerActive }
+
+  local spinners = { icons.ui.spinnerInactive, icons.ui.spinnerActive }
   local ms = vim.loop.hrtime() / 1e6
   local frame = math.floor(ms / 100) % #spinners
-  local content = spinners[frame + 1] .. " " .. msg
 
-  return ("%#St_LspProgress#" .. content) or ""
+  return "%#St_LspProgress#" .. spinners[frame + 1] .. " " .. msg
 end
 
 M.lsp_diagnostics = function()
@@ -202,27 +208,31 @@ M.lsp_diagnostics = function()
     return ""
   end
 
-  local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
-  local warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
-  local hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
-  local info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
+  local diagnostic = vim.diagnostic
+  local errors = #diagnostic.get(0, { severity = diagnostic.severity.ERROR })
+  local warnings = #diagnostic.get(0, { severity = diagnostic.severity.WARN })
+  local hints = #diagnostic.get(0, { severity = diagnostic.severity.HINT })
+  local info = #diagnostic.get(0, { severity = diagnostic.severity.INFO })
 
-  errors = (errors and errors > 0) and ("%#St_lspError#" .. nvoid.icons.diagnostics.BoldError .. " " .. errors .. " ")
-    or ""
-  warnings = (warnings and warnings > 0)
-      and ("%#St_lspWarning#" .. nvoid.icons.diagnostics.BoldWarning .. " " .. warnings .. " ")
-    or ""
-  hints = (hints and hints > 0) and ("%#St_lspHints#" .. nvoid.icons.diagnostics.BoldHint .. " " .. hints .. " ") or ""
-  info = (info and info > 0) and ("%#St_lspInfo#" .. nvoid.icons.diagnostics.BoldInformation .. " " .. info .. " ")
-    or ""
+  local get_errors = (errors and errors > 0) and (icons.diagnostics.BoldError .. " " .. errors .. " ") or ""
+  local get_warnings = (warnings and warnings > 0) and (icons.diagnostics.BoldWarning .. " " .. warnings .. " ") or ""
+  local get_hints = (hints and hints > 0) and (icons.diagnostics.BoldHint .. " " .. hints .. " ") or ""
+  local get_info = (info and info > 0) and (icons.diagnostics.BoldInformation .. " " .. info .. " ") or ""
 
-  return errors .. warnings .. hints .. info
+  return "%#St_lspError#"
+    .. get_errors
+    .. "%#St_lspWarning#"
+    .. get_warnings
+    .. "%#St_lspHints#"
+    .. get_hints
+    .. "%#St_lspInfo#"
+    .. get_info
 end
 
 M.scrollbar = function()
   local current_line = vim.fn.line "."
   local total_lines = vim.fn.line "$"
-  local chars = nvoid.icons.Scroll
+  local chars = icons.Scroll
   local line_ratio = current_line / total_lines
   local index = math.ceil(line_ratio * #chars)
   return "%#St_pos_text#" .. chars[index]
