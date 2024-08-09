@@ -1,9 +1,11 @@
 local M = {}
 
-if vim.fn.has("nvim-0.9") ~= 1 then
+if vim.fn.has "nvim-0.9" ~= 1 then
   vim.notify("Please upgrade your Neovim base installation. Nvoid requires v0.9+", vim.log.levels.WARN)
-  vim.wait(5000, function() return false end)
-  vim.cmd("cquit")
+  vim.wait(5000, function()
+    return false
+  end)
+  vim.cmd "cquit"
 end
 
 local uv = vim.loop
@@ -93,7 +95,7 @@ end
 ---Update Nvoid
 ---pulls the latest changes from github and, resets the startup cache
 function M:update()
-  require("nvoid.core.log"):info("Trying to update Nvoid...")
+  require("nvoid.core.log"):info "Trying to update Nvoid..."
 
   vim.schedule(function()
     reload("nvoid.utils.hooks").run_pre_update()

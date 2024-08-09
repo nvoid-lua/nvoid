@@ -9,8 +9,8 @@ local plugins_dir = join_paths(get_runtime_dir(), "site", "pack", "lazy", "opt")
 function plugin_loader.init(opts)
   opts = opts or {}
 
-  local lazy_install_dir = opts.install_path or
-  join_paths(vim.fn.stdpath "data", "site", "pack", "lazy", "opt", "lazy.nvim")
+  local lazy_install_dir = opts.install_path
+    or join_paths(vim.fn.stdpath "data", "site", "pack", "lazy", "opt", "lazy.nvim")
 
   if not utils.is_directory(lazy_install_dir) then
     Log:info "Initializing first time setup"
@@ -22,13 +22,21 @@ function plugin_loader.init(opts)
       utils.fs_copy(core_plugins_dir, plugins_dir)
     else
       vim.fn.system {
-        "git", "clone", "--branch=stable", "https://github.com/folke/lazy.nvim.git", lazy_install_dir,
+        "git",
+        "clone",
+        "--branch=stable",
+        "https://github.com/folke/lazy.nvim.git",
+        lazy_install_dir,
       }
 
       local default_snapshot_path = join_paths(get_nvoid_base_dir(), "snapshots", "default.json")
       local snapshot = assert(vim.fn.json_decode(vim.fn.readfile(default_snapshot_path)))
       vim.fn.system {
-        "git", "-C", lazy_install_dir, "checkout", snapshot["lazy.nvim"].commit,
+        "git",
+        "-C",
+        lazy_install_dir,
+        "checkout",
+        snapshot["lazy.nvim"].commit,
       }
     end
 
