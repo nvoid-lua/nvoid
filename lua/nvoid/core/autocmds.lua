@@ -89,17 +89,6 @@ function M.load_defaults()
     {
       "FileType",
       {
-        group = "_filetype_settings",
-        pattern = "lir",
-        callback = function()
-          vim.opt_local.number = false
-          vim.opt_local.relativenumber = false
-        end,
-      },
-    },
-    {
-      "FileType",
-      {
         group = "_dashboard_settings",
         pattern = "alpha",
         command = "set laststatus=0 | autocmd BufUnload <buffer> set laststatus=" .. vim.opt.laststatus._value,
