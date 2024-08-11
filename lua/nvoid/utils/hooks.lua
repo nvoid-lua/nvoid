@@ -12,13 +12,6 @@ function M.run_pre_reload()
   Log:debug "Starting pre-reload hook"
 end
 
--- TODO: convert to lazy.nvim
--- function M.run_on_packer_complete()
--- -- FIXME(kylo252): nvim-tree.lua/lua/nvim-tree/view.lua:442: Invalid window id
--- vim.g.colors_name = nvoid.colorscheme
--- pcall(vim.cmd.colorscheme, nvoid.colorscheme)
--- end
-
 function M.run_post_reload()
   Log:debug "Starting post-reload hook"
 end
@@ -41,10 +34,10 @@ end
 function M.run_post_update()
   Log:debug "Starting post-update hook"
 
-  if vim.fn.has "nvim-0.9" ~= 1 then
+  if vim.fn.has "nvim-0.10" ~= 1 then
     local compat_tag = "1.2.0"
     vim.notify(
-      "Please upgrade your Neovim base installation. Newer version of Nvoid requires v0.9+",
+      "Please upgrade your Neovim base installation. Newer version of Nvoid requires v0.10+",
       vim.log.levels.WARN
     )
     vim.wait(1000)
