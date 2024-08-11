@@ -27,7 +27,7 @@ local mode_adapters = {
 ---@class Keys
 ---@field insert_mode table
 ---@field normal_mode table
----@field term_mode table
+---@field terminal_mode table
 ---@field visual_mode table
 ---@field visual_block_mode table
 ---@field command_mode table
@@ -56,13 +56,14 @@ local defaults = {
     ["<C-Down>"] = ":resize +2<CR>",
     ["<C-Left>"] = ":vertical resize -2<CR>",
     ["<C-Right>"] = ":vertical resize +2<CR>",
-    -- Move current line / block with Alt-j/k ala vscode.
+    -- Move current line / block with Alt-j/k a la vscode.
     ["<A-j>"] = ":m .+1<CR>==",
     ["<A-k>"] = ":m .-2<CR>==",
     -- QuickFix
     ["]q"] = ":cnext<CR>",
     ["[q"] = ":cprev<CR>",
     ["<C-q>"] = ":call QuickFixToggle()<CR>",
+    -- Terminal
     ["<A-t>"] = "<cmd>lua require('nvoid.ui.terminal').new_or_toggle('horizontal', " .. tostring(
       terminal_options.window.split_height
     ) .. ")<cr>",
@@ -94,7 +95,7 @@ local defaults = {
   },
 
   command_mode = {
-    -- Navigate tab completion with <c-j> and <c-k> conditionally
+    -- Navigate tab completion with <c-j> and <c-k>
     ["<C-j>"] = { 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true } },
     ["<C-k>"] = { 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true } },
   },
@@ -113,9 +114,9 @@ end
 function M.clear(keymaps)
   local default = M.get_defaults()
   for mode, mappings in pairs(keymaps) do
-    local translated_mode = mode_adapters[mode] or mode
+    local translated_mode = mode_adapters[mode] and mode_adapters[mode] or mode
     for key, _ in pairs(mappings) do
-      -- Some plugins may override default bindings that the user hasn't manually overridden
+      -- some plugins may override default bindings that the user hasn't manually overriden
       if default[mode][key] ~= nil or (default[translated_mode] ~= nil and default[translated_mode][key] ~= nil) then
         pcall(vim.api.nvim_del_keymap, translated_mode, key)
       end

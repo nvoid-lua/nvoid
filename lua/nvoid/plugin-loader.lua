@@ -13,13 +13,13 @@ function plugin_loader.init(opts)
     or join_paths(vim.fn.stdpath "data", "site", "pack", "lazy", "opt", "lazy.nvim")
 
   if not utils.is_directory(lazy_install_dir) then
-    Log:info "Initializing first time setup"
+    print "Initializing first time setup"
     local core_plugins_dir = join_paths(get_nvoid_base_dir(), "plugins")
 
     if utils.is_directory(core_plugins_dir) then
       vim.fn.mkdir(plugins_dir, "p")
       vim.fn.delete(plugins_dir, "rf")
-      utils.fs_copy(core_plugins_dir, plugins_dir)
+      require("nvoid.utils").fs_copy(core_plugins_dir, plugins_dir)
     else
       vim.fn.system {
         "git",
@@ -44,7 +44,7 @@ function plugin_loader.init(opts)
   end
 
   local rtp = vim.opt.rtp:get()
-  local base_dir = (vim.env.NVOID_BASE_DIR or join_paths(get_runtime_dir(), "nvoid")):gsub("\\", "/")
+  local base_dir = (vim.env.NVOID_BASE_DIR or get_runtime_dir() .. "/nvoid"):gsub("\\", "/")
   local idx_base = #rtp + 1
 
   for i, path in ipairs(rtp) do
@@ -69,6 +69,7 @@ function plugin_loader.reload(spec)
   local Config = require "lazy.core.config"
   local lazy = require "lazy"
 
+  -- TODO: reset cache? and unload plugins?
   Config.spec = spec
 
   require("lazy.core.plugin").load(true)
@@ -85,6 +86,7 @@ function plugin_loader.reload(spec)
   end
 
   if #Config.to_clean > 0 then
+    -- TODO: set show to true when lazy shows something useful on clean
     lazy.clean { wait = true, show = false }
   end
 end
@@ -98,12 +100,12 @@ function plugin_loader.load(configurations)
     return
   end
 
+  -- remove plugins from rtp before loading lazy, so that all plugins won't be loaded on startup
   vim.opt.runtimepath:remove(join_paths(plugins_dir, "*"))
-  vim.g.base16_cache = join_paths(vim.fn.stdpath "data", "base16/")
-  vim.g.theme = nvoid.ui.colorscheme
-  vim.g.transparency = nvoid.ui.transparency
-
   local status_ok = xpcall(function()
+    vim.g.base16_cache = join_paths(vim.fn.stdpath "data", "base16/")
+    vim.g.theme = nvoid.ui.colorscheme
+    vim.g.transparency = nvoid.ui.transparency
     lazy.setup(configurations, nvoid.lazy.opts)
   end, debug.traceback)
 

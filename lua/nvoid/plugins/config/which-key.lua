@@ -106,7 +106,7 @@ M.config = function()
         w = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Find Word In Document" },
       },
       g = {
-        name = " " .. nvoid.icons.ui.Octoface .. " Git",
+        name = " " .. nvoid.icons.git.Octoface .. " Git",
         g = { "<cmd>Gitsigns toggle_signs<cr>", "Toggle GitSigns" },
         j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
         k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
