@@ -1,31 +1,49 @@
 local M = {}
 
-local builtins = {
-  "nvoid.plugins.config.which-key",
-  "nvoid.plugins.config.bufferline",
-  "nvoid.plugins.config.toggleterm",
-  "nvoid.plugins.config.gitsigns",
-  "nvoid.plugins.config.cmp",
-  "nvoid.plugins.config.telescope",
-  "nvoid.plugins.config.treesitter",
-  "nvoid.plugins.config.nvimtree",
-  "nvoid.plugins.config.illuminate",
-  "nvoid.plugins.config.indentlines",
-  "nvoid.plugins.config.autopairs",
-  "nvoid.plugins.config.comment",
-  "nvoid.plugins.config.dap",
-  "nvoid.plugins.config.alpha",
-  "nvoid.plugins.config.mason",
-  "nvoid.plugins.config.navic",
+local base_path = "nvoid.plugins.config."
+local plugins = {
+  "which-key",
+  "bufferline",
+  "toggleterm",
+  "gitsigns",
+  "cmp",
+  "telescope",
+  "treesitter",
+  "nvimtree",
+  "illuminate",
+  "indentlines",
+  "autopairs",
+  "comment",
+  "dap",
+  "alpha",
+  "mason",
+  "navic",
 }
+
+local builtins = {}
+for _, plugin in ipairs(plugins) do
+  table.insert(builtins, base_path .. plugin)
+end
+
+-- Function to reload a module safely
+local function safe_reload(module_path)
+  local success, module = pcall(require, module_path)
+  if not success then
+    vim.api.nvim_err_writeln("Failed to load module: " .. module_path)
+    return nil
+  end
+  return module
+end
 
 function M.config(config)
   for _, builtin_path in ipairs(builtins) do
-    local builtin = reload(builtin_path)
-
-    builtin.config(config)
+    local builtin = safe_reload(builtin_path)
+    if builtin and builtin.config then
+      builtin.config(config)
+    end
   end
 end
+
 require "nvoid.plugins.config.toggleterm"
 
 return M
