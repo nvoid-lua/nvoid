@@ -49,9 +49,6 @@ M.config = function()
         delay = 1000,
         ignore_whitespace = false,
       },
-      current_line_blame_formatter_opts = {
-        relative_time = false,
-      },
       max_file_length = 40000,
       preview_config = {
         border = "single",
@@ -67,7 +64,6 @@ M.config = function()
       sign_priority = 6,
       update_debounce = 200,
       status_formatter = nil,
-      yadm = { enable = false },
     },
   }
 end

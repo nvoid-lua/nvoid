@@ -11,7 +11,7 @@ local function resolve_mason_config(server_name)
     Log:debug(fmt("mason configuration not found for %s", server_name))
     return {}
   end
-  local server_mapping = require "mason-lspconfig.mappings.server"
+  local server_mapping = require("mason-lspconfig.mappings").get_mason_map()
   local path = require "mason-core.path"
   local pkg_name = server_mapping.lspconfig_to_package[server_name]
   local install_dir = path.package_prefix(pkg_name)
@@ -98,7 +98,7 @@ function M.setup(server_name, user_config)
     return
   end
 
-  local server_mapping = require "mason-lspconfig.mappings.server"
+  local server_mapping = require("mason-lspconfig.mappings").get_mason_map()
   local registry = require "mason-registry"
 
   local pkg_name = server_mapping.lspconfig_to_package[server_name]

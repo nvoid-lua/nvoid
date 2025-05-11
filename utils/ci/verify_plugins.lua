@@ -5,12 +5,7 @@ local active_jobs = {}
 local fmt = string.format
 local core_plugins = require "nvoid.plugins"
 
-local default_snapshot_path = join_paths(get_nvoid_base_dir(), "snapshots", "default.json")
-local fd = io.open(default_snapshot_path, "rb")
 local content
-if fd then
-  content = fd:read "*a"
-end
 local default_sha1 = vim.json.decode(content)
 
 local get_short_name = function(spec)

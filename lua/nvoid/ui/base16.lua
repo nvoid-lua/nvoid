@@ -32,9 +32,9 @@ if nvoid.use_icons then
   dofile(vim.g.base16_cache .. "devicons")
 end
 
-if nvoid.builtin.indentlines.active then
-  dofile(vim.g.base16_cache .. "blankline")
-end
+-- if nvoid.builtin.indentlines.active then
+--   dofile(vim.g.base16_cache .. "blankline")
+-- end
 
 if nvoid.builtin.which_key.active then
   dofile(vim.g.base16_cache .. "whichkey")

@@ -16,10 +16,6 @@ uninstall:
 	@echo starting Nvoid uninstaller
 	bash ./utils/installer/uninstall.sh
 
-generate_new_lockfile:
-	@echo generating core-plugins latest lockfile
-	bash ./utils/ci/generate_new_lockfile.sh
-
 lint: lint-lua lint-sh
 
 lint-lua:
