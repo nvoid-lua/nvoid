@@ -27,7 +27,7 @@ local core_plugins = {
     enabled = nvoid.builtin.winbar.active,
   },
   {
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
     cmd = { "LspInstall", "LspUninstall" },
     config = function()
       require("mason-lspconfig").setup(nvoid.lsp.installer.setup)
@@ -41,7 +41,7 @@ local core_plugins = {
   { "tamago324/nlsp-settings.nvim", cmd = "LspSettings", lazy = true },
   { "nvimtools/none-ls.nvim", lazy = true },
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     config = function()
       require("nvoid.plugins.config.mason").setup()
     end,
